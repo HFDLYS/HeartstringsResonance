@@ -56,36 +56,13 @@
     <property name="styleSheet">
      <string notr="true">#picwidget{border-image:url(:/images/mainwindow/background.png)}</string>
     </property>
-    <widget class="QPushButton" name="btnGame">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>460</y>
-       <width>401</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#btnGame{border-image:url(:/images/mainwindow/start.png)}
-QPushButton::pressed#btnGame{border-image:url(:/images/mainwindow/start-.png)}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>250</width>
-       <height>49</height>
-      </size>
-     </property>
-    </widget>
     <widget class="QPushButton" name="btnRank">
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>540</y>
+       <y>580</y>
        <width>401</width>
-       <height>61</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -106,9 +83,9 @@ QPushButton::pressed#btnRank{border-image:url(:/images/mainwindow/rank-.png)}</s
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>620</y>
+       <y>640</y>
        <width>401</width>
-       <height>61</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -164,14 +141,15 @@ font-weight: bold;</string>
     <widget class="QPushButton" name="rbtnMultiplayer">
      <property name="geometry">
       <rect>
-       <x>660</x>
-       <y>380</y>
-       <width>221</width>
+       <x>440</x>
+       <y>520</y>
+       <width>401</width>
        <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image:url(:/images/mainwindow/mul.png)</string>
+      <string notr="true">QPushButton#rbtnMultiplayer{border-image:url(:/images/mainwindow/mul.png)}
+QPushButton::pressed#rbtnMultiplayer{border-image:url(:/images/mainwindow/mul-.png)}</string>
      </property>
      <property name="text">
       <string/>
@@ -186,15 +164,15 @@ font-weight: bold;</string>
     <widget class="QPushButton" name="rbtnSolo">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>380</y>
-       <width>221</width>
+       <x>440</x>
+       <y>460</y>
+       <width>401</width>
        <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image:url(:/images/mainwindow/solo-.png)
-</string>
+      <string notr="true">QPushButton#rbtnSolo{border-image:url(:/images/mainwindow/solo.png)}
+QPushButton::pressed#rbtnSolo{border-image:url(:/images/mainwindow/solo-.png)}</string>
      </property>
      <property name="text">
       <string/>
@@ -324,9 +302,9 @@ font-weight: bold;</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>140</x>
        <y>380</y>
-       <width>180</width>
+       <width>1000</width>
        <height>50</height>
       </rect>
      </property>
@@ -351,49 +329,7 @@ font-weight: bold;</string>
 font-weight: bold;</string>
      </property>
      <property name="text">
-      <string>---------&gt;</string>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="author_3">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>900</x>
-       <y>380</y>
-       <width>180</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777212</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>幼圆</family>
-       <pointsize>18</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LayoutDirection::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: white;
-font-weight: bold;</string>
-     </property>
-     <property name="text">
-      <string>&lt;---------</string>
+      <string>-----------------------------&gt;♥&lt;-----------------------------</string>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -404,7 +340,6 @@ font-weight: bold;</string>
     </widget>
     <zorder>shadow</zorder>
     <zorder>author_2</zorder>
-    <zorder>btnGame</zorder>
     <zorder>btnRank</zorder>
     <zorder>btnConfig</zorder>
     <zorder>title</zorder>
@@ -413,7 +348,6 @@ font-weight: bold;</string>
     <zorder>btnQuit</zorder>
     <zorder>btnAbout</zorder>
     <zorder>author</zorder>
-    <zorder>author_3</zorder>
    </widget>
   </widget>
  </widget>
