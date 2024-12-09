@@ -88,15 +88,15 @@ void MainWindow::on_rbtnSolo_clicked()
 {
     msg = "solo";
 
-    ui->rbtnSolo->setStyleSheet("border-image:url(:/images/mainwindow/solo-.png)");
-    ui->rbtnMultiplayer->setStyleSheet("border-image:url(:/images/mainwindow/mul.png)");
+    //ui->rbtnSolo->setStyleSheet("border-image:url(:/images/mainwindow/solo-.png)");
+    //ui->rbtnMultiplayer->setStyleSheet("border-image:url(:/images/mainwindow/mul.png)");
 }
 
 
 void MainWindow::on_rbtnMultiplayer_clicked()
 {
     msg = "mul";
-    ui->rbtnSolo->setStyleSheet("border-image:url(:/images/mainwindow/solo.png)");
-    ui->rbtnMultiplayer->setStyleSheet("border-image:url(:/images/mainwindow/mul-.png)");
+    //ui->rbtnSolo->setStyleSheet("border-image:url(:/images/mainwindow/solo.png)");
+    //ui->rbtnMultiplayer->setStyleSheet("border-image:url(:/images/mainwindow/mul-.png)");
 }
 
