@@ -23,8 +23,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(HeartstringsResonance
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        code/windows/framelesswindow.cpp code/windows/framelesswindow.h code/windows/framelesswindow.ui code/windows/mainwindow.cpp code/windows/mainwindow.h code/windows/mainwindow.ui
-        code/main.cpp
+        client/windows/framelesswindow.cpp client/windows/framelesswindow.h client/windows/framelesswindow.ui 
+        client/windows/mainwindow.cpp client/windows/mainwindow.h client/windows/mainwindow.ui
+        client/main.cpp
         resource/res.qrc
         resource/shaders.qrc
 
