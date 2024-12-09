@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="mwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1280</width>
+     <height>720</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1280</width>
+     <height>720</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QWidget" name="picwidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1280</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#picwidget{border-image:url(:/images/mainwindow/background.png)}</string>
+    </property>
+    <widget class="QPushButton" name="btnGame">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>460</y>
+       <width>401</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#btnGame{border-image:url(:/images/mainwindow/start.png)}
+QPushButton::pressed#btnGame{border-image:url(:/images/mainwindow/start-.png)}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>250</width>
+       <height>49</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnRank">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>540</y>
+       <width>401</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#btnRank{border-image:url(:/images/mainwindow/rank.png)}
+QPushButton::pressed#btnRank{border-image:url(:/images/mainwindow/rank-.png)}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>250</width>
+       <height>49</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnConfig">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>620</y>
+       <width>401</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#btnConfig{border-image:url(:/images/mainwindow/setting.png)}
+QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/setting-.png)}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>250</width>
+       <height>49</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="title">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>60</y>
+       <width>1041</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>幼圆</family>
+       <pointsize>72</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>爱的魔法♥心海相连</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="rbtnMultiplayer">
+     <property name="geometry">
+      <rect>
+       <x>660</x>
+       <y>380</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image:url(:/images/mainwindow/mul.png)</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>88</width>
+       <height>38</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="rbtnSolo">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>380</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image:url(:/images/mainwindow/solo-.png)
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>88</width>
+       <height>38</height>
+      </size>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnQuit">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>630</y>
+       <width>301</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#btnQuit{border-image:url(:/images/mainwindow/quit.png)}
+QPushButton::pressed#btnQuit{border-image:url(:/images/mainwindow/quit-.png)}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnAbout">
+     <property name="geometry">
+      <rect>
+       <x>930</x>
+       <y>630</y>
+       <width>301</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#btnAbout{border-image:url(:/images/mainwindow/about.png)
+}QPushButton::pressed#btnAbout{border-image:url(:/images/mainwindow/about-.png)}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>100</y>
+       <width>1121</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>幼圆</family>
+       <pointsize>72</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/mainwindow/top.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="author">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>280</y>
+       <width>1041</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>仿宋</family>
+       <pointsize>18</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>作者:BJTU-2024-新小团体来了</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="author_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>380</y>
+       <width>180</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777212</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>幼圆</family>
+       <pointsize>18</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>---------&gt;</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="author_3">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>900</x>
+       <y>380</y>
+       <width>180</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777212</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>幼圆</family>
+       <pointsize>18</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>&lt;---------</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <zorder>shadow</zorder>
+    <zorder>author_2</zorder>
+    <zorder>btnGame</zorder>
+    <zorder>btnRank</zorder>
+    <zorder>btnConfig</zorder>
+    <zorder>title</zorder>
+    <zorder>rbtnMultiplayer</zorder>
+    <zorder>rbtnSolo</zorder>
+    <zorder>btnQuit</zorder>
+    <zorder>btnAbout</zorder>
+    <zorder>author</zorder>
+    <zorder>author_3</zorder>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../resource/res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
