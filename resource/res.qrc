@@ -31,7 +31,6 @@
         <file>images/mainwindow/about-.png</file>
         <file>images/mainwindow/background.png</file>
         <file>images/mainwindow/top.png</file>
-        <file>images/mainwindow/test1.png</file>
         <file>images/mainwindow/vain.png</file>
         <file>images/aboutwindow/about_background.png</file>
         <file>images/configwindow/setting_background.png</file>
@@ -39,7 +38,7 @@
         <file>images/configwindow/setting_music_off-.png</file>
         <file>images/configwindow/setting_music_on.png</file>
         <file>images/configwindow/setting_music_on-.png</file>
-        <file>images/configwindow/setting_soundEff_off.png</file>
+        <file>images/configwindow/setting_sound_off.png</file>
         <file>images/mouse.png</file>
         <file>images/windowicon.png</file>
         <file>images/gamewindow/bkgrd.png</file>
@@ -56,6 +55,10 @@
         <file>images/avatar/ai7.png</file>
         <file>images/avatar/ai8.png</file>
         <file>images/avatar/ai9.png</file>
-        <file>images/avatar/nb.png</file>
+        <file>images/configwindow/setting_sound_off-.png</file>
+        <file>images/configwindow/setting_sound_on.png</file>
+        <file>images/configwindow/setting_sound_on-.png</file>
+        <file>images/return.png</file>
+        <file>images/return-.png</file>
     </qresource>
 </RCC>
