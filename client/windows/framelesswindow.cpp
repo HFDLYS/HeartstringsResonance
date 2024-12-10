@@ -9,7 +9,7 @@ FrameLessWindow::FrameLessWindow(QWidget *parent)
   QIcon icon = QIcon(":/images/windowicon.png");
   this->setWindowIcon(icon);
   QPixmap pix(":/images/mouse.png");
-  QSize size(24, 24);
+  QSize size(32, 32);
   // 设置图片大小
   pix = pix.scaled(size, Qt::KeepAspectRatio);
   this->setCursor(QCursor(pix, -1, -1));

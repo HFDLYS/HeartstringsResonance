@@ -260,42 +260,6 @@ font-weight: bold;</string>
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="author">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>280</y>
-       <width>1041</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>仿宋</family>
-       <pointsize>18</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LayoutDirection::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: white;
-font-weight: bold;</string>
-     </property>
-     <property name="text">
-      <string>作者:BJTU-2024-新小团体来了</string>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
     <widget class="QLabel" name="author_2">
      <property name="enabled">
       <bool>true</bool>
@@ -347,7 +311,6 @@ font-weight: bold;</string>
     <zorder>rbtnSolo</zorder>
     <zorder>btnQuit</zorder>
     <zorder>btnAbout</zorder>
-    <zorder>author</zorder>
    </widget>
   </widget>
  </widget>
