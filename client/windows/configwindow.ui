@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConfigWindow</class>
+ <widget class="QMainWindow" name="ConfigWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="configpic">
+   <property name="styleSheet">
+    <string notr="true">#configpic{border-image:url(:/images/configwindow/setting_background.png)}</string>
+   </property>
+   <widget class="QPushButton" name="btnReturn">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>630</y>
+      <width>301</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnReturn{border-image:url(:/images/return.png)}
+QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnMusic">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>310</y>
+      <width>250</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnMusic{border-image:url(:/images/configwindow/setting_music_on.png)}
+QPushButton::pressed#btnMusic{border-image:url(:/images/configwindow/setting_music_on-.png)}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSound">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>440</y>
+      <width>250</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnSound{border-image:url(:/images/configwindow/setting_sound_on.png)}
+QPushButton::pressed#btnSound{border-image:url(:/images/configwindow/setting_sound_on-.png)}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QSlider" name="musicSlider">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>300</y>
+      <width>431</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+	border: 0px solid white;
+	height:40px;
+}
+/*已滑过的槽部分*/
+QSlider::sub-page:horizontal {
+	background-color:rgb(100, 33, 0) ;
+border-radius: 20px;
+}
+
+/*未滑过的槽部分*/
+QSlider::add-page:horizontal {
+	background-color: rgb(255, 188, 155);
+border-radius: 20px;
+}
+/*滑块*/
+QSlider::handle:horizontal 
+{
+	
+	background-color:rgb(170, 170, 255);
+	width: 32px;
+	margin: -14px  0px -14px 0px; 
+border-radius: 10px;
+}
+</string>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>30</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="soundSlider">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>430</y>
+      <width>431</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+	border: 0px solid white;
+	height:40px;
+}
+/*已滑过的槽部分*/
+QSlider::sub-page:horizontal {
+	background-color:rgb(100, 33, 0) ;
+border-radius: 20px;
+}
+
+/*未滑过的槽部分*/
+QSlider::add-page:horizontal {
+	background-color: rgb(255, 188, 155);
+border-radius: 20px;
+}
+/*滑块*/
+QSlider::handle:horizontal 
+{
+	
+	background-color:rgb(170, 170, 255);
+	width: 32px;
+	margin: -14px  0px -14px 0px; 
+border-radius: 10px;
+}
+</string>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>30</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

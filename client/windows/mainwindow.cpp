@@ -4,6 +4,8 @@
 #include <iostream>
 #include "ui_mainwindow.h"
 
+#include "configwindow.h"
+
 MainWindow::MainWindow(QWidget *parent) : FrameLessWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     // 固定窗口大小
@@ -50,11 +52,11 @@ void MainWindow::on_btnRank_clicked() {
 // 设置
 void MainWindow::on_btnConfig_clicked() {
     //BGM::GetInstance()->PlaySwitchType();
-    //ConfigWindow *cw = new ConfigWindow();
-    //cw->move(this->pos().x(), this->pos().y());
-    //cw->show();
-    //delay(200);
-    //this->close();
+    ConfigWindow *cw = new ConfigWindow();
+    cw->move(this->pos().x(), this->pos().y());
+    cw->show();
+    delay(50);
+    this->close();
 }
 
 // 关于
