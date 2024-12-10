@@ -1,10 +1,17 @@
 #include "mainwindow.h"
 
 #include <QFile>
+#include <QDialog>
 #include <iostream>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLabel>
 #include "ui_mainwindow.h"
-
+#include "aboutwindow.h"
 #include "configwindow.h"
+#include "rankwindow.h"
+
 
 MainWindow::MainWindow(QWidget *parent) : FrameLessWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -42,11 +49,11 @@ void MainWindow::on_btnGame_clicked() {
 // 排行榜
 void MainWindow::on_btnRank_clicked() {
     //BGM::GetInstance()->PlaySwitchType();
-    //RankWindow *rw = new RankWindow();
-    //rw->move(this->pos().x(), this->pos().y());
-    //rw->show();
-    //delay(200);
-    //this->close();
+    RankWindow *rw = new RankWindow();
+    rw->move(this->pos().x(), this->pos().y());
+    rw->show();
+    delay(200);
+    this->close();
 }
 
 // 设置
@@ -62,16 +69,42 @@ void MainWindow::on_btnConfig_clicked() {
 // 关于
 void MainWindow::on_btnAbout_clicked() {
     //BGM::GetInstance()->PlaySwitchType();
-    //AboutWindow *aw = new AboutWindow();
-    //aw->move(this->pos().x(), this->pos().y());
-    //aw->show();
-    //delay(200);
-    //this->close();
+    AboutWindow *aw = new AboutWindow();
+    aw->move(this->pos().x(), this->pos().y());
+    aw->show();
+    delay(200);
+    this->close();
 }
-
+//退出
 void MainWindow::on_btnQuit_clicked() {
     //BGM::GetInstance()->PlayClose();
-    this->close();
+    QDialog *dialog = new QDialog(this);
+    dialog->setFixedSize(400, 170);
+    dialog->setWindowTitle("是否退出游戏？");
+    //dialog->setWindowFlags(Qt::FramelessWindowHint);
+    QHBoxLayout *layout = new QHBoxLayout(dialog);
+    QPushButton *confirmButton = new QPushButton("确认", dialog);
+    QPushButton *cancelButton = new QPushButton("取消", dialog);
+    layout->addWidget(confirmButton);
+    layout->addWidget(cancelButton);
+    QVBoxLayout *layout2 = new QVBoxLayout(dialog);
+    QWidget *tmp = new QWidget(this);
+    tmp->setLayout(layout);
+    QLabel *label = new QLabel("是否退出游戏?");
+    QFont font;
+    font.setBold(true);
+    font.setPointSize(24);
+    font.setFamily("幼圆");
+    label->setFont(font);        // 应用新字体
+    label->setAlignment(Qt::AlignCenter);
+    layout2->addWidget(label);
+    layout2->addWidget(tmp);
+    dialog->setLayout(layout2);
+    connect(confirmButton, &QPushButton::clicked, dialog, &QDialog::accept);
+    connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
+    if (dialog->exec() == QDialog::Accepted) {
+        this->close();
+    }
 }
 
 void MainWindow::on_btnGame_pressed() {}

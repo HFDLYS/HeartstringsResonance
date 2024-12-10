@@ -29,6 +29,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resource/res.qrc
         resource/shaders.qrc
         client/windows/configwindow.cpp client/windows/configwindow.h client/windows/configwindow.ui
+        client/windows/aboutwindow.cpp client/windows/aboutwindow.h client/windows/aboutwindow.ui
+        client/windows/rankwindow.cpp client/windows/rankwindow.h client/windows/rankwindow.ui
 
     )
 # Define target properties for Android with Qt 6 as:

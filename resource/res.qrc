@@ -60,5 +60,13 @@
         <file>images/configwindow/setting_sound_on-.png</file>
         <file>images/return.png</file>
         <file>images/return-.png</file>
+        <file>images/recordrankwindow/bottom.png</file>
+        <file>images/recordrankwindow/giveup.png</file>
+        <file>images/recordrankwindow/giveup-.png</file>
+        <file>images/recordrankwindow/save.png</file>
+        <file>images/recordrankwindow/save-.png</file>
+        <file>images/rankwindow/rank-back.png</file>
+        <file>images/rankwindow/rank-back-.png</file>
+        <file>images/rankwindow/rank-bottom.png</file>
     </qresource>
 </RCC>
