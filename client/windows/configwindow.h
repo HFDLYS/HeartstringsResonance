@@ -9,6 +9,7 @@ namespace Ui {
 class ConfigWindow;
 }
 
+
 class ConfigWindow : public FrameLessWindow {
     Q_OBJECT
 
