@@ -37,8 +37,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_btnGame_clicked();
-
     void on_btnRank_clicked();
 
     void on_btnConfig_clicked();
@@ -46,10 +44,6 @@ private slots:
     void on_btnAbout_clicked();
 
     void on_btnQuit_clicked();
-
-    void on_btnGame_pressed();
-
-    void on_btnGame_released();
 
     void on_btnRank_pressed();
 
