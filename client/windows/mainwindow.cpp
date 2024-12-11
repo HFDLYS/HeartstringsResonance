@@ -11,6 +11,7 @@
 #include "aboutwindow.h"
 #include "configwindow.h"
 #include "rankwindow.h"
+#include "gamewindow.h"
 
 
 MainWindow::MainWindow(QWidget *parent) : FrameLessWindow(parent), ui(new Ui::MainWindow) {
@@ -31,19 +32,25 @@ void delay(int x) {
     while (QTime::currentTime() < dieTime) QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
-// 游戏开始
-void MainWindow::on_btnGame_clicked() {
+// 单人游戏开始
+void MainWindow::on_rbtnSolo_clicked() {
+    msg = "solo";
     //BGM::GetInstance()->StopBgm1();
-    //GameWindow *gw = new GameWindow();
-    //gw->move(this->pos().x(), this->pos().y());
+    GameWindow *gw = new GameWindow();
+    gw->move(this->pos().x(), this->pos().y());
     //BGM::GetInstance()->PlayBgm2();
 
     //connect(this, &MainWindow::sentDifficulty, gw, &GameWindow::getDifficulty);
-    //gw->show();
+    gw->show();
     //std::cerr << "MainWindow::on_btnGame_clicked - GameWindow has showed." << std::endl;
     //emit sentDifficulty(msg);
-    //delay(200);
-    //this->close();
+    delay(200);
+    this->close();
+}
+
+// 多人游戏开始
+void MainWindow::on_rbtnMultiplayer_clicked(){
+    msg = "muti";
 }
 
 // 排行榜
@@ -107,10 +114,6 @@ void MainWindow::on_btnQuit_clicked() {
     }
 }
 
-void MainWindow::on_btnGame_pressed() {}
-
-void MainWindow::on_btnGame_released() {}
-
 void MainWindow::on_btnRank_pressed() {}
 
 void MainWindow::on_btnRank_released() {}
@@ -119,19 +122,4 @@ void MainWindow::on_btnConfig_pressed() {}
 
 void MainWindow::on_btnConfig_released() {}
 
-void MainWindow::on_rbtnSolo_clicked()
-{
-    msg = "solo";
-
-    //ui->rbtnSolo->setStyleSheet("border-image:url(:/images/mainwindow/solo-.png)");
-    //ui->rbtnMultiplayer->setStyleSheet("border-image:url(:/images/mainwindow/mul.png)");
-}
-
-
-void MainWindow::on_rbtnMultiplayer_clicked()
-{
-    msg = "mul";
-    //ui->rbtnSolo->setStyleSheet("border-image:url(:/images/mainwindow/solo.png)");
-    //ui->rbtnMultiplayer->setStyleSheet("border-image:url(:/images/mainwindow/mul-.png)");
-}
 
