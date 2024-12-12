@@ -1,20 +1,20 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/gamewindow/1.png</file>
-        <file>images/gamewindow/1-.png</file>
-        <file>images/gamewindow/2.png</file>
-        <file>images/gamewindow/2-.png</file>
-        <file>images/gamewindow/3.png</file>
-        <file>images/gamewindow/3-.png</file>
-        <file>images/gamewindow/4.png</file>
-        <file>images/gamewindow/4-.png</file>
-        <file>images/gamewindow/5.png</file>
-        <file>images/gamewindow/5-.png</file>
-        <file>images/gamewindow/6.png</file>
-        <file>images/gamewindow/6-.png</file>
-        <file>images/gamewindow/7.png</file>
+        <file>images/gamewindow/skill1.png</file>
+        <file>images/gamewindow/skill1-.png</file>
+        <file>images/gamewindow/skill2.png</file>
+        <file>images/gamewindow/skill2-.png</file>
+        <file>images/gamewindow/skill3.png</file>
+        <file>images/gamewindow/skill3-.png</file>
+        <file>images/gamewindow/pause.png</file>
+        <file>images/gamewindow/pause-.png</file>
+        <file>images/gamewindow/tip.png</file>
+        <file>images/gamewindow/tip-.png</file>
+        <file>images/gamewindow/exit.png</file>
+        <file>images/gamewindow/exit-.png</file>
+        <file>images/gamewindow/shadow_origin.png</file>
         <file>font/SmileySans-Oblique.ttf</file>
-        <file>images/gamewindow/7cut.png</file>
+        <file>images/gamewindow/shadow.png</file>
         <file>images/mainwindow/solo.png</file>
         <file>images/mainwindow/solo-.png</file>
         <file>images/mainwindow/mul.png</file>
@@ -68,5 +68,6 @@
         <file>images/rankwindow/rank-back.png</file>
         <file>images/rankwindow/rank-back-.png</file>
         <file>images/rankwindow/rank-bottom.png</file>
+        <file>images/pausewindow/pause_background.png</file>
     </qresource>
 </RCC>

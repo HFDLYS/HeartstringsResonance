@@ -11,22 +11,23 @@ class FrameLessWindow;
 }
 
 class FrameLessWindow : public QMainWindow {
-  Q_OBJECT
+    Q_OBJECT
 
- public:
-  explicit FrameLessWindow(QWidget *parent = nullptr);
-  ~FrameLessWindow();
+public:
+    explicit FrameLessWindow(QWidget *parent = nullptr);
+    ~FrameLessWindow();
+    void delay(int x);
+    void changeWindow(FrameLessWindow*);
+protected:
+    virtual void mousePressEvent(QMouseEvent *e);
+    virtual void mouseMoveEvent(QMouseEvent *e);
+    virtual void mouseReleaseEvent(QMouseEvent *e);
 
- protected:
-  void mousePressEvent(QMouseEvent *e);
-  void mouseMoveEvent(QMouseEvent *e);
-  void mouseReleaseEvent(QMouseEvent *e);
+private:
+    QPoint last;
 
- private:
-  QPoint last;
-
- private:
-  Ui::FrameLessWindow *ui;
+private:
+    Ui::FrameLessWindow *ui;
 };
 
 #endif  // FRAMELESSWINDOW_H

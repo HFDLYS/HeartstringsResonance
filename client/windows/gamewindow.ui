@@ -10,6 +10,18 @@
     <height>720</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -17,26 +29,7 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QLabel" name="shadow">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>25</y>
-      <width>550</width>
-      <height>550</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../../resource/res.qrc">:/images/gamewindow/7cut.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QWidget" name="picwidget" native="true">
+   <widget class="QWidget" name="controlWidget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -45,18 +38,8 @@
       <height>720</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">#picwidget{border-image:url(:/images/gamewindow/background.png)}</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="picwidget_2" native="true">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1280</width>
-      <height>720</height>
-     </rect>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
@@ -64,21 +47,17 @@
     <widget class="QPushButton" name="skill1_button">
      <property name="geometry">
       <rect>
-       <x>658</x>
-       <y>319</y>
+       <x>600</x>
+       <y>300</y>
        <width>81</width>
        <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(0,0,0,0)</string>
+      <string notr="true">QPushButton#skill1_button{border-image: url(:/images/gamewindow/skill1.png);}QPushButton::pressed#skill1_button{border-image:url(:/images/gamewindow/skill1-.png);}</string>
      </property>
      <property name="text">
       <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../../resource/res.qrc">
-       <normaloff>:/images/gamewindow/1.png</normaloff>:/images/gamewindow/1.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -90,20 +69,20 @@
     <widget class="QPushButton" name="skill3_button">
      <property name="geometry">
       <rect>
-       <x>708</x>
+       <x>650</x>
        <y>389</y>
        <width>81</width>
        <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(0,0,0,0)</string>
+      <string notr="true">QPushButton#skill3_button{border-image: url(:/images/gamewindow/skill3.png);}QPushButton::pressed#skill3_button{border-image:url(:/images/gamewindow/skill3-.png);}</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../resource/res.qrc">
+      <iconset>
        <normaloff>:/images/gamewindow/3.png</normaloff>:/images/gamewindow/3.png</iconset>
      </property>
      <property name="iconSize">
@@ -116,21 +95,17 @@
     <widget class="QPushButton" name="skill2_button">
      <property name="geometry">
       <rect>
-       <x>608</x>
+       <x>550</x>
        <y>389</y>
        <width>81</width>
        <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(0,0,0,0)</string>
+      <string notr="true">QPushButton#skill2_button{border-image: url(:/images/gamewindow/skill2.png);}QPushButton::pressed#skill2_button{border-image:url(:/images/gamewindow/skill2-.png);}</string>
      </property>
      <property name="text">
       <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../../resource/res.qrc">
-       <normaloff>:/images/gamewindow/2.png</normaloff>:/images/gamewindow/2.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -148,47 +123,21 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnReturn">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>630</y>
-       <width>301</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#btnReturn{border-image:url(:/images/return.png)}
-QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>175</width>
-       <height>35</height>
-      </size>
-     </property>
-    </widget>
     <widget class="QPushButton" name="hint_button">
      <property name="geometry">
       <rect>
-       <x>607</x>
+       <x>550</x>
        <y>475</y>
        <width>181</width>
        <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(0,0,0,0)</string>
+      <string notr="true">QPushButton#hint_button{border-image: url(:/images/gamewindow/tip.png);}
+QPushButton::pressed#hint_button{border-image:url(:/images/gamewindow/tip-.png);}</string>
      </property>
      <property name="text">
       <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../../resource/res.qrc">
-       <normaloff>:/images/gamewindow/5.png</normaloff>:/images/gamewindow/5.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -200,21 +149,18 @@ QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
     <widget class="QPushButton" name="pause_button">
      <property name="geometry">
       <rect>
-       <x>607</x>
-       <y>515</y>
+       <x>550</x>
+       <y>520</y>
        <width>181</width>
        <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(0,0,0,0)</string>
+      <string notr="true">QPushButton#pause_button{border-image: url(:/images/gamewindow/pause.png);}
+QPushButton::pressed#pause_button{border-image:url(:/images/gamewindow/pause-.png);}</string>
      </property>
      <property name="text">
       <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../../resource/res.qrc">
-       <normaloff>:/images/gamewindow/4.png</normaloff>:/images/gamewindow/4.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -223,10 +169,60 @@ QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
       </size>
      </property>
     </widget>
+    <widget class="QLabel" name="shadow_2">
+     <property name="geometry">
+      <rect>
+       <x>755</x>
+       <y>100</y>
+       <width>500</width>
+       <height>500</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>100</y>
+       <width>500</width>
+       <height>500</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="picwidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1280</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#picwidget{border-image:url(:/images/gamewindow/background.png)}</string>
+    </property>
    </widget>
    <zorder>picwidget</zorder>
-   <zorder>picwidget_2</zorder>
-   <zorder>shadow</zorder>
+   <zorder>controlWidget</zorder>
   </widget>
  </widget>
  <resources>

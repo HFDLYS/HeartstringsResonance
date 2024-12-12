@@ -4,7 +4,6 @@
 #include <utility>
 #include <vector>
 #include "framelesswindow.h"
-// 排行榜窗口类
 
 namespace Ui {
 class RankWindow;
@@ -12,18 +11,18 @@ class RankWindow;
 
 class RankWindow : public FrameLessWindow {
     Q_OBJECT
-   private:
+private:
     std::vector<std::pair<std::string, int>> pairs;
 
-   public:
+public:
     explicit RankWindow(QWidget *parent = nullptr);
     ~RankWindow();
 
-   private slots:
+private slots:
 
     void on_btnReturn_clicked();
 
-   private:
+private:
     Ui::RankWindow *ui;
 };
 

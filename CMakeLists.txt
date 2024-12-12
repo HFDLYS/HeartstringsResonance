@@ -42,6 +42,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/rankwindow.cpp client/windows/rankwindow.h client/windows/rankwindow.ui
         client/windows/gamewindow.cpp client/windows/gamewindow.h client/windows/gamewindow.ui
         client/windows/gamewindow.ui
+        client/windows/pausewindow.h client/windows/pausewindow.cpp client/windows/pausewindow.ui
 
     )
 # Define target properties for Android with Qt 6 as:
