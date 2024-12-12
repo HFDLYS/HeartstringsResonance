@@ -43,7 +43,7 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
    private:
     const unsigned int timer_inteval_ = 10;
 
-    GemManager* gem_manager_;        // StoneManager
+    GemManager* gem_manager_;
     GraphicsThread* hypercube_thread_;  // 控制帧数的线程
     Camera camera_;                      // 摄像机
 
@@ -54,7 +54,7 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
 
     // 一些参数
     QVector3D kCameraPosition = QVector3D(400.f, 400.f, 1000.f);     // 摄像机位置
-    QVector4D kBackgroundColor = QVector4D(0.2f, 0.3f, 0.3f, 1.0f);  // 背景颜色
+    QVector4D kBackgroundColor = QVector4D(0.7f, 0.8f, 1.0f, 0.1f);  // 背景颜色
 
     // 着色器设置
     bool shader_blinn_phong_ = true;

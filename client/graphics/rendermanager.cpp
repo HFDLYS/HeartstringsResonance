@@ -45,7 +45,7 @@ void RenderManager::Demo() {
     int tot = 0;
     for (int i = 0; i < nx; i++) {
         for (int j = 0; j < ny; j++) {
-            Checker(GetGemManager()->Generate(++tot, i, j, rand() % 8 + 1, rand() % 500 + 100));
+            Checker(GetGemManager()->Generate(++tot, i, j, rand() % 4 + 1, rand() % 500 + 100));
         }
     }
 
@@ -100,7 +100,7 @@ void RenderManager::initializeGL() {
 
     // Shader Toy Program
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shader_toy.vert");
-    shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_Ms2SD1.frag");
+    shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_tllfRX.frag");
     success = shader_toy_program_.link();
     if (!success) qDebug() << "InitializeGL Error: " << shader_toy_program_.log();
 
@@ -129,12 +129,12 @@ void RenderManager::paintGL() {
     shader_toy_program_.setUniformValue("iTime", QTime::currentTime().msecsSinceStartOfDay() / 2000.f);
     shader_toy_program_.setUniformValue("iResolution", width(), height());
     model.setToIdentity();
-    // model.translate(400.f, 400.f, -1100.f);
+    model.translate(400.f, 400.f, -1100.f);
     shader_toy_program_.setUniformValue("model", model);
     shader_toy_program_.setUniformValue("view", view);
     shader_toy_program_.setUniformValue("projection", projection);
 
-    // background->Draw(shader_toy_program_);
+    background->Draw(shader_toy_program_);
 
     // shader program
     shader_program_.bind();

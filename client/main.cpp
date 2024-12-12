@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
     format.setVersion(3, 3); // 请求 OpenGL 3.3
     format.setProfile(QSurfaceFormat::CoreProfile); // 核心模式
     format.setDepthBufferSize(24); // 深度缓冲区大小
+    format.setAlphaBufferSize(8);
     QSurfaceFormat::setDefaultFormat(format);
     QApplication a(argc, argv);
     MainWindow m;
