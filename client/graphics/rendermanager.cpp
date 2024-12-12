@@ -8,8 +8,8 @@ namespace Graphics {
 
 RenderManager::RenderManager(QWidget *parent) : QOpenGLWidget(parent) {
     // thread
-    hypercube_thread_ = new HypercubeThread(this);
-    connect(hypercube_thread_, &HypercubeThread::timeout, this, &RenderManager::HypercubeThreadSlot);
+    hypercube_thread_ = new GraphicsThread(this);
+    connect(hypercube_thread_, &GraphicsThread::timeout, this, &RenderManager::HypercubeThreadSlot);
     hypercube_thread_->start();
     // camera
     camera_.Position = kCameraPosition;
@@ -18,14 +18,14 @@ RenderManager::RenderManager(QWidget *parent) : QOpenGLWidget(parent) {
 RenderManager::~RenderManager() {
     // thread (no need)
     // stone manager
-    delete stone_manager_;
+    delete gem_manager_;
 }
 
-GemManager *RenderManager::GetStoneManager() {
-    if (stone_manager_ == nullptr) {
+GemManager *RenderManager::GetGemManager() {
+    if (gem_manager_ == nullptr) {
         std::cerr << "WARNING!!! StoneManager is nullptr" << std::endl;
     }
-    return stone_manager_;
+    return gem_manager_;
 }
 
 void RenderManager::Demo() {
@@ -39,39 +39,39 @@ void RenderManager::Demo() {
     };
 
     // 1. initialize
-    Checker(GetStoneManager()->Init(nx, ny));
+    Checker(GetGemManager()->Init(nx, ny));
 
     // 2. generate gemstone
     int tot = 0;
     for (int i = 0; i < nx; i++) {
         for (int j = 0; j < ny; j++) {
-            Checker(GetStoneManager()->Generate(++tot, i, j, rand() % 8 + 1, rand() % 500 + 100));
+            Checker(GetGemManager()->Generate(++tot, i, j, rand() % 8 + 1, rand() % 500 + 100));
         }
     }
 
     // 3. swap
-    Checker(GetStoneManager()->SwapStone(1, 2));
-    Checker(GetStoneManager()->SwapStone(3, 4));
-    Checker(GetStoneManager()->SwapStone(5, 6));
-    Checker(GetStoneManager()->SwapStone(1, 10));
-    Checker(GetStoneManager()->SwapStone(12, 12 + 8));
+    Checker(GetGemManager()->SwapStone(1, 2));
+    Checker(GetGemManager()->SwapStone(3, 4));
+    Checker(GetGemManager()->SwapStone(5, 6));
+    Checker(GetGemManager()->SwapStone(1, 10));
+    Checker(GetGemManager()->SwapStone(12, 12 + 8));
 
     // 4. remove
-    Checker(GetStoneManager()->Remove(3));
-    Checker(GetStoneManager()->Remove(4));
+    Checker(GetGemManager()->Remove(3));
+    Checker(GetGemManager()->Remove(4));
 
     // 5. fall
-    Checker(GetStoneManager()->FallTo(1, 50));
-    Checker(GetStoneManager()->FallTo(2, 50));
-    Checker(GetStoneManager()->FallTo(13, 50));
-    Checker(GetStoneManager()->FallTo(14, 50));
+    Checker(GetGemManager()->FallTo(1, 50));
+    Checker(GetGemManager()->FallTo(2, 50));
+    Checker(GetGemManager()->FallTo(13, 50));
+    Checker(GetGemManager()->FallTo(14, 50));
 
     // 6. random fall
     for (int i = 1; i <= 10; i++) {
         int random = 0;
         while (random == 0 || random == 3 || random == 4) random = rand() % (nx + ny) + 1;
 
-        Checker(GetStoneManager()->FallTo(random, 50));
+        Checker(GetGemManager()->FallTo(random, 50));
     }
 }
 
@@ -86,33 +86,23 @@ void RenderManager::SetHDRExposure(float exposure) { shader_hdr_exposure_ = expo
 void RenderManager::initializeGL() {
     // GL Functions
     initializeOpenGLFunctions();
-    QOpenGLContext *context = QOpenGLContext::currentContext();
-    if (!context) {
-        qDebug() << "No active OpenGL context found!";
-        return;
-    }
-    qDebug() << "active OpenGL context found:" << context->format();
+    
+    std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
 
-    auto context2 = QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext());
-    if (!context2) {
-        qDebug() << "Supported OpenGL version:" << (const char *)glGetString(GL_VERSION);
-        qDebug() << "No active OpenGL context2 found!";
-        return;
-    }
     // Stone Manager
-    stone_manager_ = new GemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
+    gem_manager_ = new GemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
 
     // Shader Program
     shader_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/common.vert");
     shader_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/common.frag");
     bool success = shader_program_.link();
-    if (!success) qDebug() << "Hypercube::Hypercube::InitializeGL Error: " << shader_program_.log();
+    if (!success) qDebug() << "InitializeGL Error: " << shader_program_.log();
 
     // Shader Toy Program
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shader_toy.vert");
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_Ms2SD1.frag");
     success = shader_toy_program_.link();
-    if (!success) qDebug() << "Hypercube::Hypercube::InitializeGL Error: " << shader_toy_program_.log();
+    if (!success) qDebug() << "InitializeGL Error: " << shader_toy_program_.log();
 
     // Background Model
     background = new Model(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()),
@@ -176,7 +166,7 @@ void RenderManager::paintGL() {
     shader_program_.setUniformValue("lightSource", shader_light_source_);
     shader_program_.setUniformValue("hdrExposure", shader_hdr_exposure_);
 
-    if (stone_manager_ != nullptr) stone_manager_->Draw(shader_program_);
+    if (gem_manager_ != nullptr) gem_manager_->Draw(shader_program_);
 }
 
 void RenderManager::resizeGL(int w, int h) {
@@ -188,7 +178,7 @@ void RenderManager::wheelEvent(QWheelEvent *event) { camera_.ProcessMouseScroll(
 
 
 void RenderManager::HypercubeThreadSlot() {
-    GetStoneManager()->Update();
+    GetGemManager()->Update();
     update();
 }
 

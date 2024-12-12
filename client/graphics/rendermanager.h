@@ -13,7 +13,7 @@
 #include <QWheelEvent>
 
 #include "camera.h"
-#include "hypercubethread.h"
+#include "graphicsthread.h"
 #include "gemmanager.h"
 
 namespace Graphics {
@@ -24,7 +24,7 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
     explicit RenderManager(QWidget* parent = nullptr);
     virtual ~RenderManager() override;
 
-    GemManager* GetStoneManager();
+    GemManager* GetGemManager();
 
     void Demo();
 
@@ -43,8 +43,8 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
    private:
     const unsigned int timer_inteval_ = 10;
 
-    GemManager* stone_manager_;        // StoneManager
-    HypercubeThread* hypercube_thread_;  // 控制帧数的线程
+    GemManager* gem_manager_;        // StoneManager
+    GraphicsThread* hypercube_thread_;  // 控制帧数的线程
     Camera camera_;                      // 摄像机
 
     QOpenGLShaderProgram shader_program_;      // 渲染程序

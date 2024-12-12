@@ -1,15 +1,15 @@
-#include "hypercubethread.h"
+#include "graphicsthread.h"
 
 #include <iostream>
 
-HypercubeThread::HypercubeThread(QObject *parent) : QThread(parent) {}
+GraphicsThread::GraphicsThread(QObject *parent) : QThread(parent) {}
 
-HypercubeThread::~HypercubeThread() {
+GraphicsThread::~GraphicsThread() {
     wait();
     quit();
 }
 
-void HypercubeThread::run() {
+void GraphicsThread::run() {
     // int i = 0;
     while (true) {
         // std::cerr << "signal: " << i++ << std::endl;

@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QScreen>
+#include <QSurfaceFormat>
 
 #include "framelesswindow.h"
 namespace Ui {

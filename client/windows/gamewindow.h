@@ -6,7 +6,7 @@
 #include <QTime>
 
 // #include "../core/board.h"
-// #include "../hypercube/hypercube.h"
+#include "../graphics/rendermanager.h"
 // #include "recordrankwindow.h"
 #include "framelesswindow.h"
 // 游戏窗口类
@@ -23,7 +23,7 @@ public:
     ~GameWindow();
 
 public slots:
-    void getDifficulty(QString data);
+    void startGame();
     void Release1();
     void Release2();
     void Release3();
@@ -66,7 +66,7 @@ private:
     int left_time_cnt_;
 
     // Board *board;
-    // Hypercube::Hypercube *hypercube_;
+    Graphics::RenderManager *renderer_;
 
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口
 

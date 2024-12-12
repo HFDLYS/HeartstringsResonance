@@ -11,21 +11,17 @@
 #include <ctime>
 #include <iostream>
 #include <random>
-const QPoint hypercube_size(550, 550);
-const QPoint opengl_up_left(25, 25);
-const QPoint opengl_down_right = opengl_up_left + QPoint(hypercube_size.x(), hypercube_size.y());
+const QPoint board_size(500, 500);
+const QPoint opengl_up_left(25, 100);
+const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
 
 GameWindow::GameWindow(QWidget *parent)
     : FrameLessWindow(parent), ui(new Ui::GameWindow) {
-  ui->setupUi(this);
-  // QIcon icon = QIcon(":/images/windowicon.png");
-  // this->setWindowIcon(icon);
-  // QPixmap pix(":/images/mouse.png");
-  // QSize size(24, 24);
-  // // 设置图片大小
-  // pix = pix.scaled(size, Qt::KeepAspectRatio);
-  // this->setCursor(QCursor(pix, -1, -1));
+    ui->setupUi(this);
+    renderer_ = new Graphics::RenderManager(ui->controlWidget);
+    renderer_->setFixedSize(board_size.x(), board_size.y());
+    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
 
   // QString ppath = QString("#aiwidget{border-image:url(:/images/立绘/ai%1.png)}")
   //                     .arg(rand() % 12 + 1);
@@ -219,7 +215,7 @@ void GameWindow::keyPressEvent(QKeyEvent *e) {
   // }
 }
 
-void GameWindow::getDifficulty(QString data) {
+void GameWindow::startGame() {
     // if (data == "easy") difficulty_ = 1;
     // if (data == "normal") difficulty_ = 2;
     // if (data == "hard") difficulty_ = 3;
@@ -228,6 +224,7 @@ void GameWindow::getDifficulty(QString data) {
     // // QMessageBox mes(this);
     // // mes.setText(data);
     // // mes.exec();
+    renderer_->Demo();
 }
 
 void GameWindow::on_btnReturn_clicked() {

@@ -25,7 +25,10 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
-    changeWindow(new GameWindow());
+    GameWindow *gw = new GameWindow();
+    gw->show();
+    changeWindow(gw);
+    gw->startGame();
 }
 
 // 多人游戏开始

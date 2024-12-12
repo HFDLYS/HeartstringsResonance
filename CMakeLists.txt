@@ -34,7 +34,7 @@ set(GRAPHICS_SOURCES
     client/graphics/gemmodelfactory.cpp client/graphics/gemmodelfactory.h
     client/graphics/gem.cpp client/graphics/gem.h
     client/graphics/rendermanager.cpp client/graphics/rendermanager.h
-    client/graphics/hypercubethread.cpp client/graphics/hypercubethread.h
+    client/graphics/graphicsthread.cpp client/graphics/graphicsthread.h
     client/graphics/mesh.cpp client/graphics/mesh.h
     client/graphics/model.cpp client/graphics/model.h
     client/graphics/gemmanager.cpp client/graphics/gemmanager.h
