@@ -1,7 +1,7 @@
 #include "aboutwindow.h"
 #include "mainwindow.h"
 #include "ui_aboutwindow.h"
-AboutWindow::AboutWindow(QWidget *parent) : FrameLessWindow(parent), ui(new Ui::AboutWindow) {
+AboutWindow::AboutWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::AboutWindow) {
     ui->setupUi(this);
 }
 

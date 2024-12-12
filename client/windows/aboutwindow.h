@@ -1,6 +1,6 @@
 #ifndef ABOUTWINDOW_H
 #define ABOUTWINDOW_H
-#include "framelesswindow.h"
+#include "basewindow.h"
 
 // 关于窗口类
 
@@ -8,7 +8,7 @@ namespace Ui {
 class AboutWindow;
 }
 
-class AboutWindow : public FrameLessWindow {
+class AboutWindow : public BaseWindow {
     Q_OBJECT
 
 public:

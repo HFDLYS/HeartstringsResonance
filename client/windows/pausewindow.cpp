@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 #include "ui_pausewindow.h"
 
-PauseWindow::PauseWindow(QWidget *parent) : FrameLessWindow(parent){
+PauseWindow::PauseWindow(QWidget *parent) : BaseWindow(parent){
     // ui->setupUi(this);
     // // 固定窗口大小
     // this->setFixedSize(1280, 720);

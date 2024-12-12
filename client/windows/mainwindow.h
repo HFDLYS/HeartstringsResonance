@@ -7,12 +7,12 @@
 #include <QMouseEvent>
 #include <QScreen>
 
-#include "framelesswindow.h"
+#include "basewindow.h"
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public FrameLessWindow {
+class MainWindow : public BaseWindow {
     Q_OBJECT
 
 public:

@@ -1,11 +1,11 @@
 #ifndef PAUSEWINDOW_H
 #define PAUSEWINDOW_H
-#include "framelesswindow.h"
+#include "basewindow.h"
 namespace Ui {
 class PauseWindow;
 }
 
-class PauseWindow : public FrameLessWindow {
+class PauseWindow : public BaseWindow {
     Q_OBJECT
 
 public:

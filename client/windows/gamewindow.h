@@ -8,14 +8,14 @@
 // #include "../core/board.h"
 // #include "../hypercube/hypercube.h"
 // #include "recordrankwindow.h"
-#include "framelesswindow.h"
+#include "basewindow.h"
 // 游戏窗口类
 
 namespace Ui {
 class GameWindow;
 }
 
-class GameWindow : public FrameLessWindow {
+class GameWindow : public BaseWindow {
     Q_OBJECT
 
 public:

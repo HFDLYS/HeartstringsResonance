@@ -17,7 +17,7 @@ const QPoint opengl_down_right = opengl_up_left + QPoint(hypercube_size.x(), hyp
 const int TITLE_HEIGHT = 30;
 
 GameWindow::GameWindow(QWidget *parent)
-    : FrameLessWindow(parent), ui(new Ui::GameWindow) {
+    : BaseWindow(parent), ui(new Ui::GameWindow) {
   ui->setupUi(this);
   // QIcon icon = QIcon(":/images/windowicon.png");
   // this->setWindowIcon(icon);

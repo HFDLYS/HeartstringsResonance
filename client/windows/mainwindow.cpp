@@ -14,7 +14,7 @@
 #include "gamewindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent) : FrameLessWindow(parent), ui(new Ui::MainWindow) {
+MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     // 固定窗口大小
     //BGM::GetInstance()->PlayBgm1();
