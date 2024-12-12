@@ -89,7 +89,7 @@ void RenderManager::initializeGL() {
     
     std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
 
-    // Stone Manager
+    // Gem Manager
     gem_manager_ = new GemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
 
     // Shader Program
