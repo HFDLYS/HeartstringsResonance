@@ -10,19 +10,28 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS OpenGL OpenGlWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+if(APPLE)
+    include_directories("/opt/homebrew/include")
+    link_directories("/opt/homebrew/lib")
+endif()
+
 set(PROJECT_SOURCES
+    
+)
 
-
-
-
+set(GRAPHICS_SOURCES
+    client/graphics/mesh.cpp client/graphics/mesh.h
+    client/graphics/model.cpp client/graphics/model.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(HeartstringsResonance
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${GRAPHICS_SOURCES}
         client/windows/framelesswindow.cpp client/windows/framelesswindow.h client/windows/framelesswindow.ui 
         client/windows/mainwindow.cpp client/windows/mainwindow.h client/windows/mainwindow.ui
         client/main.cpp
@@ -55,6 +64,13 @@ endif()
 
 target_link_libraries(HeartstringsResonance PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+target_link_libraries(HeartstringsResonance PRIVATE
+    Qt::OpenGL
+    Qt::OpenGLWidgets
+)
+
+target_link_libraries(HeartstringsResonance PRIVATE assimp)
+
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
@@ -68,6 +84,20 @@ set_target_properties(HeartstringsResonance PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+
+if(APPLE)
+    target_include_directories(HeartstringsResonance PRIVATE /opt/homebrew/Cellar/assimp/5.4.3/include)
+endif()
+
+if(WIN32)
+    target_include_directories(HeartstringsResonance PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/include)
+    target_link_libraries(DataStructureFinalProject PRIVATE
+        # Remove: L${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib/
+        ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib/libassimp.dll.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib/libassimp.dll
+    )
+endif()
+
 
 include(GNUInstallDirs)
 install(TARGETS HeartstringsResonance
