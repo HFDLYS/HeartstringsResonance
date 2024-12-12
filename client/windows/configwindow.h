@@ -34,6 +34,7 @@ private:
     static bool sound_on;
     static int music_state;
     static int sound_state;
+    void updateState();
 };
 
 #endif  // CONFIGWINDOW_H

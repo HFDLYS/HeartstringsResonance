@@ -9,17 +9,17 @@ class AboutWindow;
 }
 
 class AboutWindow : public FrameLessWindow {
-  Q_OBJECT
+    Q_OBJECT
 
- public:
-  explicit AboutWindow(QWidget *parent = nullptr);
-  ~AboutWindow();
+public:
+    explicit AboutWindow(QWidget *parent = nullptr);
+    ~AboutWindow();
 
- private slots:
-  void on_btnReturn_clicked();
+private slots:
+    void on_btnReturn_clicked();
 
- private:
-  Ui::AboutWindow *ui;
+private:
+    Ui::AboutWindow *ui;
 };
 
 #endif  // ABOUTWINDOW_H

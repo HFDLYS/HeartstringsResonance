@@ -17,12 +17,8 @@ const QPoint opengl_down_right = opengl_up_left + QPoint(hypercube_size.x(), hyp
 const int TITLE_HEIGHT = 30;
 
 GameWindow::GameWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::GameWindow) {
+    : FrameLessWindow(parent), ui(new Ui::GameWindow) {
   ui->setupUi(this);
-  // 固定窗口大小
-  this->setFixedSize(1280, 720);
-  // 去除自带的边框
-  this->setWindowFlag(Qt::FramelessWindowHint);
   // QIcon icon = QIcon(":/images/windowicon.png");
   // this->setWindowIcon(icon);
   // QPixmap pix(":/images/mouse.png");
@@ -248,7 +244,7 @@ void GameWindow::on_btnReturn_clicked() {
     // BGM::GetInstance()->PlayClose();
     // BGM::GetInstance()->StopBgm2();
     // BGM::GetInstance()->PlayBgm1();
-     delay(20);
+    delay(20);
     // timer_flush_score_and_left_time_bar_->stop();
     this->close();
 }

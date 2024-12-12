@@ -136,10 +136,5 @@ RankWindow::~RankWindow() { delete ui; }
 
 void RankWindow::on_btnReturn_clicked() {
     //BGM::GetInstance()->PlayClose();
-    MainWindow *mw = new MainWindow();
-    mw->move(this->pos().x(), this->pos().y());
-    mw->show();
-
-    delay(20);
-    this->close();
+    changeWindow(new MainWindow());
 }
