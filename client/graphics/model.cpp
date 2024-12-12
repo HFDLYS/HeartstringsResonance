@@ -21,7 +21,7 @@ void Model::LoadModel(const std::string &path) {
         return;
     }
     directory_ = path.substr(0, path.find_last_of('/'));
-    LoadNode(scene->mRootNode, scene);
+    LoadNode(scene->mRootNode, scene);  // 开始递归遍历整个模型
 }
 
 void Model::LoadNode(aiNode *node, const aiScene *scene) {
@@ -40,6 +40,7 @@ Mesh Model::LoadMesh(aiMesh *mesh, const aiScene *scene) {
     std::vector<Texture> textures;
     QVector3D ka, kd, ks, ke;
 
+    // 处理顶点位置、法线和纹理坐标
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
         Vertex vertex;
         QVector3D vector;
@@ -53,7 +54,7 @@ Mesh Model::LoadMesh(aiMesh *mesh, const aiScene *scene) {
         vector.setZ(mesh->mNormals[i].z);
         vertex.normal_ = vector;
 
-        if (mesh->mTextureCoords[0])
+        if (mesh->mTextureCoords[0])  // 是否存在纹理坐标
         {
             QVector2D vec;
             vec.setX(mesh->mTextureCoords[0][i].x);
@@ -64,15 +65,15 @@ Mesh Model::LoadMesh(aiMesh *mesh, const aiScene *scene) {
 
         vertices.push_back(vertex);
     }
-
+    // 处理索引
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
         aiFace face = mesh->mFaces[i];
         for (unsigned int j = 0; j < face.mNumIndices; j++) {
             indices.push_back(face.mIndices[j]);
         }
     }
-
-    if (true) {
+    // 处理材质
+    if (true /*mesh->mMaterialIndex >= 0*/) {
         aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
         aiColor3D color(0.f, 0.f, 0.f);
         material->Get(AI_MATKEY_COLOR_AMBIENT, color);  // ambient
@@ -132,4 +133,4 @@ unsigned int Model::LoadTextureFromFile(const std::string &file_name, const std:
     return texture->textureId();
 }
 
-}  // namespace Graphics
+}  // namespace Hypercube

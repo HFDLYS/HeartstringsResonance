@@ -28,6 +28,6 @@ class Model {
     std::vector<Texture> LoadMaterialTextures(aiMaterial *material, aiTextureType type, std::string type_name);
     unsigned int LoadTextureFromFile(const std::string &path, const std::string &directory);
 };
-}  // namespace Graphics
+}  // namespace Hypercube
 
 #endif  // MODEL_H

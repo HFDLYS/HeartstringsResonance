@@ -23,8 +23,25 @@ set(PROJECT_SOURCES
 )
 
 set(GRAPHICS_SOURCES
+    client/graphics/DEBUG.h
+    client/graphics/animation/animation.cpp client/graphics/animation/animation.h
+    client/graphics/animation/animationfactory.cpp client/graphics/animation/animationfactory.h
+    client/graphics/animation/animationfall.cpp client/graphics/animation/animationfall.h
+    client/graphics/animation/animationremove.cpp client/graphics/animation/animationremove.h
+    client/graphics/animation/animationswap.cpp client/graphics/animation/animationswap.h
+    client/graphics/animation/animationwait.cpp client/graphics/animation/animationwait.h
+    client/graphics/camera.h
+    client/graphics/gemmodelfactory.cpp client/graphics/gemmodelfactory.h
+    client/graphics/gem.cpp client/graphics/gem.h
+    client/graphics/rendermanager.cpp client/graphics/rendermanager.h
+    client/graphics/hypercubethread.cpp client/graphics/hypercubethread.h
     client/graphics/mesh.cpp client/graphics/mesh.h
     client/graphics/model.cpp client/graphics/model.h
+    client/graphics/gemmanager.cpp client/graphics/gemmanager.h
+)
+
+set(CORE_SOURCES
+    core/gem.cpp core/gem.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

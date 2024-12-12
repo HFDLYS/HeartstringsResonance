@@ -68,6 +68,6 @@ class Mesh {
     unsigned int ebo_;
 };
 
-}  // namespace Graphics
+}  // namespace Hypercube
 
 #endif  // MESH_H
