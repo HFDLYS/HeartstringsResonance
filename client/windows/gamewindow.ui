@@ -21,9 +21,9 @@
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>25</y>
-      <width>550</width>
-      <height>550</height>
+      <y>100</y>
+      <width>500</width>
+      <height>500</height>
      </rect>
     </property>
     <property name="text">
@@ -58,13 +58,16 @@
       <height>720</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
     <widget class="QPushButton" name="skill1_button">
      <property name="geometry">
       <rect>
-       <x>658</x>
+       <x>600</x>
        <y>319</y>
        <width>81</width>
        <height>81</height>
@@ -90,7 +93,7 @@
     <widget class="QPushButton" name="skill3_button">
      <property name="geometry">
       <rect>
-       <x>708</x>
+       <x>650</x>
        <y>389</y>
        <width>81</width>
        <height>81</height>
@@ -116,7 +119,7 @@
     <widget class="QPushButton" name="skill2_button">
      <property name="geometry">
       <rect>
-       <x>608</x>
+       <x>550</x>
        <y>389</y>
        <width>81</width>
        <height>81</height>
@@ -148,33 +151,10 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnReturn">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>630</y>
-       <width>301</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#btnReturn{border-image:url(:/images/return.png)}
-QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>175</width>
-       <height>35</height>
-      </size>
-     </property>
-    </widget>
     <widget class="QPushButton" name="hint_button">
      <property name="geometry">
       <rect>
-       <x>607</x>
+       <x>550</x>
        <y>475</y>
        <width>181</width>
        <height>41</height>
@@ -200,7 +180,7 @@ QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
     <widget class="QPushButton" name="pause_button">
      <property name="geometry">
       <rect>
-       <x>607</x>
+       <x>550</x>
        <y>515</y>
        <width>181</width>
        <height>41</height>
@@ -221,6 +201,25 @@ QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
        <width>175</width>
        <height>35</height>
       </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_2">
+     <property name="geometry">
+      <rect>
+       <x>755</x>
+       <y>100</y>
+       <width>500</width>
+       <height>500</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/7cut.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>

@@ -68,5 +68,6 @@
         <file>images/rankwindow/rank-back.png</file>
         <file>images/rankwindow/rank-back-.png</file>
         <file>images/rankwindow/rank-bottom.png</file>
+        <file>images/pausewindow/pause_background.png</file>
     </qresource>
 </RCC>

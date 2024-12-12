@@ -4,7 +4,6 @@
 #include <utility>
 #include <vector>
 #include "framelesswindow.h"
-// 排行榜窗口类
 
 namespace Ui {
 class RankWindow;
