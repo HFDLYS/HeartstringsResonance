@@ -5,7 +5,7 @@ namespace Ui {
 class PauseWindow;
 }
 
-class PauseWindow : public BaseWindow {
+class PauseWindow : public QWidget {
     Q_OBJECT
 
 public:
