@@ -101,6 +101,7 @@ void SingleWindow::on_skill3_button_clicked() {
 
 void SingleWindow::on_pause_button_clicked() {
     PauseWindow *pw = new PauseWindow(this);
+    BGM::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
