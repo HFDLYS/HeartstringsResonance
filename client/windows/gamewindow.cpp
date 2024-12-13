@@ -283,6 +283,9 @@ void GameWindow::on_pause_button_clicked() {
     PauseWindow *pw = new PauseWindow(this);
     pw->setGeometry(0,0,1280,720);
     pw->show();
+    connect(pw, &PauseWindow::exitwindow, this, [this]{
+        changeWindow(new MainWindow());
+    });
 }
 
 void GameWindow::on_hint_button_clicked() {

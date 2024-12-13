@@ -16,6 +16,11 @@ private slots:
     void on_btnReturn_clicked();
     void on_btnConit_clicked();
 
+    void on_btnConti_clicked();
+
+signals:
+    void exitwindow();
+
 private:
     Ui::PauseWindow *ui;
 };

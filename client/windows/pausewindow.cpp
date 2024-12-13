@@ -11,7 +11,7 @@ PauseWindow::PauseWindow(QWidget *parent) : QWidget(parent),ui(new Ui::PauseWind
 PauseWindow::~PauseWindow() {  }
 
 void PauseWindow::on_btnReturn_clicked(){
-
+    emit exitwindow();
 }
 
 void PauseWindow::on_btnConit_clicked(){
@@ -19,4 +19,10 @@ void PauseWindow::on_btnConit_clicked(){
 }
 
 
+
+
+void PauseWindow::on_btnConti_clicked()
+{
+    delete this;
+}
 
