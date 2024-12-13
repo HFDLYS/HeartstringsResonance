@@ -132,13 +132,23 @@ void GameWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/gamewin
 void GameWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/gamewindow/3.png")); }
 
 void GameWindow::mousePressEvent(QMouseEvent *event) {
-    // int x = event->x();
-    // int y = event->y();
+    int x = event->x();
+    int y = event->y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
-    // if (event->y() < TITLE_HEIGHT) {
-    //     last = event->globalPos();
-    // }
+    if (event->y() < TITLE_HEIGHT) {
+        last = event->globalPos();
+    }
     // board->Clicked(x, y);
+    if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {
+        
+        x -= opengl_up_left.x();
+        y -= opengl_up_left.y();
+        std::cout << "mouse cliked on:" << x << " " << y << std::endl;
+        std::cout <<  x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1 << '\n';
+        int nd = x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1;
+        renderer_->GetGemManager()->Remove(nd, true);
+        // std::cout << nd << '\n';
+    }
 }
 /*
  * 鼠标移动函数
