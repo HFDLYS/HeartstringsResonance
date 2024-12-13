@@ -9,15 +9,17 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS OpenGL OpenGlWidgets)
+
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Multimedia OpenGL OpenGLWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+
 
 if(APPLE)
     include_directories("/opt/homebrew/include")
     link_directories("/opt/homebrew/lib")
 endif()
-
 
 
 set(PROJECT_SOURCES
@@ -42,6 +44,7 @@ set(GRAPHICS_SOURCES
     client/graphics/gemmanager.cpp client/graphics/gemmanager.h
 )
 
+
 set(CORE_SOURCES
     core/gem.cpp core/gem.h
     core/gemmanager.h
@@ -64,6 +67,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/gamewindow.ui
         client/windows/pausewindow.h client/windows/pausewindow.cpp client/windows/pausewindow.ui
         client/windows/singlewindow.h client/windows/singlewindow.cpp client/windows/singlewindow.ui
+        client/audio/BGM.h client/audio/BGM.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
@@ -86,7 +90,9 @@ endif()
 
 target_link_libraries(HeartstringsResonance PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+
 target_link_libraries(HeartstringsResonance PRIVATE
+    Qt::Multimedia
     Qt::OpenGL
     Qt::OpenGLWidgets
 )
@@ -96,6 +102,7 @@ if(WIN32)
 endif()
 
 target_link_libraries(HeartstringsResonance PUBLIC assimp)
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

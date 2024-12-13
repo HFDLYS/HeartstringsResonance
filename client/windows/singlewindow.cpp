@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "ui_singlewindow.h"
 #include "pausewindow.h"
+#include "../audio/BGM.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -103,6 +104,7 @@ void SingleWindow::on_pause_button_clicked() {
     pw->setGeometry(0,0,1280,720);
     pw->show();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
+        BGM::GetInstance()->StopBgm2();
         changeWindow(new MainWindow());
     });
 }
