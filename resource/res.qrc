@@ -69,5 +69,21 @@
         <file>images/rankwindow/rank-back-.png</file>
         <file>images/rankwindow/rank-bottom.png</file>
         <file>images/pausewindow/pause_background.png</file>
+        <file>images/singlewindow/background.png</file>
+        <file>images/singlewindow/bkgrd.png</file>
+        <file>images/singlewindow/exit.png</file>
+        <file>images/singlewindow/exit-.png</file>
+        <file>images/singlewindow/pause.png</file>
+        <file>images/singlewindow/pause-.png</file>
+        <file>images/singlewindow/shadow.png</file>
+        <file>images/singlewindow/shadow_origin.png</file>
+        <file>images/singlewindow/skill1.png</file>
+        <file>images/singlewindow/skill1-.png</file>
+        <file>images/singlewindow/skill2.png</file>
+        <file>images/singlewindow/skill2-.png</file>
+        <file>images/singlewindow/skill3.png</file>
+        <file>images/singlewindow/skill3-.png</file>
+        <file>images/singlewindow/tip.png</file>
+        <file>images/singlewindow/tip-.png</file>
     </qresource>
 </RCC>

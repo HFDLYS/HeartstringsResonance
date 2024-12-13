@@ -12,6 +12,7 @@
 #include "configwindow.h"
 #include "rankwindow.h"
 #include "gamewindow.h"
+#include "singlewindow.h"
 
 
 MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWindow) {
@@ -25,7 +26,7 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
-    changeWindow(new GameWindow());
+    changeWindow(new SingleWindow());
 }
 
 // 多人游戏开始
