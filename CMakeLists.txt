@@ -18,6 +18,8 @@ if(APPLE)
     link_directories("/opt/homebrew/lib")
 endif()
 
+
+
 set(PROJECT_SOURCES
     
 )
@@ -87,7 +89,11 @@ target_link_libraries(HeartstringsResonance PRIVATE
     Qt::OpenGLWidgets
 )
 
-target_link_libraries(HeartstringsResonance PRIVATE assimp)
+if(WIN32)
+    target_link_directories(HeartstringsResonance PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib)
+endif()
+
+target_link_libraries(HeartstringsResonance PUBLIC assimp)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -108,12 +114,7 @@ if(APPLE)
 endif()
 
 if(WIN32)
-    target_include_directories(HeartstringsResonance PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/include)
-    target_link_libraries(DataStructureFinalProject PRIVATE
-        # Remove: L${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib/
-        ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib/libassimp.dll.a
-        ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib/libassimp.dll
-    )
+    include_directories(HeartstringsResonance PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/include)
 endif()
 
 
