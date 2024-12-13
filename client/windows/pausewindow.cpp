@@ -19,8 +19,6 @@ void PauseWindow::on_btnConit_clicked(){
 }
 
 
-
-
 void PauseWindow::on_btnConti_clicked()
 {
     delete this;

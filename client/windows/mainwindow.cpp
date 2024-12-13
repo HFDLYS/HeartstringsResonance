@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-
 #include <QFile>
 #include <QDialog>
 #include <iostream>
@@ -13,12 +12,12 @@
 #include "rankwindow.h"
 #include "gamewindow.h"
 #include "singlewindow.h"
-
+#include "../audio/BGM.h"
 
 MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    // 固定窗口大小
-    //BGM::GetInstance()->PlayBgm1();
+
+    BGM::GetInstance()->PlayBgm1();
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -26,11 +25,15 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
+    BGM::GetInstance()->StopBgm1();
+    BGM::GetInstance()->PlayBgm2();
     changeWindow(new SingleWindow());
 }
 
 // 多人游戏开始
 void MainWindow::on_rbtnMultiplayer_clicked(){
+    BGM::GetInstance()->StopBgm1();
+    BGM::GetInstance()->PlayBgm2();
     changeWindow(new GameWindow());
 }
 
