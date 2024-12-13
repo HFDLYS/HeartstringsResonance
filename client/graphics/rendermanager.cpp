@@ -57,21 +57,21 @@ void RenderManager::Demo() {
     Checker(GetGemManager()->SwapStone(12, 12 + 8));
 
     // 4. remove
-    Checker(GetGemManager()->Remove(3));
-    Checker(GetGemManager()->Remove(4));
-
+    Checker(GetGemManager()->Remove(3, true));
+    Checker(GetGemManager()->Remove(4, true));
     // 5. fall
     Checker(GetGemManager()->FallTo(1, 50));
     Checker(GetGemManager()->FallTo(2, 50));
     Checker(GetGemManager()->FallTo(13, 50));
     Checker(GetGemManager()->FallTo(14, 50));
 
-    // 6. random fall
-    for (int i = 1; i <= 10; i++) {
+    // 6. random remove
+    for (int i = 1; i <= 40; i++) {
         int random = 0;
         while (random == 0 || random == 3 || random == 4) random = rand() % (nx + ny) + 1;
 
-        Checker(GetGemManager()->FallTo(random, 50));
+        Checker(GetGemManager()->Remove(random, true));
+        
     }
 }
 
@@ -129,7 +129,7 @@ void RenderManager::paintGL() {
     shader_toy_program_.setUniformValue("iTime", QTime::currentTime().msecsSinceStartOfDay() / 2000.f);
     shader_toy_program_.setUniformValue("iResolution", width(), height());
     model.setToIdentity();
-    model.translate(400.f, 400.f, -1100.f);
+    model.translate(400.f, 400.f, -2000.f);
     shader_toy_program_.setUniformValue("model", model);
     shader_toy_program_.setUniformValue("view", view);
     shader_toy_program_.setUniformValue("projection", projection);

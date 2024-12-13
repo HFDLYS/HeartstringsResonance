@@ -226,7 +226,7 @@ void GemManager::Update() {
                 animation_queue_.pop();
             }
             break;  // 如果进行了交换动画，则不允许进行其他动画
-        } else if (animation_queue_.front()->type() == AnimationFactory::kAnimationRemove) {  // 爆炸动画，TODO
+        } else if (animation_queue_.front()->type() == AnimationFactory::kAnimationRemove) { 
             int id = ((AnimationRemove *)(animation_queue_.front()))->id();
 
             if (animation_queue_.front()->tag() == 1) {

@@ -129,11 +129,9 @@ void Gem::UpdateSwaping() {
 void Gem::UpdataRemoving() {
     if (is_removing()) {
         removing_speed_ += removing_acceleration_;
-
-        y_ += removing_speed_;
-        z_ += kRemovingZSpeed;
-
-        if (y_ <= kRemovingEndY) {
+         //std::cerr << "removing: " << z_ << std::endl;
+        z_ += removing_speed_;
+        if (z_ < kRemovingEndZ) {
             set_active(false);
             removing_acceleration_ = 0;
         }

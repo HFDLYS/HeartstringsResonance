@@ -55,12 +55,12 @@ class Gem {
     static constexpr int kSwapingStatic = 0.0f;
     static constexpr float kSwapingSpeed = 10.f;
 
-    static constexpr float kRemovingSpeed = 6.f;
+    static constexpr float kRemovingSpeed = 12.f;
     static constexpr float kRemovingAcceleration = -1.0f;
-    static constexpr float kRemovingZSpeed = 5.f;
+    static constexpr float kRemovingZSpeed = -5.f;
 
    private:
-    static constexpr int kRemovingEndY = -100;
+    static constexpr int kRemovingEndZ = -2000;
 
    private:  // 属性
     int x_;
