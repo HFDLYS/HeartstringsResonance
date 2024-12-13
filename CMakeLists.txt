@@ -10,19 +10,47 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS OpenGL OpenGlWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+if(APPLE)
+    include_directories("/opt/homebrew/include")
+    link_directories("/opt/homebrew/lib")
+endif()
+
+
+
 set(PROJECT_SOURCES
+    
+)
 
+set(GRAPHICS_SOURCES
+    client/graphics/DEBUG.h
+    client/graphics/animation/animation.cpp client/graphics/animation/animation.h
+    client/graphics/animation/animationfactory.cpp client/graphics/animation/animationfactory.h
+    client/graphics/animation/animationfall.cpp client/graphics/animation/animationfall.h
+    client/graphics/animation/animationremove.cpp client/graphics/animation/animationremove.h
+    client/graphics/animation/animationswap.cpp client/graphics/animation/animationswap.h
+    client/graphics/animation/animationwait.cpp client/graphics/animation/animationwait.h
+    client/graphics/camera.h
+    client/graphics/gemmodelfactory.cpp client/graphics/gemmodelfactory.h
+    client/graphics/gem.cpp client/graphics/gem.h
+    client/graphics/rendermanager.cpp client/graphics/rendermanager.h
+    client/graphics/graphicsthread.cpp client/graphics/graphicsthread.h
+    client/graphics/mesh.cpp client/graphics/mesh.h
+    client/graphics/model.cpp client/graphics/model.h
+    client/graphics/gemmanager.cpp client/graphics/gemmanager.h
+)
 
-
-
+set(CORE_SOURCES
+    core/gem.cpp core/gem.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(HeartstringsResonance
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${GRAPHICS_SOURCES}
         client/windows/basewindow.cpp client/windows/basewindow.h client/windows/basewindow.ui
         client/windows/mainwindow.cpp client/windows/mainwindow.h client/windows/mainwindow.ui
         client/main.cpp
@@ -57,6 +85,17 @@ endif()
 
 target_link_libraries(HeartstringsResonance PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+target_link_libraries(HeartstringsResonance PRIVATE
+    Qt::OpenGL
+    Qt::OpenGLWidgets
+)
+
+if(WIN32)
+    target_link_directories(HeartstringsResonance PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib)
+endif()
+
+target_link_libraries(HeartstringsResonance PUBLIC assimp)
+
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
@@ -70,6 +109,15 @@ set_target_properties(HeartstringsResonance PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+
+if(APPLE)
+    target_include_directories(HeartstringsResonance PRIVATE /opt/homebrew/Cellar/assimp/5.4.3/include)
+endif()
+
+if(WIN32)
+    include_directories(HeartstringsResonance PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/include)
+endif()
+
 
 include(GNUInstallDirs)
 install(TARGETS HeartstringsResonance

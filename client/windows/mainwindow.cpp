@@ -31,7 +31,10 @@ void MainWindow::on_rbtnSolo_clicked() {
 
 // 多人游戏开始
 void MainWindow::on_rbtnMultiplayer_clicked(){
-    changeWindow(new GameWindow());
+    GameWindow *gw = new GameWindow();
+    gw->show();
+    changeWindow(gw);
+    gw->startGame();
 }
 
 // 排行榜

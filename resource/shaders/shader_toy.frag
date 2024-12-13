@@ -1,4 +1,4 @@
-#version 450 core
+#version 330 core
 // copy from: https://www.shadertoy.com/view/4sBXzG
 // amazing!
 

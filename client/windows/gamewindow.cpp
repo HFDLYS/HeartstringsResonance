@@ -12,9 +12,9 @@
 #include <ctime>
 #include <iostream>
 #include <random>
-const QPoint hypercube_size(550, 550);
-const QPoint opengl_up_left(25, 25);
-const QPoint opengl_down_right = opengl_up_left + QPoint(hypercube_size.x(), hypercube_size.y());
+const QPoint board_size(500, 500);
+const QPoint opengl_up_left(25, 100);
+const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
 
 GameWindow::GameWindow(QWidget *parent)
@@ -27,6 +27,9 @@ GameWindow::GameWindow(QWidget *parent)
     // // 设置图片大小
     // pix = pix.scaled(size, Qt::KeepAspectRatio);
     // this->setCursor(QCursor(pix, -1, -1));
+    renderer_ = new Graphics::RenderManager(ui->controlWidget);
+    renderer_->setFixedSize(board_size.x(), board_size.y());
+    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
 
     // QString ppath = QString("#aiwidget{border-image:url(:/images/立绘/ai%1.png)}")
     //                     .arg(rand() % 12 + 1);
@@ -137,13 +140,23 @@ void GameWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/gamewin
 void GameWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/gamewindow/3.png")); }
 
 void GameWindow::mousePressEvent(QMouseEvent *event) {
-    // int x = event->x();
-    // int y = event->y();
+    int x = event->x();
+    int y = event->y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
-    // if (event->y() < TITLE_HEIGHT) {
-    //     last = event->globalPos();
-    // }
+    if (event->y() < TITLE_HEIGHT) {
+        last = event->globalPos();
+    }
     // board->Clicked(x, y);
+    if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {
+        
+        x -= opengl_up_left.x();
+        y -= opengl_up_left.y();
+        std::cout << "mouse cliked on:" << x << " " << y << std::endl;
+        std::cout <<  x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1 << '\n';
+        int nd = x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1;
+        renderer_->GetGemManager()->Remove(nd, true);
+        // std::cout << nd << '\n';
+    }
 }
 /*
  * 鼠标移动函数
@@ -220,7 +233,7 @@ void GameWindow::keyPressEvent(QKeyEvent *e) {
     // }
 }
 
-void GameWindow::getDifficulty(QString data) {
+void GameWindow::startGame() {
     // if (data == "easy") difficulty_ = 1;
     // if (data == "normal") difficulty_ = 2;
     // if (data == "hard") difficulty_ = 3;
@@ -229,6 +242,7 @@ void GameWindow::getDifficulty(QString data) {
     // // QMessageBox mes(this);
     // // mes.setText(data);
     // // mes.exec();
+    renderer_->Demo();
 }
 
 void GameWindow::on_btnReturn_clicked() {
