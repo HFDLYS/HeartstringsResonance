@@ -54,9 +54,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton#skill1_button{border-image: url(:/images/single
-window/skill1.png);}QPushButton::pressed#skill1_button{border-image:url(:/images/single
-window/skill1-.png);}</string>
+      <string notr="true">QPushButton#skill1_button{border-image: url(:/images/singlewindow/skill1.png);}QPushButton::pressed#skill1_button{border-image:url(:/images/singlewindow/skill1-.png);}</string>
      </property>
      <property name="text">
       <string/>

@@ -13,15 +13,17 @@
 #include <ctime>
 #include <iostream>
 #include <random>
-const QPoint hypercube_size(550, 550);
-const QPoint opengl_up_left(25, 25);
-const QPoint opengl_down_right = opengl_up_left + QPoint(hypercube_size.x(), hypercube_size.y());
+const QPoint board_size(680, 680);
+const QPoint opengl_up_left(180, 20);
+const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
 
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
-
+    renderer_ = new Graphics::RenderManager(ui->controlWidget);
+    renderer_->setFixedSize(board_size.x(), board_size.y());
+    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
 }
 
 SingleWindow::~SingleWindow() {
@@ -41,7 +43,23 @@ void SingleWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/Singl
 void SingleWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/SingleWindow/3.png")); }
 
 void SingleWindow::mousePressEvent(QMouseEvent *event) {
-
+    int x = event->x();
+    int y = event->y();
+    // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
+    if (event->y() < TITLE_HEIGHT) {
+        last = event->globalPos();
+    }
+    // board->Clicked(x, y);
+    if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {
+        
+        x -= opengl_up_left.x();
+        y -= opengl_up_left.y();
+        std::cout << "mouse cliked on:" << x << " " << y << std::endl;
+        std::cout <<  x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1 << '\n';
+        int nd = x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1;
+        renderer_->GetGemManager()->Remove(nd, true);
+        // std::cout << nd << '\n';
+    }
 }
 
 void SingleWindow::mouseMoveEvent(QMouseEvent *event) {
@@ -56,8 +74,8 @@ void SingleWindow::keyPressEvent(QKeyEvent *e) {
 
 }
 
-void SingleWindow::getDifficulty(QString data) {
-
+void SingleWindow::startGame() {
+    renderer_->Demo();
 }
 
 void SingleWindow::on_btnReturn_clicked() {

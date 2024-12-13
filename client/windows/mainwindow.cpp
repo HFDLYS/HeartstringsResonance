@@ -27,14 +27,20 @@ MainWindow::~MainWindow() { delete ui; }
 void MainWindow::on_rbtnSolo_clicked() {
     BGM::GetInstance()->StopBgm1();
     BGM::GetInstance()->PlayBgm2();
-    changeWindow(new SingleWindow());
+    SingleWindow *sw = new SingleWindow();
+    sw->show();
+    changeWindow(sw);
+    sw->startGame();
 }
 
 // 多人游戏开始
 void MainWindow::on_rbtnMultiplayer_clicked(){
     BGM::GetInstance()->StopBgm1();
     BGM::GetInstance()->PlayBgm2();
-    changeWindow(new GameWindow());
+    GameWindow *gw = new GameWindow();
+    gw->show();
+    changeWindow(gw);
+    gw->startGame();
 }
 
 // 排行榜
