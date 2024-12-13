@@ -47,6 +47,7 @@ set(GRAPHICS_SOURCES
 
 set(CORE_SOURCES
     core/gem.cpp core/gem.h
+    core/board.cpp core/board.h
     core/gemmanager.h
 )
 
@@ -55,6 +56,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         ${GRAPHICS_SOURCES}
+        ${CORE_SOURCES}
         client/windows/basewindow.cpp client/windows/basewindow.h client/windows/basewindow.ui
         client/windows/mainwindow.cpp client/windows/mainwindow.h client/windows/mainwindow.ui
         client/main.cpp

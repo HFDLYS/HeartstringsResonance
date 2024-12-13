@@ -153,7 +153,9 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
         x -= opengl_up_left.x();
         y -= opengl_up_left.y();
         std::cout << "mouse cliked on:" << x << " " << y << std::endl;
-        std::cout <<  x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1 << '\n';
+        std::cout <<  8 * x /(board_size.x())*8 + 8 * y/(board_size.y())+1 << '\n';
+        int nx = 8 * x/(board_size.x());
+        int ny = 8 * y/(board_size.y());
         int nd = x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1;
         renderer_->GetGemManager()->Remove(nd, true);
         // std::cout << nd << '\n';

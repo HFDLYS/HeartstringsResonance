@@ -87,26 +87,6 @@ class GraphicGemManager : public QObject, public GemManager {
     // 绘制
     void Draw(QOpenGLShaderProgram& program);
 
-   public:
-    // Generate's arguments
-    static constexpr int kSuccess = 0;
-    static constexpr int kFailureArgumentError = 1;
-    static constexpr int kFailureOccupied = 2;
-    static constexpr int kFailureEmpty = 3;
-    static constexpr int kFailureHaveInitialized = 4;
-    static constexpr int kFailureHaveNotInitialized = 5;
-    static constexpr int kFailureIDHaveBeenUsed = 6;
-    static constexpr int kFailureIDNotFound = 7;
-    static constexpr int kFailureHavePaused = 8;
-    static constexpr int kFailureHaveContinued = 9;
-
-    // SetRotate's arguments
-    static constexpr int kStatic = 0;
-    static constexpr int kRotate = 1;
-    static constexpr int kRotateFast = 2;
-    static constexpr int kRotateInverse = 3;
-    static constexpr int kRotateFastInverse = 4;
-
    private:
     static constexpr int kDelta = 100;
     static constexpr int kDeltaHalf = kDelta >> 1;
