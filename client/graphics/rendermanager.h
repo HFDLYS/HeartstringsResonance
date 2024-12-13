@@ -24,7 +24,7 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
     explicit RenderManager(QWidget* parent = nullptr);
     virtual ~RenderManager() override;
 
-    GemManager* GetGemManager();
+    GraphicGemManager* GetGemManager();
 
     void Demo();
 
@@ -43,7 +43,7 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
    private:
     const unsigned int timer_inteval_ = 10;
 
-    GemManager* gem_manager_;
+    GraphicGemManager* gem_manager_;
     GraphicsThread* hypercube_thread_;  // 控制帧数的线程
     Camera camera_;                      // 摄像机
 

@@ -21,7 +21,7 @@ RenderManager::~RenderManager() {
     delete gem_manager_;
 }
 
-GemManager *RenderManager::GetGemManager() {
+GraphicGemManager *RenderManager::GetGemManager() {
     if (gem_manager_ == nullptr) {
         std::cerr << "WARNING!!! StoneManager is nullptr" << std::endl;
     }
@@ -90,7 +90,7 @@ void RenderManager::initializeGL() {
     std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
 
     // Gem Manager
-    gem_manager_ = new GemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
+    gem_manager_ = new GraphicGemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
 
     // Shader Program
     shader_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/common.vert");

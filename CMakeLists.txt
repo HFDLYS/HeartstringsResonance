@@ -44,6 +44,7 @@ set(GRAPHICS_SOURCES
 
 set(CORE_SOURCES
     core/gem.cpp core/gem.h
+    core/gemmanager.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
