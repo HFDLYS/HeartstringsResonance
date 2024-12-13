@@ -7,7 +7,7 @@ int ConfigWindow::music_state = 30;
 int ConfigWindow::sound_state = 30;
 bool ConfigWindow::music_on = 1;
 bool ConfigWindow::sound_on = 1;
-ConfigWindow::ConfigWindow(QWidget *parent) : FrameLessWindow(parent), ui(new Ui::ConfigWindow) {
+ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::ConfigWindow) {
     ui->setupUi(this);
     updateState();
 }

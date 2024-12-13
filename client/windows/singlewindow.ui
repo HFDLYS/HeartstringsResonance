@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SingleWindow</class>
+ <widget class="QMainWindow" name="SingleWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="aiwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QWidget" name="controlWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1280</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QPushButton" name="skill1_button">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>180</y>
+       <width>81</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#skill1_button{border-image: url(:/images/single
+window/skill1.png);}QPushButton::pressed#skill1_button{border-image:url(:/images/single
+window/skill1-.png);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>77</width>
+       <height>77</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="skill3_button">
+     <property name="geometry">
+      <rect>
+       <x>1110</x>
+       <y>280</y>
+       <width>81</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#skill3_button{border-image: url(:/images/singlewindow/skill3.png);}QPushButton::pressed#skill3_button{border-image:url(:/images/singlewindow/skill3-.png);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>:/images/singlewindow/3.png</normaloff>:/images/singlewindow/3.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>77</width>
+       <height>77</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="skill2_button">
+     <property name="geometry">
+      <rect>
+       <x>1000</x>
+       <y>280</y>
+       <width>81</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#skill2_button{border-image: url(:/images/singlewindow/skill2.png);}QPushButton::pressed#skill2_button{border-image:url(:/images/singlewindow/skill2-.png);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>77</width>
+       <height>77</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="hint_button">
+     <property name="geometry">
+      <rect>
+       <x>1000</x>
+       <y>420</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#hint_button{border-image: url(:/images/singlewindow/tip.png);}
+QPushButton::pressed#hint_button{border-image:url(:/images/singlewindow/tip-.png);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>175</width>
+       <height>35</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pause_button">
+     <property name="geometry">
+      <rect>
+       <x>1000</x>
+       <y>490</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#pause_button{border-image: url(:/images/singlewindow/pause.png);}
+QPushButton::pressed#pause_button{border-image:url(:/images/singlewindow/pause-.png);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>175</width>
+       <height>35</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>20</y>
+       <width>680</width>
+       <height>680</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="picwidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1280</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#picwidget{border-image:url(:/images/singlewindow/background.png)}</string>
+    </property>
+   </widget>
+   <zorder>picwidget</zorder>
+   <zorder>controlWidget</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../resource/res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

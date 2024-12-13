@@ -2,23 +2,27 @@
 #include "mainwindow.h"
 #include "ui_pausewindow.h"
 
-PauseWindow::PauseWindow(QWidget *parent) : FrameLessWindow(parent){
-    // ui->setupUi(this);
-    // // 固定窗口大小
-    // this->setFixedSize(1280, 720);
-    // // 去除自带的边框
-    // this->setWindowFlag(Qt::FramelessWindowHint);
-
+PauseWindow::PauseWindow(QWidget *parent) : QWidget(parent),ui(new Ui::PauseWindow){
+    ui->setupUi(this);
+    // 固定窗口大小
 }
 
 
 PauseWindow::~PauseWindow() {  }
 
 void PauseWindow::on_btnReturn_clicked(){
-
+    emit exitwindow();
 }
 
 void PauseWindow::on_btnConit_clicked(){
 
+}
+
+
+
+
+void PauseWindow::on_btnConti_clicked()
+{
+    delete this;
 }
 

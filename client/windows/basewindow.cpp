@@ -1,11 +1,11 @@
-#include "framelesswindow.h"
+#include "basewindow.h"
 
 #include <QTime>
 #include <QTimer>
-#include "ui_framelesswindow.h"
+#include "ui_basewindow.h"
 
-FrameLessWindow::FrameLessWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::FrameLessWindow) {
+BaseWindow::BaseWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::BaseWindow) {
     ui->setupUi(this);
     this->setFixedSize(1280, 720);
     this->setWindowFlag(Qt::FramelessWindowHint);
@@ -18,12 +18,12 @@ FrameLessWindow::FrameLessWindow(QWidget *parent)
     this->setCursor(QCursor(pix, 12, 12));
 }
 
-void FrameLessWindow::delay(int x) {
+void BaseWindow::delay(int x) {
     QTime dieTime = QTime::currentTime().addMSecs(x);
     while (QTime::currentTime() < dieTime) QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
-void FrameLessWindow::changeWindow(FrameLessWindow*flw){
+void BaseWindow::changeWindow(BaseWindow*flw){
     flw->move(this->pos().x(), this->pos().y());
     flw->show();
     delay(20);
@@ -32,7 +32,7 @@ void FrameLessWindow::changeWindow(FrameLessWindow*flw){
 
 const int TITLE_HEIGHT = 30;
 
-void FrameLessWindow::mousePressEvent(QMouseEvent *e) {
+void BaseWindow::mousePressEvent(QMouseEvent *e) {
     if (e->y() < TITLE_HEIGHT) {
         last = e->globalPos();
     }
@@ -42,7 +42,7 @@ void FrameLessWindow::mousePressEvent(QMouseEvent *e) {
  * 鼠标移动函数
  * 这里实时修改窗口的坐标
  */
-void FrameLessWindow::mouseMoveEvent(QMouseEvent *event) {
+void BaseWindow::mouseMoveEvent(QMouseEvent *event) {
     if (event->y() < TITLE_HEIGHT) {
         int dx = event->globalX() - last.x();
         int dy = event->globalY() - last.y();
@@ -53,7 +53,7 @@ void FrameLessWindow::mouseMoveEvent(QMouseEvent *event) {
 /*
  * 鼠标释放函数
  */
-void FrameLessWindow::mouseReleaseEvent(QMouseEvent *event) {
+void BaseWindow::mouseReleaseEvent(QMouseEvent *event) {
     if (event->y() < TITLE_HEIGHT) {
         int dx = event->globalX() - last.x();
         int dy = event->globalY() - last.y();
@@ -61,4 +61,4 @@ void FrameLessWindow::mouseReleaseEvent(QMouseEvent *event) {
     }
 }
 
-FrameLessWindow::~FrameLessWindow() { delete ui; }
+BaseWindow::~BaseWindow() { delete ui; }

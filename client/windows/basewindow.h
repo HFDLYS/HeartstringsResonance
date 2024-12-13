@@ -1,5 +1,5 @@
-#ifndef FRAMELESSWINDOW_H
-#define FRAMELESSWINDOW_H
+#ifndef BASEWINDOW_H
+#define BASEWINDOW_H
 
 #include <QMainWindow>
 #include <QMouseEvent>
@@ -7,17 +7,17 @@
 // 无边窗口类，为其他窗口的父类
 
 namespace Ui {
-class FrameLessWindow;
+class BaseWindow;
 }
 
-class FrameLessWindow : public QMainWindow {
+class BaseWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit FrameLessWindow(QWidget *parent = nullptr);
-    ~FrameLessWindow();
+    explicit BaseWindow(QWidget *parent = nullptr);
+    ~BaseWindow();
     void delay(int x);
-    void changeWindow(FrameLessWindow*);
+    void changeWindow(BaseWindow*);
 protected:
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
@@ -27,7 +27,7 @@ private:
     QPoint last;
 
 private:
-    Ui::FrameLessWindow *ui;
+    Ui::BaseWindow *ui;
 };
 
-#endif  // FRAMELESSWINDOW_H
+#endif  // BASEWINDOW_H

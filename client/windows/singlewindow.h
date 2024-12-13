@@ -1,29 +1,29 @@
-#ifndef GAMEWINDOW_H
-#define GAMEWINDOW_H
+#ifndef SINGLEWINDOW_H
+#define SINGLEWINDOW_H
 
 #include <QLabel>
 #include <QMainWindow>
 #include <QTime>
 
 // #include "../core/board.h"
-#include "../graphics/rendermanager.h"
+// #include "../hypercube/hypercube.h"
 // #include "recordrankwindow.h"
 #include "basewindow.h"
 // 游戏窗口类
 
 namespace Ui {
-class GameWindow;
+class SingleWindow;
 }
 
-class GameWindow : public BaseWindow {
+class SingleWindow : public BaseWindow {
     Q_OBJECT
 
 public:
-    explicit GameWindow(QWidget *parent = nullptr);
-    ~GameWindow();
+    explicit SingleWindow(QWidget *parent = nullptr);
+    ~SingleWindow();
 
 public slots:
-    void startGame();
+    void getDifficulty(QString data);
     void Release1();
     void Release2();
     void Release3();
@@ -60,13 +60,13 @@ private slots:
     void on_btnReturn_released();
 
 private:
-    Ui::GameWindow *ui;
+    Ui::SingleWindow *ui;
 
     QTimer *timer_flush_score_and_left_time_bar_;
     int left_time_cnt_;
 
     // Board *board;
-    Graphics::RenderManager *renderer_;
+    // Hypercube::Hypercube *hypercube_;
 
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口
 
@@ -78,4 +78,4 @@ public:
     void RefreshTimeLabel();
 };
 
-#endif  // GAMEWINDOW_H
+#endif  // SINGLEWINDOW_H

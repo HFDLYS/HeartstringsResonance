@@ -1,6 +1,7 @@
 #include "gamewindow.h"
 #include "mainwindow.h"
 #include "ui_gamewindow.h"
+#include "pausewindow.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -17,80 +18,87 @@ const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_s
 const int TITLE_HEIGHT = 30;
 
 GameWindow::GameWindow(QWidget *parent)
-    : FrameLessWindow(parent), ui(new Ui::GameWindow) {
+    : BaseWindow(parent), ui(new Ui::GameWindow) {
     ui->setupUi(this);
+    // QIcon icon = QIcon(":/images/windowicon.png");
+    // this->setWindowIcon(icon);
+    // QPixmap pix(":/images/mouse.png");
+    // QSize size(24, 24);
+    // // 设置图片大小
+    // pix = pix.scaled(size, Qt::KeepAspectRatio);
+    // this->setCursor(QCursor(pix, -1, -1));
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
 
-  // QString ppath = QString("#aiwidget{border-image:url(:/images/立绘/ai%1.png)}")
-  //                     .arg(rand() % 12 + 1);
-  // qDebug() << ppath << endl;
-  // ui->aiwidget->setStyleSheet(
-  //     QString("#aiwidget{border-image:url(:/images/立绘/ai%2.png)}")
-  //         .arg(rand() % 12 + 1));
-  // // close时析构成员变量
-  // // setAttribute(Qt::WA_DeleteOnClose);
+    // QString ppath = QString("#aiwidget{border-image:url(:/images/立绘/ai%1.png)}")
+    //                     .arg(rand() % 12 + 1);
+    // qDebug() << ppath << endl;
+    // ui->aiwidget->setStyleSheet(
+    //     QString("#aiwidget{border-image:url(:/images/立绘/ai%2.png)}")
+    //         .arg(rand() % 12 + 1));
+    // // close时析构成员变量
+    // // setAttribute(Qt::WA_DeleteOnClose);
 
-  //   /*QPixmap pix;
-  //       pix.load(":/images/gamewindow/1.png");
-  //       ui->skill1_button->setFixedSize(pix.size());
-  //       ui->skill1_button->setMask(pix.mask());
-  //   */
-  //   ui->skill1_button->setStyleSheet("background-color:rgba(0,0,0,0)");
+    //   /*QPixmap pix;
+    //       pix.load(":/images/gamewindow/1.png");
+    //       ui->skill1_button->setFixedSize(pix.size());
+    //       ui->skill1_button->setMask(pix.mask());
+    //   */
+    //   ui->skill1_button->setStyleSheet("background-color:rgba(0,0,0,0)");
 
-  // // 创建Hypercube窗口
-  // hypercube_ = new Hypercube::Hypercube(ui->aiwidget);
-  // hypercube_->setFixedSize(hypercube_size.x(), hypercube_size.y());
-  // hypercube_->setGeometry(opengl_up_left.x(), opengl_up_left.y(),
-  //                         hypercube_->width(), hypercube_->height());
+    // // 创建Hypercube窗口
+    // hypercube_ = new Hypercube::Hypercube(ui->aiwidget);
+    // hypercube_->setFixedSize(hypercube_size.x(), hypercube_size.y());
+    // hypercube_->setGeometry(opengl_up_left.x(), opengl_up_left.y(),
+    //                         hypercube_->width(), hypercube_->height());
 
-  //   // shadow
-  //   ui->shadow->raise();
+    //   // shadow
+    //   ui->shadow->raise();
 
-  //   // 初始化进度条
-  //   is_pausing_ = false;
-  //   // 创建timer
-  //   timer_flush_score_and_left_time_bar_ = new QTimer(this);
-  //   left_time_cnt_ = 12100;  // 1200* 0.1s
-  //   connect(timer_flush_score_and_left_time_bar_, &QTimer::timeout, [&]() {
-  //       // score_bar
-  //       ui->score_bar->setText(QString::fromStdString(std::to_string(board->GetScore())));
-  //       // left_time_bar
-  //       if (is_pausing_ == false) left_time_cnt_ -= 10;
-  //       RefreshTimeLabel();
-  //       // set button state
-  //       ui->skill1_button->setEnabled(board->GetRest1() > 0);
-  //       ui->skill2_button->setEnabled(board->GetRest2() > 0);
-  //       ui->skill3_button->setEnabled(board->GetRest3() > 0);
-  //       ui->hint_button->setEnabled(board->GetScore() >= 100);
-  //       // stop
-  //       if (left_time_cnt_ <= 0 || board->IsGameOver()) {
-  //           timer_flush_score_and_left_time_bar_->stop();
-  //           left_time_cnt_ = -10;
-  //           on_btnReturn_clicked();  // 时间到，直接退出游戏（
-  //       }
-  //   });
-  //   timer_flush_score_and_left_time_bar_->start(100);
+    //   // 初始化进度条
+    //   is_pausing_ = false;
+    //   // 创建timer
+    //   timer_flush_score_and_left_time_bar_ = new QTimer(this);
+    //   left_time_cnt_ = 12100;  // 1200* 0.1s
+    //   connect(timer_flush_score_and_left_time_bar_, &QTimer::timeout, [&]() {
+    //       // score_bar
+    //       ui->score_bar->setText(QString::fromStdString(std::to_string(board->GetScore())));
+    //       // left_time_bar
+    //       if (is_pausing_ == false) left_time_cnt_ -= 10;
+    //       RefreshTimeLabel();
+    //       // set button state
+    //       ui->skill1_button->setEnabled(board->GetRest1() > 0);
+    //       ui->skill2_button->setEnabled(board->GetRest2() > 0);
+    //       ui->skill3_button->setEnabled(board->GetRest3() > 0);
+    //       ui->hint_button->setEnabled(board->GetScore() >= 100);
+    //       // stop
+    //       if (left_time_cnt_ <= 0 || board->IsGameOver()) {
+    //           timer_flush_score_and_left_time_bar_->stop();
+    //           left_time_cnt_ = -10;
+    //           on_btnReturn_clicked();  // 时间到，直接退出游戏（
+    //       }
+    //   });
+    //   timer_flush_score_and_left_time_bar_->start(100);
 
-  //   // Record Rank Window
-  //   record_rank_window = new RecordRankWindow(-1);
+    //   // Record Rank Window
+    //   record_rank_window = new RecordRankWindow(-1);
 
-  //   int font_Id = QFontDatabase::addApplicationFont(":/font/SmileySans-Oblique.ttf");
-  //   QStringList font_list = QFontDatabase::applicationFontFamilies(font_Id);
-  //   qDebug() << font_Id;
-  //   qDebug() << font_list;
-  //   if (!font_list.isEmpty()) {
-  //       QFont f;
-  //       f.setFamily(font_list[0]);
-  //       f.setPointSize(17);
-  //       ui->score_bar->setFont(f);
-  //       f.setPointSize(20);
-  //       ui->minute_label->setFont(f);
-  //       ui->minute_label->setStyleSheet("color:white;");
-  //       ui->second_label->setFont(f);
-  //       ui->second_label->setStyleSheet("color:white;");
-  //   }
+    //   int font_Id = QFontDatabase::addApplicationFont(":/font/SmileySans-Oblique.ttf");
+    //   QStringList font_list = QFontDatabase::applicationFontFamilies(font_Id);
+    //   qDebug() << font_Id;
+    //   qDebug() << font_list;
+    //   if (!font_list.isEmpty()) {
+    //       QFont f;
+    //       f.setFamily(font_list[0]);
+    //       f.setPointSize(17);
+    //       ui->score_bar->setFont(f);
+    //       f.setPointSize(20);
+    //       ui->minute_label->setFont(f);
+    //       ui->minute_label->setStyleSheet("color:white;");
+    //       ui->second_label->setFont(f);
+    //       ui->second_label->setStyleSheet("color:white;");
+    //   }
 }
 
 GameWindow::~GameWindow() {
@@ -177,52 +185,52 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event) {
  * 键盘监听函数
  */
 void GameWindow::keyPressEvent(QKeyEvent *e) {
-  //   static bool shader_blinn_phong = true;
-  //   static int shader_render_mode = 0;
-  //   static int shader_light_source = 0;
-  //   static float shader_hdr_exposure = 0.0;
+    //   static bool shader_blinn_phong = true;
+    //   static int shader_render_mode = 0;
+    //   static int shader_light_source = 0;
+    //   static float shader_hdr_exposure = 0.0;
 
-  //   if (e->key() == Qt::Key_B) {  // B键，是否启用BlinnPhong光照模型
-  //       shader_blinn_phong ^= 1;
-  //       std::cout << "Blinn Phong: " << (shader_blinn_phong ? "true" : "false") << std::endl;
-  //       hypercube_->SetBlinnPhong(shader_blinn_phong);
-  //   }
-  //   if (e->key() == Qt::Key_E || e->key() == Qt::Key_R) {
-  //       if (e->key() == Qt::Key_E)
-  //           shader_render_mode = (shader_render_mode + 4) % 5;  // E键，切换渲染模式，前翻
-  //       else
-  //           shader_render_mode = (shader_render_mode + 1) % 5;  // R键，切换渲染模式，后翻
+    //   if (e->key() == Qt::Key_B) {  // B键，是否启用BlinnPhong光照模型
+    //       shader_blinn_phong ^= 1;
+    //       std::cout << "Blinn Phong: " << (shader_blinn_phong ? "true" : "false") << std::endl;
+    //       hypercube_->SetBlinnPhong(shader_blinn_phong);
+    //   }
+    //   if (e->key() == Qt::Key_E || e->key() == Qt::Key_R) {
+    //       if (e->key() == Qt::Key_E)
+    //           shader_render_mode = (shader_render_mode + 4) % 5;  // E键，切换渲染模式，前翻
+    //       else
+    //           shader_render_mode = (shader_render_mode + 1) % 5;  // R键，切换渲染模式，后翻
 
-  //   std::cout << "Render Mode: " << shader_render_mode << std::endl;
-  //   hypercube_->SetRenderMode(shader_render_mode);
-  // }
-  // if (e->key() == Qt::Key_L) {  // L键，切换渲染光源
-  //   shader_light_source = (shader_light_source + 1) % 3;
-  //   std::cout << "Light Source: " << shader_light_source << std::endl;
-  //   hypercube_->SetLightSource(shader_light_source);
-  // }
-  // if (e->key() == Qt::Key_G || e->key() == Qt::Key_H) {  // H键，切换HDR曝光等级
-  //   shader_hdr_exposure += (e->key() == Qt::Key_H ? 1.f : -1.f) * 0.1f;
-  //   std::cout << "HDR Exposure: " << shader_hdr_exposure << std::endl;
-  //   hypercube_->SetHDRExposure(shader_hdr_exposure);
-  // }
-  // if (e->key() == Qt::Key_Shift) {
-  //   on_pause_button_clicked();
-  // }
-  // if (e->key() == Qt::Key_A) {
-  //   on_skill1_button_clicked();
-  // }
-  // if (e->key() == Qt::Key_S) {
-  //   on_skill2_button_clicked();
-  // }
-  // if (e->key() == Qt::Key_D) {
-  //   on_skill3_button_clicked();
-  // }
-  // // 彩蛋
-  // if (e->key() == Qt::Key_O) {
-  //   ui->aiwidget->setStyleSheet(
-  //       "#aiwidget{border-image:url(:/images/立绘/nb.png)}");
-  // }
+    //   std::cout << "Render Mode: " << shader_render_mode << std::endl;
+    //   hypercube_->SetRenderMode(shader_render_mode);
+    // }
+    // if (e->key() == Qt::Key_L) {  // L键，切换渲染光源
+    //   shader_light_source = (shader_light_source + 1) % 3;
+    //   std::cout << "Light Source: " << shader_light_source << std::endl;
+    //   hypercube_->SetLightSource(shader_light_source);
+    // }
+    // if (e->key() == Qt::Key_G || e->key() == Qt::Key_H) {  // H键，切换HDR曝光等级
+    //   shader_hdr_exposure += (e->key() == Qt::Key_H ? 1.f : -1.f) * 0.1f;
+    //   std::cout << "HDR Exposure: " << shader_hdr_exposure << std::endl;
+    //   hypercube_->SetHDRExposure(shader_hdr_exposure);
+    // }
+    // if (e->key() == Qt::Key_Shift) {
+    //   on_pause_button_clicked();
+    // }
+    // if (e->key() == Qt::Key_A) {
+    //   on_skill1_button_clicked();
+    // }
+    // if (e->key() == Qt::Key_S) {
+    //   on_skill2_button_clicked();
+    // }
+    // if (e->key() == Qt::Key_D) {
+    //   on_skill3_button_clicked();
+    // }
+    // // 彩蛋
+    // if (e->key() == Qt::Key_O) {
+    //   ui->aiwidget->setStyleSheet(
+    //       "#aiwidget{border-image:url(:/images/立绘/nb.png)}");
+    // }
 }
 
 void GameWindow::startGame() {
@@ -286,16 +294,12 @@ void GameWindow::on_skill3_button_clicked() {
 }
 
 void GameWindow::on_pause_button_clicked() {
-    // BGM::GetInstance()->PlayOpen();
-
-    // board->ClickedOnStop();  // 暂停
-    // is_pausing_ ^= 1;
-    // if (is_pausing_) {
-    //     ui->pause_button->setIcon(QIcon(":/images/gamewindow/4-.png"));
-    //     std::cerr << "Clicked!\n";
-    // } else {
-    //     ui->pause_button->setIcon(QIcon(":/images/gamewindow/4.png"));
-    // }
+    PauseWindow *pw = new PauseWindow(this);
+    pw->setGeometry(0,0,1280,720);
+    pw->show();
+    connect(pw, &PauseWindow::exitwindow, this, [this]{
+        changeWindow(new MainWindow());
+    });
 }
 
 void GameWindow::on_hint_button_clicked() {
