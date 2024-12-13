@@ -129,7 +129,7 @@ void RenderManager::paintGL() {
     shader_toy_program_.setUniformValue("iTime", QTime::currentTime().msecsSinceStartOfDay() / 2000.f);
     shader_toy_program_.setUniformValue("iResolution", width(), height());
     model.setToIdentity();
-    model.translate(400.f, 400.f, -2000.f);
+    model.translate(400.f, 400.f, -6000.f);
     shader_toy_program_.setUniformValue("model", model);
     shader_toy_program_.setUniformValue("view", view);
     shader_toy_program_.setUniformValue("projection", projection);
