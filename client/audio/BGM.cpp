@@ -14,8 +14,8 @@ QMediaPlayer *BGM::GetMediaPlayer(const QUrl &content, int volume) {
 }
 
 BGM::BGM() {
-    bgm1 = GetMediaPlayer(QUrl::fromLocalFile("E:/Users/admin/Desktop/Software major practical training/HeartstringsResonance/resource/sounds/bgm1.wav"), 100);
-    bgm2 = GetMediaPlayer(QUrl::fromLocalFile("E:/Users/admin/Desktop/Software major practical training/HeartstringsResonance/resource/sounds/bgm2.wav"), 100);
+    bgm1 = GetMediaPlayer(QUrl("qrc:/sounds/bgm1.wav"), 100);
+    bgm2 = GetMediaPlayer(QUrl("qrc:/sounds/bgm2.wav"), 100);
  }
 
 BGM *BGM::instance_ = nullptr;
