@@ -234,14 +234,6 @@ void GameWindow::keyPressEvent(QKeyEvent *e) {
 }
 
 void GameWindow::startGame() {
-    // if (data == "easy") difficulty_ = 1;
-    // if (data == "normal") difficulty_ = 2;
-    // if (data == "hard") difficulty_ = 3;
-    // std::cout << "difficulty is " << difficulty_ << std::endl;
-    // InitBoard();
-    // // QMessageBox mes(this);
-    // // mes.setText(data);
-    // // mes.exec();
     renderer_->Demo();
 }
 
