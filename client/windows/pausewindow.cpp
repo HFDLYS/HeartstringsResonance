@@ -1,7 +1,7 @@
 #include "pausewindow.h"
 #include "mainwindow.h"
 #include "ui_pausewindow.h"
-
+#include "../audio/BGM.h"
 PauseWindow::PauseWindow(QWidget *parent) : QWidget(parent),ui(new Ui::PauseWindow){
     ui->setupUi(this);
     // 固定窗口大小
@@ -21,6 +21,7 @@ void PauseWindow::on_btnConit_clicked(){
 
 void PauseWindow::on_btnConti_clicked()
 {
+    BGM::GetInstance()->ContinueBgm2();
     delete this;
 }
 

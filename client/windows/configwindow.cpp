@@ -2,9 +2,10 @@
 
 #include "mainwindow.h"
 #include "ui_configwindow.h"
+#include "../audio/BGM.h"
 
-int ConfigWindow::music_state = 30;
-int ConfigWindow::sound_state = 30;
+int ConfigWindow::music_state = 100;
+int ConfigWindow::sound_state = 100;
 bool ConfigWindow::music_on = 1;
 bool ConfigWindow::sound_on = 1;
 ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::ConfigWindow) {
@@ -51,18 +52,38 @@ void ConfigWindow::on_btnReturn_clicked() {
 }
 
 void ConfigWindow::on_btnMusic_clicked() {
-    music_on=!music_on;
+    if(music_on == 1){
+        ui->musicSlider->setEnabled(false);
+        BGM::GetInstance()->stopAllMusic = true;
+        BGM::GetInstance()->StopBgm1();
+    } else{
+        ui->musicSlider->setEnabled(true);
+        BGM::GetInstance()->stopAllMusic = false;
+        BGM::GetInstance()->PlayBgm1();
+    }
+    music_on ^= 1;
     updateState();
 }
 
 void ConfigWindow::on_btnSound_clicked() {
-    sound_on=!sound_on;
+    if(sound_on == 1){
+        ui->soundSlider->setEnabled(false);
+
+    } else{
+        ui->soundSlider->setEnabled(true);
+
+    }
+    sound_on ^= 1;
     updateState();
 }
 
 void ConfigWindow::on_musicSlider_valueChanged(int value)
 {
+    qDebug() << value << '\n';
     music_state=value;
+    BGM::GetInstance()->ModifyBgm1(value);
+    BGM::GetInstance()->ModifyBgm2(value);
+    BGM::GetInstance()->allMusicPercent = value;
 }
 
 

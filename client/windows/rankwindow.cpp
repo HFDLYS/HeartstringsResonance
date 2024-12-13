@@ -130,6 +130,7 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
     //     ui->label19->setFont(f);
     //     ui->label20->setFont(f);
     // }
+
 }
 
 RankWindow::~RankWindow() { delete ui; }

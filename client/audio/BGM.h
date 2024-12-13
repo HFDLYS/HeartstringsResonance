@@ -7,19 +7,30 @@ class BGM {
 private:
     static BGM *instance_;
     QMediaPlayer *player;
+    QMediaPlayer *close;
     QMediaPlayer *bgm1;
     QMediaPlayer *bgm2;
 
 public:
     BGM();
+    bool stopAllMusic = false;
+    bool stopAllSound = false;
     int allMusicPercent = 100;
     int allSoundPercent = 100;
     static BGM *GetInstance();
+
+    void PlayClose();
+    void StopClose();
+
     void PlayBgm1();
     void StopBgm1();
+    void ModifyBgm1(int);
 
     void PlayBgm2();
     void StopBgm2();
+    void ModifyBgm2(int);
+    void PauseBgm2();
+    void ContinueBgm2();
 
 private:
     QMediaPlayer *GetMediaPlayer(const QUrl &content, int volume);
