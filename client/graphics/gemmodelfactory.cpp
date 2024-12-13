@@ -6,8 +6,8 @@ GemModelFactory::GemModelFactory(QOpenGLFunctions_3_3_Core* func) {
     models_.push_back(new Model(func, "./resource/models/gem/gemstone_1.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/hou.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/zft.obj"));
-    models_.push_back(new Model(func, "./resource/models/gem/gemstone_3.obj"));
-    models_.push_back(new Model(func, "./resource/models/gem/gemstone_4.obj"));
+    models_.push_back(new Model(func, "./resource/models/gem/love.obj"));
+    models_.push_back(new Model(func, "./resource/models/gem/diamond.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/gemstone_5.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/gemstone_6.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/gemstone_7.obj"));

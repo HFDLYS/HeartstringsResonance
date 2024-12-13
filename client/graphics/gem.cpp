@@ -42,7 +42,6 @@ void Gem::set_falling(float speed, int falling_target_y) {
 bool Gem::is_rotating() const { return rotating_speed_ != 0; }
 float Gem::rotating_speed() const { return rotating_speed_; }
 void Gem::set_rotating_speed(float speed) { 
-    std::cerr << "now" << x_ << " " << y_ << " " << z_ << std::endl;
     rotating_speed_ = speed; 
 }
 // 交换
