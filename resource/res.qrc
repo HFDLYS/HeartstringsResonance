@@ -95,26 +95,5 @@
         <file>sounds/open_win.wav</file>
         <file>sounds/switch_task.wav</file>
         <file>sounds/switch_type.wav</file>
-        <file>models/basic/cube.obj</file>
-        <file>models/gem/gemstone_1.mtl</file>
-        <file>models/gem/gemstone_1.obj</file>
-        <file>models/gem/gemstone_2.mtl</file>
-        <file>models/gem/gemstone_2.obj</file>
-        <file>models/gem/gemstone_3.mtl</file>
-        <file>models/gem/gemstone_3.obj</file>
-        <file>models/gem/gemstone_4.mtl</file>
-        <file>models/gem/gemstone_4.obj</file>
-        <file>models/gem/gemstone_5.mtl</file>
-        <file>models/gem/gemstone_5.obj</file>
-        <file>models/gem/gemstone_6.mtl</file>
-        <file>models/gem/gemstone_6.obj</file>
-        <file>models/gem/gemstone_7.mtl</file>
-        <file>models/gem/gemstone_7.obj</file>
-        <file>models/gem/gemstone_8.mtl</file>
-        <file>models/gem/gemstone_8.obj</file>
-        <file>models/gem/hou.mtl</file>
-        <file>models/gem/hou.obj</file>
-        <file>models/gem/zft.mtl</file>
-        <file>models/gem/zft.obj</file>
     </qresource>
 </RCC>
