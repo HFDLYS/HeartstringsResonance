@@ -106,7 +106,7 @@ void RenderManager::initializeGL() {
 
     // Background Model
     background = new Model(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()),
-                           "/Users/hfdlys/project/2022-BJTU-DataStructure-FinalProject/resource/models/basic/cube.obj");
+                           "./resource/models/basic/cube.obj");
 
     // start time
     start_time = QTime::currentTime();
