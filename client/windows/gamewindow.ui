@@ -47,10 +47,10 @@
     <widget class="QPushButton" name="skill1_button">
      <property name="geometry">
       <rect>
-       <x>600</x>
-       <y>300</y>
+       <x>610</x>
+       <y>260</y>
        <width>81</width>
-       <height>81</height>
+       <height>80</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -69,8 +69,8 @@
     <widget class="QPushButton" name="skill3_button">
      <property name="geometry">
       <rect>
-       <x>650</x>
-       <y>389</y>
+       <x>670</x>
+       <y>350</y>
        <width>81</width>
        <height>81</height>
       </rect>
@@ -96,7 +96,7 @@
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>389</y>
+       <y>350</y>
        <width>81</width>
        <height>81</height>
       </rect>
@@ -126,8 +126,8 @@
     <widget class="QPushButton" name="hint_button">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>475</y>
+       <x>560</x>
+       <y>450</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -149,8 +149,8 @@ QPushButton::pressed#hint_button{border-image:url(:/images/gamewindow/tip-.png);
     <widget class="QPushButton" name="pause_button">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>520</y>
+       <x>560</x>
+       <y>510</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -172,10 +172,10 @@ QPushButton::pressed#pause_button{border-image:url(:/images/gamewindow/pause-.pn
     <widget class="QLabel" name="shadow_2">
      <property name="geometry">
       <rect>
-       <x>755</x>
-       <y>100</y>
-       <width>500</width>
-       <height>500</height>
+       <x>850</x>
+       <y>20</y>
+       <width>330</width>
+       <height>330</height>
       </rect>
      </property>
      <property name="text">
@@ -191,10 +191,48 @@ QPushButton::pressed#pause_button{border-image:url(:/images/gamewindow/pause-.pn
     <widget class="QLabel" name="shadow">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>100</y>
-       <width>500</width>
-       <height>500</height>
+       <x>100</x>
+       <y>20</y>
+       <width>330</width>
+       <height>330</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_3">
+     <property name="geometry">
+      <rect>
+       <x>850</x>
+       <y>370</y>
+       <width>330</width>
+       <height>330</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_4">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>370</y>
+       <width>330</width>
+       <height>330</height>
       </rect>
      </property>
      <property name="text">
