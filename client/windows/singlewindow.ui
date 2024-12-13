@@ -172,10 +172,10 @@ QPushButton::pressed#pause_button{border-image:url(:/images/singlewindow/pause-.
     <widget class="QLabel" name="shadow">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>20</y>
-       <width>680</width>
-       <height>680</height>
+       <x>200</x>
+       <y>40</y>
+       <width>640</width>
+       <height>640</height>
       </rect>
      </property>
      <property name="text">
