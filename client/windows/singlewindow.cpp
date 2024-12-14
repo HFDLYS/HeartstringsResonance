@@ -104,15 +104,6 @@ void SingleWindow::startGame() {
     });
 }
 
-// void SingleWindow::on_btnReturn_clicked() {
-//     MainWindow *mw = new MainWindow();
-//     mw->move(this->pos().x(), this->pos().y());
-//     mw->show();
-//     delay(20);
-//     // timer_flush_score_and_left_time_bar_->stop();
-//     this->close();
-// }
-
 void SingleWindow::on_skill1_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
     board->hint();
@@ -145,13 +136,9 @@ void SingleWindow::on_pause_button_clicked() {
 }
 
 void SingleWindow::on_hint_button_clicked() {
-    //board->ShowHint(true);  // 提示
+
 }
 
 void SingleWindow::on_hint_button_pressed() { ui->hint_button->setIcon(QIcon(":/images/SingleWindow/5-.png")); }
 
 void SingleWindow::on_hint_button_released() { ui->hint_button->setIcon(QIcon(":/images/SingleWindow/5.png")); }
-
-//void SingleWindow::on_btnReturn_pressed() {  }
-
-//void SingleWindow::on_btnReturn_released() { }

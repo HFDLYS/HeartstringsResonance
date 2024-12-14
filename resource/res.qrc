@@ -96,5 +96,6 @@
         <file>sounds/label.wav</file>
         <file>sounds/open.wav</file>
         <file>sounds/skill.wav</file>
+        <file>images/mainwindow/title.png</file>
     </qresource>
 </RCC>

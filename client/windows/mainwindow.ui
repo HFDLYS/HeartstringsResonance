@@ -125,11 +125,10 @@ QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/setting-.png
       <enum>Qt::LayoutDirection::LeftToRight</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: white;
-font-weight: bold;</string>
+      <string notr="true">background-image: url(:/images/mainwindow/title.png);</string>
      </property>
      <property name="text">
-      <string>爱的魔法♥心海相连</string>
+      <string/>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -260,50 +259,7 @@ font-weight: bold;</string>
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="author_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>380</y>
-       <width>1000</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777212</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>幼圆</family>
-       <pointsize>18</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LayoutDirection::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: white;
-font-weight: bold;</string>
-     </property>
-     <property name="text">
-      <string>-----------------------------&gt;♥&lt;-----------------------------</string>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
     <zorder>shadow</zorder>
-    <zorder>author_2</zorder>
     <zorder>btnRank</zorder>
     <zorder>btnConfig</zorder>
     <zorder>title</zorder>
