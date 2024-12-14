@@ -3,6 +3,7 @@
 #include "ui_singlewindow.h"
 #include "pausewindow.h"
 #include "../audio/audiomanager.h"
+#include "resultwindow.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -17,7 +18,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=60;
+const int MAX_TIME=5;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -95,11 +96,18 @@ void SingleWindow::startGame() {
     QObject::connect(timer, &QTimer::timeout,[&]{
         ui->progressBar->setValue(ui->progressBar->value()-1);
         ui->score->setText(QString::number(board->getScore()));
+        //时间到了
         if(!ui->progressBar->value()){
             timer->stop();
             delete timer;
             AudioManager::GetInstance()->StopBgm2();
-            changeWindow(new MainWindow());
+            ResultWindow *rw = new ResultWindow(this);
+            rw->setGeometry(0,0,1280,720);
+            rw->show();
+            //changeWindow(new MainWindow());
+            connect(rw, &ResultWindow::exitwindow, this, [this]{
+                changeWindow(new MainWindow());
+            });
         }
     });
 }
