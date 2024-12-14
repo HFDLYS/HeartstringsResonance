@@ -20,6 +20,7 @@ class SingleWindow : public BaseWindow {
 
 public:
     explicit SingleWindow(QWidget *parent = nullptr);
+    explicit SingleWindow(int,QWidget *parent = nullptr);
     ~SingleWindow();
 
 public slots:
@@ -37,9 +38,9 @@ protected:
 private:
     QPoint last;
     int difficulty_ = 1;
-
+    int seed=0;
 private slots:
-    void on_btnReturn_clicked();
+    //void on_btnReturn_clicked();
 
     void on_skill1_button_clicked();
 
@@ -55,9 +56,9 @@ private slots:
 
     void on_hint_button_released();
 
-    void on_btnReturn_pressed();
+    //void on_btnReturn_pressed();
 
-    void on_btnReturn_released();
+    //void on_btnReturn_released();
 
 private:
     Ui::SingleWindow *ui;

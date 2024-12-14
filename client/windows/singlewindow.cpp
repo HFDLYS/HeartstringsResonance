@@ -17,15 +17,21 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(200, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-
+const int MAX_TIME=120;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
+}
 
-
+SingleWindow::SingleWindow(int seed_,QWidget *parent)
+    : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
+    ui->setupUi(this);
+    renderer_ = new Graphics::RenderManager(ui->controlWidget);
+    renderer_->setFixedSize(board_size.x(), board_size.y());
+    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
 }
 
 SingleWindow::~SingleWindow() {
@@ -40,7 +46,6 @@ void SingleWindow::initBoard() {
     board = new Board();
     board->SetGemManager(renderer_->GetGemManager());
     board->initBoard();
-
 }
 
 void SingleWindow::Release1() { ui->skill1_button->setIcon(QIcon(":/images/SingleWindow/1.png")); }
@@ -82,16 +87,25 @@ void SingleWindow::keyPressEvent(QKeyEvent *e) {
 
 void SingleWindow::startGame() {
     initBoard();
+    ui->progressBar->setValue(MAX_TIME);
+    QTimer* timer=new QTimer(this);
+    timer->start(1000);
+    QObject::connect(timer, &QTimer::timeout,[&]{
+        ui->progressBar->setValue(ui->progressBar->value()-1);
+        if(!ui->progressBar->value()){
+            changeWindow(new MainWindow());
+        }
+    });
 }
 
-void SingleWindow::on_btnReturn_clicked() {
-    MainWindow *mw = new MainWindow();
-    mw->move(this->pos().x(), this->pos().y());
-    mw->show();
-    delay(20);
-    // timer_flush_score_and_left_time_bar_->stop();
-    this->close();
-}
+// void SingleWindow::on_btnReturn_clicked() {
+//     MainWindow *mw = new MainWindow();
+//     mw->move(this->pos().x(), this->pos().y());
+//     mw->show();
+//     delay(20);
+//     // timer_flush_score_and_left_time_bar_->stop();
+//     this->close();
+// }
 
 void SingleWindow::on_skill1_button_clicked() {
     BGM::GetInstance()->PlaySkill();
@@ -124,6 +138,6 @@ void SingleWindow::on_hint_button_pressed() { ui->hint_button->setIcon(QIcon(":/
 
 void SingleWindow::on_hint_button_released() { ui->hint_button->setIcon(QIcon(":/images/SingleWindow/5.png")); }
 
-void SingleWindow::on_btnReturn_pressed() {  }
+//void SingleWindow::on_btnReturn_pressed() {  }
 
-void SingleWindow::on_btnReturn_released() { }
+//void SingleWindow::on_btnReturn_released() { }

@@ -240,24 +240,24 @@ void GameWindow::startGame() {
     renderer_->Demo();
 }
 
-void GameWindow::on_btnReturn_clicked() {
-    MainWindow *mw = new MainWindow();
-    mw->move(this->pos().x(), this->pos().y());
-    mw->show();
+// void GameWindow::on_btnReturn_clicked() {
+//     MainWindow *mw = new MainWindow();
+//     mw->move(this->pos().x(), this->pos().y());
+//     mw->show();
 
-    // record_rank_window->set_score(board->GetScore());
-    // if (record_rank_window->score() > 0) {  // 分数>0，才显示排行榜窗口
-    //     record_rank_window->show();
-    //     record_rank_window->setFocus();
-    // }
+//     // record_rank_window->set_score(board->GetScore());
+//     // if (record_rank_window->score() > 0) {  // 分数>0，才显示排行榜窗口
+//     //     record_rank_window->show();
+//     //     record_rank_window->setFocus();
+//     // }
 
-    // BGM::GetInstance()->PlayClose();
-    // BGM::GetInstance()->StopBgm2();
-    // BGM::GetInstance()->PlayBgm1();
-    delay(20);
-    // timer_flush_score_and_left_time_bar_->stop();
-    this->close();
-}
+//     // BGM::GetInstance()->PlayClose();
+//     // BGM::GetInstance()->StopBgm2();
+//     // BGM::GetInstance()->PlayBgm1();
+//     delay(20);
+//     // timer_flush_score_and_left_time_bar_->stop();
+//     this->close();
+// }
 
 void GameWindow::on_skill1_button_clicked() {
     BGM::GetInstance()->PlaySkill();
@@ -310,6 +310,6 @@ void GameWindow::on_hint_button_pressed() { ui->hint_button->setIcon(QIcon(":/im
 
 void GameWindow::on_hint_button_released() { ui->hint_button->setIcon(QIcon(":/images/gamewindow/5.png")); }
 
-void GameWindow::on_btnReturn_pressed() {  }
+//void GameWindow::on_btnReturn_pressed() {  }
 
-void GameWindow::on_btnReturn_released() { }
+//void GameWindow::on_btnReturn_released() { }

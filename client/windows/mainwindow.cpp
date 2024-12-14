@@ -6,6 +6,8 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QInputDialog>
+#include <climits>
 #include "ui_mainwindow.h"
 #include "aboutwindow.h"
 #include "configwindow.h"
@@ -25,11 +27,13 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
+    bool ok;
+    int a = QInputDialog::getInt(this, "输入种子", "Seed:", 0, INT_MIN, INT_MAX, 1, &ok);
+    if(!ok)return;
     BGM::GetInstance()->PlayOpen();
     BGM::GetInstance()->StopBgm1();
     BGM::GetInstance()->PlayBgm2();
-    SingleWindow *sw = new SingleWindow();
-    sw->show();
+    SingleWindow *sw = new SingleWindow(a);
     changeWindow(sw);
     sw->startGame();
 }
@@ -40,7 +44,6 @@ void MainWindow::on_rbtnMultiplayer_clicked(){
     BGM::GetInstance()->StopBgm1();
     BGM::GetInstance()->PlayBgm2();
     GameWindow *gw = new GameWindow();
-    gw->show();
     changeWindow(gw);
     gw->startGame();
 }
@@ -83,7 +86,11 @@ void MainWindow::on_btnQuit_clicked() {
     font.setBold(true);
     font.setPointSize(24);
     font.setFamily("幼圆");
+    QFont fontBtn;
+    fontBtn.setPointSize(18);
     label->setFont(font);        // 应用新字体
+    confirmButton->setFont(fontBtn);
+    cancelButton->setFont(fontBtn);
     label->setAlignment(Qt::AlignCenter);
     layout2->addWidget(label);
     layout2->addWidget(tmp);
