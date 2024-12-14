@@ -6,18 +6,20 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QInputDialog>
+#include <climits>
 #include "ui_mainwindow.h"
 #include "aboutwindow.h"
 #include "configwindow.h"
 #include "rankwindow.h"
 #include "gamewindow.h"
 #include "singlewindow.h"
-#include "../audio/BGM.h"
+#include "../audio/audiomanager.h"
 
 MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    BGM::GetInstance()->PlayBgm1();
+    AudioManager::GetInstance()->PlayBgm1();
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -25,46 +27,47 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
-    BGM::GetInstance()->PlayOpen();
-    BGM::GetInstance()->StopBgm1();
-    BGM::GetInstance()->PlayBgm2();
-    SingleWindow *sw = new SingleWindow();
-    sw->show();
+    bool ok;
+    int a = QInputDialog::getInt(this, "输入种子", "Seed:", 0, INT_MIN, INT_MAX, 1, &ok);
+    if(!ok)return;
+    AudioManager::GetInstance()->PlayOpen();
+    AudioManager::GetInstance()->StopBgm1();
+    AudioManager::GetInstance()->PlayBgm2();
+    SingleWindow *sw = new SingleWindow(a);
     changeWindow(sw);
     sw->startGame();
 }
 
 // 多人游戏开始
 void MainWindow::on_rbtnMultiplayer_clicked(){
-    BGM::GetInstance()->PlayOpen();
-    BGM::GetInstance()->StopBgm1();
-    BGM::GetInstance()->PlayBgm2();
+    AudioManager::GetInstance()->PlayOpen();
+    AudioManager::GetInstance()->StopBgm1();
+    AudioManager::GetInstance()->PlayBgm2();
     GameWindow *gw = new GameWindow();
-    gw->show();
     changeWindow(gw);
     gw->startGame();
 }
 
 // 排行榜
 void MainWindow::on_btnRank_clicked() {
-    BGM::GetInstance()->PlayOpen();
+    AudioManager::GetInstance()->PlayOpen();
     changeWindow(new RankWindow());
 }
 
 // 设置
 void MainWindow::on_btnConfig_clicked() {
-    BGM::GetInstance()->PlayOpen();
+    AudioManager::GetInstance()->PlayOpen();
     changeWindow(new ConfigWindow());
 }
 
 // 关于
 void MainWindow::on_btnAbout_clicked() {
-    BGM::GetInstance()->PlayLabel();
+    AudioManager::GetInstance()->PlayLabel();
     changeWindow(new AboutWindow());
 }
 //退出
 void MainWindow::on_btnQuit_clicked() {
-    BGM::GetInstance()->PlayLabel();
+    AudioManager::GetInstance()->PlayLabel();
     //BGM::GetInstance()->PlayClose();
     QDialog *dialog = new QDialog(this);
     dialog->setFixedSize(400, 170);
@@ -83,7 +86,11 @@ void MainWindow::on_btnQuit_clicked() {
     font.setBold(true);
     font.setPointSize(24);
     font.setFamily("幼圆");
+    QFont fontBtn;
+    fontBtn.setPointSize(18);
     label->setFont(font);        // 应用新字体
+    confirmButton->setFont(fontBtn);
+    cancelButton->setFont(fontBtn);
     label->setAlignment(Qt::AlignCenter);
     layout2->addWidget(label);
     layout2->addWidget(tmp);

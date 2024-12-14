@@ -1,6 +1,6 @@
-#include "BGM.h"
+#include "audiomanager.h"
 
-QMediaPlayer *BGM::GetMediaPlayer(const QUrl &content, int volume) {
+QMediaPlayer *AudioManager::GetMediaPlayer(const QUrl &content, int volume) {
     QMediaPlayer *player = new QMediaPlayer();
     player->setSource(content);
     QAudioOutput *audioOutopt = new QAudioOutput();
@@ -12,7 +12,7 @@ QMediaPlayer *BGM::GetMediaPlayer(const QUrl &content, int volume) {
     return player;
 }
 
-BGM::BGM() {
+AudioManager::AudioManager() {
     bgm1 = GetMediaPlayer(QUrl("qrc:/sounds/bgm1.wav"), allMusicPercent);
     bgm2 = GetMediaPlayer(QUrl("qrc:/sounds/bgm2.wav"), allMusicPercent);
     label = GetMediaPlayer(QUrl("qrc:/sounds/label.wav"), allSoundPercent);
@@ -20,74 +20,74 @@ BGM::BGM() {
     skill = GetMediaPlayer(QUrl("qrc:/sounds/skill.wav"), allSoundPercent);
  }
 
-BGM *BGM::instance_ = nullptr;
+AudioManager *AudioManager::instance_ = nullptr;
 
-BGM *BGM::GetInstance() {
+AudioManager *AudioManager::GetInstance() {
     if (instance_ == nullptr) {
-        instance_ = new BGM();
+        instance_ = new AudioManager();
     }
     return instance_;
 }
 
-void BGM::PlayClose() {
+void AudioManager::PlayClose() {
     QMediaPlayer *player = new QMediaPlayer();
-    if (!BGM::GetInstance()->stopAllSound) {
+    if (!AudioManager::GetInstance()->stopAllSound) {
         close->play();
     }
 }
-void BGM::StopClose() { close->stop(); }
+void AudioManager::StopClose() { close->stop(); }
 
-void BGM::PlayBgm1() {
-    if (!BGM::GetInstance()->stopAllMusic) bgm1->play();
+void AudioManager::PlayBgm1() {
+    if (!AudioManager::GetInstance()->stopAllMusic) bgm1->play();
 }
-void BGM::ModifyBgm1(int val) {
+void AudioManager::ModifyBgm1(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     bgm1->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
-void BGM::ModifyBgm2(int val) {
+void AudioManager::ModifyBgm2(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     bgm2->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
-void BGM::StopBgm1() { bgm1->stop(); }
+void AudioManager::StopBgm1() { bgm1->stop(); }
 
-void BGM::PlayBgm2() {
-    if (!BGM::GetInstance()->stopAllMusic) bgm2->play();
+void AudioManager::PlayBgm2() {
+    if (!AudioManager::GetInstance()->stopAllMusic) bgm2->play();
 }
 
-void BGM::StopBgm2() { bgm2->stop(); }
+void AudioManager::StopBgm2() { bgm2->stop(); }
 
-void BGM::PauseBgm2(){
+void AudioManager::PauseBgm2(){
     bgm2->pause();
 }
 
-void BGM::ContinueBgm2(){
+void AudioManager::ContinueBgm2(){
     bgm2->play();
 }
 
-void BGM::PlayLabel(){
-    if(!BGM::GetInstance()->stopAllSound) label->play();
+void AudioManager::PlayLabel(){
+    if(!AudioManager::GetInstance()->stopAllSound) label->play();
 }
-void BGM::ModifyLabel(int val) {
+void AudioManager::ModifyLabel(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     label->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
 
-void BGM::PlayOpen(){
-    if(!BGM::GetInstance()->stopAllSound) open->play();
+void AudioManager::PlayOpen(){
+    if(!AudioManager::GetInstance()->stopAllSound) open->play();
 }
-void BGM::ModifyOpen(int val) {
+void AudioManager::ModifyOpen(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     open->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
 
-void BGM::PlaySkill(){
-    if(!BGM::GetInstance()->stopAllSound) skill->play();
+void AudioManager::PlaySkill(){
+    if(!AudioManager::GetInstance()->stopAllSound) skill->play();
 }
-void BGM::ModifySkill(int val) {
+void AudioManager::ModifySkill(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     skill->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);

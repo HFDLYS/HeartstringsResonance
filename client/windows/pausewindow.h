@@ -20,6 +20,7 @@ private slots:
 
 signals:
     void exitwindow();
+    void gameContinue();
 
 private:
     Ui::PauseWindow *ui;

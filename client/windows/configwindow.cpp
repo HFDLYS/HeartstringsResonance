@@ -2,7 +2,7 @@
 
 #include "mainwindow.h"
 #include "ui_configwindow.h"
-#include "../audio/BGM.h"
+#include "../audio/audiomanager.h"
 
 int ConfigWindow::music_state = 100;
 int ConfigWindow::sound_state = 100;
@@ -51,19 +51,19 @@ void ConfigWindow::updateState(){
 }
 
 void ConfigWindow::on_btnReturn_clicked() {
-    BGM::GetInstance()->PlayLabel();
+    AudioManager::GetInstance()->PlayLabel();
     changeWindow(new MainWindow());
 }
 
 void ConfigWindow::on_btnMusic_clicked() {
     if(music_on == 1){
 
-        BGM::GetInstance()->stopAllMusic = true;
-        BGM::GetInstance()->StopBgm1();
+        AudioManager::GetInstance()->stopAllMusic = true;
+        AudioManager::GetInstance()->StopBgm1();
     } else{
 
-        BGM::GetInstance()->stopAllMusic = false;
-        BGM::GetInstance()->PlayBgm1();
+        AudioManager::GetInstance()->stopAllMusic = false;
+        AudioManager::GetInstance()->PlayBgm1();
     }
     music_on ^= 1;
     updateState();
@@ -72,11 +72,11 @@ void ConfigWindow::on_btnMusic_clicked() {
 void ConfigWindow::on_btnSound_clicked() {
     if(sound_on == 1){
 
-        BGM::GetInstance()->stopAllSound = true;
+        AudioManager::GetInstance()->stopAllSound = true;
 
     } else{
 
-        BGM::GetInstance()->stopAllSound = false;
+        AudioManager::GetInstance()->stopAllSound = false;
     }
     sound_on ^= 1;
     updateState();
@@ -86,18 +86,18 @@ void ConfigWindow::on_musicSlider_valueChanged(int value)
 {
     qDebug() << value << '\n';
     music_state=value;
-    BGM::GetInstance()->ModifyBgm1(value);
-    BGM::GetInstance()->ModifyBgm2(value);
-    BGM::GetInstance()->allMusicPercent = value;
+    AudioManager::GetInstance()->ModifyBgm1(value);
+    AudioManager::GetInstance()->ModifyBgm2(value);
+    AudioManager::GetInstance()->allMusicPercent = value;
 }
 
 
 void ConfigWindow::on_soundSlider_valueChanged(int value)
 {
     sound_state=value;
-    BGM::GetInstance()->ModifyLabel(value);
-    BGM::GetInstance()->ModifyOpen(value);
-    BGM::GetInstance()->ModifySkill(value);
-    BGM::GetInstance()->allSoundPercent = value;
+    AudioManager::GetInstance()->ModifyLabel(value);
+    AudioManager::GetInstance()->ModifyOpen(value);
+    AudioManager::GetInstance()->ModifySkill(value);
+    AudioManager::GetInstance()->allSoundPercent = value;
 }
 

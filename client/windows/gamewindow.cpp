@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 #include "ui_gamewindow.h"
 #include "pausewindow.h"
-#include "../audio/BGM.h"
+#include "../audio/audiomanager.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -240,27 +240,27 @@ void GameWindow::startGame() {
     renderer_->Demo();
 }
 
-void GameWindow::on_btnReturn_clicked() {
-    MainWindow *mw = new MainWindow();
-    mw->move(this->pos().x(), this->pos().y());
-    mw->show();
+// void GameWindow::on_btnReturn_clicked() {
+//     MainWindow *mw = new MainWindow();
+//     mw->move(this->pos().x(), this->pos().y());
+//     mw->show();
 
-    // record_rank_window->set_score(board->GetScore());
-    // if (record_rank_window->score() > 0) {  // 分数>0，才显示排行榜窗口
-    //     record_rank_window->show();
-    //     record_rank_window->setFocus();
-    // }
+//     // record_rank_window->set_score(board->GetScore());
+//     // if (record_rank_window->score() > 0) {  // 分数>0，才显示排行榜窗口
+//     //     record_rank_window->show();
+//     //     record_rank_window->setFocus();
+//     // }
 
-    // BGM::GetInstance()->PlayClose();
-    // BGM::GetInstance()->StopBgm2();
-    // BGM::GetInstance()->PlayBgm1();
-    delay(20);
-    // timer_flush_score_and_left_time_bar_->stop();
-    this->close();
-}
+//     // AudioManager::GetInstance()->PlayClose();
+//     // AudioManager::GetInstance()->StopBgm2();
+//     // AudioManager::GetInstance()->PlayBgm1();
+//     delay(20);
+//     // timer_flush_score_and_left_time_bar_->stop();
+//     this->close();
+// }
 
 void GameWindow::on_skill1_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
     // board->ClickedOnDiamond();  // 道具1
     // if (board->GetMouseOnDiamond())
@@ -270,7 +270,7 @@ void GameWindow::on_skill1_button_clicked() {
 }
 
 void GameWindow::on_skill2_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnLightning();  // 道具2
@@ -281,7 +281,7 @@ void GameWindow::on_skill2_button_clicked() {
 }
 
 void GameWindow::on_skill3_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnShuffle();  // 道具3
@@ -295,9 +295,9 @@ void GameWindow::on_pause_button_clicked() {
     PauseWindow *pw = new PauseWindow(this);
     pw->setGeometry(0,0,1280,720);
     pw->show();
-    BGM::GetInstance()->PauseBgm2();
+    AudioManager::GetInstance()->PauseBgm2();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
-        BGM::GetInstance()->StopBgm2();
+        AudioManager::GetInstance()->StopBgm2();
         changeWindow(new MainWindow());
     });
 }
@@ -310,6 +310,6 @@ void GameWindow::on_hint_button_pressed() { ui->hint_button->setIcon(QIcon(":/im
 
 void GameWindow::on_hint_button_released() { ui->hint_button->setIcon(QIcon(":/images/gamewindow/5.png")); }
 
-void GameWindow::on_btnReturn_pressed() {  }
+//void GameWindow::on_btnReturn_pressed() {  }
 
-void GameWindow::on_btnReturn_released() { }
+//void GameWindow::on_btnReturn_released() { }

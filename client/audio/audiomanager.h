@@ -1,11 +1,11 @@
-#ifndef BGM_H
-#define BGM_H
+#ifndef AUDIOMANAGER_H
+#define AUDIOMANAGER_H
 #include <QMediaPlayer>
 #include <QSoundEffect>
 #include <QAudioOutput>
-class BGM {
+class AudioManager {
 private:
-    static BGM *instance_;
+    static AudioManager *instance_;
     QMediaPlayer *player;
     QMediaPlayer *close;
     QMediaPlayer *bgm1;
@@ -15,12 +15,12 @@ private:
     QMediaPlayer *skill;
 
 public:
-    BGM();
+    AudioManager();
     bool stopAllMusic = false;
     bool stopAllSound = false;
     int allMusicPercent = 100;
     int allSoundPercent = 100;
-    static BGM *GetInstance();
+    static AudioManager *GetInstance();
 
     void PlayClose();
     void StopClose();
@@ -48,4 +48,4 @@ private:
     QMediaPlayer *GetMediaPlayer(const QUrl &content, int volume);
 };
 
-#endif // BGM_H
+#endif // AUDIOMANAGER_H
