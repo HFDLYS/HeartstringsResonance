@@ -265,8 +265,8 @@ void Board::remove() {
 void Board::remove(int x, int y) {
     if (x < 0 || y < 0 || x > 7 || y > 7) return;
     if (gems_[x][y].Empty()) return;
-    int difficulty_base = 1;
-    point_ += 2.0 * combo_base * difficulty_base;
+    int fix_base = 1;
+    point_ += 2.0 * combo_base * fix_base;
     gems_[x][y].SetEmpty(1);
     // animation Remove
     gem_manager_->Remove(gems_[x][y].GetId(), true);

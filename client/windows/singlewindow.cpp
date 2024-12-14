@@ -21,6 +21,7 @@ const int MAX_TIME=60;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
+    ui->score->setText(QString::number(0));
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
@@ -29,6 +30,7 @@ SingleWindow::SingleWindow(QWidget *parent)
 SingleWindow::SingleWindow(int seed_,QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
     ui->setupUi(this);
+    ui->score->setText(QString::number(0));
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
@@ -92,6 +94,7 @@ void SingleWindow::startGame() {
     timer->start(1000);
     QObject::connect(timer, &QTimer::timeout,[&]{
         ui->progressBar->setValue(ui->progressBar->value()-1);
+        ui->score->setText(QString::number(board->getScore()));
         if(!ui->progressBar->value()){
             timer->stop();
             delete timer;
