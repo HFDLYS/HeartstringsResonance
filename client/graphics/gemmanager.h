@@ -12,6 +12,7 @@
 #include "animation/animationfactory.h"
 #include "gemmodelfactory.h"
 #include "gem.h"
+#include "../../core/gemmanager.h"
 
 namespace Graphics {
 
@@ -22,12 +23,12 @@ namespace Graphics {
 //   - 动画分为：下落、交换、爆炸
 //   - 下落和交换不能并行，爆炸可以并行。动画队列只存放交换。
 //   - 如果当前存在下落中的宝石，那么就先等待下落完成；反之，则进行交换动画。
-class GemManager : public QObject {
+class GraphicGemManager : public QObject, public GemManager {
     Q_OBJECT
 
    public:
-    GemManager(QOpenGLFunctions_3_3_Core* func);
-    virtual ~GemManager();
+    GraphicGemManager(QOpenGLFunctions_3_3_Core* func);
+    virtual ~GraphicGemManager();
 
     // 初始化
     // - 成功，返回 kSuccess
@@ -85,26 +86,6 @@ class GemManager : public QObject {
 
     // 绘制
     void Draw(QOpenGLShaderProgram& program);
-
-   public:
-    // Generate's arguments
-    static constexpr int kSuccess = 0;
-    static constexpr int kFailureArgumentError = 1;
-    static constexpr int kFailureOccupied = 2;
-    static constexpr int kFailureEmpty = 3;
-    static constexpr int kFailureHaveInitialized = 4;
-    static constexpr int kFailureHaveNotInitialized = 5;
-    static constexpr int kFailureIDHaveBeenUsed = 6;
-    static constexpr int kFailureIDNotFound = 7;
-    static constexpr int kFailureHavePaused = 8;
-    static constexpr int kFailureHaveContinued = 9;
-
-    // SetRotate's arguments
-    static constexpr int kStatic = 0;
-    static constexpr int kRotate = 1;
-    static constexpr int kRotateFast = 2;
-    static constexpr int kRotateInverse = 3;
-    static constexpr int kRotateFastInverse = 4;
 
    private:
     static constexpr int kDelta = 100;

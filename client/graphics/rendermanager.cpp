@@ -21,7 +21,7 @@ RenderManager::~RenderManager() {
     delete gem_manager_;
 }
 
-GemManager *RenderManager::GetGemManager() {
+GraphicGemManager *RenderManager::GetGemManager() {
     if (gem_manager_ == nullptr) {
         std::cerr << "WARNING!!! StoneManager is nullptr" << std::endl;
     }
@@ -90,7 +90,7 @@ void RenderManager::initializeGL() {
     std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
 
     // Gem Manager
-    gem_manager_ = new GemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
+    gem_manager_ = new GraphicGemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
 
     // Shader Program
     shader_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/common.vert");
@@ -129,7 +129,7 @@ void RenderManager::paintGL() {
     shader_toy_program_.setUniformValue("iTime", QTime::currentTime().msecsSinceStartOfDay() / 2000.f);
     shader_toy_program_.setUniformValue("iResolution", width(), height());
     model.setToIdentity();
-    model.translate(400.f, 400.f, -2000.f);
+    model.translate(400.f, 400.f, -6000.f);
     shader_toy_program_.setUniformValue("model", model);
     shader_toy_program_.setUniformValue("view", view);
     shader_toy_program_.setUniformValue("projection", projection);

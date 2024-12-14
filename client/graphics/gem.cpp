@@ -41,7 +41,9 @@ void Gem::set_falling(float speed, int falling_target_y) {
 // 旋转
 bool Gem::is_rotating() const { return rotating_speed_ != 0; }
 float Gem::rotating_speed() const { return rotating_speed_; }
-void Gem::set_rotating_speed(float speed) { rotating_speed_ = speed; }
+void Gem::set_rotating_speed(float speed) { 
+    rotating_speed_ = speed; 
+}
 // 交换
 bool Gem::is_swaping() const { return swaping_timer_ > 0; }
 void Gem::set_swaping(int target_x, int target_y, float swaping_speed) {
@@ -134,6 +136,22 @@ void Gem::UpdataRemoving() {
         if (z_ < kRemovingEndZ) {
             set_active(false);
             removing_acceleration_ = 0;
+        } else {
+            float dx = x_ - cx;
+            float dy = y_ - cy;
+            float r = std::sqrt(dx * dx + dy * dy);
+
+            if (r > 0) {
+                float delta_theta = removing_speed_ / r;
+                float cos_theta = std::cos(delta_theta);
+                float sin_theta = std::sin(delta_theta);
+
+                float new_x = cx + dx * cos_theta - dy * sin_theta;
+                float new_y = cy + dx * sin_theta + dy * cos_theta;
+
+                x_ = new_x;
+                y_ = new_y;
+            }
         }
     }
 }

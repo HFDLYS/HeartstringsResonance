@@ -24,17 +24,22 @@ SingleWindow::SingleWindow(QWidget *parent)
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
+
+
 }
 
 SingleWindow::~SingleWindow() {
 
 }
 
-void SingleWindow::RefreshTimeLabel() {
+void SingleWindow::refreshTimeLabel() {
 
 }
 
-void SingleWindow::InitBoard() {
+void SingleWindow::initBoard() {
+    board = new Board();
+    board->SetGemManager(renderer_->GetGemManager());
+    board->initBoard();
 
 }
 
@@ -57,8 +62,9 @@ void SingleWindow::mousePressEvent(QMouseEvent *event) {
         std::cout << "mouse cliked on:" << x << " " << y << std::endl;
         std::cout <<  x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1 << '\n';
         int nd = x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1;
-        renderer_->GetGemManager()->Remove(nd, true);
-        // std::cout << nd << '\n';
+        int nx = 8 * x/(board_size.x());
+        int ny = 8 * y/(board_size.y());
+        board->clicked(nx, ny);
     }
 }
 
@@ -75,7 +81,7 @@ void SingleWindow::keyPressEvent(QKeyEvent *e) {
 }
 
 void SingleWindow::startGame() {
-    renderer_->Demo();
+    initBoard();
 }
 
 void SingleWindow::on_btnReturn_clicked() {

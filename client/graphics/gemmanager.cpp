@@ -8,11 +8,11 @@
 
 namespace Graphics {
 
-GemManager::GemManager(QOpenGLFunctions_3_3_Core *func) : have_initialized_(false), gem_model_manager_(func) {}
+GraphicGemManager::GraphicGemManager(QOpenGLFunctions_3_3_Core *func) : have_initialized_(false), gem_model_manager_(func) {}
 
-GemManager::~GemManager() {}
+GraphicGemManager::~GraphicGemManager() {}
 
-int GemManager::Init(int nx, int ny) {
+int GraphicGemManager::Init(int nx, int ny) {
     if (have_initialized_) return kFailureHaveInitialized;
 
     if (DEBUG) std::cerr << "Hypercube::StoneManager::Init - 0" << std::endl;
@@ -39,11 +39,11 @@ int GemManager::Init(int nx, int ny) {
     return kSuccess;
 }
 
-void GemManager::Start() {
+void GraphicGemManager::Start() {
     // timer_->start(10);
 }
 
-int GemManager::Generate(int id, int x, int y, int type, int fallen_pixel) {
+int GraphicGemManager::Generate(int id, int x, int y, int type, int fallen_pixel) {
     if (!have_initialized_) return kFailureHaveNotInitialized;
 
     if (stones_.count(id)) return kFailureIDHaveBeenUsed;
@@ -63,7 +63,7 @@ int GemManager::Generate(int id, int x, int y, int type, int fallen_pixel) {
     return kSuccess;
 }
 
-int GemManager::Remove(int id, bool playAnimation) {
+int GraphicGemManager::Remove(int id, bool playAnimation) {
     if (!have_initialized_) return kFailureHaveNotInitialized;
 
     if (stones_.count(id) == 0) return kFailureIDNotFound;
@@ -74,7 +74,7 @@ int GemManager::Remove(int id, bool playAnimation) {
     return kSuccess;
 }
 
-int GemManager::SetRotate(int id, int rotateMode) {
+int GraphicGemManager::SetRotate(int id, int rotateMode) {
     if (!have_initialized_) return kFailureHaveNotInitialized;
 
     if (stones_.count(id) == 0) return kFailureIDNotFound;
@@ -108,7 +108,7 @@ int GemManager::SetRotate(int id, int rotateMode) {
     return kSuccess;
 }
 
-int GemManager::FallTo(int id, int tar_y) {
+int GraphicGemManager::FallTo(int id, int tar_y) {
     if (!have_initialized_) return kFailureHaveNotInitialized;
 
     if (stones_.count(id) == 0) return kFailureIDNotFound;
@@ -122,7 +122,7 @@ int GemManager::FallTo(int id, int tar_y) {
     return kSuccess;
 }
 
-int GemManager::SwapStone(int id1, int id2) {
+int GraphicGemManager::SwapStone(int id1, int id2) {
     if (!have_initialized_) return kFailureHaveNotInitialized;
 
     if (stones_.count(id1) == 0) return kFailureIDNotFound;
@@ -133,9 +133,9 @@ int GemManager::SwapStone(int id1, int id2) {
     return kSuccess;
 }
 
-bool GemManager::isPlayingAnimation() { return animation_queue_.size() > 0; }
+bool GraphicGemManager::isPlayingAnimation() { return animation_queue_.size() > 0; }
 
-int GemManager::SetPause(bool is_pause) {
+int GraphicGemManager::SetPause(bool is_pause) {
     if (is_pause == is_pausing) {
         if (is_pause == true)
             return kFailureHavePaused;
@@ -156,9 +156,9 @@ int GemManager::SetPause(bool is_pause) {
     return kSuccess;
 }
 
-bool GemManager::IsPause() const { return is_pausing; }
+bool GraphicGemManager::IsPause() const { return is_pausing; }
 
-bool GemManager::haveRemoveInRecentFrame() {
+bool GraphicGemManager::haveRemoveInRecentFrame() {
     if (remove_in_recent_frame_) {
         remove_in_recent_frame_ = false;
         return true;
@@ -166,7 +166,7 @@ bool GemManager::haveRemoveInRecentFrame() {
     return false;
 }
 
-bool GemManager::haveFallInRecentFrame() {
+bool GraphicGemManager::haveFallInRecentFrame() {
     if (fall_in_recent_frame_) {
         fall_in_recent_frame_ = false;
         return true;
@@ -174,7 +174,7 @@ bool GemManager::haveFallInRecentFrame() {
     return false;
 }
 
-void GemManager::Update() {
+void GraphicGemManager::Update() {
     if (!have_initialized_) return;
 
     // Rotate
@@ -279,7 +279,7 @@ void GemManager::Update() {
     // std::cout << "Hypercube::StoneManager::Update End" << std::endl;
 }
 
-void GemManager::Draw(QOpenGLShaderProgram &program) {
+void GraphicGemManager::Draw(QOpenGLShaderProgram &program) {
     if (!have_initialized_) return;
     QMatrix4x4 model;
 
