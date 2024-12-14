@@ -37,6 +37,7 @@ protected:
 
 private:
     QPoint last;
+    QTimer*timer;
     int difficulty_ = 1;
     int seed=0;
 private slots:

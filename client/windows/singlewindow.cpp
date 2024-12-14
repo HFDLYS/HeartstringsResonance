@@ -17,7 +17,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=120;
+const int MAX_TIME=10;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -88,11 +88,14 @@ void SingleWindow::keyPressEvent(QKeyEvent *e) {
 void SingleWindow::startGame() {
     initBoard();
     ui->progressBar->setValue(MAX_TIME);
-    QTimer* timer=new QTimer(this);
+    timer=new QTimer(this);
     timer->start(1000);
     QObject::connect(timer, &QTimer::timeout,[&]{
         ui->progressBar->setValue(ui->progressBar->value()-1);
         if(!ui->progressBar->value()){
+            timer->stop();
+            delete timer;
+            AudioManager::GetInstance()->StopBgm2();
             changeWindow(new MainWindow());
         }
     });
@@ -120,13 +123,18 @@ void SingleWindow::on_skill3_button_clicked() {
 }
 
 void SingleWindow::on_pause_button_clicked() {
+    timer->stop();
     PauseWindow *pw = new PauseWindow(this);
     AudioManager::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
+        delete timer;
         AudioManager::GetInstance()->StopBgm2();
         changeWindow(new MainWindow());
+    });
+    connect(pw, &PauseWindow::gameContinue, this, [this]{
+        timer->start();
     });
 }
 
