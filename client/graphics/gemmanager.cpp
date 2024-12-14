@@ -79,6 +79,8 @@ int GraphicGemManager::SetRotate(int id, int rotateMode) {
 
     if (stones_.count(id) == 0) return kFailureIDNotFound;
 
+    
+    stones_[id].set_z(0);
     switch (rotateMode) {
         case kStatic: {
             stones_[id].set_rotating_speed(Gem::kRotatingStatic);
@@ -89,6 +91,7 @@ int GraphicGemManager::SetRotate(int id, int rotateMode) {
             break;
         }
         case kRotateFast: {
+            stones_[id].set_z(80);
             stones_[id].set_rotating_speed(Gem::kRotatingSpeedFast);
             break;
         }
@@ -97,6 +100,7 @@ int GraphicGemManager::SetRotate(int id, int rotateMode) {
             break;
         }
         case kRotateFastInverse: {
+            stones_[id].set_z(80);
             stones_[id].set_rotating_speed(-1.f * Gem::kRotatingSpeedFast);
             break;
         }
