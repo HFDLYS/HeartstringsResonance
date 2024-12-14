@@ -25,6 +25,7 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
+    BGM::GetInstance()->PlayOpen();
     BGM::GetInstance()->StopBgm1();
     BGM::GetInstance()->PlayBgm2();
     SingleWindow *sw = new SingleWindow();
@@ -35,6 +36,7 @@ void MainWindow::on_rbtnSolo_clicked() {
 
 // 多人游戏开始
 void MainWindow::on_rbtnMultiplayer_clicked(){
+    BGM::GetInstance()->PlayOpen();
     BGM::GetInstance()->StopBgm1();
     BGM::GetInstance()->PlayBgm2();
     GameWindow *gw = new GameWindow();
@@ -45,20 +47,24 @@ void MainWindow::on_rbtnMultiplayer_clicked(){
 
 // 排行榜
 void MainWindow::on_btnRank_clicked() {
+    BGM::GetInstance()->PlayOpen();
     changeWindow(new RankWindow());
 }
 
 // 设置
 void MainWindow::on_btnConfig_clicked() {
+    BGM::GetInstance()->PlayOpen();
     changeWindow(new ConfigWindow());
 }
 
 // 关于
 void MainWindow::on_btnAbout_clicked() {
+    BGM::GetInstance()->PlayLabel();
     changeWindow(new AboutWindow());
 }
 //退出
 void MainWindow::on_btnQuit_clicked() {
+    BGM::GetInstance()->PlayLabel();
     //BGM::GetInstance()->PlayClose();
     QDialog *dialog = new QDialog(this);
     dialog->setFixedSize(400, 170);

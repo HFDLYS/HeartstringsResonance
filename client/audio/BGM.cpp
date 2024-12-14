@@ -1,5 +1,4 @@
 #include "BGM.h"
-#include <iostream>
 
 QMediaPlayer *BGM::GetMediaPlayer(const QUrl &content, int volume) {
     QMediaPlayer *player = new QMediaPlayer();
@@ -16,6 +15,8 @@ QMediaPlayer *BGM::GetMediaPlayer(const QUrl &content, int volume) {
 BGM::BGM() {
     bgm1 = GetMediaPlayer(QUrl("qrc:/sounds/bgm1.wav"), allMusicPercent);
     bgm2 = GetMediaPlayer(QUrl("qrc:/sounds/bgm2.wav"), allMusicPercent);
+    label = GetMediaPlayer(QUrl("qrc:/sounds/label.wav"), allSoundPercent);
+    open = GetMediaPlayer(QUrl("qrc:/sounds/open.wav"), allSoundPercent);
  }
 
 BGM *BGM::instance_ = nullptr;
@@ -57,10 +58,28 @@ void BGM::PlayBgm2() {
 void BGM::StopBgm2() { bgm2->stop(); }
 
 void BGM::PauseBgm2(){
-    qDebug() << "123321" << '\n';
     bgm2->pause();
 }
 
 void BGM::ContinueBgm2(){
     bgm2->play();
 }
+
+void BGM::PlayLabel(){
+    if(!BGM::GetInstance()->stopAllSound) label->play();
+}
+void BGM::ModifyLabel(int val) {
+    QAudioOutput *audioOutopt = new QAudioOutput();
+    label->setAudioOutput(audioOutopt);
+    audioOutopt -> setVolume((double)val / 100);
+}
+
+void BGM::PlayOpen(){
+    if(!BGM::GetInstance()->stopAllSound) open->play();
+}
+void BGM::ModifyOpen(int val) {
+    QAudioOutput *audioOutopt = new QAudioOutput();
+    open->setAudioOutput(audioOutopt);
+    audioOutopt -> setVolume((double)val / 100);
+}
+

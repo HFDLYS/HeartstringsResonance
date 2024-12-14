@@ -92,8 +92,8 @@
         <file>sounds/match1.wav</file>
         <file>sounds/match2.wav</file>
         <file>sounds/match3.wav</file>
-        <file>sounds/open_win.wav</file>
         <file>sounds/switch_task.wav</file>
-        <file>sounds/switch_type.wav</file>
+        <file>sounds/label.wav</file>
+        <file>sounds/open.wav</file>
     </qresource>
 </RCC>

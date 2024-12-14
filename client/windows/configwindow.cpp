@@ -47,7 +47,7 @@ void ConfigWindow::updateState(){
 }
 
 void ConfigWindow::on_btnReturn_clicked() {
-    //BGM::GetInstance()->PlayClose();
+    BGM::GetInstance()->PlayLabel();
     changeWindow(new MainWindow());
 }
 
@@ -68,10 +68,11 @@ void ConfigWindow::on_btnMusic_clicked() {
 void ConfigWindow::on_btnSound_clicked() {
     if(sound_on == 1){
         ui->soundSlider->setEnabled(false);
+        BGM::GetInstance()->stopAllSound = true;
 
     } else{
         ui->soundSlider->setEnabled(true);
-
+        BGM::GetInstance()->stopAllSound = false;
     }
     sound_on ^= 1;
     updateState();
@@ -90,5 +91,8 @@ void ConfigWindow::on_musicSlider_valueChanged(int value)
 void ConfigWindow::on_soundSlider_valueChanged(int value)
 {
     sound_state=value;
+    BGM::GetInstance()->ModifyLabel(value);
+    BGM::GetInstance()->ModifyOpen(value);
+    BGM::GetInstance()->allSoundPercent = value;
 }
 
