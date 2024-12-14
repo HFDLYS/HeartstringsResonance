@@ -13,6 +13,7 @@ class Gem {
     int x() const;
     int y() const;
     int z() const;
+    void set_z(int z);
     float angle() const;
     int type() const;
 

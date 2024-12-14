@@ -17,10 +17,11 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=10;
+const int MAX_TIME=60;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
+    ui->score->setText(QString::number(0));
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
@@ -29,6 +30,7 @@ SingleWindow::SingleWindow(QWidget *parent)
 SingleWindow::SingleWindow(int seed_,QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
     ui->setupUi(this);
+    ui->score->setText(QString::number(0));
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
@@ -43,7 +45,7 @@ void SingleWindow::refreshTimeLabel() {
 }
 
 void SingleWindow::initBoard() {
-    board = new Board();
+    board = new Board(seed);
     board->SetGemManager(renderer_->GetGemManager());
     board->initBoard();
 }
@@ -92,6 +94,7 @@ void SingleWindow::startGame() {
     timer->start(1000);
     QObject::connect(timer, &QTimer::timeout,[&]{
         ui->progressBar->setValue(ui->progressBar->value()-1);
+        ui->score->setText(QString::number(board->getScore()));
         if(!ui->progressBar->value()){
             timer->stop();
             delete timer;
@@ -112,14 +115,17 @@ void SingleWindow::startGame() {
 
 void SingleWindow::on_skill1_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
+    board->hint();
 }
 
 void SingleWindow::on_skill2_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
+    board->skyshiv(1);
 }
 
 void SingleWindow::on_skill3_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
+    board->generate(0);
 }
 
 void SingleWindow::on_pause_button_clicked() {

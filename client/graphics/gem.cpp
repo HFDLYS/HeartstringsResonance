@@ -19,6 +19,9 @@ Gem::Gem(int x, int y, int z, int angle, int type)
 int Gem::x() const { return x_; }
 int Gem::y() const { return y_; }
 int Gem::z() const { return z_; }
+
+void Gem::set_z(int z) { z_ = z; }
+
 float Gem::angle() const { return angle_; }
 int Gem::type() const { return type_; }
 // 暂停

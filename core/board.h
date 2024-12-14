@@ -5,6 +5,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <random>
 #include <utility>
 #include <vector>
 
@@ -25,9 +26,10 @@ class Board {
     Gem gems_[8][8];                             // 宝石矩阵
     std::vector<std::pair<int, int>> matches_;       // 可消除的宝石
     GemManager* gem_manager_;
-
+    std::mt19937 generator;
+    std::uniform_int_distribution<int> distribution;
    public:
-    explicit Board();
+    explicit Board(int seed_ = 0);
     void SetGemManager(GemManager* gem_manager);
 
     void initBoard();
@@ -39,15 +41,25 @@ class Board {
     void remove();              // 消除matches_中的宝石
     void fall();                // 宝石掉落并补齐
     void fall2();               // 宝石掉落并补齐(无动画和加分)
-    bool showHint(bool show);   // 提示
+    
     void remove(int i, int j);  // 移除位置(i,j)上的宝石
-    void refresh();
-    std::pair<int, int> GetChosen();  // 获取点击的宝石位置
-    void clickedOnHint();             // 提示
-    int getScore();                   // 获取分数
-    void clickedOnStop();             // 暂停
 
-    void cancelHint();                // 取消暂停
+    std::pair<int, int> getChosen();  // 获取点击的宝石位置
+
+    int getScore();                   // 获取分数
+
+    bool showHint(bool show);   // 提示
+    void refresh();
+    void skyshiv(int type_);             // 消灭同类
+    
+    void hint();             // 提示
+    void cancelHint();                // 取消提示
+
+
+
+    void pause();             // 暂停
+
+    
 
 
 };
