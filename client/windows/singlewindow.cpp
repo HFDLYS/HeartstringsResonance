@@ -115,14 +115,17 @@ void SingleWindow::startGame() {
 
 void SingleWindow::on_skill1_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
+    board->hint();
 }
 
 void SingleWindow::on_skill2_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
+    board->skyshiv(1);
 }
 
 void SingleWindow::on_skill3_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
+    board->generate(0);
 }
 
 void SingleWindow::on_pause_button_clicked() {
