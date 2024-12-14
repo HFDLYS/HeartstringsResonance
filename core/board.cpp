@@ -9,7 +9,7 @@
 
 
 
-Board::Board() {
+Board::Board(int seed_)  {
     // std::cerr << "Into second constructor\n";
     Gem::SetMaxType(4);
     // std::cout << difficulty << std::endl;
@@ -18,6 +18,13 @@ Board::Board() {
     combo_times = 0;
     stop_ = 0;
     point_ = 0;
+    if (seed_ == 0) {
+        std::random_device rd;
+        generator = std::mt19937(rd());
+    } else {
+        generator = std::mt19937(seed_);
+    }
+    distribution = std::uniform_int_distribution<int>(1, Gem::GetMaxType());
     // std::cerr << "generate start" << std::endl;
     generate(1);
     // std::cerr << "generate end" << std::endl;
@@ -38,7 +45,7 @@ void Board::initBoard() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             int ret = gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType(),
-                                                              300 + rand() % 500);
+                                                              300 + distribution(generator) % 500);
             if (ret != GemManager::kSuccess) std::cout << i << " " << j << " " << ret << std::endl;
         }
     }
@@ -58,14 +65,14 @@ void Board::generate(bool start) {
     }
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
-            gems_[i][j] = Gem(++cnt_);
+            gems_[i][j] = Gem(++cnt_, distribution(generator));
             if (!start) gem_manager_->Generate(cnt_, i, j, gems_[i][j].GetType());
         }
     }
     if (start) {
         while (check()) {
             for (auto match : matches_) {
-                gems_[match.first][match.second].SetType(rand() % Gem::GetMaxType() + 1);
+                gems_[match.first][match.second].SetType(distribution(generator) % Gem::GetMaxType() + 1);
             }
             add_tools = 0;
         }
@@ -360,7 +367,7 @@ void Board::fall() {
             if (!gems_[i][j].Empty()) break;
             // animation generate
 
-            gems_[i][j] = Gem(++cnt_);
+            gems_[i][j] = Gem(++cnt_, distribution(generator));
             gems_[i][j].SetEmpty(0);
             gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType());
         }

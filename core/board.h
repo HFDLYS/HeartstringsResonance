@@ -5,6 +5,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <random>
 #include <utility>
 #include <vector>
 
@@ -25,9 +26,10 @@ class Board {
     Gem gems_[8][8];                             // 宝石矩阵
     std::vector<std::pair<int, int>> matches_;       // 可消除的宝石
     GemManager* gem_manager_;
-
+    std::mt19937 generator;
+    std::uniform_int_distribution<int> distribution;
    public:
-    explicit Board();
+    explicit Board(int seed_ = 0);
     void SetGemManager(GemManager* gem_manager);
 
     void initBoard();
