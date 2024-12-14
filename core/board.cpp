@@ -311,10 +311,6 @@ bool Board::showHint(bool show) {
 
     if (show) {
         if (get_hint == 0) return 0;
-        if (point_ < 100) {
-            return 0;
-        }
-        point_ -= 100;
     }
 
     if (show) {
