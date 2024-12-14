@@ -5,6 +5,7 @@
 
 #include "mainwindow.h"
 #include "ui_rankwindow.h"
+#include "../audio/BGM.h"
 RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWindow) {
     ui->setupUi(this);
     // 固定窗口大小
@@ -130,11 +131,12 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
     //     ui->label19->setFont(f);
     //     ui->label20->setFont(f);
     // }
+
 }
 
 RankWindow::~RankWindow() { delete ui; }
 
 void RankWindow::on_btnReturn_clicked() {
-    //BGM::GetInstance()->PlayClose();
+    BGM::GetInstance()->PlayLabel();
     changeWindow(new MainWindow());
 }

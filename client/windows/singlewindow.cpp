@@ -13,8 +13,8 @@
 #include <ctime>
 #include <iostream>
 #include <random>
-const QPoint board_size(680, 680);
-const QPoint opengl_up_left(180, 20);
+const QPoint board_size(640, 640);
+const QPoint opengl_up_left(200, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
 
@@ -94,19 +94,20 @@ void SingleWindow::on_btnReturn_clicked() {
 }
 
 void SingleWindow::on_skill1_button_clicked() {
-
+    BGM::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_skill2_button_clicked() {
-
+    BGM::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_skill3_button_clicked() {
-
+    BGM::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_pause_button_clicked() {
     PauseWindow *pw = new PauseWindow(this);
+    BGM::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();
     connect(pw, &PauseWindow::exitwindow, this, [this]{

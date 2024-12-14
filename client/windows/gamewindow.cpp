@@ -260,6 +260,7 @@ void GameWindow::on_btnReturn_clicked() {
 }
 
 void GameWindow::on_skill1_button_clicked() {
+    BGM::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
     // board->ClickedOnDiamond();  // 道具1
     // if (board->GetMouseOnDiamond())
@@ -269,6 +270,7 @@ void GameWindow::on_skill1_button_clicked() {
 }
 
 void GameWindow::on_skill2_button_clicked() {
+    BGM::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnLightning();  // 道具2
@@ -279,6 +281,7 @@ void GameWindow::on_skill2_button_clicked() {
 }
 
 void GameWindow::on_skill3_button_clicked() {
+    BGM::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnShuffle();  // 道具3
@@ -292,6 +295,7 @@ void GameWindow::on_pause_button_clicked() {
     PauseWindow *pw = new PauseWindow(this);
     pw->setGeometry(0,0,1280,720);
     pw->show();
+    BGM::GetInstance()->PauseBgm2();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
         BGM::GetInstance()->StopBgm2();
         changeWindow(new MainWindow());
