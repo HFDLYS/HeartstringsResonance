@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 #include "ui_singlewindow.h"
 #include "pausewindow.h"
-#include "../audio/BGM.h"
+#include "../audio/audiomanager.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -108,24 +108,24 @@ void SingleWindow::startGame() {
 // }
 
 void SingleWindow::on_skill1_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_skill2_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_skill3_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_pause_button_clicked() {
     PauseWindow *pw = new PauseWindow(this);
-    BGM::GetInstance()->PauseBgm2();
+    AudioManager::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
-        BGM::GetInstance()->StopBgm2();
+        AudioManager::GetInstance()->StopBgm2();
         changeWindow(new MainWindow());
     });
 }

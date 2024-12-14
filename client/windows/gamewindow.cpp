@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 #include "ui_gamewindow.h"
 #include "pausewindow.h"
-#include "../audio/BGM.h"
+#include "../audio/audiomanager.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -251,16 +251,16 @@ void GameWindow::startGame() {
 //     //     record_rank_window->setFocus();
 //     // }
 
-//     // BGM::GetInstance()->PlayClose();
-//     // BGM::GetInstance()->StopBgm2();
-//     // BGM::GetInstance()->PlayBgm1();
+//     // AudioManager::GetInstance()->PlayClose();
+//     // AudioManager::GetInstance()->StopBgm2();
+//     // AudioManager::GetInstance()->PlayBgm1();
 //     delay(20);
 //     // timer_flush_score_and_left_time_bar_->stop();
 //     this->close();
 // }
 
 void GameWindow::on_skill1_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
     // board->ClickedOnDiamond();  // 道具1
     // if (board->GetMouseOnDiamond())
@@ -270,7 +270,7 @@ void GameWindow::on_skill1_button_clicked() {
 }
 
 void GameWindow::on_skill2_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnLightning();  // 道具2
@@ -281,7 +281,7 @@ void GameWindow::on_skill2_button_clicked() {
 }
 
 void GameWindow::on_skill3_button_clicked() {
-    BGM::GetInstance()->PlaySkill();
+    AudioManager::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnShuffle();  // 道具3
@@ -295,9 +295,9 @@ void GameWindow::on_pause_button_clicked() {
     PauseWindow *pw = new PauseWindow(this);
     pw->setGeometry(0,0,1280,720);
     pw->show();
-    BGM::GetInstance()->PauseBgm2();
+    AudioManager::GetInstance()->PauseBgm2();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
-        BGM::GetInstance()->StopBgm2();
+        AudioManager::GetInstance()->StopBgm2();
         changeWindow(new MainWindow());
     });
 }

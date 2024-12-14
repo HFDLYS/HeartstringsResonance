@@ -1,7 +1,7 @@
 #include "aboutwindow.h"
 #include "mainwindow.h"
 #include "ui_aboutwindow.h"
-#include "../audio/BGM.h"
+#include "../audio/audiomanager.h"
 AboutWindow::AboutWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::AboutWindow) {
     ui->setupUi(this);
 }
@@ -9,6 +9,6 @@ AboutWindow::AboutWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::About
 AboutWindow::~AboutWindow() { delete ui; }
 
 void AboutWindow::on_btnReturn_clicked() {
-    BGM::GetInstance()->PlayLabel();
+    AudioManager::GetInstance()->PlayLabel();
     changeWindow(new MainWindow());
 }
