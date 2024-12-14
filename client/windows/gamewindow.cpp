@@ -258,6 +258,7 @@ void GameWindow::on_btnReturn_clicked() {
 }
 
 void GameWindow::on_skill1_button_clicked() {
+    BGM::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
     // board->ClickedOnDiamond();  // 道具1
     // if (board->GetMouseOnDiamond())
@@ -267,6 +268,7 @@ void GameWindow::on_skill1_button_clicked() {
 }
 
 void GameWindow::on_skill2_button_clicked() {
+    BGM::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnLightning();  // 道具2
@@ -277,6 +279,7 @@ void GameWindow::on_skill2_button_clicked() {
 }
 
 void GameWindow::on_skill3_button_clicked() {
+    BGM::GetInstance()->PlaySkill();
     // BGM::GetInstance()->PlayOpen();
 
     // board->ClickedOnShuffle();  // 道具3

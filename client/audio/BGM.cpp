@@ -17,6 +17,7 @@ BGM::BGM() {
     bgm2 = GetMediaPlayer(QUrl("qrc:/sounds/bgm2.wav"), allMusicPercent);
     label = GetMediaPlayer(QUrl("qrc:/sounds/label.wav"), allSoundPercent);
     open = GetMediaPlayer(QUrl("qrc:/sounds/open.wav"), allSoundPercent);
+    skill = GetMediaPlayer(QUrl("qrc:/sounds/skill.wav"), allSoundPercent);
  }
 
 BGM *BGM::instance_ = nullptr;
@@ -80,6 +81,15 @@ void BGM::PlayOpen(){
 void BGM::ModifyOpen(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     open->setAudioOutput(audioOutopt);
+    audioOutopt -> setVolume((double)val / 100);
+}
+
+void BGM::PlaySkill(){
+    if(!BGM::GetInstance()->stopAllSound) skill->play();
+}
+void BGM::ModifySkill(int val) {
+    QAudioOutput *audioOutopt = new QAudioOutput();
+    skill->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
 

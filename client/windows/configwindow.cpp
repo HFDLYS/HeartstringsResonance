@@ -17,12 +17,14 @@ ConfigWindow::~ConfigWindow() { delete ui; }
 
 void ConfigWindow::updateState(){
     if (sound_on) {
+        ui->soundSlider->setEnabled(true);
         ui->btnSound->setStyleSheet(
             "QPushButton#btnSound{border-image:url(:/images/configwindow/"
             "setting_sound_on.png)}"
             "QPushButton::pressed#btnSound{border-image:url(:/images/configwindow/"
             "setting_sound_on-.png)}");
     } else {
+        ui->soundSlider->setEnabled(false);
         ui->btnSound->setStyleSheet(
             "QPushButton#btnSound{border-image:url(:/images/configwindow/"
             "setting_sound_off.png)}"
@@ -30,12 +32,14 @@ void ConfigWindow::updateState(){
             "setting_sound_off-.png)}");
     }
     if (music_on) {
+        ui->musicSlider->setEnabled(true);
         ui->btnMusic->setStyleSheet(
             "QPushButton#btnMusic{border-image:url(:/images/configwindow/"
             "setting_music_on.png)}"
             "QPushButton::pressed#btnMusic{border-image:url(:/images/configwindow/"
             "setting_music_on-.png)}");
     } else {
+        ui->musicSlider->setEnabled(false);
         ui->btnMusic->setStyleSheet(
             "QPushButton#btnMusic{border-image:url(:/images/configwindow/"
             "setting_music_off.png)}"
@@ -53,11 +57,11 @@ void ConfigWindow::on_btnReturn_clicked() {
 
 void ConfigWindow::on_btnMusic_clicked() {
     if(music_on == 1){
-        ui->musicSlider->setEnabled(false);
+
         BGM::GetInstance()->stopAllMusic = true;
         BGM::GetInstance()->StopBgm1();
     } else{
-        ui->musicSlider->setEnabled(true);
+
         BGM::GetInstance()->stopAllMusic = false;
         BGM::GetInstance()->PlayBgm1();
     }
@@ -67,11 +71,11 @@ void ConfigWindow::on_btnMusic_clicked() {
 
 void ConfigWindow::on_btnSound_clicked() {
     if(sound_on == 1){
-        ui->soundSlider->setEnabled(false);
+
         BGM::GetInstance()->stopAllSound = true;
 
     } else{
-        ui->soundSlider->setEnabled(true);
+
         BGM::GetInstance()->stopAllSound = false;
     }
     sound_on ^= 1;
@@ -93,6 +97,7 @@ void ConfigWindow::on_soundSlider_valueChanged(int value)
     sound_state=value;
     BGM::GetInstance()->ModifyLabel(value);
     BGM::GetInstance()->ModifyOpen(value);
+    BGM::GetInstance()->ModifySkill(value);
     BGM::GetInstance()->allSoundPercent = value;
 }
 

@@ -88,15 +88,15 @@ void SingleWindow::on_btnReturn_clicked() {
 }
 
 void SingleWindow::on_skill1_button_clicked() {
-
+    BGM::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_skill2_button_clicked() {
-
+    BGM::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_skill3_button_clicked() {
-
+    BGM::GetInstance()->PlaySkill();
 }
 
 void SingleWindow::on_pause_button_clicked() {

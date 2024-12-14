@@ -95,5 +95,6 @@
         <file>sounds/switch_task.wav</file>
         <file>sounds/label.wav</file>
         <file>sounds/open.wav</file>
+        <file>sounds/skill.wav</file>
     </qresource>
 </RCC>

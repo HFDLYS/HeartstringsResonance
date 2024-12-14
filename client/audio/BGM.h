@@ -12,6 +12,7 @@ private:
     QMediaPlayer *bgm2;
     QMediaPlayer *label;
     QMediaPlayer *open;
+    QMediaPlayer *skill;
 
 public:
     BGM();
@@ -39,6 +40,9 @@ public:
 
     void PlayOpen();
     void ModifyOpen(int);
+
+    void PlaySkill();
+    void ModifySkill(int);
 
 private:
     QMediaPlayer *GetMediaPlayer(const QUrl &content, int volume);
