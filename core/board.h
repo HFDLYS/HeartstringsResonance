@@ -41,15 +41,25 @@ class Board {
     void remove();              // 消除matches_中的宝石
     void fall();                // 宝石掉落并补齐
     void fall2();               // 宝石掉落并补齐(无动画和加分)
-    bool showHint(bool show);   // 提示
+    
     void remove(int i, int j);  // 移除位置(i,j)上的宝石
-    void refresh();
-    std::pair<int, int> GetChosen();  // 获取点击的宝石位置
-    void clickedOnHint();             // 提示
-    int getScore();                   // 获取分数
-    void clickedOnStop();             // 暂停
 
-    void cancelHint();                // 取消暂停
+    std::pair<int, int> getChosen();  // 获取点击的宝石位置
+
+    int getScore();                   // 获取分数
+
+    bool showHint(bool show);   // 提示
+    void refresh();
+    void skyshiv(int type_);             // 消灭同类
+    
+    void hint();             // 提示
+    void cancelHint();                // 取消提示
+
+
+
+    void pause();             // 暂停
+
+    
 
 
 };

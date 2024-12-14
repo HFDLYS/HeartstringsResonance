@@ -51,7 +51,7 @@ void Board::initBoard() {
     }
 }
 
-std::pair<int, int> Board::GetChosen() { return chosen_; }
+std::pair<int, int> Board::getChosen() { return chosen_; }
 
 
 /* 生成 */
@@ -211,7 +211,7 @@ void Board::clicked(int x, int y) {
 
 int Board::getScore() { return point_; }
 
-void Board::clickedOnStop() {
+void Board::pause() {
     if (stop_ == 1) {
         // hypercube->stop(0)
         gem_manager_->SetPause(false);
@@ -273,7 +273,7 @@ void Board::remove(int x, int y) {
     return;
 }
 
-void Board::clickedOnHint() { showHint(1); }
+void Board::hint() { showHint(1); }
 
 
 // 提示
@@ -329,6 +329,15 @@ bool Board::showHint(bool show) {
                                                  GemManager::kRotateFast);
     }
     return get_hint;
+}
+
+void Board::skyshiv(int type) {
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (gems_[i][j].GetType() == type) matches_.push_back({i, j});
+        }
+    }
+    refresh();
 }
 
 void Board::cancelHint() {
