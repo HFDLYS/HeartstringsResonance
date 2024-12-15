@@ -11,13 +11,15 @@
 
 Board::Board(int seed_)  {
     // std::cerr << "Into second constructor\n";
-    Gem::SetMaxType(4);
+    Gem::SetMaxType(5);
     // std::cout << difficulty << std::endl;
     add_tools = 0;
     cnt_ = 0;
     combo_times = 0;
     stop_ = 0;
-    point_ = 0;
+    for (int i = 0; i <= 8; i++) {
+        point_[i] = 0;
+    }
     if (seed_ == 0) {
         std::random_device rd;
         generator = std::mt19937(rd());
@@ -209,7 +211,7 @@ void Board::clicked(int x, int y) {
                                              GemManager::kRotateFastInverse);
 }
 
-int Board::getScore() { return point_; }
+int Board::getScore() { return point_[0]; }
 
 void Board::pause() {
     if (stop_ == 1) {
@@ -266,7 +268,8 @@ void Board::remove(int x, int y) {
     if (x < 0 || y < 0 || x > 7 || y > 7) return;
     if (gems_[x][y].Empty()) return;
     int fix_base = 1;
-    point_ += 2.0 * combo_base * fix_base;
+    point_[0] += 2.0 * combo_base * fix_base;
+    point_[gems_[x][y].GetType()] += 2.0 * combo_base * fix_base;
     gems_[x][y].SetEmpty(1);
     // animation Remove
     gem_manager_->Remove(gems_[x][y].GetId(), true);
