@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-int Gem::MAX_TYPE = 4;
+int Gem::MAX_TYPE = 5;
 
 void Gem::init_rand() { srand((unsigned int)time(0)); }
 

@@ -47,7 +47,7 @@ void Board::initBoard() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             int ret = gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType(),
-                                                              300 + distribution(generator) % 500);
+                                                              300 + (generator()%Gem::GetMaxType()+1) % 500);
             if (ret != GemManager::kSuccess) std::cout << i << " " << j << " " << ret << std::endl;
         }
     }
@@ -67,14 +67,14 @@ void Board::generate(bool start) {
     }
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
-            gems_[i][j] = Gem(++cnt_, distribution(generator));
+            gems_[i][j] = Gem(++cnt_, (generator()%Gem::GetMaxType()+1));
             if (!start) gem_manager_->Generate(cnt_, i, j, gems_[i][j].GetType());
         }
     }
     if (start) {
         while (check()) {
             for (auto match : matches_) {
-                gems_[match.first][match.second].SetType(distribution(generator) % Gem::GetMaxType() + 1);
+                gems_[match.first][match.second].SetType((generator()%Gem::GetMaxType()+1) % Gem::GetMaxType() + 1);
             }
             add_tools = 0;
         }
@@ -375,7 +375,7 @@ void Board::fall() {
             if (!gems_[i][j].Empty()) break;
             // animation generate
 
-            gems_[i][j] = Gem(++cnt_, distribution(generator));
+            gems_[i][j] = Gem(++cnt_, (generator()%Gem::GetMaxType()+1));
             gems_[i][j].SetEmpty(0);
             gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType());
         }
