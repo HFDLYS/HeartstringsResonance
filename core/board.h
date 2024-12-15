@@ -18,7 +18,7 @@ class Board {
     int stop_;
     bool add_tools;
     int combo_times;
-    int point_;                                      // 分数
+    int point_[9];                                      // 分数
     int cnt_;                                        // 记录宝石id编号
     double combo_base;                               // combo对分数的加成
     std::pair<int, int> chosen_;                     // 鼠标点击的宝石位置

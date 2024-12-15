@@ -11,13 +11,15 @@
 
 Board::Board(int seed_)  {
     // std::cerr << "Into second constructor\n";
-    Gem::SetMaxType(4);
+    Gem::SetMaxType(5);
     // std::cout << difficulty << std::endl;
     add_tools = 0;
     cnt_ = 0;
     combo_times = 0;
     stop_ = 0;
-    point_ = 0;
+    for (int i = 0; i <= 8; i++) {
+        point_[i] = 0;
+    }
     if (seed_ == 0) {
         std::random_device rd;
         generator = std::mt19937(rd());
@@ -45,7 +47,7 @@ void Board::initBoard() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             int ret = gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType(),
-                                                              300 + distribution(generator) % 500);
+                                                              300 + (generator()%Gem::GetMaxType()+1) % 500);
             if (ret != GemManager::kSuccess) std::cout << i << " " << j << " " << ret << std::endl;
         }
     }
@@ -65,14 +67,14 @@ void Board::generate(bool start) {
     }
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
-            gems_[i][j] = Gem(++cnt_, distribution(generator));
+            gems_[i][j] = Gem(++cnt_, (generator()%Gem::GetMaxType()+1));
             if (!start) gem_manager_->Generate(cnt_, i, j, gems_[i][j].GetType());
         }
     }
     if (start) {
         while (check()) {
             for (auto match : matches_) {
-                gems_[match.first][match.second].SetType(distribution(generator) % Gem::GetMaxType() + 1);
+                gems_[match.first][match.second].SetType((generator()%Gem::GetMaxType()+1) % Gem::GetMaxType() + 1);
             }
             add_tools = 0;
         }
@@ -209,7 +211,7 @@ void Board::clicked(int x, int y) {
                                              GemManager::kRotateFastInverse);
 }
 
-int Board::getScore() { return point_; }
+int Board::getScore() { return point_[0]; }
 
 void Board::pause() {
     if (stop_ == 1) {
@@ -266,7 +268,8 @@ void Board::remove(int x, int y) {
     if (x < 0 || y < 0 || x > 7 || y > 7) return;
     if (gems_[x][y].Empty()) return;
     int fix_base = 1;
-    point_ += 2.0 * combo_base * fix_base;
+    point_[0] += 2.0 * combo_base * fix_base;
+    point_[gems_[x][y].GetType()] += 2.0 * combo_base * fix_base;
     gems_[x][y].SetEmpty(1);
     // animation Remove
     gem_manager_->Remove(gems_[x][y].GetId(), true);
@@ -372,7 +375,7 @@ void Board::fall() {
             if (!gems_[i][j].Empty()) break;
             // animation generate
 
-            gems_[i][j] = Gem(++cnt_, distribution(generator));
+            gems_[i][j] = Gem(++cnt_, (generator()%Gem::GetMaxType()+1));
             gems_[i][j].SetEmpty(0);
             gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType());
         }
