@@ -3,6 +3,7 @@
 #include "ui_singlewindow.h"
 #include "pausewindow.h"
 #include "../audio/audiomanager.h"
+#include "resultwindow.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -17,7 +18,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=60;
+const int MAX_TIME=5;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -95,23 +96,21 @@ void SingleWindow::startGame() {
     QObject::connect(timer, &QTimer::timeout,[&]{
         ui->progressBar->setValue(ui->progressBar->value()-1);
         ui->score->setText(QString::number(board->getScore()));
+        //时间到了
         if(!ui->progressBar->value()){
             timer->stop();
             delete timer;
             AudioManager::GetInstance()->StopBgm2();
-            changeWindow(new MainWindow());
+            ResultWindow *rw = new ResultWindow(this);
+            rw->setGeometry(0,0,1280,720);
+            rw->show();
+            //changeWindow(new MainWindow());
+            connect(rw, &ResultWindow::exitwindow, this, [this]{
+                changeWindow(new MainWindow());
+            });
         }
     });
 }
-
-// void SingleWindow::on_btnReturn_clicked() {
-//     MainWindow *mw = new MainWindow();
-//     mw->move(this->pos().x(), this->pos().y());
-//     mw->show();
-//     delay(20);
-//     // timer_flush_score_and_left_time_bar_->stop();
-//     this->close();
-// }
 
 void SingleWindow::on_skill1_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
@@ -145,13 +144,9 @@ void SingleWindow::on_pause_button_clicked() {
 }
 
 void SingleWindow::on_hint_button_clicked() {
-    //board->ShowHint(true);  // 提示
+
 }
 
 void SingleWindow::on_hint_button_pressed() { ui->hint_button->setIcon(QIcon(":/images/SingleWindow/5-.png")); }
 
 void SingleWindow::on_hint_button_released() { ui->hint_button->setIcon(QIcon(":/images/SingleWindow/5.png")); }
-
-//void SingleWindow::on_btnReturn_pressed() {  }
-
-//void SingleWindow::on_btnReturn_released() { }

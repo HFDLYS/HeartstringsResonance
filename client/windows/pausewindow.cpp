@@ -14,11 +14,6 @@ void PauseWindow::on_btnReturn_clicked(){
     emit exitwindow();
 }
 
-void PauseWindow::on_btnConit_clicked(){
-
-}
-
-
 void PauseWindow::on_btnConti_clicked()
 {
     emit gameContinue();
