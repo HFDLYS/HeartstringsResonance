@@ -18,7 +18,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=5;
+const int MAX_TIME=120;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -113,23 +113,29 @@ void SingleWindow::startGame() {
 }
 
 void SingleWindow::on_skill1_button_clicked() {
+    skill1_cnt++;
+    ui->cnt1->setText(QString::number(skill1_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->hint();
 }
 
 void SingleWindow::on_skill2_button_clicked() {
+    skill2_cnt++;
+    ui->cnt2->setText(QString::number(skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->skyshiv(1);
 }
 
 void SingleWindow::on_skill3_button_clicked() {
+    skill3_cnt++;
+    ui->cnt3->setText(QString::number(skill3_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->generate(0);
 }
 
 void SingleWindow::on_pause_button_clicked() {
     timer->stop();
-    PauseWindow *pw = new PauseWindow(this);
+    PauseWindow *pw = new PauseWindow(1, this);
     AudioManager::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();

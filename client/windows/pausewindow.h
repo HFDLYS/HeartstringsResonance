@@ -9,7 +9,8 @@ class PauseWindow : public QWidget {
     Q_OBJECT
 
 public:
-    explicit PauseWindow(QWidget *parent = nullptr);
+    explicit PauseWindow(int kind, QWidget *parent = nullptr);
+    int gamekind;
     ~PauseWindow();
 
 private slots:

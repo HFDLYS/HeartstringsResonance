@@ -120,7 +120,7 @@ void GameWindow::on_skill3_button_clicked() {
 
 void GameWindow::on_pause_button_clicked() {
     AudioManager::GetInstance()->PauseBgm3();
-    PauseWindow *pw = new PauseWindow(this);
+    PauseWindow *pw = new PauseWindow(2, this);
     pw->setGeometry(0,0,1280,720);
     pw->show();
     AudioManager::GetInstance()->PauseBgm2();
