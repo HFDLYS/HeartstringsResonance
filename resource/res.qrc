@@ -98,5 +98,6 @@
         <file>sounds/skill.wav</file>
         <file>images/mainwindow/title.png</file>
         <file>images/resultwindow/result_background.png</file>
+        <file>sounds/bgm_battle.wav</file>
     </qresource>
 </RCC>
