@@ -15,11 +15,13 @@
 #include <ctime>
 #include <iostream>
 #include <random>
-
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonValue>
 
 /*
  * 未实现功能:
- * 1.等待界面
  * 2.交换宝石时发送信息至服务器.(格式:click/x1/y1/x2/y2)
  * 3.收到服务器交换棋子的信息(格式:click/x1/y1/x2/y2/playerId)时交换全局版面的对应宝石.
  * 4.开始游戏时将服务器返回的种子填入游戏.
@@ -36,27 +38,27 @@ GameWindow::GameWindow(QWidget *parent)
     ui->setupUi(this);
     server=new QWebSocket();
     server->open(serverUrl);
-    //修改为等待界面
     WaitingWindow *ww = new WaitingWindow(this);
     ww->setGeometry(0,0,1280,720);
     ww->show();
-    connect(server,&QWebSocket::textMessageReceived,this,[&](QString message){
+    connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
-        QStringList info=message.split("/");
-        if(info[0]=="start"){
-            qDebug()<<info[1];
-            seed=info[1].toInt();
-            emit gameStart();//可能因不明原因崩溃.
+        QJsonDocument jsonIn=QJsonDocument::fromJson(message);
+        QJsonObject cmd=jsonIn.object();
+        if(cmd["command"].toString()=="start"){
+            qDebug()<<cmd["seed"];
+            seed=cmd["seed"].toInt();
+            emit gameStart();//尽量不要改可能因不明原因崩溃.
             startGame();
-        }else if(info[0]=="click"){
+        }else if(cmd["command"].toString()=="click"){
             //移动对应小棋盘的棋子
-        }else if(info[0]=="end"){
-            //结束游戏.
+
+        }else if(cmd["command"].toString()=="end"){
+            //结束游戏(这里是直接复制单人模式的)
             AudioManager::GetInstance()->StopBgm2();
             ResultWindow *rw = new ResultWindow(this);
             rw->setGeometry(0,0,1280,720);
             rw->show();
-            //changeWindow(new MainWindow());
             connect(rw, &ResultWindow::exitwindow, this, [this]{
                 changeWindow(new MainWindow());
             });

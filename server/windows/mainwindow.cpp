@@ -30,9 +30,9 @@ void MainWindow::newClientConnect(){
         auto client4=waitingQueue.front();
         waitingQueue.pop_front();
         Room*room=new Room(rooms.size(),client1,client2,client3,client4,this);
-        connect(room,&Room::sendMessage,this,[=](QString info,QWebSocket*player){
-            player->sendTextMessage(info);
-            ui->textEdit->append(QString("房间%1向%2:%3发送了消息:%4")
+        connect(room,&Room::sendMessage,this,[=](const QByteArray &info,QWebSocket*player){
+            player->sendBinaryMessage(info);
+            ui->textEdit->append(QString("房间%1向%2:%3发送了消息:\n%4")
                                      .arg(room->getId())
                                      .arg(client->peerAddress().toString())
                                      .arg(client->peerPort())

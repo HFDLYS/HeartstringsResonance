@@ -1,5 +1,8 @@
 #include <QRandomGenerator>
-
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonValue>
 #include "room.h"
 /*
  * 未完成:
@@ -16,7 +19,7 @@ Room::Room(int id_,QWebSocket*w,QWebSocket*a,QWebSocket*s,QWebSocket*d,QObject *
 int Room::getId(){
     return id;
 }
-void Room::broadcast(QString info){
+void Room::broadcast(const QByteArray &info){
     qDebug()<<info;
     for(int i=1;i<=4;i++){
         emit sendMessage(info,player[i]);
@@ -24,14 +27,23 @@ void Room::broadcast(QString info){
 }
 void Room::run(){
     QThread::sleep(3);
-    broadcast(QString("start/%1").arg(seed));
+    QJsonObject cmd,parameter;
+    cmd["command"]="start";
+    parameter["seed"]=seed;
+    cmd["parameter"]=parameter;
+    QJsonDocument json(cmd);
+    broadcast(json.toJson());
     for(int i=1;i<=4;i++){
-        connect(player[i],&QWebSocket::textMessageReceived,this,[=](QString message){
-            QStringList info=message.split("/");
-            if(info[0]=="click"){
-                broadcast(message+"/"+QString::number(i));
+        connect(player[i],&QWebSocket::binaryMessageReceived,this,[=](const QByteArray &message){
+            QJsonDocument jsonIn=QJsonDocument::fromJson(message);
+            QJsonObject cmd=jsonIn.object();
+            if(cmd["command"].toString()=="click"){
+                QJsonObject parameter=cmd["parameter"].toObject();
+                parameter["player"]=i;
+                cmd["parameter"]=parameter;
+                QJsonDocument jsonOut(cmd);
+                broadcast(jsonOut.toJson());
             }
         });
-        //发送结束指令
     }
 }
