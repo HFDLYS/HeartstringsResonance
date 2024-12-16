@@ -18,6 +18,7 @@ void PauseWindow::on_btnConti_clicked()
 {
     emit gameContinue();
     AudioManager::GetInstance()->ContinueBgm2();
+    AudioManager::GetInstance()->ContinueBgm3();
     delete this;
 }
 

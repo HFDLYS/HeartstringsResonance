@@ -10,6 +10,7 @@ private:
     QMediaPlayer *close;
     QMediaPlayer *bgm1;
     QMediaPlayer *bgm2;
+    QMediaPlayer *bgm3;
     QMediaPlayer *label;
     QMediaPlayer *open;
     QMediaPlayer *skill;
@@ -34,6 +35,13 @@ public:
     void ModifyBgm2(int);
     void PauseBgm2();
     void ContinueBgm2();
+
+    void PlayBgm3();
+    void StopBgm3();
+    void ModifyBgm3(int);
+    void PauseBgm3();
+    void ContinueBgm3();
+
 
     void PlayLabel();
     void ModifyLabel(int);

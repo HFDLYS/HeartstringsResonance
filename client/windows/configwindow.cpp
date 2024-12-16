@@ -88,6 +88,7 @@ void ConfigWindow::on_musicSlider_valueChanged(int value)
     music_state=value;
     AudioManager::GetInstance()->ModifyBgm1(value);
     AudioManager::GetInstance()->ModifyBgm2(value);
+    AudioManager::GetInstance()->ModifyBgm3(value);
     AudioManager::GetInstance()->allMusicPercent = value;
 }
 

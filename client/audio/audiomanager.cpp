@@ -15,6 +15,7 @@ QMediaPlayer *AudioManager::GetMediaPlayer(const QUrl &content, int volume) {
 AudioManager::AudioManager() {
     bgm1 = GetMediaPlayer(QUrl("qrc:/sounds/bgm1.wav"), allMusicPercent);
     bgm2 = GetMediaPlayer(QUrl("qrc:/sounds/bgm2.wav"), allMusicPercent);
+    bgm3 = GetMediaPlayer(QUrl("qrc:/sounds/bgm_battle.wav"), allMusicPercent);
     label = GetMediaPlayer(QUrl("qrc:/sounds/label.wav"), allSoundPercent);
     open = GetMediaPlayer(QUrl("qrc:/sounds/open.wav"), allSoundPercent);
     skill = GetMediaPlayer(QUrl("qrc:/sounds/skill.wav"), allSoundPercent);
@@ -40,6 +41,12 @@ void AudioManager::StopClose() { close->stop(); }
 void AudioManager::PlayBgm1() {
     if (!AudioManager::GetInstance()->stopAllMusic) bgm1->play();
 }
+void AudioManager::PlayBgm2() {
+    if (!AudioManager::GetInstance()->stopAllMusic) bgm2->play();
+}
+void AudioManager::PlayBgm3() {
+    if (!AudioManager::GetInstance()->stopAllMusic) bgm3->play();
+}
 void AudioManager::ModifyBgm1(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     bgm1->setAudioOutput(audioOutopt);
@@ -50,13 +57,14 @@ void AudioManager::ModifyBgm2(int val) {
     bgm2->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
-void AudioManager::StopBgm1() { bgm1->stop(); }
-
-void AudioManager::PlayBgm2() {
-    if (!AudioManager::GetInstance()->stopAllMusic) bgm2->play();
+void AudioManager::ModifyBgm3(int val) {
+    QAudioOutput *audioOutopt = new QAudioOutput();
+    bgm3->setAudioOutput(audioOutopt);
+    audioOutopt -> setVolume((double)val / 100);
 }
-
+void AudioManager::StopBgm1() { bgm1->stop(); }
 void AudioManager::StopBgm2() { bgm2->stop(); }
+void AudioManager::StopBgm3() { bgm3->stop(); }
 
 void AudioManager::PauseBgm2(){
     bgm2->pause();
@@ -64,6 +72,14 @@ void AudioManager::PauseBgm2(){
 
 void AudioManager::ContinueBgm2(){
     bgm2->play();
+}
+
+void AudioManager::PauseBgm3(){
+    bgm3->pause();
+}
+
+void AudioManager::ContinueBgm3(){
+    bgm3->play();
 }
 
 void AudioManager::PlayLabel(){
