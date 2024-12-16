@@ -1,7 +1,10 @@
 #include <QRandomGenerator>
 
 #include "room.h"
-
+/*
+ * 未完成:
+ * 1.倒计时结束游戏.
+*/
 Room::Room(int id_,QWebSocket*w,QWebSocket*a,QWebSocket*s,QWebSocket*d,QObject *parent):QThread(parent){
     id=id_;
     player[1]=w;
@@ -15,14 +18,12 @@ int Room::getId(){
 }
 void Room::broadcast(QString info){
     qDebug()<<info;
-    emit broadcastSignal(info);
     for(int i=1;i<=4;i++){
-        if(player[i]->isValid()){
-            player[i]->sendTextMessage(info);
-        }
+        emit sendMessage(info,player[i]);
     }
 }
 void Room::run(){
+    QThread::sleep(3);
     broadcast(QString("start/%1").arg(seed));
     for(int i=1;i<=4;i++){
         connect(player[i],&QWebSocket::textMessageReceived,this,[=](QString message){
@@ -31,5 +32,6 @@ void Room::run(){
                 broadcast(message+"/"+QString::number(i));
             }
         });
+        //发送结束指令
     }
 }

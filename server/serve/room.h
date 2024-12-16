@@ -9,7 +9,7 @@ class Room: public QThread
 {
     Q_OBJECT
 signals:
-    void broadcastSignal(QString);
+    void sendMessage(QString,QWebSocket*);
 public:
     Room(int,QWebSocket*,QWebSocket*,QWebSocket*,QWebSocket*,QObject *parent = nullptr);
     int getId();

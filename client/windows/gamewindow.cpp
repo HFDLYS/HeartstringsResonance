@@ -2,7 +2,9 @@
 #include "mainwindow.h"
 #include "ui_gamewindow.h"
 #include "pausewindow.h"
+#include "waitingwindow.h"
 #include "../audio/audiomanager.h"
+#include "resultwindow.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -13,6 +15,15 @@
 #include <ctime>
 #include <iostream>
 #include <random>
+
+
+/*
+ * 未实现功能:
+ * 1.等待界面
+ * 2.交换宝石时发送信息至服务器.(格式:click/x1/y1/x2/y2)
+ * 3.收到服务器交换棋子的信息(格式:click/x1/y1/x2/y2/playerId)时交换全局版面的对应宝石.
+ * 4.开始游戏时将服务器返回的种子填入游戏.
+*/
 
 const QPoint board_size(500, 500);
 const QPoint opengl_up_left(25, 100);
@@ -25,6 +36,32 @@ GameWindow::GameWindow(QWidget *parent)
     ui->setupUi(this);
     server=new QWebSocket();
     server->open(serverUrl);
+    //修改为等待界面
+    WaitingWindow *ww = new WaitingWindow(this);
+    ww->setGeometry(0,0,1280,720);
+    ww->show();
+    connect(server,&QWebSocket::textMessageReceived,this,[&](QString message){
+        qDebug()<<message;
+        QStringList info=message.split("/");
+        if(info[0]=="start"){
+            qDebug()<<info[1];
+            seed=info[1].toInt();
+            emit gameStart();//可能因不明原因崩溃.
+            startGame();
+        }else if(info[0]=="click"){
+            //移动对应小棋盘的棋子
+        }else if(info[0]=="end"){
+            //结束游戏.
+            AudioManager::GetInstance()->StopBgm2();
+            ResultWindow *rw = new ResultWindow(this);
+            rw->setGeometry(0,0,1280,720);
+            rw->show();
+            //changeWindow(new MainWindow());
+            connect(rw, &ResultWindow::exitwindow, this, [this]{
+                changeWindow(new MainWindow());
+            });
+        }
+    });
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());

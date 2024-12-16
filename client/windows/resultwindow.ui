@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/resultwindow/result_background.png);</string>
+    <string notr="true">#resultpic{background-image: url(:/images/resultwindow/result_background.png);}</string>
    </property>
    <widget class="QPushButton" name="btnReturn">
     <property name="geometry">
@@ -71,7 +71,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/images/resultwindow/result_background.png);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>上传成绩</string>
