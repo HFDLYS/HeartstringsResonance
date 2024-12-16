@@ -297,12 +297,13 @@ void GameWindow::on_skill3_button_clicked() {
 }
 
 void GameWindow::on_pause_button_clicked() {
+    AudioManager::GetInstance()->PauseBgm3();
     PauseWindow *pw = new PauseWindow(this);
     pw->setGeometry(0,0,1280,720);
     pw->show();
     AudioManager::GetInstance()->PauseBgm2();
     connect(pw, &PauseWindow::exitwindow, this, [this]{
-        AudioManager::GetInstance()->StopBgm2();
+        AudioManager::GetInstance()->StopBgm3();
         changeWindow(new MainWindow());
     });
 }
@@ -311,9 +312,9 @@ void GameWindow::on_hint_button_clicked() {
     //board->ShowHint(true);  // 提示
 }
 
-void GameWindow::on_hint_button_pressed() { ui->hint_button->setIcon(QIcon(":/images/gamewindow/5-.png")); }
+void GameWindow::on_hint_button_pressed() { }
 
-void GameWindow::on_hint_button_released() { ui->hint_button->setIcon(QIcon(":/images/gamewindow/5.png")); }
+void GameWindow::on_hint_button_released() { }
 
 //void GameWindow::on_btnReturn_pressed() {  }
 
