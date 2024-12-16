@@ -2,12 +2,13 @@
 #define RESULTWINDOW_H
 
 #include <QWidget>
+#include "basewindow.h"
 
 namespace Ui {
 class ResultWindow;
 }
 
-class ResultWindow : public QWidget
+class ResultWindow : public BaseWindow
 {
     Q_OBJECT
 
@@ -17,6 +18,8 @@ public:
 
 private slots:
     void on_btnReturn_clicked();
+
+    void on_btnUpdate_clicked();
 
 signals:
     void exitwindow();

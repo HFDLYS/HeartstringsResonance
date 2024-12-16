@@ -49,8 +49,20 @@
       <height>50</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnConti
+{
+    border-image: url(:/images/pausewindow/continue.png);
+}
+
+QPushButton::pressed#btnConti
+{
+    border-image: url(:/images/pausewindow/continue-.png);
+}
+</string>
+    </property>
     <property name="text">
-     <string>继续</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -81,8 +93,20 @@
       <height>50</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnReturn
+{
+    border-image: url(:/images/pausewindow/quit.png);
+}
+
+QPushButton::pressed#btnReturn
+{
+    border-image: url(:/images/pausewindow/quit-.png);
+}
+</string>
+    </property>
     <property name="text">
-     <string>退出</string>
+     <string/>
     </property>
    </widget>
   </widget>
