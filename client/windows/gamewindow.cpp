@@ -13,14 +13,21 @@
 #include <ctime>
 #include <iostream>
 #include <random>
+
 const QPoint board_size(500, 500);
 const QPoint opengl_up_left(25, 100);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-
+const int SERVER_PORT=1479;
+const QUrl serverUrl("ws://localhost:1479");
 GameWindow::GameWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::GameWindow) {
     ui->setupUi(this);
+    server=new QWebSocket();
+    server->open(serverUrl);
+    renderer_ = new Graphics::RenderManager(ui->controlWidget);
+    renderer_->setFixedSize(board_size.x(), board_size.y());
+    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
     // QIcon icon = QIcon(":/images/windowicon.png");
     // this->setWindowIcon(icon);
     // QPixmap pix(":/images/mouse.png");
@@ -28,9 +35,6 @@ GameWindow::GameWindow(QWidget *parent)
     // // 设置图片大小
     // pix = pix.scaled(size, Qt::KeepAspectRatio);
     // this->setCursor(QCursor(pix, -1, -1));
-    renderer_ = new Graphics::RenderManager(ui->controlWidget);
-    renderer_->setFixedSize(board_size.x(), board_size.y());
-    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
 
     // QString ppath = QString("#aiwidget{border-image:url(:/images/立绘/ai%1.png)}")
     //                     .arg(rand() % 12 + 1);
@@ -237,6 +241,7 @@ void GameWindow::keyPressEvent(QKeyEvent *e) {
 }
 
 void GameWindow::startGame() {
+
     renderer_->Demo();
 }
 

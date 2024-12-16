@@ -45,7 +45,7 @@ void MainWindow::on_rbtnMultiplayer_clicked(){
     AudioManager::GetInstance()->PlayBgm2();
     GameWindow *gw = new GameWindow();
     changeWindow(gw);
-    gw->startGame();
+    //gw->startGame();
 }
 
 // 排行榜

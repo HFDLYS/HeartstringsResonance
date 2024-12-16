@@ -1,6 +1,14 @@
-#include<iostream>
+#include <QApplication>
+#include <ctime>
+#include <iostream>
+#include <random>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+#include "./windows/mainwindow.h"
+
+int main(int argc, char *argv[]) {
+    srand(time(0));
+    QApplication a(argc, argv);
+    MainWindow m;
+    m.show();
+    return a.exec();
 }

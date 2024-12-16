@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QTime>
+#include <QWebSocket>
 
 // #include "../core/board.h"
 #include "../graphics/rendermanager.h"
@@ -68,10 +69,11 @@ private:
     // Board *board;
     Graphics::RenderManager *renderer_;
 
+    QWebSocket*server;
+
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口
 
-    bool
-        is_pausing_;  // 这个变量记录当前是否为暂停状态。游戏是否暂停，在项目中有三个不同变量记录它，注意数据同步问题！！！
+    bool is_pausing_;  // 这个变量记录当前是否为暂停状态。游戏是否暂停，在项目中有三个不同变量记录它，注意数据同步问题！！！
 
 public:
     void InitBoard();

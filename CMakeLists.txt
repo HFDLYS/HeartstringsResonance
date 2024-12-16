@@ -14,7 +14,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Multimedia OpenGL OpenGLWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS WebSockets)
 
 if(APPLE)
     include_directories("/opt/homebrew/include")
@@ -23,7 +23,7 @@ endif()
 
 
 set(PROJECT_SOURCES
-    
+
 )
 
 set(GRAPHICS_SOURCES
@@ -43,7 +43,7 @@ set(GRAPHICS_SOURCES
     client/graphics/model.cpp client/graphics/model.h
     client/graphics/gemmanager.cpp client/graphics/gemmanager.h
 )
- 
+
 
 set(CORE_SOURCES
     core/gem.cpp core/gem.h
@@ -53,6 +53,8 @@ set(CORE_SOURCES
 
 set(SERVER_SOURCES
     server/main.cpp
+    server/windows/mainwindow.cpp server/windows/mainwindow.h server/windows/mainwindow.ui
+    server/serve/room.cpp server/serve/room.h
 )
 
 add_executable(
@@ -101,13 +103,16 @@ else()
 endif()
 
 target_link_libraries(HeartstringsResonanceClient PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
+target_link_libraries(HeartstringsResonanceServer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 target_link_libraries(HeartstringsResonanceClient PRIVATE
     Qt::Multimedia
     Qt::OpenGL
     Qt::OpenGLWidgets
 )
+
+target_link_libraries(HeartstringsResonanceClient PRIVATE Qt${QT_VERSION_MAJOR}::WebSockets)
+target_link_libraries(HeartstringsResonanceServer PRIVATE Qt${QT_VERSION_MAJOR}::WebSockets)
 
 if(WIN32)
     target_link_directories(HeartstringsResonanceClient PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib)
