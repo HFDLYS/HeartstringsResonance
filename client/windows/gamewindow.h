@@ -34,17 +34,12 @@ public slots:
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *e) override;
-    void mouseReleaseEvent(QMouseEvent *e) override;
-    void keyPressEvent(QKeyEvent *e) override;
 
 private:
     QPoint last;
     int difficulty_ = 1;
 
 private slots:
-    //void on_btnReturn_clicked();
-
     void on_skill1_button_clicked();
 
     void on_skill2_button_clicked();
@@ -52,16 +47,6 @@ private slots:
     void on_skill3_button_clicked();
 
     void on_pause_button_clicked();
-
-    void on_hint_button_clicked();
-
-    void on_hint_button_pressed();
-
-    void on_hint_button_released();
-
-    //void on_btnReturn_pressed();
-
-    //void on_btnReturn_released();
 
 private:
     Ui::GameWindow *ui;
@@ -81,8 +66,7 @@ private:
     bool is_pausing_;  // 这个变量记录当前是否为暂停状态。游戏是否暂停，在项目中有三个不同变量记录它，注意数据同步问题！！！
 
 public:
-    void InitBoard();
-    void RefreshTimeLabel();
+
 };
 
 #endif  // GAMEWINDOW_H
