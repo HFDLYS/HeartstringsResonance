@@ -55,9 +55,10 @@ private:
     int left_time_cnt_;
 
     // Board *board;
-    Graphics::RenderManager *renderer_;
+    Graphics::RenderManager *main_renderer_;
+    Graphics::RenderManager *show_renderer_[4];
 
-    QWebSocket*server;
+    QWebSocket *server;
 
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口
 
