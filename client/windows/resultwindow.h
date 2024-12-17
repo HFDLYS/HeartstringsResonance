@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "basewindow.h"
+#include "../graphics/rendermanager.h"
 
 namespace Ui {
 class ResultWindow;
@@ -16,6 +17,7 @@ public:
     explicit ResultWindow(int score, int score1, int score2, int score3, int score4, int score5, QWidget *parent = nullptr);
     ~ResultWindow();
 
+    void showGem();
 private slots:
     void on_btnReturn_clicked();
 
@@ -23,9 +25,9 @@ private slots:
 
 signals:
     void exitwindow();
-
 private:
     Ui::ResultWindow *ui;
+    Graphics::RenderManager *gem_render_[5];
 };
 
 #endif // RESULTWINDOW_H

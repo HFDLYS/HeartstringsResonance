@@ -28,6 +28,24 @@ GraphicGemManager *RenderManager::GetGemManager() {
     return gem_manager_;
 }
 
+void RenderManager::SetXYBoard(int x, int y) {
+    int center_x = 100.0 * x / 2;
+    int center_y = 100.0 * y / 2;
+    int center_z = 125.0 * std::max(x, y);
+    camera_.Position = QVector3D(center_x, center_y, center_z);
+}
+
+void RenderManager::ShowGem(int type) {
+    int nx = 1;
+    int ny = 1;
+    SetXYBoard(nx, ny);
+    GetGemManager()->Init(nx, ny);
+
+    GetGemManager()->Generate(1, 0, 0, type, 0);
+
+    update();
+}
+
 void RenderManager::Demo() {
     std::cerr << "Demo imported." << std::endl;
     // 0. some vars
