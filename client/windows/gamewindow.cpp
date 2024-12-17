@@ -27,9 +27,12 @@
  * 4.开始游戏时将服务器返回的种子填入游戏.
 */
 
-const QPoint board_size(500, 500);
-const QPoint opengl_up_left(25, 100);
+const QPoint board_size(520, 520);
+const QPoint opengl_up_left(10, 100);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
+const QPoint show_opengl_up_left(700, 70);
+const QPoint show_board_size(280, 280);
+const int border_size = 10;
 const int TITLE_HEIGHT = 30;
 const int SERVER_PORT=1479;
 const QUrl serverUrl("ws://localhost:1479");
@@ -64,10 +67,17 @@ GameWindow::GameWindow(QWidget *parent)
             });
         }
     });
-    renderer_ = new Graphics::RenderManager(ui->controlWidget);
-    renderer_->setFixedSize(board_size.x(), board_size.y());
-    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
-
+    main_renderer_ = new Graphics::RenderManager(ui->controlWidget);
+    main_renderer_->setFixedSize(board_size.x(), board_size.y());
+    main_renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), main_renderer_->width(), main_renderer_->height());
+    
+    for (int i = 0; i < 4; i++) {
+        show_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
+        show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
+        int ix = i % 2;
+        int iy = i / 2;
+        show_renderer_[i]->setGeometry(show_opengl_up_left.x() + ix * (show_board_size.x() + border_size), show_opengl_up_left.y() + iy * (show_board_size.y() + border_size), show_renderer_[i]->width(), show_renderer_[i]->height());
+    }
 }
 
 GameWindow::~GameWindow() {
@@ -94,13 +104,13 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
         int nx = 8 * x/(board_size.x());
         int ny = 8 * y/(board_size.y());
         int nd = x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1;
-        renderer_->GetGemManager()->Remove(nd, true);
+        main_renderer_->GetGemManager()->Remove(nd, true);
         // std::cout << nd << '\n';
     }
 }
 void GameWindow::startGame() {
 
-    renderer_->Demo();
+    main_renderer_->Demo();
 }
 
 void GameWindow::on_skill1_button_clicked() {
