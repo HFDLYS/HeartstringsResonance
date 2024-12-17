@@ -5,6 +5,9 @@
 #include "ui_resultwindow.h"
 #include "mainwindow.h"
 #include "../audio/audiomanager.h"
+
+const QPoint show_opengl_up_left(500, 280);
+const QPoint show_board_size(40, 40);
 ResultWindow::ResultWindow(int score, int score1, int score2, int score3, int score4, int score5, QWidget *parent)
     : BaseWindow(parent)
     , ui(new Ui::ResultWindow)
@@ -16,6 +19,17 @@ ResultWindow::ResultWindow(int score, int score1, int score2, int score3, int sc
     ui->cnt3->setText(QString::number(score3));
     ui->cnt4->setText(QString::number(score4));
     ui->cnt5->setText(QString::number(score5));
+    for (int i = 0; i < 5; i++) {
+        gem_render_[i] = new Graphics::RenderManager(ui->resultpic);
+        gem_render_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
+        gem_render_[i]->setGeometry(show_opengl_up_left.x() , show_opengl_up_left.y() + i * (show_board_size.y()+10), gem_render_[i]->width(), gem_render_[i]->height());
+    }
+}
+
+void ResultWindow::showGem() {
+    for (int i = 0; i < 5; i++) {
+        gem_render_[i]->ShowGem(i + 1);
+    }
 }
 
 void ResultWindow::on_btnReturn_clicked(){

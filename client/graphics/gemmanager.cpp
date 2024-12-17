@@ -286,6 +286,7 @@ void GraphicGemManager::Update() {
 void GraphicGemManager::Draw(QOpenGLShaderProgram &program) {
     if (!have_initialized_) return;
     QMatrix4x4 model;
+    QMatrix4x4 projection;
 
     std::vector<int> is_not_active_stones_;
     for (auto &pr : stones_) {

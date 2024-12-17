@@ -27,7 +27,9 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
     GraphicGemManager* GetGemManager();
 
     void Demo();
+    void ShowGem(int type);
 
+    void SetXYBoard(int x, int y);        // 设置棋盘大小
     void SetBlinnPhong(bool enable);      // 设置是否开启BlinnPhong光照模型
     void SetRenderMode(int mode);         // 设置渲染模式
     void SetLightSource(int source);      // 设置光源
