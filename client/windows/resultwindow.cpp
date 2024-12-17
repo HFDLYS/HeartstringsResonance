@@ -5,12 +5,12 @@
 #include "ui_resultwindow.h"
 #include "mainwindow.h"
 #include "../audio/audiomanager.h"
-ResultWindow::ResultWindow(QWidget *parent)
+ResultWindow::ResultWindow(int score, QWidget *parent)
     : BaseWindow(parent)
     , ui(new Ui::ResultWindow)
 {
     ui->setupUi(this);
-
+    ui->score->setText(QString::number(score));
 }
 
 void ResultWindow::on_btnReturn_clicked(){

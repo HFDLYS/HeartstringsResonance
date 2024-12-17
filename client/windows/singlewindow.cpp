@@ -18,7 +18,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=120;
+const int MAX_TIME=10;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -101,7 +101,7 @@ void SingleWindow::startGame() {
             timer->stop();
             delete timer;
             AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(this);
+            ResultWindow *rw = new ResultWindow(board->getScore(), this);
             rw->setGeometry(0,0,1280,720);
             rw->show();
 

@@ -13,7 +13,7 @@ class ResultWindow : public BaseWindow
     Q_OBJECT
 
 public:
-    explicit ResultWindow(QWidget *parent = nullptr);
+    explicit ResultWindow(int score, QWidget *parent = nullptr);
     ~ResultWindow();
 
 private slots:
