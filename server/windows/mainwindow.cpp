@@ -45,8 +45,31 @@ MainWindow::MainWindow(QWidget *parent)
                 if(cmd["command"].toString()=="updatePoint"){
                     QJsonObject parameter=cmd["parameter"].toObject();
                     db.update(parameter["userName"].toString(),parameter["pointSolo"].toInt(),parameter["pointMulti"].toInt());
-                }else if(cmd["command"].toString()=="getRank"){
-                    //下次再写
+                }else if(cmd["command"].toString()=="rank"){
+                    QJsonObject parameter=cmd["parameter"].toObject();
+                    auto soloRank=db.rankSolo(parameter["length"].toInt());
+                    QJsonArray soloArray;
+                    for(auto soloPlayer:soloRank){
+                        QJsonObject player;
+                        player["userName"]=soloPlayer.first;
+                        player["point"]=soloPlayer.second;
+                        soloArray.append(player);
+                    }
+                    auto multiRank=db.rankMulti(parameter["length"].toInt());
+                    QJsonArray multiArray;
+                    for(auto multiPlayer:multiRank){
+                        QJsonObject player;
+                        player["userName"]=multiPlayer.first;
+                        player["point"]=multiPlayer.second;
+                        multiArray.append(player);
+                    }
+                    QJsonObject parameterOut;
+                    parameterOut["multiRank"]=multiArray;
+                    QJsonObject cmdOut;
+                    cmdOut["command"]="rank";
+                    cmdOut["parameter"]=parameterOut;
+                    QJsonDocument jsonOut(cmdOut);
+                    client->sendBinaryMessage(jsonOut.toJson());
                 }
             });
             connect(client,&QWebSocket::disconnected,this,[=]{
