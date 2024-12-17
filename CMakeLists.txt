@@ -15,7 +15,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Multimedia OpenGL OpenGLWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS WebSockets)
-
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Sql)
 if(APPLE)
     include_directories("/opt/homebrew/include")
     link_directories("/opt/homebrew/lib")
@@ -114,7 +114,7 @@ target_link_libraries(HeartstringsResonanceClient PRIVATE
 
 target_link_libraries(HeartstringsResonanceClient PRIVATE Qt${QT_VERSION_MAJOR}::WebSockets)
 target_link_libraries(HeartstringsResonanceServer PRIVATE Qt${QT_VERSION_MAJOR}::WebSockets)
-
+target_link_libraries(HeartstringsResonanceServer PRIVATE Qt${QT_VERSION_MAJOR}::Sql)
 if(WIN32)
     target_link_directories(HeartstringsResonanceClient PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/library/assimp/lib)
 endif()
