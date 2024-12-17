@@ -212,6 +212,11 @@ void Board::clicked(int x, int y) {
 }
 
 int Board::getScore() { return point_[0]; }
+int Board::getScore1() { return point_[1]; }
+int Board::getScore2() { return point_[2]; }
+int Board::getScore3() { return point_[3]; }
+int Board::getScore4() { return point_[4]; }
+int Board::getScore5() { return point_[5]; }
 
 void Board::pause() {
     if (stop_ == 1) {

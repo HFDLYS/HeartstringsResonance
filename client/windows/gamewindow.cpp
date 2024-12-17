@@ -56,7 +56,7 @@ GameWindow::GameWindow(QWidget *parent)
         }else if(cmd["command"].toString()=="end"){
             //结束游戏(这里是直接复制单人模式的)
             AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(114514,this);
+            ResultWindow *rw = new ResultWindow(1,1,4,5,1,4,this);
             rw->setGeometry(0,0,1280,720);
             rw->show();
             connect(rw, &ResultWindow::exitwindow, this, [this]{

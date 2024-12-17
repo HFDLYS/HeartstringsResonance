@@ -101,7 +101,13 @@ void SingleWindow::startGame() {
             timer->stop();
             delete timer;
             AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(board->getScore(), this);
+            ResultWindow *rw = new ResultWindow(board->getScore(),
+                                                board->getScore1(),
+                                                board->getScore2(),
+                                                board->getScore3(),
+                                                board->getScore4(),
+                                                board->getScore5(),
+                                                this);
             rw->setGeometry(0,0,1280,720);
             rw->show();
 
