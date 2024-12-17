@@ -20,6 +20,7 @@ private:
             pointMulti=pointMulti<a?a:pointMulti;
         }
     };
+    bool connect();
     bool insert(Player);
     QVector<Player> select(QString);
     bool update(Player);
