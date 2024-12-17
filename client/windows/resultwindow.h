@@ -2,21 +2,24 @@
 #define RESULTWINDOW_H
 
 #include <QWidget>
+#include "basewindow.h"
 
 namespace Ui {
 class ResultWindow;
 }
 
-class ResultWindow : public QWidget
+class ResultWindow : public BaseWindow
 {
     Q_OBJECT
 
 public:
-    explicit ResultWindow(QWidget *parent = nullptr);
+    explicit ResultWindow(int score, int score1, int score2, int score3, int score4, int score5, QWidget *parent = nullptr);
     ~ResultWindow();
 
 private slots:
     void on_btnReturn_clicked();
+
+    void on_btnUpdate_clicked();
 
 signals:
     void exitwindow();

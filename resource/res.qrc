@@ -99,5 +99,9 @@
         <file>images/mainwindow/title.png</file>
         <file>images/resultwindow/result_background.png</file>
         <file>sounds/bgm_battle.wav</file>
+        <file>images/pausewindow/continue.png</file>
+        <file>images/pausewindow/continue-.png</file>
+        <file>images/pausewindow/quit.png</file>
+        <file>images/pausewindow/quit-.png</file>
     </qresource>
 </RCC>

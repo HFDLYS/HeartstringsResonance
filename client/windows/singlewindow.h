@@ -40,6 +40,9 @@ private:
     QTimer*timer;
     int difficulty_ = 1;
     int seed=0;
+    int skill1_cnt = 0;
+    int skill2_cnt = 0;
+    int skill3_cnt = 0;
 private slots:
     //void on_btnReturn_clicked();
 

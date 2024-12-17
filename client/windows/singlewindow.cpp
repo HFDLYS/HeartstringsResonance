@@ -18,7 +18,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=120;
+const int MAX_TIME=10;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -101,10 +101,16 @@ void SingleWindow::startGame() {
             timer->stop();
             delete timer;
             AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(this);
+            ResultWindow *rw = new ResultWindow(board->getScore(),
+                                                board->getScore1(),
+                                                board->getScore2(),
+                                                board->getScore3(),
+                                                board->getScore4(),
+                                                board->getScore5(),
+                                                this);
             rw->setGeometry(0,0,1280,720);
             rw->show();
-            //changeWindow(new MainWindow());
+
             connect(rw, &ResultWindow::exitwindow, this, [this]{
                 changeWindow(new MainWindow());
             });
@@ -113,23 +119,29 @@ void SingleWindow::startGame() {
 }
 
 void SingleWindow::on_skill1_button_clicked() {
+    skill1_cnt++;
+    ui->cnt1->setText(QString::number(skill1_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->hint();
 }
 
 void SingleWindow::on_skill2_button_clicked() {
+    skill2_cnt++;
+    ui->cnt2->setText(QString::number(skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->skyshiv(1);
 }
 
 void SingleWindow::on_skill3_button_clicked() {
+    skill3_cnt++;
+    ui->cnt3->setText(QString::number(skill3_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->generate(0);
 }
 
 void SingleWindow::on_pause_button_clicked() {
     timer->stop();
-    PauseWindow *pw = new PauseWindow(this);
+    PauseWindow *pw = new PauseWindow(1, this);
     AudioManager::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();

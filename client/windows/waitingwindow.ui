@@ -68,14 +68,26 @@ font-size: 50px;
    <widget class="QPushButton" name="btnExit">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
+      <x>510</x>
+      <y>470</y>
+      <width>300</width>
+      <height>50</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnExit
+{
+    border-image: url(:/images/pausewindow/quit.png);
+}
+
+QPushButton::pressed#btnExit
+{
+    border-image: url(:/images/pausewindow/quit-.png);
+}
+</string>
+    </property>
     <property name="text">
-     <string>退出</string>
+     <string/>
     </property>
    </widget>
   </widget>
