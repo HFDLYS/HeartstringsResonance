@@ -25,10 +25,9 @@ private:
     bool update(Player);
 public:
     DataBase();
-    bool updateSolo(QString,int);
-    bool updateMulti(QString,int);
-    QVector<QPair<QString,int> > rankSolo();
-    QVector<QPair<QString,int> > rankMulti();
+    bool update(QString,int,int);
+    QVector<QPair<QString,int> > rankSolo(int);
+    QVector<QPair<QString,int> > rankMulti(int);
 };
 
 #endif // DATABASE_H

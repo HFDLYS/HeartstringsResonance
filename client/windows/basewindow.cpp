@@ -34,7 +34,7 @@ const int TITLE_HEIGHT = 30;
 
 void BaseWindow::mousePressEvent(QMouseEvent *e) {
     if (e->y() < TITLE_HEIGHT) {
-        last = e->globalPos();
+        last = e->globalPosition().toPoint();
     }
 }
 
@@ -42,11 +42,12 @@ void BaseWindow::mousePressEvent(QMouseEvent *e) {
  * 鼠标移动函数
  * 这里实时修改窗口的坐标
  */
+
 void BaseWindow::mouseMoveEvent(QMouseEvent *event) {
-    if (event->y() < TITLE_HEIGHT) {
-        int dx = event->globalX() - last.x();
-        int dy = event->globalY() - last.y();
-        last = event->globalPos();
+    if (event->position().y() < TITLE_HEIGHT) {
+        int dx = event->globalPosition().x() - last.x();
+        int dy = event->globalPosition().y() - last.y();
+        last = event->globalPosition().toPoint();
         this->move(this->x() + dx, this->y() + dy);
     }
 }
@@ -54,9 +55,9 @@ void BaseWindow::mouseMoveEvent(QMouseEvent *event) {
  * 鼠标释放函数
  */
 void BaseWindow::mouseReleaseEvent(QMouseEvent *event) {
-    if (event->y() < TITLE_HEIGHT) {
-        int dx = event->globalX() - last.x();
-        int dy = event->globalY() - last.y();
+    if (event->position().y() < TITLE_HEIGHT) {
+        int dx = event->globalPosition().x() - last.x();
+        int dy = event->globalPosition().y() - last.y();
         this->move(this->x() + dx, this->y() + dy);
     }
 }

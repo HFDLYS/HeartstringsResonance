@@ -45,7 +45,6 @@ QVector<DataBase::Player> DataBase::select(QString username){
     return rec;
 }
 bool DataBase::update(Player player){
-    db.exec("SET NAMES 'UTF8'");
     QSqlQuery query(db);
     query.prepare("update user set point_solo=:pointSolo,point_multi=:pointMulti where user_name=:userName;");
     query.bindValue(":userName",player.userName);
@@ -59,23 +58,40 @@ bool DataBase::update(Player player){
         return false;
     }
 }
-bool DataBase::updateSolo(QString username,int point){
+bool DataBase::update(QString username,int pointSolo,int pointMulti){
     auto a=select(username);
     if(a.empty()){
-        insert(Player(username,point,0));
+        return insert(Player(username,pointSolo,pointMulti));
     }else{
         Player player=a[0];
-        player.setSolo(point);
-        update(player);
+        player.setSolo(pointSolo);
+        player.setMulti(pointMulti);
+        return update(player);
     }
 }
-bool DataBase::updateMulti(QString username,int point){
-    auto a=select(username);
-    if(a.empty()){
-        insert(Player(username,0,point));
-    }else{
-        Player player=a[0];
-        player.setMulti(point);
-        update(player);
+QVector<QPair<QString,int> > DataBase::rankSolo(int rank){
+    QVector<QPair<QString,int> >rec;
+    QSqlQuery query(db);
+    query.prepare("SELECT user_name,point_solo FROM user ORDER BY point_solo DESC LIMIT :limit;");
+    query.bindValue(":limit",rank);
+    if(query.exec())
+    {
+        while (query.next()) {
+            rec.push_back(qMakePair(query.record().value("user_name").toString(),query.record().value("point_solo").toInt()));
+        }
     }
+    return rec;
+}
+QVector<QPair<QString,int> > DataBase::rankMulti(int rank){
+    QVector<QPair<QString,int> >rec;
+    QSqlQuery query(db);
+    query.prepare("SELECT user_name,point_multi FROM user ORDER BY point_multi DESC LIMIT :limit;");
+    query.bindValue(":limit",rank);
+    if(query.exec())
+    {
+        while (query.next()) {
+            rec.push_back(qMakePair(query.record().value("user_name").toString(),query.record().value("point_multi").toInt()));
+        }
+    }
+    return rec;
 }

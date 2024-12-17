@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 const int MULTI_SERVER_PORT=1479;
-const int SOLO_SERVER_PORT=1478;
+const int DB_SERVER_PORT=1478;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -17,19 +17,40 @@ MainWindow::MainWindow(QWidget *parent)
         connect(webMultiServer,&QWebSocketServer::newConnection,this,&MainWindow::newClientConnect);
     }
     webSoloServer = new QWebSocketServer("Solo-Game Server",QWebSocketServer::NonSecureMode,this);
-    if(webMultiServer->listen(QHostAddress::Any,SOLO_SERVER_PORT))
+    if(webSoloServer->listen(QHostAddress::Any,DB_SERVER_PORT))
     {
-        qDebug()<<"单人记录更新服务器开始监听";
-        ui->textEdit->append(QString("单人服务启动,开始监听端口%1").arg(SOLO_SERVER_PORT));
-        connect(webMultiServer,&QWebSocketServer::newConnection,this,[&]{
-            auto client =webMultiServer->nextPendingConnection();
+        qDebug()<<"记录更新服务器开始监听";
+        ui->textEdit->append(QString("记录更新服务启动,开始监听端口%1").arg(DB_SERVER_PORT));
+        connect(webSoloServer,&QWebSocketServer::newConnection,this,[&]{
+            auto client =webSoloServer->nextPendingConnection();
+            ui->textEdit->append(QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort()));
+
+
+            //test
+            QJsonObject cmd,parameter;
+            cmd["command"]="start";
+            parameter["seed"]=1234;
+            cmd["parameter"]=parameter;
+            QJsonDocument json(cmd);
+
+
+
+            client->sendBinaryMessage(json.toJson());
+
+
             connect(client,&QWebSocket::binaryMessageReceived,this,[=](const QByteArray &message){
                 QJsonDocument jsonIn=QJsonDocument::fromJson(message);
+                ui->textEdit->append(QString("收到%1:%2的信息:%3").arg(client->peerAddress().toString()).arg(client->peerPort()).arg(message));
                 QJsonObject cmd=jsonIn.object();
                 if(cmd["command"].toString()=="updatePoint"){
                     QJsonObject parameter=cmd["parameter"].toObject();
-                    db.updateSolo(parameter["userName"].toString(),parameter["point"].toInt());
+                    db.update(parameter["userName"].toString(),parameter["pointSolo"].toInt(),parameter["pointMulti"].toInt());
+                }else if(cmd["command"].toString()=="getRank"){
+                    //下次再写
                 }
+            });
+            connect(client,&QWebSocket::disconnected,this,[=]{
+                delete client;
             });
         });
     }
@@ -39,6 +60,9 @@ void MainWindow::newClientConnect(){
     qDebug()<<"有新的连接.";
     ui->textEdit->append(QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort()));
     waitingQueue.push_back(client);
+    connect(client,&QWebSocket::disconnected,this,[=]{
+        waitingQueue.removeAll(client);
+    });
     if(waitingQueue.size()>=4){
         auto client1=waitingQueue.front();
         waitingQueue.pop_front();
@@ -57,14 +81,10 @@ void MainWindow::newClientConnect(){
                                      .arg(client->peerPort())
                                      .arg(info));
         });
-        connect(room,&Room::updatePoint,this,[&](QString userName,int point){
-            db.updateMulti(userName,point);
-        });
         rooms.push_back(room);
         room->start();
     }
 }
-
 MainWindow::~MainWindow()
 {
     delete ui;

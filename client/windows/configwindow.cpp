@@ -12,7 +12,6 @@ ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Con
     ui->setupUi(this);
     updateState();
 }
-
 ConfigWindow::~ConfigWindow() { delete ui; }
 
 void ConfigWindow::updateState(){

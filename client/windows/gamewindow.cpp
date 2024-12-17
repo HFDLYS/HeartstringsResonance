@@ -14,7 +14,6 @@
 #include <QPixmap>
 #include <ctime>
 #include <iostream>
-#include <random>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -59,10 +58,11 @@ GameWindow::GameWindow(QWidget *parent)
         }else if(cmd["command"].toString()=="end"){
             //结束游戏(这里是直接复制单人模式的)
             AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(1,1,4,5,1,4,this);
-            rw->setGeometry(0,0,1280,720);
+            ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
+            rw->move(this->pos().x(), this->pos().y());
             rw->show();
-            connect(rw, &ResultWindow::exitwindow, this, [this]{
+            connect(rw, &ResultWindow::exitwindow, this, [=]{
+                rw->close();
                 changeWindow(new MainWindow());
             });
         }
@@ -88,11 +88,11 @@ void GameWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/gamewin
 void GameWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/gamewindow/3.png")); }
 
 void GameWindow::mousePressEvent(QMouseEvent *event) {
-    int x = event->x();
-    int y = event->y();
+    int x = event->position().x();
+    int y = event->position().y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
-    if (event->y() < TITLE_HEIGHT) {
-        last = event->globalPos();
+    if (event->position().y() < TITLE_HEIGHT) {
+        last = event->globalPosition().toPoint();
     }
     // board->Clicked(x, y);
     if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {

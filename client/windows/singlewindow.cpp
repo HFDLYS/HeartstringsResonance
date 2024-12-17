@@ -13,12 +13,12 @@
 #include <QPixmap>
 #include <ctime>
 #include <iostream>
-#include <random>
 const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
 const int MAX_TIME=2;
+const QUrl serverUrl("ws://localhost:1478");
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -56,11 +56,11 @@ void SingleWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/Singl
 void SingleWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/SingleWindow/3.png")); }
 
 void SingleWindow::mousePressEvent(QMouseEvent *event) {
-    int x = event->x();
-    int y = event->y();
+    int x = event->position().x();
+    int y = event->position().y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
-    if (event->y() < TITLE_HEIGHT) {
-        last = event->globalPos();
+    if (event->position().y() < TITLE_HEIGHT) {
+        last = event->globalPosition().toPoint();
     }
     // board->Clicked(x, y);
     if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {
@@ -101,17 +101,19 @@ void SingleWindow::startGame() {
             timer->stop();
             delete timer;
             AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(board->getScore(),
+            ResultWindow *rw = new ResultWindow(true,
+                                                board->getScore(),
                                                 board->getScore1(),
                                                 board->getScore2(),
                                                 board->getScore3(),
                                                 board->getScore4(),
                                                 board->getScore5(),
                                                 this);
-            rw->setGeometry(0,0,1280,720);
+            rw->move(this->pos().x(), this->pos().y());
             rw->show();
             rw->showGem();
-            connect(rw, &ResultWindow::exitwindow, this, [this]{
+            connect(rw, &ResultWindow::exitwindow, this, [=]{
+                rw->close();
                 changeWindow(new MainWindow());
             });
         }
@@ -138,6 +140,8 @@ void SingleWindow::on_skill3_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
     board->generate(0);
 }
+
+
 
 void SingleWindow::on_pause_button_clicked() {
     timer->stop();
