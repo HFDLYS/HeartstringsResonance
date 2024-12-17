@@ -43,6 +43,9 @@ void Room::run(){
                 cmd["parameter"]=parameter;
                 QJsonDocument jsonOut(cmd);
                 broadcast(jsonOut.toJson());
+            }else if(cmd["command"].toString()=="updatePoint"){
+                QJsonObject parameter=cmd["parameter"].toObject();
+                emit updatePoint(parameter["userName"].toString(),parameter["point"].toInt());
             }
         });
     }

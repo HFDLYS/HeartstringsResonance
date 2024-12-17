@@ -55,6 +55,7 @@ set(SERVER_SOURCES
     server/main.cpp
     server/windows/mainwindow.cpp server/windows/mainwindow.h server/windows/mainwindow.ui
     server/serve/room.cpp server/serve/room.h
+    server/serve/database.h server/serve/database.cpp
 )
 
 add_executable(

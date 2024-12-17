@@ -9,6 +9,7 @@ class Room: public QThread
 {
     Q_OBJECT
 signals:
+    void updatePoint(QString userName,int point);
     void sendMessage(const QByteArray &info,QWebSocket*);
 public:
     Room(int,QWebSocket*,QWebSocket*,QWebSocket*,QWebSocket*,QObject *parent = nullptr);

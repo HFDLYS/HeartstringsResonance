@@ -6,6 +6,7 @@
 #include <QWebSocketServer>
 #include <QWebSocket>
 #include "../serve/room.h"
+#include "../serve/database.h"
 namespace Ui {
 class MainWindow;
 }
@@ -23,8 +24,10 @@ private slots:
     void newClientConnect();
 
 private:
+    DataBase db;
     Ui::MainWindow *ui;
-    QWebSocketServer* webServer;
+    QWebSocketServer* webMultiServer;
+    QWebSocketServer* webSoloServer;
     QQueue<QWebSocket*> waitingQueue;
     QVector<Room*> rooms;
 };
