@@ -124,7 +124,7 @@ void RenderManager::initializeGL() {
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shader_toy.vert");
     // shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_tllfRX.frag");
 
-    shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_XXdSzN.frag");
+    shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_tllfRX.frag");
     success = shader_toy_program_.link();
     if (!success) qDebug() << "InitializeGL Error: " << shader_toy_program_.log();
 
