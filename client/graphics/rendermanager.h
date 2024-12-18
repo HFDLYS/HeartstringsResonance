@@ -64,6 +64,8 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
     int shader_light_source_ = 0;
     float shader_hdr_exposure_ = 0.0f;
 
+    float center_x = 0;
+    float center_y = 0;
    public slots:
     void HypercubeThreadSlot();
 

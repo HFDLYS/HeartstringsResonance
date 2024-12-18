@@ -13,6 +13,8 @@ RenderManager::RenderManager(QWidget *parent) : QOpenGLWidget(parent) {
     hypercube_thread_->start();
     // camera
     camera_.Position = kCameraPosition;
+    center_x = 400;
+    center_y = 400;
 }
 
 RenderManager::~RenderManager() {
@@ -31,6 +33,8 @@ GraphicGemManager *RenderManager::GetGemManager() {
 void RenderManager::SetXYBoard(int x, int y) {
     int center_x = 100.0 * x / 2;
     int center_y = 100.0 * y / 2;
+    this->center_x = center_x;
+    this->center_y = center_y;
     int center_z = 125.0 * std::max(x, y);
     camera_.Position = QVector3D(center_x, center_y, center_z);
 }
@@ -116,7 +120,7 @@ void RenderManager::initializeGL() {
     bool success = shader_program_.link();
     if (!success) qDebug() << "InitializeGL Error: " << shader_program_.log();
 
-    // Shader Toy Program
+    // Shader Toy Program 
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shader_toy.vert");
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_tllfRX.frag");
     success = shader_toy_program_.link();
@@ -147,7 +151,7 @@ void RenderManager::paintGL() {
     shader_toy_program_.setUniformValue("iTime", QTime::currentTime().msecsSinceStartOfDay() / 2000.f);
     shader_toy_program_.setUniformValue("iResolution", width(), height());
     model.setToIdentity();
-    model.translate(400.f, 400.f, -6000.f);
+    model.translate(center_x, center_y, -6000.f);
     shader_toy_program_.setUniformValue("model", model);
     shader_toy_program_.setUniformValue("view", view);
     shader_toy_program_.setUniformValue("projection", projection);
