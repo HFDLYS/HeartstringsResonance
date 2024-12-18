@@ -66,7 +66,11 @@ GameWindow::GameWindow(QWidget *parent)
             emit gameStart();
         }else if(cmd["command"].toString()=="click"){
             //移动对应小棋盘的棋子
-
+            cmd = cmd["parameter"].toObject();
+            int x = cmd["x"].toInt();
+            int y = cmd["y"].toInt();
+            int playerId = cmd["playerId"].toInt();
+            show_board_[playerId]->clicked(x, y);
         }else if(cmd["command"].toString()=="end"){
             //结束游戏(这里是直接复制单人模式的)
             AudioManager::GetInstance()->StopBgm2();
@@ -116,13 +120,19 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
         int nx = 8 * x/(board_size.x());
         int ny = 8 * y/(board_size.y());
         int nd = x /(board_size.x() / 8)*8 + y/(board_size.y() / 8)+1;
-        main_renderer_->GetGemManager()->Remove(nd, true);
+        // main_renderer_->GetGemManager()->Remove(nd, true);
         // std::cout << nd << '\n';
+        QJsonObject cmd,parameter;
+        cmd["command"]="click";
+        parameter["x"]=nx;
+        parameter["y"]=ny;
+        QJsonDocument json(cmd);
+        server->sendBinaryMessage(json.toJson());
     }
 }
 void GameWindow::startGame() {
 
-    main_renderer_->Demo();
+    // main_renderer_->Demo();
 }
 
 void GameWindow::on_skill1_button_clicked() {
