@@ -128,6 +128,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
         parameter["y"]=ny;
         QJsonDocument json(cmd);
         server->sendBinaryMessage(json.toJson());
+        main_board_->clicked(nx, ny);
     }
 }
 void GameWindow::startGame() {
