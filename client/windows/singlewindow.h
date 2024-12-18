@@ -54,15 +54,7 @@ private slots:
 
     void on_pause_button_clicked();
 
-    void on_hint_button_clicked();
 
-    void on_hint_button_pressed();
-
-    void on_hint_button_released();
-
-    //void on_btnReturn_pressed();
-
-    //void on_btnReturn_released();
 
 private:
     Ui::SingleWindow *ui;
