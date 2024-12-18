@@ -52,7 +52,7 @@ void Room::run(){
             QJsonObject cmd=jsonIn.object();
             if(cmd["command"].toString()=="click"){
                 QJsonObject parameter=cmd["parameter"].toObject();
-                parameter["player"]=i;
+                parameter["playerId"]=i;
                 cmd["parameter"]=parameter;
                 QJsonDocument jsonOut(cmd);
                 broadcast(jsonOut.toJson());
