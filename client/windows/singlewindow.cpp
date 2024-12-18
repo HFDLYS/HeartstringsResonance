@@ -17,7 +17,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=2;
+const int MAX_TIME=20;
 const QUrl serverUrl("ws://localhost:1478");
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
@@ -158,11 +158,3 @@ void SingleWindow::on_pause_button_clicked() {
         timer->start();
     });
 }
-
-void SingleWindow::on_hint_button_clicked() {
-
-}
-
-void SingleWindow::on_hint_button_pressed() { ui->hint_button->setIcon(QIcon(":/images/SingleWindow/5-.png")); }
-
-void SingleWindow::on_hint_button_released() { ui->hint_button->setIcon(QIcon(":/images/SingleWindow/5.png")); }
