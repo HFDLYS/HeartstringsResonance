@@ -45,13 +45,25 @@ GameWindow::GameWindow(QWidget *parent)
     ww->show();
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
-        QJsonDocument jsonIn=QJsonDocument::fromJson(message);
-        QJsonObject cmd=jsonIn.object();
+        QJsonDocument jsonIn = QJsonDocument::fromJson(message);
+        QJsonObject cmd = jsonIn.object();
         if(cmd["command"].toString()=="start"){
-            qDebug()<<cmd["seed"];
-            seed=cmd["seed"].toInt();
-            emit gameStart();//尽量不要改可能因不明原因崩溃.
-            startGame();
+            cmd = cmd["parameter"].toObject();
+            int playerId = cmd["playerId"].toInt();
+            QJsonArray seeds = cmd["seeds"].toArray();
+            std::vector<int> seedVector;
+            for (const QJsonValue &value : seeds) {
+                seedVector.push_back(value.toInt());
+            }
+            main_board_ = new Board(seedVector[playerId-1]);
+            main_board_->SetGemManager(main_renderer_->GetGemManager());
+            main_board_->initBoard();
+            for (int i = 1; i <= 4; i++) {
+                show_board_[i] = new Board(seedVector[i-1]);
+                show_board_[i]->SetGemManager(show_renderer_[i]->GetGemManager());
+                show_board_[i]->initBoard();
+            }
+            emit gameStart();
         }else if(cmd["command"].toString()=="click"){
             //移动对应小棋盘的棋子
 
@@ -71,11 +83,11 @@ GameWindow::GameWindow(QWidget *parent)
     main_renderer_->setFixedSize(board_size.x(), board_size.y());
     main_renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), main_renderer_->width(), main_renderer_->height());
     
-    for (int i = 0; i < 4; i++) {
+    for (int i = 1; i <= 4; i++) {
         show_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
         show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
-        int ix = i % 2;
-        int iy = i / 2;
+        int ix = (i-1) % 2;
+        int iy = (i-1) / 2;
         show_renderer_[i]->setGeometry(show_opengl_up_left.x() + ix * (show_board_size.x() + border_size), show_opengl_up_left.y() + iy * (show_board_size.y() + border_size), show_renderer_[i]->width(), show_renderer_[i]->height());
     }
 }

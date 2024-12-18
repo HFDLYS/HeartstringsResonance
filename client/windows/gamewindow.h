@@ -10,6 +10,7 @@
 #include "../graphics/rendermanager.h"
 // #include "recordrankwindow.h"
 #include "basewindow.h"
+#include "../../core/board.h"
 // 游戏窗口类
 
 namespace Ui {
@@ -56,7 +57,9 @@ private:
 
     // Board *board;
     Graphics::RenderManager *main_renderer_;
-    Graphics::RenderManager *show_renderer_[4];
+    Board *main_board_;
+    Graphics::RenderManager *show_renderer_[5];
+    Board *show_board_[5];
 
     QWebSocket *server;
 

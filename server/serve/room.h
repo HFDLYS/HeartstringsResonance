@@ -5,6 +5,11 @@
 #include <QMainWindow>
 #include <QWebSocket>
 #include <QThread>
+#include <QRandomGenerator>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonValue>
 class Room: public QThread
 {
     Q_OBJECT
@@ -18,9 +23,10 @@ protected:
     void run() override;
 private:
     int id;
-    int seed;
+    int seed[5];
     QWebSocket*player[5];
     void broadcast(const QByteArray &info);
+    void broadcast(const QByteArray &info,QWebSocket*);
 };
 
 #endif // ROOM_H
