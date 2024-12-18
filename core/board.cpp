@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <QDebug>
 
 
 
@@ -27,20 +28,20 @@ Board::Board(int seed_)  {
         generator = std::mt19937(seed_);
     }
     distribution = std::uniform_int_distribution<int>(1, Gem::GetMaxType());
-    // std::cerr << "generate start" << std::endl;
+    //std::cerr << "generate start" << std::endl;
     generate(1);
-    // std::cerr << "generate end" << std::endl;
+    //std::cerr << "generate end" << std::endl;
 }
 
 void Board::SetGemManager(GemManager *gem_manager) { gem_manager_ = gem_manager; }
 
 void Board::initBoard() {
+
     #ifdef _WIN32
         Sleep(100);
     #else
         usleep(100000);
     #endif
-
 
     gem_manager_->Init(8, 8);
 
@@ -160,7 +161,7 @@ void Board::clicked(int x, int y) {
 
     int chosen_x = x, chosen_y = y;
 
-    // std::cerr << x << " " << y << " " << chosen_x << " " << chosen_y << std::endl;
+    std::cerr << x << " " << y << " " << chosen_x << " " << chosen_y << std::endl;
     if (chosen_x == -1) {
         if (chosen_.first != -1) {
             chosen_ = {-1, -1};
