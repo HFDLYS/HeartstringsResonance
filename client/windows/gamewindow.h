@@ -6,7 +6,7 @@
 #include <QTime>
 #include <QWebSocket>
 
- #include "../../core/board.h"
+// #include "../core/board.h"
 #include "../graphics/rendermanager.h"
 // #include "recordrankwindow.h"
 #include "basewindow.h"
@@ -37,9 +37,7 @@ protected:
 
 private:
     QPoint last;
-
-    Board *board[10];
-    Graphics::RenderManager *renderer_[10];
+    int difficulty_ = 1;
 
 private slots:
     void on_skill1_button_clicked();
@@ -58,7 +56,7 @@ private:
 
     // Board *board;
     Graphics::RenderManager *main_renderer_;
-    Graphics::RenderManager *sub_renderer_[4];
+    Graphics::RenderManager *show_renderer_[4];
 
     QWebSocket *server;
 
@@ -69,7 +67,7 @@ private:
     bool is_pausing_;  // 这个变量记录当前是否为暂停状态。游戏是否暂停，在项目中有三个不同变量记录它，注意数据同步问题！！！
 
 public:
-    void initBoard();
+
 };
 
 #endif  // GAMEWINDOW_H
