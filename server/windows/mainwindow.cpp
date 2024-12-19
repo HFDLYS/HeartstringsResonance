@@ -18,14 +18,17 @@ MainWindow::MainWindow(QWidget *parent)
 }
 void MainWindow::newClientConnect(){
     auto client =webServer->nextPendingConnection();
-    qDebug()<<"有新的连接.";
     ui->textEdit->append(QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort()));
+    qDebug()<<QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort());
     connect(client,&QWebSocket::disconnected,this,[=]{
         waitingQueue.removeAll(client);
+        ui->textEdit->append(QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort()));
+        qDebug()<<QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort());
     });
     connect(client,&QWebSocket::binaryMessageReceived,this,[=](const QByteArray &message){
         QJsonDocument jsonIn=QJsonDocument::fromJson(message);
         ui->textEdit->append(QString("收到%1:%2的信息:%3").arg(client->peerAddress().toString()).arg(client->peerPort()).arg(message));
+        qDebug()<<QString("收到%1:%2的信息:%3").arg(client->peerAddress().toString()).arg(client->peerPort()).arg(message);
         QJsonObject cmd=jsonIn.object();
         if(cmd["command"].toString()=="updatePoint"){
             QJsonObject parameter=cmd["parameter"].toObject();
