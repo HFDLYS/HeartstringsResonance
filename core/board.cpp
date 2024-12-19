@@ -71,7 +71,7 @@ void Board::generate(bool start) {
             
         }
     }
-    if (start) {
+    if (true) {
         while (check()) {
             for (auto match : matches_) {
                 gems_[match.first][match.second].SetType((generator()%Gem::GetMaxType()+1) % Gem::GetMaxType() + 1);
@@ -84,9 +84,11 @@ void Board::generate(bool start) {
             }
         }
     }
-    for (int i = 0; i < 8; ++i) {
-        for (int j = 0; j < 8; ++j) {
-            if (!start) gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType());
+    if (!start) {
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                gem_manager_->Generate(gems_[i][j].GetId(), i, j, gems_[i][j].GetType());
+            }
         }
     }
 

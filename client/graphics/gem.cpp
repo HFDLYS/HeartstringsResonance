@@ -39,6 +39,7 @@ void Gem::set_falling(float speed, int falling_target_y) {
         speed = kFallingSpeed + (rand() % 5) - 2;
     }
     falling_speed_ = speed;
+    falling_acceleration_ = 0.5;
     falling_target_y_ = falling_target_y;
 }
 // 旋转
@@ -78,7 +79,7 @@ void Gem::UpdateRotating() {
 void Gem::UpdateFalling() {
     // falling
     if (is_falling()) {
-        // falling_speed_ += falling_acceleration_;
+        falling_speed_ += falling_acceleration_;
         y_ -= falling_speed_;
         if (y_ < falling_target_y_) {
             y_ = falling_target_y_;
