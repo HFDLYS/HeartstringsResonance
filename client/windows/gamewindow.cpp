@@ -34,7 +34,7 @@ const QPoint show_board_size(280, 280);
 const int border_size = 10;
 const int TITLE_HEIGHT = 30;
 const int SERVER_PORT=1479;
-const QUrl serverUrl("ws://localhost:1479");
+const QUrl serverUrl("ws://47.116.175.206:1479");
 GameWindow::GameWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::GameWindow) {
     ui->setupUi(this);
@@ -63,6 +63,7 @@ GameWindow::GameWindow(QWidget *parent)
                 show_board_[i]->SetGemManager(show_renderer_[i]->GetGemManager());
                 show_board_[i]->initBoard();
             }
+            has_started_ = true;
             emit gameStart();
         }else if(cmd["command"].toString()=="click"){
             //移动对应小棋盘的棋子
@@ -104,6 +105,7 @@ void GameWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/gamewin
 void GameWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/gamewindow/3.png")); }
 
 void GameWindow::mousePressEvent(QMouseEvent *event) {
+    if (!has_started_) return;
     int x = event->position().x();
     int y = event->position().y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
