@@ -43,9 +43,20 @@ void MainWindow::on_rbtnMultiplayer_clicked(){
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm3();
-    GameWindow *gw = new GameWindow();
-    changeWindow(gw);
-    //gw->startGame();
+    QVBoxLayout *layout = new QVBoxLayout(this);
+
+    // 弹出对话框让用户输入两个字符串
+    bool ok1, ok2;
+    QString text1 = QInputDialog::getText(this, tr("输入ip地址"), tr("请输入ip地址:"), QLineEdit::Normal, "47.116.175.206", &ok1);
+    if (ok1 && !text1.isEmpty()) {
+        QString text2 = QInputDialog::getText(this, tr("输入端口号"), tr("请输入端口号:"), QLineEdit::Normal, "1479", &ok2);
+        if (ok2 && !text2.isEmpty()) {
+            ip = text1;
+            port = text2;
+            GameWindow *gw = new GameWindow(ip, port);
+            changeWindow(gw);
+        }
+    }
 }
 
 // 排行榜
@@ -100,5 +111,11 @@ void MainWindow::on_btnQuit_clicked() {
     if (dialog->exec() == QDialog::Accepted) {
         this->close();
     }
+}
+QString MainWindow::getip(){
+    return ip;
+}
+QString MainWindow::getport(){
+    return port;
 }
 

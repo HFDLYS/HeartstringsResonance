@@ -38,6 +38,11 @@ signals:
 private:
     Ui::MainWindow *ui;
     QString msg;
+    QString ip;
+    QString port;
+public:
+    QString getip();
+    QString getport();
 };
 
 #endif  // MAINWINDOW_H
