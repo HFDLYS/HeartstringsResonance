@@ -117,13 +117,13 @@ void GameWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/gamewin
 void GameWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/gamewindow/3.png")); }
 
 void GameWindow::mousePressEvent(QMouseEvent *event) {
-    if (!has_started_) return;
     int x = event->position().x();
     int y = event->position().y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
     if (event->y() < TITLE_HEIGHT) {
         last = event->globalPosition().toPoint();
     }
+    if (!has_started_) return;
     // board->Clicked(x, y);
     if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {
         
