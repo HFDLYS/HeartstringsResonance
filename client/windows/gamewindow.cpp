@@ -33,10 +33,10 @@ const QPoint show_opengl_up_left(700, 70);
 const QPoint show_board_size(280, 280);
 const int border_size = 10;
 const int TITLE_HEIGHT = 30;
-const int SERVER_PORT=1479;
-const QUrl serverUrl("ws://47.116.175.206:1479");
-GameWindow::GameWindow(QWidget *parent)
+GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
     : BaseWindow(parent), ui(new Ui::GameWindow) {
+    QString urlstring = "ws://" + ip + ":" + port;
+    QUrl serverUrl(urlstring);
     ui->setupUi(this);
     server=new QWebSocket();
     server->open(serverUrl);

@@ -24,7 +24,7 @@ signals:
     void gameStart();
 
 public:
-    explicit GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(QString ip, QString port, QWidget *parent = nullptr);
     ~GameWindow();
 
 public slots:
