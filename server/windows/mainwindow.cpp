@@ -24,6 +24,7 @@ void MainWindow::newClientConnect(){
         waitingQueue.removeAll(client);
         ui->textEdit->append(QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort()));
         qDebug()<<QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort());
+        qDebug()<<"当前等待人数:"<<waitingQueue.size();
     });
     connect(client,&QWebSocket::binaryMessageReceived,this,[=](const QByteArray &message){
         QJsonDocument jsonIn=QJsonDocument::fromJson(message);
@@ -60,6 +61,7 @@ void MainWindow::newClientConnect(){
             client->sendBinaryMessage(jsonOut.toJson());
         }else if(cmd["command"].toString()=="multigame"){
             waitingQueue.push_back(client);
+            qDebug()<<"当前等待人数:"<<waitingQueue.size();
             if(waitingQueue.size()>=4){
                 auto client1=waitingQueue.front();
                 waitingQueue.pop_front();
