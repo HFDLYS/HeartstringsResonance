@@ -26,7 +26,7 @@ private slots:
 private:
     DataBase db;
     Ui::MainWindow *ui;
-    QWebSocketServer* webMultiServer;
+    QWebSocketServer* webServer;
     QWebSocketServer* webSoloServer;
     QVector<QWebSocket*> waitingQueue;
     QVector<Room*> rooms;

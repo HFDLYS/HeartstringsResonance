@@ -19,13 +19,10 @@ public:
     void delay(int x);
     void changeWindow(BaseWindow*);
 protected:
+    QPoint last;
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);
-
-private:
-    QPoint last;
-
 private:
     Ui::BaseWindow *ui;
 };

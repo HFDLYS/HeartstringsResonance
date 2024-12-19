@@ -18,7 +18,6 @@ const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
 const int MAX_TIME=20;
-const QUrl serverUrl("ws://localhost:1478");
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -59,8 +58,10 @@ void SingleWindow::mousePressEvent(QMouseEvent *event) {
     int x = event->position().x();
     int y = event->position().y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
-    if (event->position().y() < TITLE_HEIGHT) {
+    if (y < TITLE_HEIGHT) {
         last = event->globalPosition().toPoint();
+        qDebug()<<last;
+        qDebug()<<this->x()<<this->y();
     }
     // board->Clicked(x, y);
     if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {
@@ -76,9 +77,7 @@ void SingleWindow::mousePressEvent(QMouseEvent *event) {
     }
 }
 
-void SingleWindow::mouseMoveEvent(QMouseEvent *event) {
-
-}
+//void SingleWindow::mouseMoveEvent(QMouseEvent *event) {}
 
 void SingleWindow::mouseReleaseEvent(QMouseEvent *event) {
 

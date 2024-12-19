@@ -9,7 +9,8 @@ class WaitingWindow;
 class WaitingWindow : public QWidget
 {
     Q_OBJECT
-
+signals:
+    void closeGame();
 public:
     explicit WaitingWindow(QWidget *parent = nullptr);
     ~WaitingWindow();

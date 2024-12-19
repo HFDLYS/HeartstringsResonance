@@ -37,7 +37,6 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
 
 private:
-    QPoint last;
     int difficulty_ = 1;
 
 private slots:
