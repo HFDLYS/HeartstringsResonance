@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     qt6*\
     libassimp-dev\
     mysql-client libmysqlclient-dev\
+    libqt6sql6-mysql\
     && apt-get clean
 
 ENV QT_QPA_PLATFORM=offscreen
