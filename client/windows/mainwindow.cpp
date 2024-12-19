@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QInputDialog>
 #include <climits>
+#include "connectdialog.h"
+#include <QFormLayout>
 #include "ui_mainwindow.h"
 #include "aboutwindow.h"
 #include "configwindow.h"
@@ -15,6 +17,7 @@
 #include "gamewindow.h"
 #include "singlewindow.h"
 #include "../audio/audiomanager.h"
+
 
 MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -38,23 +41,25 @@ void MainWindow::on_rbtnSolo_clicked() {
     sw->startGame();
 }
 
-// 多人游戏开始
+
 void MainWindow::on_rbtnMultiplayer_clicked(){
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm3();
     QVBoxLayout *layout = new QVBoxLayout(this);
 
-    // 弹出对话框让用户输入两个字符串
-    bool ok1, ok2;
-    QString text1 = QInputDialog::getText(this, tr("输入ip地址"), tr("请输入ip地址:"), QLineEdit::Normal, "47.116.175.206", &ok1);
-    if (ok1 && !text1.isEmpty()) {
-        QString text2 = QInputDialog::getText(this, tr("输入端口号"), tr("请输入端口号:"), QLineEdit::Normal, "1479", &ok2);
-        if (ok2 && !text2.isEmpty()) {
-            ip = text1;
-            port = text2;
+    // 创建并显示自定义对话框
+    ConnectDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted) {
+        QString ip = dialog.getIp();
+        QString port = dialog.getPort();
+
+        // 简单的输入验证（可根据需要增强）
+        if (!ip.isEmpty() && !port.isEmpty()) {
             GameWindow *gw = new GameWindow(ip, port);
             changeWindow(gw);
+        } else {
+            QMessageBox::warning(this, tr("输入错误"), tr("IP 地址和端口号不能为空。"));
         }
     }
 }
