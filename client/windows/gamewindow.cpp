@@ -40,7 +40,19 @@ GameWindow::GameWindow(QWidget *parent)
     ui->setupUi(this);
     server=new QWebSocket();
     server->open(serverUrl);
+    connect(server,&QWebSocket::connected,this,[&]{
+        QJsonObject cmd,parameter;
+        cmd["command"]="multigame";
+        cmd["parameter"]=parameter;
+        QJsonDocument json(cmd);
+        qDebug()<<server->sendBinaryMessage(json.toJson());
+    });
     WaitingWindow *ww = new WaitingWindow(this);
+    connect(ww,&WaitingWindow::closeGame,this,[&]{
+        AudioManager::GetInstance()->StopBgm3();
+        server->close();
+        changeWindow(new MainWindow());
+    });
     ww->setGeometry(0,0,1280,720);
     ww->show();
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
@@ -107,7 +119,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
     int x = event->position().x();
     int y = event->position().y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
-    if (event->position().y() < TITLE_HEIGHT) {
+    if (event->y() < TITLE_HEIGHT) {
         last = event->globalPosition().toPoint();
     }
     // board->Clicked(x, y);
