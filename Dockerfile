@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     qt6-base-dev qt6-declarative-dev\
     qt6*\
     libassimp-dev\
+    libqt6websockets6-dev\
     mysql-client libmysqlclient-dev\
     libqt6sql6-mysql\
     && apt-get clean
