@@ -35,6 +35,8 @@ const int TITLE_HEIGHT = 30;
 void BaseWindow::mousePressEvent(QMouseEvent *e) {
     if (e->y() < TITLE_HEIGHT) {
         last = e->globalPosition().toPoint();
+        qDebug()<<last;
+        qDebug()<<this->x()<<this->y();
     }
 }
 
@@ -45,10 +47,14 @@ void BaseWindow::mousePressEvent(QMouseEvent *e) {
 
 void BaseWindow::mouseMoveEvent(QMouseEvent *event) {
     if (event->position().y() < TITLE_HEIGHT) {
+        qDebug()<<last;
         int dx = event->globalPosition().x() - last.x();
         int dy = event->globalPosition().y() - last.y();
         last = event->globalPosition().toPoint();
+        qDebug()<<last<<dx<<dy;
+        qDebug()<<this->x()<<this->y();
         this->move(this->x() + dx, this->y() + dy);
+        qDebug()<<this->x()<<this->y();
     }
 }
 /*

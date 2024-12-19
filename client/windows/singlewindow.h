@@ -31,12 +31,11 @@ public slots:
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *e) override;
+    //void mouseMoveEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
     void keyPressEvent(QKeyEvent *e) override;
 
 private:
-    QPoint last;
     QTimer*timer;
     int difficulty_ = 1;
     int seed=0;
