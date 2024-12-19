@@ -99,5 +99,9 @@
         <file>images/pausewindow/continue-.png</file>
         <file>images/pausewindow/quit.png</file>
         <file>images/pausewindow/quit-.png</file>
+        <file>images/singlewindow/skill2+.png</file>
+        <file>images/singlewindow/skill2+-.png</file>
+        <file>images/gamewindow/skill2+.png</file>
+        <file>images/gamewindow/skill2+-.png</file>
     </qresource>
 </RCC>
