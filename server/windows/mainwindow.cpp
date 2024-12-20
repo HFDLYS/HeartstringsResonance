@@ -35,6 +35,7 @@ void MainWindow::newClientConnect(){
             QJsonObject parameter=cmd["parameter"].toObject();
             db.update(parameter["userName"].toString(),parameter["pointSolo"].toInt(),parameter["pointMulti"].toInt());
         }else if(cmd["command"].toString()=="rank"){
+            /**/
             QJsonObject parameter=cmd["parameter"].toObject();
             auto soloRank=db.rankSolo(parameter["length"].toInt());
             QJsonArray soloArray;
@@ -44,6 +45,7 @@ void MainWindow::newClientConnect(){
                 player["point"]=soloPlayer.second;
                 soloArray.append(player);
             }
+            /**/
             auto multiRank=db.rankMulti(parameter["length"].toInt());
             QJsonArray multiArray;
             for(auto multiPlayer:multiRank){
@@ -53,6 +55,7 @@ void MainWindow::newClientConnect(){
                 multiArray.append(player);
             }
             QJsonObject parameterOut;
+            parameterOut["soloRank"]=soloArray;
             parameterOut["multiRank"]=multiArray;
             QJsonObject cmdOut;
             cmdOut["command"]="rank";

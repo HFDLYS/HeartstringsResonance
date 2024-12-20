@@ -5,7 +5,7 @@ ConnectDialog::ConnectDialog(QWidget *parent) : QDialog(parent) {
 
     QLabel *ipLabel = new QLabel(tr("IP 地址:"), this);
     ipLineEdit = new QLineEdit(this);
-    ipLineEdit->setText("47.116.175.206"); // 默认值
+    ipLineEdit->setText("bjtu.yuki-hana.cn"); // 默认值
 
     QLabel *portLabel = new QLabel(tr("端口号:"), this);
     portLineEdit = new QLineEdit(this);
