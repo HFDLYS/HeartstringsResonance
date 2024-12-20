@@ -48,7 +48,6 @@ void MainWindow::on_rbtnMultiplayer_clicked(){
     AudioManager::GetInstance()->PlayBgm3();
     QVBoxLayout *layout = new QVBoxLayout(this);
 
-    // 创建并显示自定义对话框
     ConnectDialog dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         QString ip = dialog.getIp();
