@@ -55,6 +55,11 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
     });
     ww->setGeometry(0,0,1280,720);
     ww->show();
+    connect(server,&QWebSocket::errorOccurred,this,[&](QAbstractSocket::SocketError error){
+        QMessageBox::warning(this,"连接错误","连接服务器失败");
+        AudioManager::GetInstance()->StopBgm3();
+        changeWindow(new MainWindow());
+    });
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);

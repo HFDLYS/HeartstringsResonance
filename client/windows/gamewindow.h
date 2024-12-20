@@ -26,6 +26,7 @@ signals:
 public:
     explicit GameWindow(QString ip, QString port, QWidget *parent = nullptr);
     ~GameWindow();
+    bool is_connected() { return server->isValid(); }
 
 public slots:
     void startGame();
