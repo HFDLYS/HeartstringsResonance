@@ -18,7 +18,7 @@ ConnectDialog::ConnectDialog(QWidget *parent) : QDialog(parent) {
     ipoption = new QComboBox(this);
     portoption = new QComboBox(this);
     ipoption->addItem("localhost");
-    ipoption->addItem("v6.yuki-hana.cn");
+    ipoption->addItem("nas.yuki-hana.cn");
     ipoption->addItem("bjtu.yuki-hana.cn");
     ipoption->addItem("47.116.175.206");
     portoption->addItem("1479");
