@@ -98,7 +98,10 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             if (skillId == 1) {
                 show_board_[playerId]->hint();
             } else if (skillId == 2) {
-                show_board_[playerId]->skyshiv(playerId);
+                main_board_->skyshiv(playerId);
+                for (int i = 1; i <= 4; i++) {
+                    show_board_[i]->skyshiv(playerId);
+                }
             } else if (skillId == 3) {
                 show_board_[playerId]->generate(0);
             }
