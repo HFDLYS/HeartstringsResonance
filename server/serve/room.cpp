@@ -56,6 +56,12 @@ void Room::run(){
                 cmd["parameter"]=parameter;
                 QJsonDocument jsonOut(cmd);
                 broadcast(jsonOut.toJson());
+            } else if (cmd["command"].toString()=="skill") {
+                QJsonObject parameter=cmd["parameter"].toObject();
+                parameter["playerId"]=i;
+                cmd["parameter"]=parameter;
+                QJsonDocument jsonOut(cmd);
+                broadcast(jsonOut.toJson());
             }
         });
     }

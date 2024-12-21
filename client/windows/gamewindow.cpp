@@ -72,6 +72,7 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             for (const QJsonValue &value : seeds) {
                 seedVector.push_back(value.toInt());
             }
+            player_id_ = playerId;
             main_board_ = new Board(seedVector[playerId-1]);
             main_board_->SetGemManager(main_renderer_->GetGemManager());
             main_board_->initBoard();
@@ -89,7 +90,19 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             int y = cmd["y"].toInt();
             int playerId = cmd["playerId"].toInt();
             show_board_[playerId]->clicked(x, y);
-        }else if(cmd["command"].toString()=="end"){
+        } else if (cmd["command"].toString()=="skill") {
+            //使用技能
+            cmd = cmd["parameter"].toObject();
+            int skillId = cmd["skillId"].toInt();
+            int playerId = cmd["playerId"].toInt();
+            if (skillId == 1) {
+                show_board_[playerId]->hint();
+            } else if (skillId == 2) {
+                show_board_[playerId]->skyshiv(playerId);
+            } else if (skillId == 3) {
+                show_board_[playerId]->generate(0);
+            }
+        } else if(cmd["command"].toString()=="end"){
             //结束游戏(这里是直接复制单人模式的)
             AudioManager::GetInstance()->StopBgm2();
             ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
@@ -158,17 +171,35 @@ void GameWindow::startGame() {
 
 void GameWindow::on_skill1_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
-
+    QJsonObject cmd,parameter;
+    cmd["command"]="skill";
+    parameter["skillId"]=1;
+    cmd["parameter"]=parameter;
+    QJsonDocument json(cmd);
+    server->sendBinaryMessage(json.toJson());
+    main_board_->hint();
 }
 
 void GameWindow::on_skill2_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
-
+    QJsonObject cmd,parameter;
+    cmd["command"]="skill";
+    parameter["skillId"]=2;
+    cmd["parameter"]=parameter;
+    QJsonDocument json(cmd);
+    server->sendBinaryMessage(json.toJson());
+    main_board_->skyshiv(player_id_);
 }
 
 void GameWindow::on_skill3_button_clicked() {
     AudioManager::GetInstance()->PlaySkill();
-
+    QJsonObject cmd,parameter;
+    cmd["command"]="skill";
+    parameter["skillId"]=3;
+    cmd["parameter"]=parameter;
+    QJsonDocument json(cmd);
+    server->sendBinaryMessage(json.toJson());
+    main_board_->generate(0);
 }
 
 void GameWindow::on_pause_button_clicked() {
