@@ -86,6 +86,36 @@ void MainWindow::newClientConnect(){
                 rooms.push_back(room);
                 room->start();
             }
+        }else if(cmd["command"].toString()=="register"){
+            QJsonObject parameter=cmd["parameter"].toObject();
+            QString username=parameter["username"].toString();
+            QString password=parameter["password"].toString();
+            auto rec=db.playerRegister(username,password);
+            bool isSuccess=rec.first;
+            QString info=rec.second;
+            QJsonObject parameterOut;
+            parameterOut["isSuccess"]=isSuccess;
+            parameterOut["info"]=info;
+            QJsonObject cmdOut;
+            cmdOut["command"]="register";
+            cmdOut["parameter"]=parameterOut;
+            QJsonDocument jsonOut(cmdOut);
+            client->sendBinaryMessage(jsonOut.toJson());
+        }else if(cmd["command"].toString()=="login"){
+            QJsonObject parameter=cmd["parameter"].toObject();
+            QString username=parameter["username"].toString();
+            QString password=parameter["password"].toString();
+            auto rec=db.playerLogIn(username,password);
+            bool isSuccess=rec.first;
+            QString info=rec.second;
+            QJsonObject parameterOut;
+            parameterOut["isSuccess"]=isSuccess;
+            parameterOut["info"]=info;
+            QJsonObject cmdOut;
+            cmdOut["command"]="register";
+            cmdOut["parameter"]=parameterOut;
+            QJsonDocument jsonOut(cmdOut);
+            client->sendBinaryMessage(jsonOut.toJson());
         }
     });
 
