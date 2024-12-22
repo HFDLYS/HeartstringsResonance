@@ -100,6 +100,9 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             int playerId = cmd["playerId"].toInt();
             if (skillId == 1) {
                 show_board_[playerId]->hint();
+                if (playerId == player_id_) {
+                    main_board_->hint();
+                }
             } else if (skillId == 2) {
                 for (int i = 1; i <= 4; i++) {
                     show_board_[i]->skyshiv(playerId);
@@ -107,6 +110,9 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
                 main_board_->skyshiv(playerId);
             } else if (skillId == 3) {
                 show_board_[playerId]->generate(0);
+                if (playerId == player_id_) {
+                    main_board_->generate(0);
+                }
             }
         } else if(cmd["command"].toString()=="end"){
             //结束游戏(这里是直接复制单人模式的)
