@@ -155,7 +155,7 @@ bool Board::check() {
 /* 鼠标点击坐标(x,y) */
 void Board::clicked(int x, int y) {
     if (stop_) return;
-    if (gem_manager_->isPlayingAnimation()) return;
+    // if (gem_manager_->isPlayingAnimation()) return;
 
     std::cout << "Board:Clicked" << x << " " << y << "\n";
     for (int j = 0; j < 8; ++j) {
@@ -344,6 +344,7 @@ bool Board::showHint(bool show) {
 }
 
 void Board::skyshiv(int type) {
+    cancelHint();
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
             if (gems_[i][j].GetType() == type) matches_.push_back({i, j});
