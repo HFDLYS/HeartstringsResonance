@@ -33,7 +33,7 @@ void MainWindow::newClientConnect(){
         QJsonObject cmd=jsonIn.object();
         if(cmd["command"].toString()=="updatePoint"){
             QJsonObject parameter=cmd["parameter"].toObject();
-            db.update(parameter["userName"].toString(),parameter["pointSolo"].toInt(),parameter["pointMulti"].toInt());
+            db.update(parameter["userName"].toString(),parameter["pointSolo"].toInt(),parameter["pointMulti"].toInt(),0,0,0);
         }else if(cmd["command"].toString()=="rank"){
             /**/
             QJsonObject parameter=cmd["parameter"].toObject();
