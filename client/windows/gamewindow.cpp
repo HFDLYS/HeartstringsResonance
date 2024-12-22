@@ -90,6 +90,9 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             int y = cmd["y"].toInt();
             int playerId = cmd["playerId"].toInt();
             show_board_[playerId]->clicked(x, y);
+            if (playerId == player_id_) {
+                main_board_->clicked(x, y);
+            }
         } else if (cmd["command"].toString()=="skill") {
             //使用技能
             cmd = cmd["parameter"].toObject();
@@ -98,7 +101,10 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             if (skillId == 1) {
                 show_board_[playerId]->hint();
             } else if (skillId == 2) {
-                show_board_[playerId]->skyshiv(playerId);
+                for (int i = 1; i <= 4; i++) {
+                    show_board_[i]->skyshiv(playerId);
+                }
+                main_board_->skyshiv(playerId);
             } else if (skillId == 3) {
                 show_board_[playerId]->generate(0);
             }
@@ -161,7 +167,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
         cmd["parameter"]=parameter;
         QJsonDocument json(cmd);
         server->sendBinaryMessage(json.toJson());
-        main_board_->clicked(nx, ny);
+        // main_board_->clicked(nx, ny);
     }
 }
 void GameWindow::startGame() {
@@ -177,7 +183,7 @@ void GameWindow::on_skill1_button_clicked() {
     cmd["parameter"]=parameter;
     QJsonDocument json(cmd);
     server->sendBinaryMessage(json.toJson());
-    main_board_->hint();
+    // main_board_->hint();
 }
 
 void GameWindow::on_skill2_button_clicked() {
@@ -188,7 +194,7 @@ void GameWindow::on_skill2_button_clicked() {
     cmd["parameter"]=parameter;
     QJsonDocument json(cmd);
     server->sendBinaryMessage(json.toJson());
-    main_board_->skyshiv(player_id_);
+    // main_board_->skyshiv(player_id_);
 }
 
 void GameWindow::on_skill3_button_clicked() {
@@ -199,7 +205,7 @@ void GameWindow::on_skill3_button_clicked() {
     cmd["parameter"]=parameter;
     QJsonDocument json(cmd);
     server->sendBinaryMessage(json.toJson());
-    main_board_->generate(0);
+    // main_board_->generate(0);
 }
 
 void GameWindow::on_pause_button_clicked() {
