@@ -22,7 +22,7 @@ bool DataBase::connect(){
     }
 }
 
-bool DataBase::insert(Player player){
+bool DataBase::insert(Player player,QString&info){
     if (!db.isOpen()) {
         if (!connect()) {
             return false;
@@ -30,7 +30,8 @@ bool DataBase::insert(Player player){
     }
 
     if (select(player.userName).size() > 0) {
-        qDebug() << "用户已存在";
+        info="用户已存在";
+        qDebug() << info;
         return false;
     }
 
@@ -40,7 +41,8 @@ bool DataBase::insert(Player player){
     query.prepare(sqlStr);
     query.bindValue(":name", player.userName);
     if (!query.exec()) {
-        qDebug() << "插入user表失败,原因:" << query.lastError().text();
+        info="插入user表失败,原因: " + query.lastError().text();
+        qDebug() << info;
         return false;
     }
     // query = QSqlQuery(db);
@@ -53,7 +55,8 @@ bool DataBase::insert(Player player){
     if(query.exec()){
         
     }else{
-        qDebug()<<"插入数据失败,原因:"<<query.lastError().text();
+        info="插入数据失败,原因:"+query.lastError().text();
+        qDebug()<<info;
         return false;
     }
     sqlStr = "insert into item(user_id, skill_1, skill_2, skill_3) values(:userId, :skill1, :skill2, :skill3);";
@@ -63,9 +66,11 @@ bool DataBase::insert(Player player){
     query.bindValue(":skill2", player.skill_2);
     query.bindValue(":skill3", player.skill_3);
     if(query.exec()){
+        info="成功插入数据";
         qDebug()<<"成功插入数据";
         return true;
     }else{
+        info="插入数据失败,原因:"+query.lastError().text();
         qDebug()<<"插入数据失败,原因:"<<query.lastError().text();
         return false;
     }
@@ -80,7 +85,8 @@ QVector<DataBase::Player> DataBase::select(QString username){
     QSqlQuery query(db);
     query.prepare(R"(
         SELECT 
-            user.user_name, 
+            user.user_name,
+            user.password,
             rank_list.point_solo, 
             rank_list.point_multi, 
             item.skill_1, 
@@ -100,16 +106,32 @@ QVector<DataBase::Player> DataBase::select(QString username){
     {
         qDebug()<<"查询成功,有"<<query.size()<<"条记录";
         while (query.next()) {
-            DataBase::Player player(query.record().value("user_name").toString(),query.record().value("point_solo").toInt(),query.record().value("point_multi").toInt(),query.record().value("skill_1").toInt(),query.record().value("skill_2").toInt(),query.record().value("skill_3").toInt());
+            DataBase::Player player(query.record().value("user_name").toString(),query.record().value("password").toString(),query.record().value("point_solo").toInt(),query.record().value("point_multi").toInt(),query.record().value("skill_1").toInt(),query.record().value("skill_2").toInt(),query.record().value("skill_3").toInt());
             rec.push_back(player);
         }
     } else {
-        qDebug() << "查询失败:" << query.lastError().text();
+        QString info="查询失败:" + query.lastError().text();
+        qDebug() << info;
     }
     return rec;
 }
 bool DataBase::update(Player player){
     return update(player.userName,player.pointSolo,player.pointMulti,player.skill_1,player.skill_2,player.skill_3);
+}
+
+QPair<bool,QString> DataBase::playerRegister(QString username,QString password){
+    QString info;
+    return qMakePair(insert(Player(username,password),info),info);
+}
+
+QPair<bool,QString> DataBase::playerLogIn(QString username,QString password){
+    auto rec=select(username);
+    if(rec.empty()){
+        return qMakePair(0,"用户不存在.");
+    }else if(rec[0].password!=password){
+        return qMakePair(0,"用户名或密码错误.");
+    }
+    return qMakePair(1,"登录成功");
 }
 
 bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill_1, int skill_2, int skill_3) {
@@ -121,8 +143,9 @@ bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill
 
     auto a = select(username);
     if (a.empty()) {
+        //游戏前必然登录
         // 如果用户不存在，执行插入操作
-        return insert(Player(username, pointSolo, pointMulti, skill_1, skill_2, skill_3)); // insert 为插入操作
+        return 0;//insert(Player(username, pointSolo, pointMulti, skill_1, skill_2, skill_3)); // insert 为插入操作
     } else {
         // 如果用户存在，执行更新操作
         Player player = a[0]; // 假设 a[0] 是已找到的用户

@@ -9,13 +9,14 @@ private:
     QSqlDatabase db;
     struct Player{//树的节点
         QString userName;
+        QString password;
         int pointSolo;
         int pointMulti;
         int skill_1;
         int skill_2;
         int skill_3;
-        Player(QString userName_,int pointSolo_,int pointMulti_,int skill_1_,int skill_2_,int skill_3_):
-            userName(userName_),pointSolo(pointSolo_),pointMulti(pointMulti_),skill_1(skill_1_),skill_2(skill_2_),skill_3(skill_3_){}
+        Player(QString userName_,QString password_,int pointSolo_=0,int pointMulti_=0,int skill_1_=0,int skill_2_=0,int skill_3_=0):
+            userName(userName_),password(password_),pointSolo(pointSolo_),pointMulti(pointMulti_),skill_1(skill_1_),skill_2(skill_2_),skill_3(skill_3_){}
         void setSolo(int a){
             pointSolo=pointSolo<a?a:pointSolo;
         }
@@ -33,11 +34,13 @@ private:
         }
     };
     bool connect();
-    bool insert(Player);
+    bool insert(Player,QString&);
     QVector<Player> select(QString);
     bool update(Player);
 public:
     DataBase();
+    QPair<bool,QString> playerRegister(QString,QString);
+    QPair<bool,QString> playerLogIn(QString,QString);
     bool update(QString username, int pointSolo,int pointMulti, int skill_1, int skill_2, int skill_3);
     QVector<QPair<QString,int> > rankSolo(int);
     QVector<QPair<QString,int> > rankMulti(int);
