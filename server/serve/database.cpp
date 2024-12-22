@@ -28,6 +28,13 @@ bool DataBase::insert(Player player){
             return false;
         }
     }
+
+    if (select(player.userName).size() > 0) {
+        qDebug() << "用户已存在";
+        return false;
+    }
+
+
     QSqlQuery query(db);
     QString sqlStr = "insert into user(user_name) values(:name);";
     query.prepare(sqlStr);
