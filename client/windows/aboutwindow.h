@@ -18,6 +18,8 @@ public:
 private slots:
     void on_btnReturn_clicked();
 
+    void on_btnMember_clicked();
+
 private:
     Ui::AboutWindow *ui;
 };
