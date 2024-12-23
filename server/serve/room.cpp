@@ -55,6 +55,7 @@ int Room::getStance(int ind){
             ret = i;
         }
     }
+    return ret;
 }
 
 void Room::run(){
