@@ -22,6 +22,10 @@ Room::Room(int id_,QWebSocket*w,QWebSocket*a,QWebSocket*s,QWebSocket*d,QObject *
     board[2]->SetGemManager(gem_manager);
     board[3]->SetGemManager(gem_manager);
     board[4]->SetGemManager(gem_manager);
+    stance[1][1]=200;
+    stance[2][2]=200;
+    stance[3][3]=200;
+    stance[4][4]=200;
 }
 int Room::getId(){
     return id;
@@ -36,6 +40,17 @@ void Room::broadcast(const QByteArray &info){
 void Room::broadcast(const QByteArray &info,QWebSocket*player){
     qDebug()<<info;
     emit sendMessage(info,player);
+}
+
+int Room::getStance(int ind){
+    int ret = 0;
+    int ans = 0;
+    for (int i = 1; i <= 4; i++) {
+        if (stance[ind][i] > ans) {
+            ans = stance[ind][i];
+            ret = i;
+        }
+    }
 }
 
 void Room::run(){
@@ -59,6 +74,12 @@ void Room::run(){
         connect(player[i],&QWebSocket::binaryMessageReceived,this,[=](const QByteArray &message){
             QJsonDocument jsonIn=QJsonDocument::fromJson(message);
             QJsonObject cmd=jsonIn.object();
+            int pre_score[5][5];
+            for (int i = 1; i <= 4; i++) {
+                for (int j = 1; j <= 4; j++) {
+                    pre_score[i][j] = board[i]->getScore(j);
+                }
+            }
             if(cmd["command"].toString()=="click"){
                 QJsonObject parameter=cmd["parameter"].toObject();
                 parameter["playerId"]=i;
@@ -87,6 +108,40 @@ void Room::run(){
                     board[playerId]->generate(0);
                 }
             }
+            int det_stance[5][5];
+            for (int i = 1; i <= 4; i++) {
+                for (int j = 1; j <= 4; j++) {
+                    det_stance[i][j] = 0;
+                }
+            }
+            for (int i = 1; i <= 4; i++) {
+                int tmp = getStance(i);
+                for (int j = 1; j <= 4; j++) {
+                    if (pre_score[i][j] != board[i]->getScore(j)) {
+                        det_stance[j][tmp] += board[i]->getScore(j) - pre_score[i][j];
+                    }
+                }
+            }
+            for (int i = 1; i <= 4; i++) {
+                for (int j = 1; j <= 4; j++) {
+                    stance[i][j] += det_stance[i][j];
+                }
+            }
+            cmd = QJsonObject();
+            cmd["command"] = "status";
+            QJsonObject parameter;
+            QJsonArray stances;
+            for (int i = 1; i <= 4; i++) {
+                QJsonArray stance;
+                for (int j = 1; j <= 4; j++) {
+                    stance.append(this->stance[i][j]);
+                }
+                stances.append(stance);
+            }
+            parameter["stances"] = stances;
+            cmd["parameter"] = parameter;
+            QJsonDocument jsonOut(cmd);
+            broadcast(jsonOut.toJson());
         });
     }
 }
