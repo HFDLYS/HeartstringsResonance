@@ -137,6 +137,14 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
                 changeWindow(new MainWindow());
             });
         }
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= 4; j++) {
+                show_chart_[i]->setValues(j, main_board_->getScore(j));
+                if (i == player_id_) {
+                    main_chart_->setValues(j, main_board_->getScore(j));
+                }
+            }
+        }
     });
     main_chart_ = new SquarePieChart(ui->controlWidget);
     main_chart_->setGeometry(opengl_up_left.x()-3, opengl_up_left.y()-3, board_size.x()+6, board_size.y()+6);
