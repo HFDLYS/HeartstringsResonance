@@ -30,8 +30,10 @@ private:
     QString username[5];
     Board *board[5];
     ServerGemManager *gem_manager;
+    int stance[5][5];
     void broadcast(const QByteArray &info);
     void broadcast(const QByteArray &info,QWebSocket*);
+    int getStance(int ind);
 };
 
 #endif // ROOM_H

@@ -13,10 +13,10 @@ class SquarePieChart : public QWidget {
 public:
     SquarePieChart(QWidget* parent = nullptr) : QWidget(parent) {
         values[0] = 0;
-        values[1] = 1;
-        values[2] = 1;
-        values[3] = 1;
-        values[4] = 1;
+        values[1] = 0;
+        values[2] = 0;
+        values[3] = 0;
+        values[4] = 0;
     }
 
     void setValues(int index, int value);

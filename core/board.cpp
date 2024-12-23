@@ -226,6 +226,8 @@ int Board::getScore3() { return point_[3]; }
 int Board::getScore4() { return point_[4]; }
 int Board::getScore5() { return point_[5]; }
 
+int Board::setScore(int ind, int score) { return point_[ind] = score; }
+
 void Board::pause() {
     if (stop_ == 1) {
         // hypercube->stop(0)

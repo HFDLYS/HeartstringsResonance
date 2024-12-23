@@ -81,10 +81,12 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             main_board_ = new Board(seedVector[playerId-1]);
             main_board_->SetGemManager(main_renderer_->GetGemManager());
             main_board_->initBoard();
+            main_chart_->setValues(playerId, 200);
             for (int i = 1; i <= 4; i++) {
                 show_board_[i] = new Board(seedVector[i-1]);
                 show_board_[i]->SetGemManager(show_renderer_[i]->GetGemManager());
                 show_board_[i]->initBoard();
+                show_chart_[i]->setValues(i, 200);
             }
             has_started_ = true;
             emit gameStart();
@@ -121,13 +123,13 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             }
         } else if (cmd["command"].toString()=="status") {
             cmd = cmd["parameter"].toObject();
-            QJsonArray scores = cmd["scores"].toArray();
+            QJsonArray stances = cmd["stances"].toArray();
             for (int i = 0; i <= 3; i++) {
-                QJsonArray score = scores[i].toArray();
-                for (int j = 0; j < 4; j++) {
-                    show_chart_[i+1]->setValues(j+1, score[j].toInt());
+                QJsonArray stance = stances[i].toArray();
+                for (int j = 0; j <= 3; j++) {
+                    show_chart_[i+1]->setValues(j+1, stance[j].toInt());
                     if (i+1 == player_id_) {
-                        main_chart_->setValues(j+1, score[j].toInt());
+                        main_chart_->setValues(j+1, stance[j].toInt());
                     }
                 }
             }
@@ -142,28 +144,19 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
                 changeWindow(new MainWindow());
             });
         }
-        for (int i = 1; i <= 4; i++) {
-            for (int j = 1; j <= 4; j++) {
-                show_chart_[i]->setValues(j, main_board_->getScore(j));
-                if (i == player_id_) {
-                    main_chart_->setValues(j, main_board_->getScore(j));
-                }
-            }
-        }
     });
     main_chart_ = new SquarePieChart(ui->controlWidget);
     main_chart_->setGeometry(opengl_up_left.x()-3, opengl_up_left.y()-3, board_size.x()+6, board_size.y()+6);
     main_renderer_ = new Graphics::RenderManager(ui->controlWidget);
     main_renderer_->setFixedSize(board_size.x(), board_size.y());
     main_renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), main_renderer_->width(), main_renderer_->height());
-    
     for (int i = 1; i <= 4; i++) {
-        show_chart_[i] = new SquarePieChart(ui->controlWidget);
-        show_chart_[i]->setGeometry(show_opengl_up_left.x()-3, show_opengl_up_left.y()-3 + (i-1) * (show_board_size.y() + border_size), show_board_size.x()+6, show_board_size.y()+6);
-        show_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
-        show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
         int ix = (i-1) % 2;
         int iy = (i-1) / 2;
+        show_chart_[i] = new SquarePieChart(ui->controlWidget);
+        show_chart_[i]->setGeometry(show_opengl_up_left.x()-3 + ix * (show_board_size.x() + border_size), show_opengl_up_left.y()-3 + iy * (show_board_size.y() + border_size), show_board_size.x()+6, show_board_size.y()+6);
+        show_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
+        show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
         show_renderer_[i]->setGeometry(show_opengl_up_left.x() + ix * (show_board_size.x() + border_size), show_opengl_up_left.y() + iy * (show_board_size.y() + border_size), show_renderer_[i]->width(), show_renderer_[i]->height());
     }
 }
