@@ -26,10 +26,16 @@ Room::Room(int id_,QPair<QWebSocket*,QString>w,QPair<QWebSocket*,QString>a,QPair
     board[2]->SetGemManager(gem_manager);
     board[3]->SetGemManager(gem_manager);
     board[4]->SetGemManager(gem_manager);
-    stance[1][1]=200;
-    stance[2][2]=200;
-    stance[3][3]=200;
-    stance[4][4]=200;
+    for (int i = 1; i <= 4; i++) {
+        board[i]->initBoard();
+        for (int j = 1; j <= 4; j++) {
+            stance[i][j] = 0;
+        }
+    }
+    stance[1][1]=100;
+    stance[2][2]=100;
+    stance[3][3]=100;
+    stance[4][4]=100;
 }
 int Room::getId(){
     return id;
