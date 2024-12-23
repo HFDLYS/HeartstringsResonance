@@ -8,7 +8,7 @@
 #include <QLabel>
 #include <QInputDialog>
 #include <climits>
-#include "connectdialog.h"
+#include "../component/connectdialog.h"
 #include <QFormLayout>
 #include "ui_mainwindow.h"
 #include "aboutwindow.h"

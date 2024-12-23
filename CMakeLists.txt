@@ -84,10 +84,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/audio/audiomanager.h client/audio/audiomanager.cpp
         client/windows/resultwindow.h client/windows/resultwindow.cpp client/windows/resultwindow.ui
         client/windows/waitingwindow.h client/windows/waitingwindow.cpp client/windows/waitingwindow.ui
-        client/windows/connectdialog.h client/windows/connectdialog.cpp
         client/windows/memberwindow.h client/windows/memberwindow.cpp client/windows/memberwindow.ui
 
-
+        
+        client/component/connectdialog.h client/component/connectdialog.cpp
 
 
 
