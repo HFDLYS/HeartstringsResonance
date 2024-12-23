@@ -51,6 +51,11 @@ set(CORE_SOURCES
     core/gemmanager.h
 )
 
+set(COMPONENT_SOURCES
+    client/component/connectdialog.cpp client/component/connectdialog.h
+    client/component/squarechart.cpp client/component/squarechart.h
+)
+
 set(SERVER_SOURCES
     server/main.cpp
     server/windows/mainwindow.cpp server/windows/mainwindow.h server/windows/mainwindow.ui
@@ -69,6 +74,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         ${GRAPHICS_SOURCES}
         ${CORE_SOURCES}
+        ${COMPONENT_SOURCES}
         client/windows/basewindow.cpp client/windows/basewindow.h client/windows/basewindow.ui
         client/windows/mainwindow.cpp client/windows/mainwindow.h client/windows/mainwindow.ui
         client/main.cpp
@@ -85,11 +91,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/resultwindow.h client/windows/resultwindow.cpp client/windows/resultwindow.ui
         client/windows/waitingwindow.h client/windows/waitingwindow.cpp client/windows/waitingwindow.ui
         client/windows/memberwindow.h client/windows/memberwindow.cpp client/windows/memberwindow.ui
-
-        
-        client/component/connectdialog.h client/component/connectdialog.cpp
-
-
 
     )
 # Define target properties for Android with Qt 6 as:
