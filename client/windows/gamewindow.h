@@ -56,6 +56,7 @@ private:
     QTimer *timer_flush_score_and_left_time_bar_;
     int left_time_cnt_;
     int player_id_;
+    QVector<QString> usernames;
     // Board *board;
     Graphics::RenderManager *main_renderer_;
     Board *main_board_;
@@ -63,7 +64,6 @@ private:
     Graphics::RenderManager *show_renderer_[5];
     Board *show_board_[5];
     SquarePieChart *show_chart_[5];
-
     QWebSocket *server;
 
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口

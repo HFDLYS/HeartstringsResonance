@@ -3,12 +3,16 @@
  * 未完成:
  * 1.倒计时结束游戏.
 */
-Room::Room(int id_,QWebSocket*w,QWebSocket*a,QWebSocket*s,QWebSocket*d,QObject *parent):QThread(parent){
+Room::Room(int id_,QPair<QWebSocket*,QString>w,QPair<QWebSocket*,QString>a,QPair<QWebSocket*,QString>s,QPair<QWebSocket*,QString>d,QObject *parent):QThread(parent){
     id=id_;
-    player[1]=w;
-    player[2]=a;
-    player[3]=s;
-    player[4]=d;
+    player[1]=w.first;
+    player[2]=a.first;
+    player[3]=s.first;
+    player[4]=d.first;
+    username[1]=w.second;
+    username[2]=a.second;
+    username[3]=s.second;
+    username[4]=d.second;
     gem_manager = new ServerGemManager();
     seed[1]=QRandomGenerator::global()->generate();
     seed[2]=QRandomGenerator::global()->generate();
@@ -48,7 +52,14 @@ void Room::run(){
     seedsArray.append(seed[3]);
     seedsArray.append(seed[4]);
     parameter["seeds"] = seedsArray;
-    
+
+    QJsonArray namesArray;
+    namesArray.append(username[1]);
+    namesArray.append(username[2]);
+    namesArray.append(username[3]);
+    namesArray.append(username[4]);
+    parameter["usernames"] = namesArray;
+
     for (int i = 1; i <= 4; i++) {
         parameter["playerId"]=i;
         cmd["parameter"]=parameter;

@@ -20,6 +20,7 @@ public:
     void changeWindow(BaseWindow*);
 protected:
     QPoint last;
+    QString username;
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);

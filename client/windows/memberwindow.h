@@ -8,7 +8,7 @@ namespace Ui {
 class MemberWindow;
 }
 
-class MemberWindow : public QWidget
+class MemberWindow : public BaseWindow
 {
     Q_OBJECT
 

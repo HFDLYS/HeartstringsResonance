@@ -43,6 +43,7 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
     connect(server,&QWebSocket::connected,this,[&]{
         QJsonObject cmd,parameter;
         cmd["command"]="multigame";
+        parameter["username"]=username;
         cmd["parameter"]=parameter;
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
@@ -68,6 +69,10 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             cmd = cmd["parameter"].toObject();
             int playerId = cmd["playerId"].toInt();
             QJsonArray seeds = cmd["seeds"].toArray();
+            QJsonArray usernames = cmd["usernames"].toArray();
+            for(auto name:usernames){
+                this->usernames.push_back(name.toString());
+            }
             std::vector<int> seedVector;
             for (const QJsonValue &value : seeds) {
                 seedVector.push_back(value.toInt());

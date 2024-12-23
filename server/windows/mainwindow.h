@@ -28,7 +28,7 @@ private:
     Ui::MainWindow *ui;
     QWebSocketServer* webServer;
     QWebSocketServer* webSoloServer;
-    QVector<QWebSocket*> waitingQueue;
+    QVector<QPair<QWebSocket*,QString> > waitingQueue;
     QVector<Room*> rooms;
 };
 

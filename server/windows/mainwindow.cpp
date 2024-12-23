@@ -21,7 +21,12 @@ void MainWindow::newClientConnect(){
     ui->textEdit->append(QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort()));
     qDebug()<<QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort());
     connect(client,&QWebSocket::disconnected,this,[=]{
-        waitingQueue.removeAll(client);
+        for(auto client1:waitingQueue){
+            if(client1.first==client){
+                waitingQueue.removeAll(client1);
+                break;
+            }
+        }
         ui->textEdit->append(QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort()));
         qDebug()<<QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort());
         qDebug()<<"当前等待人数:"<<waitingQueue.size();
@@ -63,7 +68,9 @@ void MainWindow::newClientConnect(){
             QJsonDocument jsonOut(cmdOut);
             client->sendBinaryMessage(jsonOut.toJson());
         }else if(cmd["command"].toString()=="multigame"){
-            waitingQueue.push_back(client);
+            QJsonObject parameter=cmd["parameter"].toObject();
+            QString username=parameter["username"].toString();
+            waitingQueue.push_back(qMakePair(client,username));
             qDebug()<<"当前等待人数:"<<waitingQueue.size();
             if(waitingQueue.size()>=4){
                 auto client1=waitingQueue.front();
