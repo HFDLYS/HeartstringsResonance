@@ -50,6 +50,8 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
                 qDebug() << id << ' ' << score << '\n';
             }
         }
+        ui->id_1->raise();
+
         ui->id_1->setText(id_solo[1]); ui->score_1->setText(QString::number(score_solo[1]));
         ui->id_2->setText(id_solo[2]); ui->score_2->setText(QString::number(score_solo[2]));
         ui->id_3->setText(id_solo[3]); ui->score_3->setText(QString::number(score_solo[3]));
@@ -60,6 +62,16 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
         ui->id_8->setText(id_solo[8]); ui->score_8->setText(QString::number(score_solo[8]));
         ui->id_9->setText(id_solo[9]); ui->score_9->setText(QString::number(score_solo[9]));
         ui->id_10->setText(id_solo[10]); ui->score_10->setText(QString::number(score_solo[10]));
+        ui->id_1->raise(); ui->score_1->raise();
+        ui->id_2->raise(); ui->score_2->raise();
+        ui->id_3->raise(); ui->score_3->raise();
+        ui->id_4->raise(); ui->score_4->raise();
+        ui->id_5->raise(); ui->score_5->raise();
+        ui->id_6->raise(); ui->score_6->raise();
+        ui->id_7->raise(); ui->score_7->raise();
+        ui->id_8->raise(); ui->score_8->raise();
+        ui->id_9->raise(); ui->score_9->raise();
+        ui->id_10->raise(); ui->score_10->raise();
     });
 
 }

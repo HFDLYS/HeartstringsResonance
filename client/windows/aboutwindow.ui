@@ -57,27 +57,14 @@ QPushButton::pressed#btnReturn
    <widget class="QPushButton" name="btnMember">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>280</y>
+      <x>960</x>
+      <y>500</y>
       <width>160</width>
       <height>65</height>
      </rect>
     </property>
     <property name="text">
      <string>制作人列表</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnInstruct">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>280</y>
-      <width>160</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>游戏玩法说明</string>
     </property>
    </widget>
   </widget>

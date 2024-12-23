@@ -93,5 +93,6 @@
         <file>images/gamewindow/skill2+-.png</file>
         <file>images/memberwindow/member_background.png</file>
         <file>images/memberwindow/member.png</file>
+        <file>images/rankwindow/rank.png</file>
     </qresource>
 </RCC>
