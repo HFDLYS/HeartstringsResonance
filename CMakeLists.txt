@@ -61,11 +61,13 @@ set(SERVER_SOURCES
     server/windows/mainwindow.cpp server/windows/mainwindow.h server/windows/mainwindow.ui
     server/serve/room.cpp server/serve/room.h
     server/serve/database.h server/serve/database.cpp
+    server/serve/servergemmanager.h
 )
 
 add_executable(
     HeartstringsResonanceServer
     ${SERVER_SOURCES}
+    ${CORE_SOURCES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

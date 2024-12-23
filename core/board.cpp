@@ -219,7 +219,7 @@ void Board::clicked(int x, int y) {
                                              GemManager::kRotateFastInverse);
 }
 
-int Board::getScore() { return point_[0]; }
+int Board::getScore(int ind) { return point_[ind]; }
 int Board::getScore1() { return point_[1]; }
 int Board::getScore2() { return point_[2]; }
 int Board::getScore3() { return point_[3]; }

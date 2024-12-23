@@ -1,5 +1,7 @@
 #ifndef ROOM_H
 #define ROOM_H
+#include "../../core/board.h"
+#include "servergemmanager.h"
 #include <QQueue>
 #include <QVector>
 #include <QMainWindow>
@@ -25,6 +27,8 @@ private:
     int id;
     int seed[5];
     QWebSocket*player[5];
+    Board *board[5];
+    ServerGemManager *gem_manager;
     void broadcast(const QByteArray &info);
     void broadcast(const QByteArray &info,QWebSocket*);
 };

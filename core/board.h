@@ -46,7 +46,7 @@ class Board {
 
     std::pair<int, int> getChosen();  // 获取点击的宝石位置
 
-    int getScore();                   // 获取分数
+    int getScore(int ind = 0);                   // 获取分数
     int getScore1();
     int getScore2();
     int getScore3();

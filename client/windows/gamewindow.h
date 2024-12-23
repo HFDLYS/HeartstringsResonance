@@ -11,6 +11,7 @@
 // #include "recordrankwindow.h"
 #include "basewindow.h"
 #include "../../core/board.h"
+#include "../component/squarechart.h"
 // 游戏窗口类
 
 namespace Ui {
@@ -58,8 +59,10 @@ private:
     // Board *board;
     Graphics::RenderManager *main_renderer_;
     Board *main_board_;
+    SquarePieChart *main_chart_;
     Graphics::RenderManager *show_renderer_[5];
     Board *show_board_[5];
+    SquarePieChart *show_chart_[5];
 
     QWebSocket *server;
 

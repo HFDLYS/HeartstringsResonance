@@ -9,10 +9,19 @@ Room::Room(int id_,QWebSocket*w,QWebSocket*a,QWebSocket*s,QWebSocket*d,QObject *
     player[2]=a;
     player[3]=s;
     player[4]=d;
+    gem_manager = new ServerGemManager();
     seed[1]=QRandomGenerator::global()->generate();
     seed[2]=QRandomGenerator::global()->generate();
     seed[3]=QRandomGenerator::global()->generate();
     seed[4]=QRandomGenerator::global()->generate();
+    board[1]=new Board(seed[1]);
+    board[2]=new Board(seed[2]);
+    board[3]=new Board(seed[3]);
+    board[4]=new Board(seed[4]);
+    board[1]->SetGemManager(gem_manager);
+    board[2]->SetGemManager(gem_manager);
+    board[3]->SetGemManager(gem_manager);
+    board[4]->SetGemManager(gem_manager);
 }
 int Room::getId(){
     return id;
@@ -56,12 +65,27 @@ void Room::run(){
                 cmd["parameter"]=parameter;
                 QJsonDocument jsonOut(cmd);
                 broadcast(jsonOut.toJson());
+                int x=parameter["x"].toInt();
+                int y=parameter["y"].toInt();
+                int playerId=parameter["playerId"].toInt();
+                board[playerId]->clicked(x,y);
             } else if (cmd["command"].toString()=="skill") {
                 QJsonObject parameter=cmd["parameter"].toObject();
                 parameter["playerId"]=i;
                 cmd["parameter"]=parameter;
                 QJsonDocument jsonOut(cmd);
                 broadcast(jsonOut.toJson());
+                int skillId = parameter["skillId"].toInt();
+                int playerId = parameter["playerId"].toInt();
+                if (skillId == 1) {
+                    board[playerId]->hint();
+                } else if (skillId == 2) {
+                    for (int i = 1; i <= 4; i++) {
+                        board[i]->skyshiv(playerId);
+                    }
+                } else if (skillId == 3) {
+                    board[playerId]->generate(0);
+                }
             }
         });
     }

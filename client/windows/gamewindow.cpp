@@ -114,6 +114,18 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
                     main_board_->generate(0);
                 }
             }
+        } else if (cmd["command"].toString()=="status") {
+            cmd = cmd["parameter"].toObject();
+            QJsonArray scores = cmd["scores"].toArray();
+            for (int i = 0; i <= 3; i++) {
+                QJsonArray score = scores[i].toArray();
+                for (int j = 0; j < 4; j++) {
+                    show_chart_[i+1]->setValues(j+1, score[j].toInt());
+                    if (i+1 == player_id_) {
+                        main_chart_->setValues(j+1, score[j].toInt());
+                    }
+                }
+            }
         } else if(cmd["command"].toString()=="end"){
             //结束游戏(这里是直接复制单人模式的)
             AudioManager::GetInstance()->StopBgm2();
@@ -126,11 +138,15 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             });
         }
     });
+    main_chart_ = new SquarePieChart(ui->controlWidget);
+    main_chart_->setGeometry(opengl_up_left.x()-3, opengl_up_left.y()-3, board_size.x()+6, board_size.y()+6);
     main_renderer_ = new Graphics::RenderManager(ui->controlWidget);
     main_renderer_->setFixedSize(board_size.x(), board_size.y());
     main_renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), main_renderer_->width(), main_renderer_->height());
     
     for (int i = 1; i <= 4; i++) {
+        show_chart_[i] = new SquarePieChart(ui->controlWidget);
+        show_chart_[i]->setGeometry(show_opengl_up_left.x()-3, show_opengl_up_left.y()-3 + (i-1) * (show_board_size.y() + border_size), show_board_size.x()+6, show_board_size.y()+6);
         show_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
         show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
         int ix = (i-1) % 2;
