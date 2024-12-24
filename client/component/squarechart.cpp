@@ -11,7 +11,7 @@ void SquarePieChart::paintEvent(QPaintEvent* event) {
 
     QRectF squareRect(0, 0, width(), height());
     painter.setClipRect(squareRect);
-    QVector<QColor> colors = {Qt::red, Qt::blue, Qt::yellow, Qt::cyan};
+    QVector<QColor> colors = {Qt::cyan, Qt::red, Qt::green, Qt::yellow};
     double side = 16 * qMax(width(), height());
     QRectF bigCircleRect(
         (width() - side) / 2.0,   // 居中一下
