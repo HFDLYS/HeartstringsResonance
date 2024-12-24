@@ -11,8 +11,8 @@
 #include "mainwindow.h"
 #include "../audio/audiomanager.h"
 
-const QPoint show_opengl_up_left(500, 280);
-const QPoint show_board_size(40, 40);
+const QPoint show_board_size(60, 60);
+const QVector<QPoint> show_opengl_up_left = {QPoint(450, 280), QPoint(450, 420), QPoint(770, 280), QPoint(770, 420)};
 //const QUrl serverUrl("ws://localhost:1479");
 ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int score3, int score4, int score5, QWidget *parent)
     : BaseWindow(parent)
@@ -29,10 +29,10 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
     ui->cnt3->setText(QString::number(score3));
     ui->cnt4->setText(QString::number(score4));
     ui->cnt5->setText(QString::number(score5));
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         gem_render_[i] = new Graphics::RenderManager(ui->resultpic);
         gem_render_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
-        gem_render_[i]->setGeometry(show_opengl_up_left.x() , show_opengl_up_left.y() + i * (show_board_size.y()+10), gem_render_[i]->width(), gem_render_[i]->height());
+        gem_render_[i]->setGeometry(show_opengl_up_left[i].x() , show_opengl_up_left[i].y(), gem_render_[i]->width(), gem_render_[i]->height());
     }
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
@@ -40,7 +40,7 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
 }
 
 void ResultWindow::showGem() {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         gem_render_[i]->ShowGem(i + 1);
     }
 }
@@ -74,6 +74,11 @@ void ResultWindow::on_btnUpdate_clicked()
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
         connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+            QJsonDocument jsonIn = QJsonDocument::fromJson(message);
+            QJsonObject cmd = jsonIn.object();
+            // qDebug() << cmd;
+            QJsonObject parameter;
+            parameter = cmd["parameter"].toObject();
             setPlayer(Player(parameter["player"].toObject()));
             QMessageBox::information(this, "上传成功", player.username+"的成绩已上传");
             emit exitwindow();

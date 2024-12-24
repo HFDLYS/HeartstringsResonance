@@ -19,7 +19,6 @@ class SingleWindow : public BaseWindow {
     Q_OBJECT
 
 public:
-    explicit SingleWindow(QWidget *parent = nullptr);
     explicit SingleWindow(int,QWidget *parent = nullptr);
     ~SingleWindow();
 
@@ -37,7 +36,7 @@ protected:
 
 private:
     QTimer*timer;
-    int difficulty_ = 1;
+    int max_gem_type = 5;
     int seed=0;
     int skill1_cnt = 0;
     int skill2_cnt = 0;

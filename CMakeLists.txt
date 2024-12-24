@@ -79,6 +79,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${GRAPHICS_SOURCES}
         ${CORE_SOURCES}
         ${COMPONENT_SOURCES}
+        client/utils/picosha2.h
         client/windows/basewindow.cpp client/windows/basewindow.h client/windows/basewindow.ui
         client/windows/mainwindow.cpp client/windows/mainwindow.h client/windows/mainwindow.ui
         client/main.cpp

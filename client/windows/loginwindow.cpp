@@ -59,7 +59,9 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
     mainLayout->addLayout(selectLayout);
     mainLayout->addLayout(usernameLayout);
     mainLayout->addLayout(passwordLayout);
+    loginButton->setFixedHeight(40);
     mainLayout->addWidget(loginButton);
+    registerButton->setFixedHeight(40);
     mainLayout->addWidget(registerButton);
 
     ui->loginLayout->addLayout(mainLayout);
@@ -75,7 +77,7 @@ QString LoginWindow::getUsername() const
 
 QString LoginWindow::getPassword() const
 {
-    return passwordEdit->text();
+    return QString::fromStdString(picosha2::hash256_hex_string(passwordEdit->text().toStdString()));
 }
 
 void LoginWindow::onLoginClicked()

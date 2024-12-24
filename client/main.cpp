@@ -5,7 +5,6 @@
 
 #include "./windows/mainwindow.h"
 #include "./windows/loginwindow.h"
-#include "./component/logindialog.h"
 int main(int argc, char *argv[]) {
     srand(time(0));
     QSurfaceFormat format;
@@ -19,14 +18,4 @@ int main(int argc, char *argv[]) {
     w.show();
     
     return a.exec();
-    LoginDialog loginDialog;
-    if (loginDialog.exec() == QDialog::Accepted) {
-        // 登录成功，显示主窗口
-        MainWindow m;
-        m.show();
-        return a.exec();
-    } else {
-        // 登录失败或取消，退出程序
-        return 0;
-    }
 }

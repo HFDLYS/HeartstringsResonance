@@ -61,6 +61,7 @@
         <file>images/singlewindow/pause-.png</file>
         <file>images/singlewindow/shadow.png</file>
         <file>images/singlewindow/shadow_origin.png</file>
+        <file>images/singlewindow/skill-.png</file>
         <file>images/singlewindow/skill1.png</file>
         <file>images/singlewindow/skill1-.png</file>
         <file>images/singlewindow/skill2.png</file>
@@ -82,7 +83,12 @@
         <file>sounds/open.wav</file>
         <file>sounds/skill.wav</file>
         <file>images/mainwindow/title.png</file>
+        <file>images/resultwindow/blank.png</file>
         <file>images/resultwindow/result_background.png</file>
+        <file>images/resultwindow/update-.png</file>
+        <file>images/resultwindow/update.png</file>
+        <file>images/resultwindow/back.png</file>
+        <file>images/resultwindow/back-.png</file>
         <file>sounds/bgm_battle.wav</file>
         <file>images/pausewindow/continue.png</file>
         <file>images/pausewindow/continue-.png</file>
@@ -92,6 +98,8 @@
         <file>images/singlewindow/skill2+-.png</file>
         <file>images/gamewindow/skill2+.png</file>
         <file>images/gamewindow/skill2+-.png</file>
+        <file>images/loginwindow/input.png</file>
+        <file>images/loginwindow/board.png</file>
         <file>images/memberwindow/member_background.png</file>
         <file>images/memberwindow/member.png</file>
         <file>images/rankwindow/rank.png</file>

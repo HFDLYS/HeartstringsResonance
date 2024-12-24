@@ -227,7 +227,7 @@ QProgressBar::chunk:Vertical{
      <property name="geometry">
       <rect>
        <x>1000</x>
-       <y>140</y>
+       <y>120</y>
        <width>180</width>
        <height>100</height>
       </rect>
@@ -261,7 +261,7 @@ color:rgb(255, 85, 127);</string>
      <property name="styleSheet">
       <string notr="true">QLabel{
 	font-size:20px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 	text-align: center;
 }</string>
@@ -285,7 +285,7 @@ color:rgb(255, 85, 127);</string>
      <property name="styleSheet">
       <string notr="true">QLabel{
 	font-size:20px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 	text-align: center;
 }</string>
@@ -309,7 +309,7 @@ color:rgb(255, 85, 127);</string>
      <property name="styleSheet">
       <string notr="true">QLabel{
 	font-size:20px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 	text-align: center;
 }</string>
@@ -340,13 +340,13 @@ color:rgb(255, 85, 127);</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="shadow_2">
+    <widget class="QLabel" name="score_board">
      <property name="geometry">
       <rect>
-       <x>880</x>
-       <y>10</y>
-       <width>400</width>
-       <height>300</height>
+       <x>870</x>
+       <y>0</y>
+       <width>420</width>
+       <height>320</height>
       </rect>
      </property>
      <property name="text">
@@ -359,8 +359,134 @@ color:rgb(255, 85, 127);</string>
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="skill_board_1">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>447</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_2">
+     <property name="geometry">
+      <rect>
+       <x>1000</x>
+       <y>517</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_3">
+     <property name="geometry">
+      <rect>
+       <x>1120</x>
+       <y>517</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="max_score">
+     <property name="geometry">
+      <rect>
+       <x>980</x>
+       <y>180</y>
+       <width>220</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:25px;
+color:Red;</string>
+     </property>
+     <property name="text">
+      <string>9999</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_4">
+     <property name="geometry">
+      <rect>
+       <x>1030</x>
+       <y>265</y>
+       <width>120</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="difficulty">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>280</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string>难度</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
     <zorder>scoreLabel</zorder>
-    <zorder>shadow_2</zorder>
+    <zorder>score_board</zorder>
     <zorder>skill1_button</zorder>
     <zorder>skill3_button</zorder>
     <zorder>skill2_button</zorder>
@@ -368,10 +494,16 @@ color:rgb(255, 85, 127);</string>
     <zorder>shadow</zorder>
     <zorder>progressBar</zorder>
     <zorder>score</zorder>
-    <zorder>cnt1</zorder>
-    <zorder>cnt2</zorder>
-    <zorder>cnt3</zorder>
     <zorder>barprogress_</zorder>
+    <zorder>skill_board_1</zorder>
+    <zorder>cnt1</zorder>
+    <zorder>skill_board_2</zorder>
+    <zorder>cnt2</zorder>
+    <zorder>skill_board_3</zorder>
+    <zorder>cnt3</zorder>
+    <zorder>max_score</zorder>
+    <zorder>skill_board_4</zorder>
+    <zorder>difficulty</zorder>
    </widget>
    <widget class="QWidget" name="picwidget" native="true">
     <property name="geometry">

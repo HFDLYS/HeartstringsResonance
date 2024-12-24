@@ -304,6 +304,8 @@ border-radius: 10px;
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

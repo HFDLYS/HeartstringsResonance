@@ -133,17 +133,56 @@ font-weight: bold;</string>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>320</y>
-       <width>421</width>
-       <height>361</height>
+       <x>480</x>
+       <y>350</y>
+       <width>320</width>
+       <height>360</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="loginLayout"/>
     </widget>
+    <widget class="QLabel" name="board">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>170</y>
+       <width>640</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>幼圆</family>
+       <pointsize>72</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/loginwindow/board.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <zorder>board</zorder>
     <zorder>shadow</zorder>
-    <zorder>title</zorder>
     <zorder>verticalLayoutWidget</zorder>
+    <zorder>title</zorder>
    </widget>
   </widget>
  </widget>

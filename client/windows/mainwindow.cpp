@@ -40,7 +40,9 @@ void MainWindow::on_rbtnSolo_clicked() {
 }
 
 
+// 多人游戏开始
 void MainWindow::on_rbtnMultiplayer_clicked(){
+    Gem::SetMaxType();
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm3();

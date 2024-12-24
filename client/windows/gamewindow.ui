@@ -47,8 +47,8 @@
     <widget class="QPushButton" name="skill1_button">
      <property name="geometry">
       <rect>
-       <x>580</x>
-       <y>410</y>
+       <x>575</x>
+       <y>420</y>
        <width>80</width>
        <height>80</height>
       </rect>
@@ -69,7 +69,7 @@
     <widget class="QPushButton" name="skill3_button">
      <property name="geometry">
       <rect>
-       <x>630</x>
+       <x>620</x>
        <y>480</y>
        <width>80</width>
        <height>80</height>
@@ -221,8 +221,8 @@
     <widget class="QPushButton" name="pause_button">
      <property name="geometry">
       <rect>
-       <x>580</x>
-       <y>550</y>
+       <x>575</x>
+       <y>540</y>
        <width>80</width>
        <height>80</height>
       </rect>
@@ -337,58 +337,16 @@ color:rgb(170, 170, 255);</string>
     <widget class="QLabel" name="cnt2">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>550</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel{
-	font-size:20px;
-	color:Red;
-	font-family:幼圆;
-	text-align: center;
-}</string>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="cnt3">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>550</y>
-       <width>61</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel{
-	font-size:20px;
-	color:Red;
-	font-family:幼圆;
-	text-align: center;
-}</string>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="cnt1">
-     <property name="geometry">
-      <rect>
-       <x>620</x>
-       <y>480</y>
-       <width>61</width>
+       <x>530</x>
+       <y>535</y>
+       <width>80</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
 	font-size:20px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 	text-align: center;
 }</string>
@@ -396,7 +354,135 @@ color:rgb(170, 170, 255);</string>
      <property name="text">
       <string>0</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
     </widget>
+    <widget class="QLabel" name="cnt3">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>535</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:rgb(178, 96, 255);
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cnt1">
+     <property name="geometry">
+      <rect>
+       <x>575</x>
+       <y>480</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:rgb(178, 96, 255);
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_1">
+     <property name="geometry">
+      <rect>
+       <x>585</x>
+       <y>475</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_2">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>530</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_3">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>530</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <zorder>skill2_button</zorder>
+    <zorder>skill3_button</zorder>
+    <zorder>skill_board_3</zorder>
+    <zorder>skill1_button</zorder>
+    <zorder>skill_board_1</zorder>
+    <zorder>shadow_2</zorder>
+    <zorder>shadow</zorder>
+    <zorder>shadow_3</zorder>
+    <zorder>shadow_4</zorder>
+    <zorder>shadow_1</zorder>
+    <zorder>shadow_5</zorder>
+    <zorder>username_1</zorder>
+    <zorder>username_2</zorder>
+    <zorder>username_3</zorder>
+    <zorder>username_4</zorder>
+    <zorder>cnt3</zorder>
+    <zorder>cnt1</zorder>
+    <zorder>skill_board_2</zorder>
+    <zorder>cnt2</zorder>
+    <zorder>pause_button</zorder>
    </widget>
    <widget class="QWidget" name="picwidget" native="true">
     <property name="geometry">
@@ -417,6 +503,7 @@ color:rgb(170, 170, 255);</string>
  </widget>
  <resources>
   <include location="../../resource/res.qrc"/>
+  <include location="../../../../resource/res.qrc"/>
  </resources>
  <connections/>
 </ui>
