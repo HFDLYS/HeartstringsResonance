@@ -179,6 +179,7 @@ GameWindow::GameWindow(QWidget *parent)
         show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
         show_renderer_[i]->setGeometry(show_opengl_up_left.x() + ix * (show_board_size.x() + border_size), show_opengl_up_left.y() + iy * (show_board_size.y() + border_size), show_renderer_[i]->width(), show_renderer_[i]->height());
     }
+    //qDebug()<<"\n\n\n\n\ntest\n\n\n\n\n";
 }
 
 GameWindow::~GameWindow() {

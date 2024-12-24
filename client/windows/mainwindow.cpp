@@ -44,7 +44,7 @@ void MainWindow::on_rbtnMultiplayer_clicked(){
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm3();
-    GameWindow *gw = new GameWindow(this);
+    GameWindow *gw = new GameWindow();
     changeWindow(gw);
 }
 
