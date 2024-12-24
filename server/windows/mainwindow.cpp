@@ -36,10 +36,16 @@ void MainWindow::newClientConnect() {
         QJsonObject cmd = jsonIn.object();
         if (cmd["command"].toString() == "updatePoint") {
             QJsonObject parameter = cmd["parameter"].toObject();
-            int skill1 = parameter["pointSolo"].toInt()/100;
-            int skill2 = parameter["pointSolo"].toInt()/500;
-            int skill3 = parameter["pointSolo"].toInt()/500;
-            db.update(parameter["userName"].toString(), parameter["pointSolo"].toInt(), parameter["pointMulti"].toInt(), skill1, skill2, skill3);
+            int skill1 = parameter["pointSolo"].toInt()/50+1;
+            int skill2 = parameter["pointSolo"].toInt()/1000+1;
+            int skill3 = parameter["pointSolo"].toInt()/100+1;
+            auto player=db.update(parameter["userName"].toString(), parameter["pointSolo"].toInt(), parameter["pointMulti"].toInt(), skill1, skill2, skill3);
+            QJsonObject cmdOut,parameterOut;
+            cmdOut["command"]="updateSkill";
+            parameterOut["player"]=player[0].toJson();
+            cmdOut["parameter"]=parameterOut;
+            QJsonDocument jsonOut(cmdOut);
+            client->sendBinaryMessage(jsonOut.toJson());
         } else if (cmd["command"].toString() == "rank") {
             /**/
             QJsonObject parameter = cmd["parameter"].toObject();

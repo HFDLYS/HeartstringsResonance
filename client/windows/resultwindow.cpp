@@ -73,8 +73,12 @@ void ResultWindow::on_btnUpdate_clicked()
         cmd["parameter"]=parameter;
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
-        QMessageBox::information(this, "上传成功", player.username+"的成绩已上传");
-        emit exitwindow();
+        connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+            setPlayer(Player(parameter["player"].toObject()));
+            QMessageBox::information(this, "上传成功", player.username+"的成绩已上传");
+            emit exitwindow();
+        });
+
     //} else {
         // QMessageBox::information(this, "取消", "我的名字呢？");
         // emit exitwindow();

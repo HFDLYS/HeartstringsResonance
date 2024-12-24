@@ -19,6 +19,7 @@ BaseWindow::BaseWindow(QWidget *parent)
 }
 void BaseWindow::setPlayer(Player p){
     if(player.username.isEmpty())player=p;
+    if(player==p)player=p;
 }
 void BaseWindow::delay(int x) {
     QTime dieTime = QTime::currentTime().addMSecs(x);

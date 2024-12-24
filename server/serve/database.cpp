@@ -114,7 +114,8 @@ QVector<Player> DataBase::select(QString username) {
     return rec;
 }
 bool DataBase::update(Player player) {
-    return update(player.username, player.pointSolo, player.pointMulti, player.skill_1, player.skill_2, player.skill_3);
+    auto rec=update(player.username, player.pointSolo, player.pointMulti, player.skill_1, player.skill_2, player.skill_3);
+    return !rec.empty();
 }
 
 QPair<bool, QString> DataBase::playerRegister(QString username, QString password) {
@@ -133,10 +134,11 @@ QPair<bool, QString> DataBase::playerLogIn(QString username, QString password, P
     return qMakePair(1, "登录成功");
 }
 
-bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill_1, int skill_2, int skill_3) {
+QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti, int skill_1, int skill_2, int skill_3) {
+    QVector<Player> rec;
     if (!db.isOpen()) {
         if (!connect()) {
-            return false;
+            return rec;
         }
     }
 
@@ -144,7 +146,7 @@ bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill
     if (a.empty()) {
         //游戏前必然登录
         // 如果用户不存在，执行插入操作
-        return 0;//insert(Player(username, pointSolo, pointMulti, skill_1, skill_2, skill_3)); // insert 为插入操作
+        return rec;//insert(Player(username, pointSolo, pointMulti, skill_1, skill_2, skill_3)); // insert 为插入操作
     } else {
         // 如果用户存在，执行更新操作
         Player player = a[0]; // 假设 a[0] 是已找到的用户
@@ -165,7 +167,7 @@ bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill
 
         if (!query.exec()) {
             qDebug() << "Failed to update rank table:" << query.lastError().text();
-            return false;
+            return rec;
         }
 
         query.prepare("UPDATE item "
@@ -178,11 +180,11 @@ bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill
 
         if (!query.exec()) {
             qDebug() << "Failed to update item table:" << query.lastError().text();
-            return false;
+            return rec;
         }
         qDebug() << "Update successfully";
-
-        return true;
+        rec=select(username);
+        return rec;
     }
 }
 
