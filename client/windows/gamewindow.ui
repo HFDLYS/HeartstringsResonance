@@ -48,7 +48,7 @@
      <property name="geometry">
       <rect>
        <x>580</x>
-       <y>390</y>
+       <y>410</y>
        <width>80</width>
        <height>80</height>
       </rect>
@@ -69,8 +69,8 @@
     <widget class="QPushButton" name="skill3_button">
      <property name="geometry">
       <rect>
-       <x>620</x>
-       <y>460</y>
+       <x>630</x>
+       <y>480</y>
        <width>80</width>
        <height>80</height>
       </rect>
@@ -95,8 +95,8 @@
     <widget class="QPushButton" name="skill2_button">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>460</y>
+       <x>530</x>
+       <y>480</y>
        <width>80</width>
        <height>80</height>
       </rect>
@@ -222,7 +222,7 @@
      <property name="geometry">
       <rect>
        <x>580</x>
-       <y>540</y>
+       <y>550</y>
        <width>80</width>
        <height>80</height>
       </rect>
@@ -233,6 +233,25 @@ QPushButton::pressed#pause_button{border-image:url(:/images/gamewindow/pause-.pn
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_5">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>40</y>
+       <width>90</width>
+       <height>90</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>

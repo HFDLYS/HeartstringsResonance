@@ -16,6 +16,7 @@ class Gem {
     void set_z(int z);
     float angle() const;
     int type() const;
+    void set_type(int type);
 
     bool is_pausing() const;
     void set_pausing(int pausing);

@@ -31,6 +31,7 @@ SingleWindow::SingleWindow(int seed_,QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
     ui->setupUi(this);
     ui->score->setText(QString::number(0));
+
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());

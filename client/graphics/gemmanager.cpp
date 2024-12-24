@@ -320,4 +320,10 @@ void GraphicGemManager::Draw(QOpenGLShaderProgram &program) {
     }
 }
 
+void GraphicGemManager::setGem(int id, int type) {
+    if (!have_initialized_) return;
+    if (!stones_.count(id)) return;
+    stones_[id].set_type(type);
+}
+
 }  // namespace Hypercube
