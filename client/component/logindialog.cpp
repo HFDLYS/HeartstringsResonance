@@ -13,8 +13,12 @@ LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle("爱の魔法:心海相连");
-    setFixedSize(300, 300);
-
+    setFixedSize(800, 600);
+    QLabel *title = new QLabel("", this);
+    title->setAlignment(Qt::AlignCenter);
+    QPixmap pixmap(":/images/mainwindow/title.png");
+    pixmap = pixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    title->setPixmap(pixmap);
     QLabel *ipLabel = new QLabel(tr("IP 地址:"), this);
     ipLineEdit = new QLineEdit(this);
     ipLineEdit->setText("localhost"); // 默认值
@@ -31,10 +35,10 @@ LoginDialog::LoginDialog(QWidget *parent)
     ipoption->addItem("47.116.175.206");
     portoption->addItem("1479");
 
-    QLabel *usernameLabel = new QLabel("用户名:", this);
+    QLabel *usernameLabel = new QLabel(tr("用户名:"), this);
     usernameEdit = new QLineEdit(this);
 
-    QLabel *passwordLabel = new QLabel("密码:", this);
+    QLabel *passwordLabel = new QLabel(tr("密码:"), this);
     passwordEdit = new QLineEdit(this);
     passwordEdit->setEchoMode(QLineEdit::Password);
 
@@ -57,14 +61,21 @@ LoginDialog::LoginDialog(QWidget *parent)
     selectLayout->addWidget(ipoption);
     selectLayout->addWidget(portoption);
 
+    QHBoxLayout *usernameLayout = new QHBoxLayout();
+    usernameLayout->addWidget(usernameLabel);
+    usernameLayout->addWidget(usernameEdit);
+
+    QHBoxLayout *passwordLayout = new QHBoxLayout();
+    passwordLayout->addWidget(passwordLabel);
+    passwordLayout->addWidget(passwordEdit);
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(title);
     mainLayout->addLayout(ipLayout);
     mainLayout->addLayout(portLayout);
     mainLayout->addLayout(selectLayout);
-    mainLayout->addWidget(usernameLabel);
-    mainLayout->addWidget(usernameEdit);
-    mainLayout->addWidget(passwordLabel);
-    mainLayout->addWidget(passwordEdit);
+    mainLayout->addLayout(usernameLayout);
+    mainLayout->addLayout(passwordLayout);
     mainLayout->addWidget(loginButton);
     mainLayout->addWidget(registerButton);
 
@@ -195,6 +206,7 @@ void LoginDialog::onRegisterClicked()
 void LoginDialog::paintEvent(QPaintEvent *event)
 {
     QDialog::paintEvent(event);
+    return;
 
     QPainter painter(this);
     QPixmap pixmap(":/images/mainwindow/title.png");
