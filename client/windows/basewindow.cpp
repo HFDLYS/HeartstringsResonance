@@ -3,7 +3,7 @@
 #include <QTime>
 #include <QTimer>
 #include "ui_basewindow.h"
-
+Player BaseWindow::player;
 BaseWindow::BaseWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::BaseWindow) {
     ui->setupUi(this);

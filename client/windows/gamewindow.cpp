@@ -73,7 +73,7 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             QJsonArray seeds = cmd["seeds"].toArray();
             QJsonArray players = cmd["players"].toArray();
             for(auto player:players){
-                this->players.push_back(player.toString());
+                this->players.push_back(Player(player.toObject()));
             }
             std::vector<int> seedVector;
             for (const QJsonValue &value : seeds) {

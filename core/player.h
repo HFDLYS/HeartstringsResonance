@@ -52,5 +52,8 @@ struct Player {//树的节点
         out["skill_3"] = skill_3;
         return out;
     }
+    bool operator== (const Player b){
+        return username==b.username;
+    }
 };
 #endif // PLAYER_H
