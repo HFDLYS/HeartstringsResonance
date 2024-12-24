@@ -17,7 +17,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=2;
+const int MAX_TIME=120;
 
 
 SingleWindow::SingleWindow(int seed_,QWidget *parent)
@@ -112,7 +112,7 @@ void SingleWindow::startGame() {
             delete timer;
             AudioManager::GetInstance()->StopBgm2();
             ResultWindow *rw = new ResultWindow(true,
-                                                board->getScore(),
+                                                board->getScore(1) + board->getScore(2) + board->getScore(3) + board->getScore(4),
                                                 board->getScore1(),
                                                 board->getScore2(),
                                                 board->getScore3(),
@@ -165,7 +165,21 @@ void SingleWindow::on_pause_button_clicked() {
     connect(pw, &PauseWindow::exitwindow, this, [this]{
         delete timer;
         AudioManager::GetInstance()->StopBgm2();
-        changeWindow(new MainWindow());
+        ResultWindow *rw = new ResultWindow(true,
+                                                board->getScore(1) + board->getScore(2) + board->getScore(3) + board->getScore(4),
+                                                board->getScore1(),
+                                                board->getScore2(),
+                                                board->getScore3(),
+                                                board->getScore4(),
+                                                board->getScore5(),
+                                                this);
+            rw->move(this->pos().x(), this->pos().y());
+            rw->show();
+            rw->showGem();
+            connect(rw, &ResultWindow::exitwindow, this, [=]{
+                rw->close();
+                changeWindow(new MainWindow());
+            });
     });
     connect(pw, &PauseWindow::gameContinue, this, [this]{
         timer->start();
