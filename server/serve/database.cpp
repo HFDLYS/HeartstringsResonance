@@ -12,6 +12,7 @@ bool DataBase::connect() {
     db.setPassword("LoM_10086");
     db.setDatabaseName("LoM_HsR");
     db.setConnectOptions("MYSQL_OPT_RECONNECT=1");
+    db.setConnectOptions("MYSQL_OPT_CONNECT_TIMEOUT=2");
     if (db.open()) {
         qDebug() << "成功连接数据库";
         return true;

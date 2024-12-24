@@ -261,7 +261,7 @@ color:rgb(255, 85, 127);</string>
      <property name="styleSheet">
       <string notr="true">QLabel{
 	font-size:20px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 	text-align: center;
 }</string>
@@ -285,7 +285,7 @@ color:rgb(255, 85, 127);</string>
      <property name="styleSheet">
       <string notr="true">QLabel{
 	font-size:20px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 	text-align: center;
 }</string>
@@ -309,7 +309,7 @@ color:rgb(255, 85, 127);</string>
      <property name="styleSheet">
       <string notr="true">QLabel{
 	font-size:20px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 	text-align: center;
 }</string>
@@ -340,7 +340,7 @@ color:rgb(255, 85, 127);</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="shadow_2">
+    <widget class="QLabel" name="score_board">
      <property name="geometry">
       <rect>
        <x>880</x>
@@ -359,8 +359,65 @@ color:rgb(255, 85, 127);</string>
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="skill_board_1">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>447</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_2">
+     <property name="geometry">
+      <rect>
+       <x>1000</x>
+       <y>517</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="skill_board_3">
+     <property name="geometry">
+      <rect>
+       <x>1120</x>
+       <y>517</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
     <zorder>scoreLabel</zorder>
-    <zorder>shadow_2</zorder>
+    <zorder>score_board</zorder>
     <zorder>skill1_button</zorder>
     <zorder>skill3_button</zorder>
     <zorder>skill2_button</zorder>
@@ -368,10 +425,13 @@ color:rgb(255, 85, 127);</string>
     <zorder>shadow</zorder>
     <zorder>progressBar</zorder>
     <zorder>score</zorder>
-    <zorder>cnt1</zorder>
-    <zorder>cnt2</zorder>
-    <zorder>cnt3</zorder>
     <zorder>barprogress_</zorder>
+    <zorder>skill_board_1</zorder>
+    <zorder>cnt1</zorder>
+    <zorder>skill_board_2</zorder>
+    <zorder>cnt2</zorder>
+    <zorder>skill_board_3</zorder>
+    <zorder>cnt3</zorder>
    </widget>
    <widget class="QWidget" name="picwidget" native="true">
     <property name="geometry">
