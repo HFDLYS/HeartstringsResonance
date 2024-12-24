@@ -49,8 +49,8 @@ QPushButton::pressed#btnReturn{border-image:url(:/images/return-.png)}</string>
    <widget class="QPushButton" name="btnMusic">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>310</y>
+      <x>290</x>
+      <y>70</y>
       <width>250</width>
       <height>51</height>
      </rect>
@@ -66,8 +66,8 @@ QPushButton::pressed#btnMusic{border-image:url(:/images/configwindow/setting_mus
    <widget class="QPushButton" name="btnSound">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>440</y>
+      <x>290</x>
+      <y>200</y>
       <width>250</width>
       <height>51</height>
      </rect>
@@ -83,8 +83,8 @@ QPushButton::pressed#btnSound{border-image:url(:/images/configwindow/setting_sou
    <widget class="QSlider" name="musicSlider">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>300</y>
+      <x>600</x>
+      <y>60</y>
       <width>431</width>
       <height>71</height>
      </rect>
@@ -129,8 +129,8 @@ border-radius: 10px;
    <widget class="QSlider" name="soundSlider">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>430</y>
+      <x>600</x>
+      <y>190</y>
       <width>431</width>
       <height>71</height>
      </rect>
@@ -171,6 +171,136 @@ border-radius: 10px;
     <property name="orientation">
      <enum>Qt::Orientation::Horizontal</enum>
     </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>520</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>背景</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>520</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>宝石</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>520</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>棋盘</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>520</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>音效</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>600</y>
+      <width>200</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>钞能力</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>280</y>
+      <width>351</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>30</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>70</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_3">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>110</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_4">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>150</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
