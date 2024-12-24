@@ -119,7 +119,7 @@ void MainWindow::newClientConnect(){
             parameterOut["isSuccess"]=isSuccess;
             parameterOut["info"]=info;
             QJsonObject cmdOut;
-            cmdOut["command"]="register";
+            cmdOut["command"]="login";
             cmdOut["parameter"]=parameterOut;
             QJsonDocument jsonOut(cmdOut);
             client->sendBinaryMessage(jsonOut.toJson());

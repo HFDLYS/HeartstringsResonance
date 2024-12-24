@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QWebSocket>
 
 class LoginDialog : public QDialog
 {
@@ -29,6 +30,7 @@ private:
     QLineEdit *passwordEdit;
     QPushButton *loginButton;
     QPushButton *registerButton;
+    QWebSocket*server;
 };
 
 #endif // LOGINDIALOG_H

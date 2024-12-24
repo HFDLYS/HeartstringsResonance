@@ -3,6 +3,12 @@
 #include <QStyleFactory>
 #include <QPainter>
 #include <QPixmap>
+#include <QWebSocket>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonValue>
+const QUrl serverUrl("ws://localhost:1479");
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
 {
@@ -51,21 +57,71 @@ void LoginDialog::onLoginClicked()
 {
     QString username = getUsername();
     QString password = getPassword();
+    server=new QWebSocket();
+    server->open(serverUrl);
+    connect(server,&QWebSocket::connected,this,[=]{
+        QJsonObject cmd,parameter;
+        cmd["command"]="login";
+        parameter["username"]=username;
+        parameter["password"]=password;
+        cmd["parameter"]=parameter;
+        QJsonDocument json(cmd);
+        qDebug()<<server->sendBinaryMessage(json.toJson());
+    });
+    connect(server, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray &message){
+        qDebug() << message;
+        QJsonDocument jsonIn = QJsonDocument::fromJson(message);
+        QJsonObject cmd = jsonIn.object();
+        qDebug() << cmd["command"].toString();
+        if(cmd["command"].toString() == "login"){
+            QJsonObject parameter;
+            parameter = cmd["parameter"].toObject();
+            bool isSuccess = parameter["isSuccess"].toBool();
+            QString info = parameter["info"].toString();
+            qDebug() << "12312361827361872" << '\n';
+            if(isSuccess){
+                QMessageBox::information(this, "登录成功", "欢迎"+username+"来到爱の魔法喵");
+                accept();
+            } else{
+                QMessageBox::information(this, "账号或密码错误喵", info);
+            }
+        }
+    });
 
-    if (username == "admin" && password == "1234") {
-        QMessageBox::information(this, "登录成功", "欢迎回来，" + username);
-        accept();
-    } else {
-        QMessageBox::warning(this, "登录失败", "用户名或密码错误");
-    }
 }
 
 void LoginDialog::onRegisterClicked()
 {
     QString username = getUsername();
     QString password = getPassword();
-    QMessageBox::information(this, "注册成功", username+"注册成功");
-    //缺少逻辑：数据库已经存在用户名
+    server=new QWebSocket();
+    server->open(serverUrl);
+    connect(server,&QWebSocket::connected,this,[=]{
+        QJsonObject cmd,parameter;
+        cmd["command"]="register";
+        parameter["username"]=username;
+        parameter["password"]=password;
+        cmd["parameter"]=parameter;
+        QJsonDocument json(cmd);
+        qDebug()<<server->sendBinaryMessage(json.toJson());
+    });
+    connect(server, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray &message){
+        qDebug() << message;
+        QJsonDocument jsonIn = QJsonDocument::fromJson(message);
+        QJsonObject cmd = jsonIn.object();
+        if(cmd["command"].toString() == "register"){
+            QJsonObject parameter;
+            parameter = cmd["parameter"].toObject();
+            bool isSuccess = parameter["isSuccess"].toBool();
+            QString info = parameter["info"].toString();
+            if(isSuccess){
+                QMessageBox::information(this, "注册成功", username+"成功注册");
+
+            } else{
+                QMessageBox::information(this, "注册失败", info);
+            }
+        }
+    });
 }
 
 void LoginDialog::paintEvent(QPaintEvent *event)

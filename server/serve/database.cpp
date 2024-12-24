@@ -37,9 +37,10 @@ bool DataBase::insert(Player player,QString&info){
 
 
     QSqlQuery query(db);
-    QString sqlStr = "insert into user(user_name) values(:name);";
+    QString sqlStr = "insert into user(user_name,password) values(:name,:password);";
     query.prepare(sqlStr);
     query.bindValue(":name", player.userName);
+    query.bindValue(":password", player.password);
     if (!query.exec()) {
         info="插入user表失败,原因: " + query.lastError().text();
         qDebug() << info;
