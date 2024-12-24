@@ -18,21 +18,7 @@ const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
 const int MAX_TIME=2;
-SingleWindow::SingleWindow(QWidget *parent)
-    : BaseWindow(parent), ui(new Ui::SingleWindow) {
-    ui->setupUi(this);
-    ui->score->setText(QString::number(0));
-    ui->skill1_button->setEnabled(1);
-    ui->skill2_button->setEnabled(1);
-    ui->skill3_button->setEnabled(1);
-    ui->cnt1->setText(QString::number(player.skill_1));
-    ui->cnt2->setText(QString::number(player.skill_2));
-    ui->cnt3->setText(QString::number(player.skill_3));
-    qDebug()<<player.toJson();
-    renderer_ = new Graphics::RenderManager(ui->controlWidget);
-    renderer_->setFixedSize(board_size.x(), board_size.y());
-    renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
-}
+
 
 SingleWindow::SingleWindow(int seed_,QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
@@ -41,6 +27,17 @@ SingleWindow::SingleWindow(int seed_,QWidget *parent)
     ui->skill1_button->setEnabled(1);
     ui->skill2_button->setEnabled(1);
     ui->skill3_button->setEnabled(1);
+    ui->max_score->setText("史高: "+QString::number(player.pointSolo));
+    if (player.pointSolo < 500) {
+        ui->difficulty->setText("简单");
+        max_gem_type = 5;
+    } else if (player.pointSolo < 1000) {
+        ui->difficulty->setText("中等");
+        max_gem_type = 6;
+    } else {
+        ui->difficulty->setText("困难");
+        max_gem_type = 8;
+    }
     ui->cnt1->setText(QString::number(player.skill_1));
     ui->cnt2->setText(QString::number(player.skill_2));
     ui->cnt3->setText(QString::number(player.skill_3));
@@ -59,7 +56,7 @@ void SingleWindow::refreshTimeLabel() {
 }
 
 void SingleWindow::initBoard() {
-    board = new Board(seed);
+    board = new Board(seed, max_gem_type);
     board->SetGemManager(renderer_->GetGemManager());
     board->initBoard();
 }

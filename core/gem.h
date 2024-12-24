@@ -21,7 +21,7 @@ class Gem {
     void SetEmpty(bool empty);
     void SetId(int id);
     static int GetMaxType();
-    static void SetMaxType(int new_max_type);
+    static void SetMaxType(int new_max_type=5);
 };
 
 #endif  // STONE_H

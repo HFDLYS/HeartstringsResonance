@@ -31,7 +31,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton#btnReturn{border-image:url(:/images/resultwindow/back.png)}
-QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/back-.png)}</string>
+QPushButton::pressed#btnReturn{border-image:url(:/images/resultwindow/back-.png)}</string>
     </property>
     <property name="text">
      <string/>
@@ -40,16 +40,16 @@ QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/back-.png)}
    <widget class="QLabel" name="title">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>10</y>
-      <width>300</width>
-      <height>100</height>
+      <x>340</x>
+      <y>-100</y>
+      <width>600</width>
+      <height>300</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
-	font-size:50px;
-	color:rgb(0, 255, 5);
+	font-size:100px;
+	color:rgb(70, 18, 53);
 	font-family:幼圆;
 }</string>
     </property>
@@ -71,7 +71,7 @@ QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/back-.png)}
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton#btnUpdate{border-image:url(:/images/resultwindow/update.png)}
-QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/update-.png)}</string>
+QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.png)}</string>
     </property>
     <property name="text">
      <string/>
@@ -352,6 +352,7 @@ QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/update-.png
      <bool>true</bool>
     </property>
    </widget>
+   <zorder>title</zorder>
    <zorder>board_4</zorder>
    <zorder>board_3</zorder>
    <zorder>board_2</zorder>
@@ -359,7 +360,6 @@ QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/update-.png
    <zorder>cnt4</zorder>
    <zorder>board_1</zorder>
    <zorder>btnReturn</zorder>
-   <zorder>title</zorder>
    <zorder>btnUpdate</zorder>
    <zorder>cnt1</zorder>
    <zorder>cnt2</zorder>

@@ -9,7 +9,7 @@ GemModelFactory::GemModelFactory(QOpenGLFunctions_3_3_Core* func) {
     models_.push_back(new Model(func, "./resource/models/gem/hachimi.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/pig.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/blue.obj"));
-    models_.push_back(new Model(func, "./resource/models/gem/gemstone_6.obj"));
+    models_.push_back(new Model(func, "./resource/models/gem/gemstone_2.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/gemstone_7.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/gemstone_8.obj"));
     
