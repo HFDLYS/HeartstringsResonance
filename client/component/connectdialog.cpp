@@ -22,6 +22,7 @@ ConnectDialog::ConnectDialog(QWidget *parent) : QDialog(parent) {
     ipoption->addItem("bjtu.yuki-hana.cn");
     ipoption->addItem("47.116.175.206");
     portoption->addItem("1479");
+
     // 连接按钮信号
     connect(okButton, &QPushButton::clicked, this, &ConnectDialog::accept);
     connect(cancelButton, &QPushButton::clicked, this, &ConnectDialog::reject);
