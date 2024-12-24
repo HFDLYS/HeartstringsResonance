@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QMouseEvent>
-
+#include "../../core/player.h"
 // 无边窗口类，为其他窗口的父类
 
 namespace Ui {
@@ -21,6 +21,7 @@ public:
 protected:
     QPoint last;
     QString username;
+    static Player player;
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);

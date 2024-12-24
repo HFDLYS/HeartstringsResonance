@@ -29,7 +29,7 @@ bool DataBase::insert(Player player,QString&info){
         }
     }
 
-    if (select(player.userName).size() > 0) {
+    if (select(player.username).size() > 0) {
         info="用户已存在";
         qDebug() << info;
         return false;
@@ -39,7 +39,7 @@ bool DataBase::insert(Player player,QString&info){
     QSqlQuery query(db);
     QString sqlStr = "insert into user(user_name,password) values(:name,:password);";
     query.prepare(sqlStr);
-    query.bindValue(":name", player.userName);
+    query.bindValue(":name", player.username);
     query.bindValue(":password", player.password);
     if (!query.exec()) {
         info="插入user表失败,原因: " + query.lastError().text();
@@ -76,13 +76,13 @@ bool DataBase::insert(Player player,QString&info){
         return false;
     }
 }
-QVector<DataBase::Player> DataBase::select(QString username){
+QVector<Player> DataBase::select(QString username){
     if (!db.isOpen()) {
         if (!connect()) {
-            return QVector<DataBase::Player>();
+            return QVector<Player>();
         }
     }
-    QVector<DataBase::Player>rec;
+    QVector<Player>rec;
     QSqlQuery query(db);
     query.prepare(R"(
         SELECT 
@@ -107,7 +107,7 @@ QVector<DataBase::Player> DataBase::select(QString username){
     {
         qDebug()<<"查询成功,有"<<query.size()<<"条记录";
         while (query.next()) {
-            DataBase::Player player(query.record().value("user_name").toString(),query.record().value("password").toString(),query.record().value("point_solo").toInt(),query.record().value("point_multi").toInt(),query.record().value("skill_1").toInt(),query.record().value("skill_2").toInt(),query.record().value("skill_3").toInt());
+            Player player(query.record().value("user_name").toString(),query.record().value("password").toString(),query.record().value("point_solo").toInt(),query.record().value("point_multi").toInt(),query.record().value("skill_1").toInt(),query.record().value("skill_2").toInt(),query.record().value("skill_3").toInt());
             rec.push_back(player);
         }
     } else {
@@ -117,7 +117,7 @@ QVector<DataBase::Player> DataBase::select(QString username){
     return rec;
 }
 bool DataBase::update(Player player){
-    return update(player.userName,player.pointSolo,player.pointMulti,player.skill_1,player.skill_2,player.skill_3);
+    return update(player.username,player.pointSolo,player.pointMulti,player.skill_1,player.skill_2,player.skill_3);
 }
 
 QPair<bool,QString> DataBase::playerRegister(QString username,QString password){
@@ -125,13 +125,14 @@ QPair<bool,QString> DataBase::playerRegister(QString username,QString password){
     return qMakePair(insert(Player(username,password),info),info);
 }
 
-QPair<bool,QString> DataBase::playerLogIn(QString username,QString password){
+QPair<bool,QString> DataBase::playerLogIn(QString username,QString password,Player&player){
     auto rec=select(username);
     if(rec.empty()){
         return qMakePair(0,"用户不存在.");
     }else if(rec[0].password!=password){
         return qMakePair(0,"用户名或密码错误.");
     }
+    player=rec[0];
     return qMakePair(1,"登录成功");
 }
 

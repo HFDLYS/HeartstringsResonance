@@ -62,6 +62,7 @@ set(SERVER_SOURCES
     server/serve/room.cpp server/serve/room.h
     server/serve/database.h server/serve/database.cpp
     server/serve/servergemmanager.h
+    core/player.h
 )
 
 add_executable(
@@ -94,6 +95,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/waitingwindow.h client/windows/waitingwindow.cpp client/windows/waitingwindow.ui
         client/windows/memberwindow.h client/windows/memberwindow.cpp client/windows/memberwindow.ui
         client/component/logindialog.h client/component/logindialog.cpp
+        core/player.h
 
     )
 # Define target properties for Android with Qt 6 as:

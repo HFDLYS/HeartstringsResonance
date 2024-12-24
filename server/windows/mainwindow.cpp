@@ -112,12 +112,14 @@ void MainWindow::newClientConnect(){
             QJsonObject parameter=cmd["parameter"].toObject();
             QString username=parameter["username"].toString();
             QString password=parameter["password"].toString();
-            auto rec=db.playerLogIn(username,password);
+            Player player;
+            auto rec=db.playerLogIn(username,password,player);
             bool isSuccess=rec.first;
             QString info=rec.second;
             QJsonObject parameterOut;
             parameterOut["isSuccess"]=isSuccess;
             parameterOut["info"]=info;
+            parameterOut["Player"]=player.toJson();
             QJsonObject cmdOut;
             cmdOut["command"]="login";
             cmdOut["parameter"]=parameterOut;
