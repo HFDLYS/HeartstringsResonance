@@ -57,28 +57,27 @@ ResultWindow::~ResultWindow()
 void ResultWindow::on_btnUpdate_clicked()
 {
     bool ok;
-    QString text = QInputDialog::getText(this,
+    /*QString text = QInputDialog::getText(this,
                                          "上传成绩",
                                          "请写下您的大名:",
                                          QLineEdit::Normal,
                                          "",
-                                         &ok);
-
-    if (ok && !text.isEmpty()) {
+                                         &ok);*/
+    //if (ok && !text.isEmpty()) {
         //在这里补充数据库逻辑
         QJsonObject cmd,parameter;
         cmd["command"]="updatePoint";
-        parameter["userName"]=text;
+        parameter["userName"]=player.username;
         parameter["pointSolo"]=isSolo?score:0;
         parameter["pointMulti"]=isSolo?0:score;
         cmd["parameter"]=parameter;
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
-        QMessageBox::information(this, "上传成功", text+"的成绩已上传");
+        QMessageBox::information(this, "上传成功", player.username+"的成绩已上传");
         emit exitwindow();
-    } else {
-        QMessageBox::information(this, "取消", "我的名字呢？");
+    //} else {
+        // QMessageBox::information(this, "取消", "我的名字呢？");
         // emit exitwindow();
-    }
+    //}
 }
 
