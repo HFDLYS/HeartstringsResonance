@@ -21,7 +21,6 @@ public:
     void changeWindow(BaseWindow*);
 protected:
     QPoint last;
-    QString username;
     static Player player;
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);

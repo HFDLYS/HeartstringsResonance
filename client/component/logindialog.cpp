@@ -14,23 +14,54 @@ LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle("爱の魔法:心海相连");
-    setFixedSize(300, 200);
+    setFixedSize(300, 300);
 
+    QLabel *ipLabel = new QLabel(tr("IP 地址:"), this);
+    ipLineEdit = new QLineEdit(this);
+    ipLineEdit->setText("localhost"); // 默认值
 
+    QLabel *portLabel = new QLabel(tr("端口号:"), this);
+    portLineEdit = new QLineEdit(this);
+    portLineEdit->setText("1479"); // 默认值
+
+    ipoption = new QComboBox(this);
+    portoption = new QComboBox(this);
+    ipoption->addItem("localhost");
+    ipoption->addItem("nas.yuki-hana.cn");
+    ipoption->addItem("bjtu.yuki-hana.cn");
+    ipoption->addItem("47.116.175.206");
+    portoption->addItem("1479");
 
     QLabel *usernameLabel = new QLabel("用户名:", this);
     usernameEdit = new QLineEdit(this);
-     usernameEdit->setText("admin");
 
     QLabel *passwordLabel = new QLabel("密码:", this);
     passwordEdit = new QLineEdit(this);
     passwordEdit->setEchoMode(QLineEdit::Password);
-     passwordEdit->setText("1234");
 
     loginButton = new QPushButton("登录", this);
     registerButton = new QPushButton("注册", this);
 
+    // 监听下拉框选择变化，更新文本框内容
+    connect(ipoption, &QComboBox::currentIndexChanged, this, &LoginDialog::updateIpLineEdit);
+    connect(portoption, &QComboBox::currentIndexChanged, this, &LoginDialog::updatePortLineEdit);
+
+    QHBoxLayout *ipLayout = new QHBoxLayout();
+    ipLayout->addWidget(ipLabel);
+    ipLayout->addWidget(ipLineEdit);
+
+    QHBoxLayout *portLayout = new QHBoxLayout();
+    portLayout->addWidget(portLabel);
+    portLayout->addWidget(portLineEdit);
+
+    QHBoxLayout *selectLayout = new QHBoxLayout();
+    selectLayout->addWidget(ipoption);
+    selectLayout->addWidget(portoption);
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addLayout(ipLayout);
+    mainLayout->addLayout(portLayout);
+    mainLayout->addLayout(selectLayout);
     mainLayout->addWidget(usernameLabel);
     mainLayout->addWidget(usernameEdit);
     mainLayout->addWidget(passwordLabel);
@@ -143,3 +174,29 @@ void LoginDialog::paintEvent(QPaintEvent *event)
         painter.drawPixmap(topLeft, pixmap);
     }
 }
+
+
+QString LoginDialog::getIp() const {
+    return ipLineEdit->text();
+}
+
+QString LoginDialog::getPort() const {
+    return portLineEdit->text();
+}
+
+QString LoginDialog::getSelectip() const {
+    return ipoption->currentText();
+}
+
+QString LoginDialog::getSelectport() const {
+    return portoption->currentText();
+}
+
+void LoginDialog::updateIpLineEdit(int index) {
+    ipLineEdit->setText(ipoption->itemText(index));
+}
+
+void LoginDialog::updatePortLineEdit(int index) {
+    portLineEdit->setText(portoption->itemText(index));
+}
+

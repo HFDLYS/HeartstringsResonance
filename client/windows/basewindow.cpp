@@ -26,7 +26,7 @@ void BaseWindow::delay(int x) {
 }
 
 void BaseWindow::changeWindow(BaseWindow*flw){
-    flw->username=this->username;
+    //flw->username=this->username;
     flw->move(this->pos().x(), this->pos().y());
     flw->show();
     delay(20);

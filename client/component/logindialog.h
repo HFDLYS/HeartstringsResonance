@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QWebSocket>
+#include <QComboBox>
 
 class LoginDialog : public QDialog
 {
@@ -17,6 +18,12 @@ public:
     explicit LoginDialog(QWidget *parent = nullptr);
     QString getUsername() const;
     QString getPassword() const;
+    QString getIp() const;
+    QString getPort() const;
+    QString getSelectip() const;
+    QString getSelectport() const;
+    void updateIpLineEdit(int);
+    void updatePortLineEdit(int);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -31,6 +38,10 @@ private:
     QPushButton *loginButton;
     QPushButton *registerButton;
     QWebSocket*server;
+    QLineEdit *ipLineEdit;
+    QLineEdit *portLineEdit;
+    QComboBox *ipoption;
+    QComboBox *portoption;
 };
 
 #endif // LOGINDIALOG_H
