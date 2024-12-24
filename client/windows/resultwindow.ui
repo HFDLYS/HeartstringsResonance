@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>ResultWindow</class>
- <widget class="QWidget" name="ResultWindow">
+ <widget class="QMainWindow" name="ResultWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,75 +13,75 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="resultpic" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1280</width>
-     <height>720</height>
-    </rect>
-   </property>
+  <widget class="QWidget" name="resultpic">
    <property name="styleSheet">
     <string notr="true">#resultpic{background-image: url(:/images/resultwindow/result_background.png);}</string>
    </property>
    <widget class="QPushButton" name="btnReturn">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>640</y>
-      <width>221</width>
-      <height>61</height>
+      <x>440</x>
+      <y>610</y>
+      <width>400</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LayoutDirection::LeftToRight</enum>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnReturn{border-image:url(:/images/resultwindow/back.png)}
+QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/back-.png)}</string>
+    </property>
     <property name="text">
-     <string>返回菜单</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="title">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>70</y>
-      <width>301</width>
-      <height>101</height>
+      <x>490</x>
+      <y>10</y>
+      <width>300</width>
+      <height>100</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
 	font-size:50px;
-	color:Red;
+	color:rgb(0, 255, 5);
 	font-family:幼圆;
 }</string>
     </property>
     <property name="text">
-     <string>游戏结束</string>
+     <string>Time's up!</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="btnUpdate">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>540</y>
-      <width>221</width>
-      <height>61</height>
+      <x>440</x>
+      <y>510</y>
+      <width>400</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">QPushButton#btnUpdate{border-image:url(:/images/resultwindow/update.png)}
+QPushButton::pressed#rbtnSolo{border-image:url(:/images/resultwindow/update-.png)}</string>
     </property>
     <property name="text">
-     <string>上传成绩</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="cnt1">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>295</y>
+      <x>680</x>
+      <y>270</y>
       <width>40</width>
       <height>12</height>
      </rect>
@@ -89,19 +89,22 @@
     <property name="styleSheet">
      <string notr="true">QLabel{
 	font-size:15px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 }</string>
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="cnt2">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>342</y>
+      <x>680</x>
+      <y>315</y>
       <width>40</width>
       <height>12</height>
      </rect>
@@ -109,19 +112,22 @@
     <property name="styleSheet">
      <string notr="true">QLabel{
 	font-size:15px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 }</string>
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="cnt3">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>390</y>
+      <x>680</x>
+      <y>360</y>
       <width>40</width>
       <height>12</height>
      </rect>
@@ -129,19 +135,22 @@
     <property name="styleSheet">
      <string notr="true">QLabel{
 	font-size:15px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 }</string>
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="cnt4">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>438</y>
+      <x>680</x>
+      <y>405</y>
       <width>40</width>
       <height>12</height>
      </rect>
@@ -149,39 +158,22 @@
     <property name="styleSheet">
      <string notr="true">QLabel{
 	font-size:15px;
-	color:Red;
+	color:rgb(178, 96, 255);
 	font-family:幼圆;
 }</string>
     </property>
     <property name="text">
      <string>0</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="cnt5">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>487</y>
-      <width>40</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	font-size:15px;
-	color:Red;
-	font-family:幼圆;
-}</string>
-    </property>
-    <property name="text">
-     <string>0</string>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="score_title">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>190</y>
+      <x>570</x>
+      <y>170</y>
       <width>91</width>
       <height>71</height>
      </rect>
@@ -196,12 +188,15 @@
     <property name="text">
      <string>分数：</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="score">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>210</y>
+      <x>580</x>
+      <y>180</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -209,16 +204,174 @@
     <property name="styleSheet">
      <string notr="true">QLabel{
 	font-size:30px;
-	color:Red;
+	color:rgb(4, 0, 255);
 	font-family:幼圆;
 }</string>
     </property>
     <property name="text">
      <string>0</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
    </widget>
+   <widget class="QLabel" name="board_1">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>260</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cnt5">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>450</y>
+      <width>40</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-size:15px;
+	color:rgb(178, 96, 255);
+	font-family:幼圆;
+}</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="board_2">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>305</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="board_3">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>350</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="board_4">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>395</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="board_5">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>440</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="board">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>70</y>
+      <width>300</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/score.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>board_4</zorder>
+   <zorder>board_3</zorder>
+   <zorder>board_2</zorder>
+   <zorder>board_5</zorder>
+   <zorder>cnt4</zorder>
+   <zorder>board_1</zorder>
+   <zorder>btnReturn</zorder>
+   <zorder>title</zorder>
+   <zorder>btnUpdate</zorder>
+   <zorder>cnt1</zorder>
+   <zorder>cnt2</zorder>
+   <zorder>cnt3</zorder>
+   <zorder>score_title</zorder>
+   <zorder>cnt5</zorder>
+   <zorder>board</zorder>
+   <zorder>score</zorder>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

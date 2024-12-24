@@ -83,7 +83,12 @@
         <file>sounds/open.wav</file>
         <file>sounds/skill.wav</file>
         <file>images/mainwindow/title.png</file>
+        <file>images/resultwindow/blank.png</file>
         <file>images/resultwindow/result_background.png</file>
+        <file>images/resultwindow/update-.png</file>
+        <file>images/resultwindow/update.png</file>
+        <file>images/resultwindow/back.png</file>
+        <file>images/resultwindow/back-.png</file>
         <file>sounds/bgm_battle.wav</file>
         <file>images/pausewindow/continue.png</file>
         <file>images/pausewindow/continue-.png</file>
