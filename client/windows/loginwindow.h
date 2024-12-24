@@ -14,6 +14,7 @@
 #include "basewindow.h"
 #include "mainwindow.h"
 #include "ui_loginwindow.h"
+#include "../utils/picosha2.h"
 namespace Ui {
 class LoginWindow;
 }

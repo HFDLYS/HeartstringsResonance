@@ -75,7 +75,7 @@ QString LoginWindow::getUsername() const
 
 QString LoginWindow::getPassword() const
 {
-    return passwordEdit->text();
+    return QString::fromStdString(picosha2::hash256_hex_string(passwordEdit->text().toStdString()));
 }
 
 void LoginWindow::onLoginClicked()
