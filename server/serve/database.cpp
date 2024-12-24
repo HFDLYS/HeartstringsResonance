@@ -23,6 +23,11 @@ bool DataBase::connect() {
 }
 
 bool DataBase::insert(Player player, QString& info) {
+    if (!db.isOpen()) {
+        if (!connect()) {
+            return false;
+        }
+    }
 
     if (select(player.username).size() > 0) {
         info = "用户已存在";
@@ -72,7 +77,11 @@ bool DataBase::insert(Player player, QString& info) {
     }
 }
 QVector<Player> DataBase::select(QString username) {
-
+    if (!db.isOpen()) {
+        if (!connect()) {
+            return QVector<Player>();
+        }
+    }
     QVector<Player>rec;
     QSqlQuery query(db);
     query.prepare(R"(
@@ -129,7 +138,11 @@ QPair<bool, QString> DataBase::playerLogIn(QString username, QString password, P
 
 QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti, int skill_1, int skill_2, int skill_3) {
     QVector<Player> rec;
-
+    if (!db.isOpen()) {
+        if (!connect()) {
+            return rec;
+        }
+    }
 
     auto a = select(username);
     if (a.empty()) {
@@ -178,7 +191,11 @@ QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti
 }
 
 QVector<QPair<QString, int> > DataBase::rankSolo(int rank) {
-
+    if (!db.isOpen()) {
+        if (!connect()) {
+            return QVector<QPair<QString, int> >();
+        }
+    }
     QVector<QPair<QString, int> >rec;
     QSqlQuery query(db);
     query.prepare(R"(
@@ -196,7 +213,11 @@ QVector<QPair<QString, int> > DataBase::rankSolo(int rank) {
     return rec;
 }
 QVector<QPair<QString, int> > DataBase::rankMulti(int rank) {
-
+    if (!db.isOpen()) {
+        if (!connect()) {
+            return QVector<QPair<QString, int> >();
+        }
+    }
     QVector<QPair<QString, int> >rec;
     QSqlQuery query(db);
     query.prepare(R"(
