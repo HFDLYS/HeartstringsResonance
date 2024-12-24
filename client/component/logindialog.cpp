@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonValue>
+#include "../windows/basewindow.h"
 const QUrl serverUrl("ws://localhost:1479");
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -81,6 +82,7 @@ void LoginDialog::onLoginClicked()
             qDebug() << "12312361827361872" << '\n';
             if(isSuccess){
                 QMessageBox::information(this, "登录成功", "欢迎"+username+"来到爱の魔法喵");
+                BaseWindow::setPlayer(Player(parameter["player"].toObject()));
                 accept();
             } else{
                 QMessageBox::information(this, "账号或密码错误喵", info);

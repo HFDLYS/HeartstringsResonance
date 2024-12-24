@@ -17,7 +17,9 @@ BaseWindow::BaseWindow(QWidget *parent)
     pix = pix.scaled(size, Qt::KeepAspectRatio);
     this->setCursor(QCursor(pix, 12, 12));
 }
-
+void BaseWindow::setPlayer(Player p){
+    if(player.username.isEmpty())player=p;
+}
 void BaseWindow::delay(int x) {
     QTime dieTime = QTime::currentTime().addMSecs(x);
     while (QTime::currentTime() < dieTime) QCoreApplication::processEvents(QEventLoop::AllEvents, 100);

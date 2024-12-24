@@ -14,6 +14,7 @@ class BaseWindow : public QMainWindow {
     Q_OBJECT
 
 public:
+    static void setPlayer(Player);
     explicit BaseWindow(QWidget *parent = nullptr);
     ~BaseWindow();
     void delay(int x);
