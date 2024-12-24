@@ -78,7 +78,7 @@ void ResultWindow::on_btnUpdate_clicked()
         emit exitwindow();
     } else {
         QMessageBox::information(this, "取消", "我的名字呢？");
-        emit exitwindow();
+        // emit exitwindow();
     }
 }
 
