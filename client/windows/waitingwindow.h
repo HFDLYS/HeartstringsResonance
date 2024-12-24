@@ -2,6 +2,7 @@
 #define WAITINGWINDOW_H
 
 #include <QWidget>
+#include <QTimer>
 namespace Ui {
 class WaitingWindow;
 }
@@ -17,9 +18,12 @@ public:
 
 private slots:
     void on_btnExit_clicked();
+    void updateLabels();
 
 private:
     Ui::WaitingWindow *ui;
+    int cnt = 0;
+    QTimer *timer;
 };
 
 #endif // WAITINGWINDOW_H
