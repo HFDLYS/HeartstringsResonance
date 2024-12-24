@@ -9,9 +9,9 @@
 
 
 
-Board::Board(int seed_)  {
+Board::Board(int seed_, int max_type) {
     // std::cerr << "Into second constructor\n";
-    Gem::SetMaxType(5);
+    Gem::SetMaxType(max_type);
     // std::cout << difficulty << std::endl;
     add_tools = 0;
     cnt_ = 0;
