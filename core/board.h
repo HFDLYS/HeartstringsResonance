@@ -29,7 +29,7 @@ class Board {
     std::mt19937 generator;
     std::uniform_int_distribution<int> distribution;
    public:
-    explicit Board(int seed_ = 0);
+    explicit Board(int seed_ = 0, int max_type = 4);
     void SetGemManager(GemManager* gem_manager);
 
     void initBoard();
