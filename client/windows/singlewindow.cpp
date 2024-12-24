@@ -108,7 +108,7 @@ void SingleWindow::startGame() {
     timer->start(1000);
     QObject::connect(timer, &QTimer::timeout,[&]{
         ui->progressBar->setValue(ui->progressBar->value()-1);
-        ui->score->setText(QString::number(board->getScore()));
+        ui->score->setText(QString::number(board->getScore(1) + board->getScore(2) + board->getScore(3) + board->getScore(4)));
         //时间到了
         if(!ui->progressBar->value()){
             timer->stop();
