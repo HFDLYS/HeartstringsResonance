@@ -30,13 +30,10 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
-    bool ok;
-    int a = QInputDialog::getInt(this, "输入种子", "Seed:", 0, INT_MIN, INT_MAX, 1, &ok);
-    if(!ok)return;
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm2();
-    SingleWindow *sw = new SingleWindow(a);
+    SingleWindow *sw = new SingleWindow(0);
     changeWindow(sw);
     sw->startGame();
 }
