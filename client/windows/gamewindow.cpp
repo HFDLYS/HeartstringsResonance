@@ -18,14 +18,6 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonValue>
-
-/*
- * 未实现功能:
- * 2.交换宝石时发送信息至服务器.(格式:click/x1/y1/x2/y2)
- * 3.收到服务器交换棋子的信息(格式:click/x1/y1/x2/y2/playerId)时交换全局版面的对应宝石.
- * 4.开始游戏时将服务器返回的种子填入游戏.
-*/
-
 const QPoint board_size(520, 520);
 const QPoint opengl_up_left(10, 100);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
