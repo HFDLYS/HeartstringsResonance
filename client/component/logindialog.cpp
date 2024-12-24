@@ -94,6 +94,7 @@ void LoginDialog::onLoginClicked()
     QString password = getPassword();
     ipstring = "ws://"+ip+":"+port;
     QUrl userip(ipstring);
+    if(server)delete server;
     server=new QWebSocket();
     server->open(userip);
     connect(server, &QWebSocket::errorOccurred, this,[=]{
@@ -134,7 +135,6 @@ void LoginDialog::onLoginClicked()
                 loginButton->setEnabled(true);
                 registerButton->setEnabled(true);
                 server->close();
-                delete server;
             }
         }
     });
@@ -151,6 +151,7 @@ void LoginDialog::onRegisterClicked()
     QString password = getPassword();
     ipstring = "ws://"+ip+":"+port;
     QUrl userip(ipstring);
+    if(server)delete server;
     server=new QWebSocket();
     server->open(userip);
     connect(server, &QWebSocket::errorOccurred, this,[=]{
@@ -181,13 +182,11 @@ void LoginDialog::onRegisterClicked()
                 loginButton->setEnabled(true);
                 registerButton->setEnabled(true);
                 server->close();
-                delete server;
             } else{
                 QMessageBox::information(this, "注册失败", info);
                 loginButton->setEnabled(true);
                 registerButton->setEnabled(true);
                 server->close();
-                delete server;
             }
         }
     });
