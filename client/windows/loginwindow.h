@@ -27,8 +27,6 @@ public:
 
 private slots:
 
-    void on_btnAbout_clicked();
-    void on_btnQuit_clicked();
     void onLoginClicked();
     void onRegisterClicked();
 

@@ -91,40 +91,6 @@
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnQuit">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>630</y>
-       <width>301</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#btnQuit{border-image:url(:/images/mainwindow/quit.png)}
-QPushButton::pressed#btnQuit{border-image:url(:/images/mainwindow/quit-.png)}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnAbout">
-     <property name="geometry">
-      <rect>
-       <x>930</x>
-       <y>630</y>
-       <width>301</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton#btnAbout{border-image:url(:/images/mainwindow/about.png)
-}QPushButton::pressed#btnAbout{border-image:url(:/images/mainwindow/about-.png)}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QLabel" name="shadow">
      <property name="enabled">
       <bool>true</bool>
@@ -177,8 +143,6 @@ font-weight: bold;</string>
     </widget>
     <zorder>shadow</zorder>
     <zorder>title</zorder>
-    <zorder>btnQuit</zorder>
-    <zorder>btnAbout</zorder>
     <zorder>verticalLayoutWidget</zorder>
    </widget>
   </widget>

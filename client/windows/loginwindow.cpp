@@ -188,14 +188,6 @@ void LoginWindow::onRegisterClicked()
 
 LoginWindow::~LoginWindow() { delete ui; }
 
-void LoginWindow::on_btnAbout_clicked() {
-    
-}
-
-void LoginWindow::on_btnQuit_clicked() {
-   
-}
-
 QString LoginWindow::getIp() const {
     return ipLineEdit->text();
 }
