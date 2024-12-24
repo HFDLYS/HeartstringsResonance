@@ -1,4 +1,4 @@
-#include "loginDialog.h"
+#include "logindialog.h"
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QPainter>
