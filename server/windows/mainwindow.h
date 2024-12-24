@@ -8,15 +8,14 @@
 #include "../serve/room.h"
 #include "../serve/database.h"
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -25,10 +24,10 @@ private slots:
 
 private:
     DataBase db;
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
     QWebSocketServer* webServer;
     QWebSocketServer* webSoloServer;
-    QVector<QPair<QWebSocket*,QString> > waitingQueue;
+    QVector<QPair<QWebSocket*, QString> > waitingQueue;
     QVector<Room*> rooms;
 };
 

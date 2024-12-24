@@ -4,25 +4,23 @@ DataBase::DataBase() {
     connect();
 }
 
-bool DataBase::connect(){
-    db=QSqlDatabase::addDatabase("QMYSQL");
+bool DataBase::connect() {
+    db = QSqlDatabase::addDatabase("QMYSQL");
     db.setPort(3306);
     db.setHostName("47.116.175.206");
     db.setUserName("LoM");
     db.setPassword("LoM_10086");
     db.setDatabaseName("LoM_HsR");
-    if(db.open())
-    {
-        qDebug()<<"成功连接数据库";
+    if (db.open()) {
+        qDebug() << "成功连接数据库";
         return true;
-    }
-    else {
-        qDebug()<<"连接失败,原因:"<<db.lastError().text();
+    } else {
+        qDebug() << "连接失败,原因:" << db.lastError().text();
         return false;
     }
 }
 
-bool DataBase::insert(Player player,QString&info){
+bool DataBase::insert(Player player, QString& info) {
     if (!db.isOpen()) {
         if (!connect()) {
             return false;
@@ -30,7 +28,7 @@ bool DataBase::insert(Player player,QString&info){
     }
 
     if (select(player.username).size() > 0) {
-        info="用户已存在";
+        info = "用户已存在";
         qDebug() << info;
         return false;
     }
@@ -42,7 +40,7 @@ bool DataBase::insert(Player player,QString&info){
     query.bindValue(":name", player.username);
     query.bindValue(":password", player.password);
     if (!query.exec()) {
-        info="插入user表失败,原因: " + query.lastError().text();
+        info = "插入user表失败,原因: " + query.lastError().text();
         qDebug() << info;
         return false;
     }
@@ -52,12 +50,12 @@ bool DataBase::insert(Player player,QString&info){
     query.prepare(sqlStr);
     query.bindValue(":userId", userId);
     query.bindValue(":pointSolo", player.pointSolo);
-    query.bindValue(":pointMulti", player.pointMulti);  
-    if(query.exec()){
-        
-    }else{
-        info="插入数据失败,原因:"+query.lastError().text();
-        qDebug()<<info;
+    query.bindValue(":pointMulti", player.pointMulti);
+    if (query.exec()) {
+
+    } else {
+        info = "插入数据失败,原因:" + query.lastError().text();
+        qDebug() << info;
         return false;
     }
     sqlStr = "insert into item(user_id, skill_1, skill_2, skill_3) values(:userId, :skill1, :skill2, :skill3);";
@@ -66,17 +64,17 @@ bool DataBase::insert(Player player,QString&info){
     query.bindValue(":skill1", player.skill_1);
     query.bindValue(":skill2", player.skill_2);
     query.bindValue(":skill3", player.skill_3);
-    if(query.exec()){
-        info="成功插入数据";
-        qDebug()<<"成功插入数据";
+    if (query.exec()) {
+        info = "成功插入数据";
+        qDebug() << "成功插入数据";
         return true;
-    }else{
-        info="插入数据失败,原因:"+query.lastError().text();
-        qDebug()<<"插入数据失败,原因:"<<query.lastError().text();
+    } else {
+        info = "插入数据失败,原因:" + query.lastError().text();
+        qDebug() << "插入数据失败,原因:" << query.lastError().text();
         return false;
     }
 }
-QVector<Player> DataBase::select(QString username){
+QVector<Player> DataBase::select(QString username) {
     if (!db.isOpen()) {
         if (!connect()) {
             return QVector<Player>();
@@ -102,38 +100,37 @@ QVector<Player> DataBase::select(QString username){
         WHERE 
             user.user_name = :username;
     )");
-    query.bindValue(":username",username);
-    if(query.exec())
-    {
-        qDebug()<<"查询成功,有"<<query.size()<<"条记录";
+    query.bindValue(":username", username);
+    if (query.exec()) {
+        qDebug() << "查询成功,有" << query.size() << "条记录";
         while (query.next()) {
-            Player player(query.record().value("user_name").toString(),query.record().value("password").toString(),query.record().value("point_solo").toInt(),query.record().value("point_multi").toInt(),query.record().value("skill_1").toInt(),query.record().value("skill_2").toInt(),query.record().value("skill_3").toInt());
+            Player player(query.record().value("user_name").toString(), query.record().value("password").toString(), query.record().value("point_solo").toInt(), query.record().value("point_multi").toInt(), query.record().value("skill_1").toInt(), query.record().value("skill_2").toInt(), query.record().value("skill_3").toInt());
             rec.push_back(player);
         }
     } else {
-        QString info="查询失败:" + query.lastError().text();
+        QString info = "查询失败:" + query.lastError().text();
         qDebug() << info;
     }
     return rec;
 }
-bool DataBase::update(Player player){
-    return update(player.username,player.pointSolo,player.pointMulti,player.skill_1,player.skill_2,player.skill_3);
+bool DataBase::update(Player player) {
+    return update(player.username, player.pointSolo, player.pointMulti, player.skill_1, player.skill_2, player.skill_3);
 }
 
-QPair<bool,QString> DataBase::playerRegister(QString username,QString password){
+QPair<bool, QString> DataBase::playerRegister(QString username, QString password) {
     QString info;
-    return qMakePair(insert(Player(username,password),info),info);
+    return qMakePair(insert(Player(username, password), info), info);
 }
 
-QPair<bool,QString> DataBase::playerLogIn(QString username,QString password,Player&player){
-    auto rec=select(username);
-    if(rec.empty()){
-        return qMakePair(0,"用户不存在.");
-    }else if(rec[0].password!=password){
-        return qMakePair(0,"用户名或密码错误.");
+QPair<bool, QString> DataBase::playerLogIn(QString username, QString password, Player& player) {
+    auto rec = select(username);
+    if (rec.empty()) {
+        return qMakePair(0, "用户不存在.");
+    } else if (rec[0].password != password) {
+        return qMakePair(0, "用户名或密码错误.");
     }
-    player=rec[0];
-    return qMakePair(1,"登录成功");
+    player = rec[0];
+    return qMakePair(1, "登录成功");
 }
 
 bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill_1, int skill_2, int skill_3) {
@@ -160,8 +157,8 @@ bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill
         // 更新数据库中用户的信息
         QSqlQuery query;
         query.prepare("UPDATE rank_list "
-                      "SET point_solo = :pointSolo, point_multi = :pointMulti "
-                      "WHERE user_id = (SELECT user_id FROM user WHERE user_name = :username)");
+            "SET point_solo = :pointSolo, point_multi = :pointMulti "
+            "WHERE user_id = (SELECT user_id FROM user WHERE user_name = :username)");
         query.bindValue(":pointSolo", pointSolo);
         query.bindValue(":pointMulti", pointMulti);
         query.bindValue(":username", username);
@@ -172,8 +169,8 @@ bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill
         }
 
         query.prepare("UPDATE item "
-                      "SET skill_1 = :skill_1, skill_2 = :skill_2, skill_3 = :skill_3 "
-                      "WHERE user_id = (SELECT user_id FROM user WHERE user_name = :username)");
+            "SET skill_1 = :skill_1, skill_2 = :skill_2, skill_3 = :skill_3 "
+            "WHERE user_id = (SELECT user_id FROM user WHERE user_name = :username)");
         query.bindValue(":skill_1", skill_1);
         query.bindValue(":skill_2", skill_2);
         query.bindValue(":skill_3", skill_3);
@@ -189,13 +186,13 @@ bool DataBase::update(QString username, int pointSolo, int pointMulti, int skill
     }
 }
 
-QVector<QPair<QString,int> > DataBase::rankSolo(int rank){
+QVector<QPair<QString, int> > DataBase::rankSolo(int rank) {
     if (!db.isOpen()) {
         if (!connect()) {
-            return QVector<QPair<QString,int> >();
+            return QVector<QPair<QString, int> >();
         }
     }
-    QVector<QPair<QString,int> >rec;
+    QVector<QPair<QString, int> >rec;
     QSqlQuery query(db);
     query.prepare(R"(
     SELECT user_name,point_solo
@@ -203,22 +200,21 @@ QVector<QPair<QString,int> > DataBase::rankSolo(int rank){
         LEFT JOIN rank_list ON user.user_id = rank_list.user_id
         ORDER BY point_solo DESC LIMIT :limit;
     )");
-    query.bindValue(":limit",rank);
-    if(query.exec())
-    {
+    query.bindValue(":limit", rank);
+    if (query.exec()) {
         while (query.next()) {
-            rec.push_back(qMakePair(query.record().value("user_name").toString(),query.record().value("point_solo").toInt()));
+            rec.push_back(qMakePair(query.record().value("user_name").toString(), query.record().value("point_solo").toInt()));
         }
     }
     return rec;
 }
-QVector<QPair<QString,int> > DataBase::rankMulti(int rank){
+QVector<QPair<QString, int> > DataBase::rankMulti(int rank) {
     if (!db.isOpen()) {
         if (!connect()) {
-            return QVector<QPair<QString,int> >();
+            return QVector<QPair<QString, int> >();
         }
     }
-    QVector<QPair<QString,int> >rec;
+    QVector<QPair<QString, int> >rec;
     QSqlQuery query(db);
     query.prepare(R"(
     SELECT user_name,point_multi
@@ -226,11 +222,10 @@ QVector<QPair<QString,int> > DataBase::rankMulti(int rank){
         LEFT JOIN rank_list ON user.user_id = rank_list.user_id
         ORDER BY point_multi DESC LIMIT :limit;
     )");
-    query.bindValue(":limit",rank);
-    if(query.exec())
-    {
+    query.bindValue(":limit", rank);
+    if (query.exec()) {
         while (query.next()) {
-            rec.push_back(qMakePair(query.record().value("user_name").toString(),query.record().value("point_multi").toInt()));
+            rec.push_back(qMakePair(query.record().value("user_name").toString(), query.record().value("point_multi").toInt()));
         }
     }
     return rec;

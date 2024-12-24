@@ -4,9 +4,9 @@
 #include "../../core/gemmanager.h"
 
 class ServerGemManager : public GemManager {
-   public:
+public:
     ServerGemManager() {
-        
+
     }
     ~ServerGemManager() {
 
@@ -52,7 +52,7 @@ class ServerGemManager : public GemManager {
     bool IsPause() const {
         return false;
     }
-    
+
 
     void Update() {
 
