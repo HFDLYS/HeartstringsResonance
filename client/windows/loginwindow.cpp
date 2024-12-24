@@ -59,7 +59,9 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
     mainLayout->addLayout(selectLayout);
     mainLayout->addLayout(usernameLayout);
     mainLayout->addLayout(passwordLayout);
+    loginButton->setFixedHeight(40);
     mainLayout->addWidget(loginButton);
+    registerButton->setFixedHeight(40);
     mainLayout->addWidget(registerButton);
 
     ui->loginLayout->addLayout(mainLayout);
