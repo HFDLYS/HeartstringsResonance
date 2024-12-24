@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMouseEvent>
 #include "../../core/player.h"
+#include <QWebSocket>
 // 无边窗口类，为其他窗口的父类
 
 namespace Ui {
@@ -17,6 +18,7 @@ class BaseWindow : public QMainWindow {
 public:
     static void setPlayer(Player);
     static void setip(QString);
+    static void setserver(QWebSocket *);
     explicit BaseWindow(QWidget *parent = nullptr);
     ~BaseWindow();
     void delay(int x);
@@ -25,6 +27,7 @@ protected:
     QPoint last;
     static Player player;
     static QUrl playerIp;
+    static QWebSocket *server;
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);

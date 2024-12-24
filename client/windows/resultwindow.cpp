@@ -18,9 +18,8 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
     : BaseWindow(parent)
     , ui(new Ui::ResultWindow)
 {
-    server=new QWebSocket();
     QUrl playerip = BaseWindow::playerIp;
-    server->open(playerip);
+    server = BaseWindow::server;
     isSolo=isSolo_;
     ui->setupUi(this);
     score=score_;

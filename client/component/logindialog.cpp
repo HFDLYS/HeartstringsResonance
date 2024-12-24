@@ -86,6 +86,8 @@ QString LoginDialog::getPassword() const
 
 void LoginDialog::onLoginClicked()
 {
+    loginButton->setEnabled(false);
+    registerButton->setEnabled(false);
     QString ip = getIp();
     QString port = getPort();
     QString username = getUsername();
@@ -94,6 +96,11 @@ void LoginDialog::onLoginClicked()
     QUrl userip(ipstring);
     server=new QWebSocket();
     server->open(userip);
+    connect(server, &QWebSocket::errorOccurred, this,[=]{
+        QMessageBox::warning(this, "Error", "链接失败");
+        loginButton->setEnabled(true);
+        registerButton->setEnabled(true);
+    });
     connect(server,&QWebSocket::connected,this,[=]{
         QJsonObject cmd,parameter;
         cmd["command"]="login";
@@ -116,11 +123,18 @@ void LoginDialog::onLoginClicked()
             if(isSuccess){
                 QMessageBox::information(this, "登录成功", "欢迎"+username+"来到爱の魔法喵");
                 BaseWindow::setPlayer(Player(parameter["player"].toObject()));
-                qDebug() << "114514 " << getipstring();
                 BaseWindow::setip(getipstring());
+                BaseWindow::setserver(server);
+                loginButton->setEnabled(true);
+                registerButton->setEnabled(true);
                 accept();
+
             } else{
                 QMessageBox::information(this, "账号或密码错误喵", info);
+                loginButton->setEnabled(true);
+                registerButton->setEnabled(true);
+                server->close();
+                delete server;
             }
         }
     });
@@ -129,6 +143,8 @@ void LoginDialog::onLoginClicked()
 
 void LoginDialog::onRegisterClicked()
 {
+    loginButton->setEnabled(false);
+    registerButton->setEnabled(false);
     QString ip = getIp();
     QString port = getPort();
     QString username = getUsername();
@@ -137,6 +153,11 @@ void LoginDialog::onRegisterClicked()
     QUrl userip(ipstring);
     server=new QWebSocket();
     server->open(userip);
+    connect(server, &QWebSocket::errorOccurred, this,[=]{
+        QMessageBox::warning(this, "Error", "链接失败");
+        loginButton->setEnabled(true);
+        registerButton->setEnabled(true);
+    });
     connect(server,&QWebSocket::connected,this,[=]{
         QJsonObject cmd,parameter;
         cmd["command"]="register";
@@ -157,9 +178,16 @@ void LoginDialog::onRegisterClicked()
             QString info = parameter["info"].toString();
             if(isSuccess){
                 QMessageBox::information(this, "注册成功", username+"成功注册");
-
+                loginButton->setEnabled(true);
+                registerButton->setEnabled(true);
+                server->close();
+                delete server;
             } else{
                 QMessageBox::information(this, "注册失败", info);
+                loginButton->setEnabled(true);
+                registerButton->setEnabled(true);
+                server->close();
+                delete server;
             }
         }
     });

@@ -38,7 +38,7 @@ private:
     QLineEdit *passwordEdit;
     QPushButton *loginButton;
     QPushButton *registerButton;
-    QWebSocket*server;
+    QWebSocket *server;
     QLineEdit *ipLineEdit;
     QLineEdit *portLineEdit;
     QComboBox *ipoption;

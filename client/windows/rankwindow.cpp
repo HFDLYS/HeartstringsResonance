@@ -15,22 +15,18 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
     this->setFixedSize(1280, 720);
     // 去除自带的边框
     this->setWindowFlag(Qt::FramelessWindowHint);
-    server=new QWebSocket();
     QUrl playerip = BaseWindow::playerIp;
-    server->open(playerip);
+    server = BaseWindow::server;
+    QJsonObject cmd,parameter;
+    cmd["command"]="rank";
+    parameter["length"] = 10;
+    cmd["parameter"]=parameter;
+    QJsonDocument json(cmd);
+    qDebug() << server->sendBinaryMessage(json.toJson());
 
-
-    connect(server,&QWebSocket::connected,this,[&]{
-        QJsonObject cmd,parameter;
-        cmd["command"]="rank";
-        parameter["length"] = 10;
-        cmd["parameter"]=parameter;
-        QJsonDocument json(cmd);
-        qDebug() << server->sendBinaryMessage(json.toJson());
-    });
 
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
-        qDebug()<<message;
+        qDebug()<<"\n\n\nrank\n\n\n"<<message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);
         QJsonObject cmd = jsonIn.object();
         if(cmd["command"].toString()=="rank"){

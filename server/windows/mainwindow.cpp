@@ -127,7 +127,7 @@ void MainWindow::newClientConnect() {
             QJsonObject parameterOut;
             parameterOut["isSuccess"] = isSuccess;
             parameterOut["info"] = info;
-            parameterOut["Player"] = player.toJson();
+            parameterOut["player"] = player.toJson();
             QJsonObject cmdOut;
             cmdOut["command"] = "login";
             cmdOut["parameter"] = parameterOut;

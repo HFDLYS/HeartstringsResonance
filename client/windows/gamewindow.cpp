@@ -32,9 +32,8 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
    // QString urlstring = "ws://" + ip + ":" + port;
     //QUrl serverUrl(urlstring);
     ui->setupUi(this);
-    server=new QWebSocket();
     QUrl playerip = BaseWindow::playerIp;
-    server->open(playerip);
+    server = BaseWindow::server;
     connect(server,&QWebSocket::connected,this,[&]{
         QJsonObject cmd,parameter;
         cmd["command"]="multigame";
