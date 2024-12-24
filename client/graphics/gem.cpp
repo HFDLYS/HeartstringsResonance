@@ -24,6 +24,7 @@ void Gem::set_z(int z) { z_ = z; }
 
 float Gem::angle() const { return angle_; }
 int Gem::type() const { return type_; }
+void Gem::set_type(int type) { type_ = type; }
 // 暂停
 bool Gem::is_pausing() const { return pausing_; }
 void Gem::set_pausing(int pausing) { pausing_ = pausing; }

@@ -87,6 +87,8 @@ class GraphicGemManager : public QObject, public GemManager {
     // 绘制
     void Draw(QOpenGLShaderProgram& program);
 
+    void setGem(int id, int type);
+
    private:
     static constexpr int kDelta = 100;
     static constexpr int kDeltaHalf = kDelta >> 1;

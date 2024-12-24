@@ -46,7 +46,7 @@ void RenderManager::ShowGem(int type) {
     GetGemManager()->Init(nx, ny);
 
     GetGemManager()->Generate(1, 0, 0, type, 0);
-
+    GetGemManager()->setGem(1, type);
     update();
 }
 

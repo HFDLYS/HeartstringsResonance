@@ -61,6 +61,8 @@ private:
     Graphics::RenderManager *main_renderer_;
     Board *main_board_;
     SquarePieChart *main_chart_;
+    Graphics::RenderManager *sub_renderer_;
+    SquarePieChart *sub_chart_;
     Graphics::RenderManager *show_renderer_[5];
     Board *show_board_[5];
     SquarePieChart *show_chart_[5];
