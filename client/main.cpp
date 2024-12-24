@@ -4,6 +4,7 @@
 #include <random>
 
 #include "./windows/mainwindow.h"
+#include "./windows/loginwindow.h"
 #include "./component/logindialog.h"
 int main(int argc, char *argv[]) {
     srand(time(0));
@@ -14,6 +15,10 @@ int main(int argc, char *argv[]) {
     format.setAlphaBufferSize(8);
     QSurfaceFormat::setDefaultFormat(format);
     QApplication a(argc, argv);
+    LoginWindow w;
+    w.show();
+    
+    return a.exec();
     LoginDialog loginDialog;
     if (loginDialog.exec() == QDialog::Accepted) {
         // 登录成功，显示主窗口
@@ -24,5 +29,4 @@ int main(int argc, char *argv[]) {
         // 登录失败或取消，退出程序
         return 0;
     }
-    return a.exec();
 }

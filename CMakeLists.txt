@@ -96,6 +96,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/waitingwindow.h client/windows/waitingwindow.cpp client/windows/waitingwindow.ui
         client/windows/memberwindow.h client/windows/memberwindow.cpp client/windows/memberwindow.ui
         client/component/logindialog.h client/component/logindialog.cpp
+        client/windows/loginwindow.h client/windows/loginwindow.cpp client/windows/loginwindow.ui
 
     )
 # Define target properties for Android with Qt 6 as:
