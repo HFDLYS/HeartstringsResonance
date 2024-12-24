@@ -92,6 +92,8 @@ QPushButton::pressed#btnExit
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource/res.qrc"/>
+ </resources>
  <connections/>
 </ui>
