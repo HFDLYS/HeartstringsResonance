@@ -80,84 +80,15 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
    <widget class="QLabel" name="cnt1">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>330</x>
       <y>270</y>
-      <width>40</width>
-      <height>12</height>
+      <width>90</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
-	font-size:15px;
-	color:rgb(178, 96, 255);
-	font-family:幼圆;
-}</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="cnt2">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>315</y>
-      <width>40</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	font-size:15px;
-	color:rgb(178, 96, 255);
-	font-family:幼圆;
-}</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="cnt3">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>360</y>
-      <width>40</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	font-size:15px;
-	color:rgb(178, 96, 255);
-	font-family:幼圆;
-}</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="cnt4">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>405</y>
-      <width>40</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	font-size:15px;
+	font-size:30px;
 	color:rgb(178, 96, 255);
 	font-family:幼圆;
 }</string>
@@ -218,10 +149,10 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
    <widget class="QLabel" name="board_1">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>260</y>
-      <width>60</width>
-      <height>30</height>
+      <x>330</x>
+      <y>280</y>
+      <width>90</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="text">
@@ -237,8 +168,8 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
    <widget class="QLabel" name="cnt5">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>450</y>
+      <x>630</x>
+      <y>530</y>
       <width>40</width>
       <height>12</height>
      </rect>
@@ -257,68 +188,11 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="board_2">
-    <property name="geometry">
-     <rect>
-      <x>670</x>
-      <y>305</y>
-      <width>60</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="board_3">
-    <property name="geometry">
-     <rect>
-      <x>670</x>
-      <y>350</y>
-      <width>60</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="board_4">
-    <property name="geometry">
-     <rect>
-      <x>670</x>
-      <y>395</y>
-      <width>60</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="board_5">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>440</y>
+      <x>620</x>
+      <y>520</y>
       <width>60</width>
       <height>30</height>
      </rect>
@@ -337,7 +211,7 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
     <property name="geometry">
      <rect>
       <x>490</x>
-      <y>70</y>
+      <y>80</y>
       <width>300</width>
       <height>211</height>
      </rect>
@@ -352,22 +226,148 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
      <bool>true</bool>
     </property>
    </widget>
-   <zorder>title</zorder>
-   <zorder>board_4</zorder>
-   <zorder>board_3</zorder>
-   <zorder>board_2</zorder>
+   <widget class="QLabel" name="board_2">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>430</y>
+      <width>90</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cnt2">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>420</y>
+      <width>90</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-size:30px;
+	color:rgb(178, 96, 255);
+	font-family:幼圆;
+}</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="board_3">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>280</y>
+      <width>90</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cnt3">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>270</y>
+      <width>90</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-size:30px;
+	color:rgb(178, 96, 255);
+	font-family:幼圆;
+}</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="board_4">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>430</y>
+      <width>90</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cnt4">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>420</y>
+      <width>90</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-size:30px;
+	color:rgb(178, 96, 255);
+	font-family:幼圆;
+}</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>board_5</zorder>
-   <zorder>cnt4</zorder>
+   <zorder>cnt5</zorder>
+   <zorder>title</zorder>
    <zorder>board_1</zorder>
    <zorder>btnReturn</zorder>
    <zorder>btnUpdate</zorder>
    <zorder>cnt1</zorder>
-   <zorder>cnt2</zorder>
-   <zorder>cnt3</zorder>
    <zorder>score_title</zorder>
-   <zorder>cnt5</zorder>
    <zorder>board</zorder>
    <zorder>score</zorder>
+   <zorder>board_2</zorder>
+   <zorder>cnt2</zorder>
+   <zorder>board_3</zorder>
+   <zorder>cnt3</zorder>
+   <zorder>board_4</zorder>
+   <zorder>cnt4</zorder>
   </widget>
  </widget>
  <resources>
