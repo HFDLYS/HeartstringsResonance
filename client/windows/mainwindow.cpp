@@ -44,21 +44,8 @@ void MainWindow::on_rbtnMultiplayer_clicked(){
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm3();
-    QVBoxLayout *layout = new QVBoxLayout(this);
-
-    ConnectDialog dialog(this);
-    if (dialog.exec() == QDialog::Accepted) {
-        QString ip = dialog.getIp();
-        QString port = dialog.getPort();
-
-        // 简单的输入验证（可根据需要增强）
-        if (!ip.isEmpty() && !port.isEmpty()) {
-            GameWindow *gw = new GameWindow(ip, port);
-            changeWindow(gw);
-        } else {
-            QMessageBox::warning(this, tr("输入错误"), tr("IP 地址和端口号不能为空。"));
-        }
-    }
+    GameWindow *gw = new GameWindow(this);
+    changeWindow(gw);
 }
 
 // 排行榜

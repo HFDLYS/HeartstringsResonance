@@ -27,7 +27,7 @@ const QPoint show_opengl_up_left(700, 70);
 const QPoint show_board_size(280, 280);
 const int border_size = 10;
 const int TITLE_HEIGHT = 30;
-GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
+GameWindow::GameWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::GameWindow) {
     // QString urlstring = "ws://" + ip + ":" + port;
     //QUrl serverUrl(urlstring);
@@ -37,14 +37,14 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
     ui->cnt3->setText(QString::number(player.skill_3));
     QUrl playerip = BaseWindow::playerIp;
     server = BaseWindow::server;
-    connect(server,&QWebSocket::connected,this,[&]{
+    if(server->isValid()){
         QJsonObject cmd,parameter;
         cmd["command"]="multigame";
         parameter["player"]=player.toJson();
         cmd["parameter"]=parameter;
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
-    });
+    }
     WaitingWindow *ww = new WaitingWindow(this);
     connect(ww,&WaitingWindow::closeGame,this,[&]{
         AudioManager::GetInstance()->StopBgm3();
