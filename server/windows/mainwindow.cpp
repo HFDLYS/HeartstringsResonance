@@ -19,7 +19,7 @@ void MainWindow::newClientConnect() {
     ui->textEdit->append(QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort()));
     qDebug() << QString("有来自%1:%2的连接").arg(client->peerAddress().toString()).arg(client->peerPort());
     connect(client, &QWebSocket::disconnected, this, [=] {
-        for (int i=0;i<=waitingQueue.size();i++) {
+        for (int i=0;i<waitingQueue.size();i++) {
             if (waitingQueue[i].first == client) {
                 waitingQueue.removeAt(i);
                 break;

@@ -4,6 +4,7 @@
 #include <QTimer>
 #include "ui_basewindow.h"
 Player BaseWindow::player;
+QUrl BaseWindow::playerIp;
 BaseWindow::BaseWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::BaseWindow) {
     ui->setupUi(this);
@@ -20,6 +21,9 @@ BaseWindow::BaseWindow(QWidget *parent)
 void BaseWindow::setPlayer(Player p){
     if(player.username.isEmpty())player=p;
     if(player==p)player=p;
+}
+void BaseWindow::setip(QString ipstring){
+    playerIp = QUrl(ipstring);
 }
 void BaseWindow::delay(int x) {
     QTime dieTime = QTime::currentTime().addMSecs(x);

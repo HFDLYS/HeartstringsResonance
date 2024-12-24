@@ -9,7 +9,6 @@
 #include <QJsonDocument>
 #include <QJsonValue>
 #include "../windows/basewindow.h"
-const QUrl serverUrl("ws://localhost:1479");
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
 {
@@ -87,10 +86,14 @@ QString LoginDialog::getPassword() const
 
 void LoginDialog::onLoginClicked()
 {
+    QString ip = getIp();
+    QString port = getPort();
     QString username = getUsername();
     QString password = getPassword();
+    ipstring = "ws://"+ip+":"+port;
+    QUrl userip(ipstring);
     server=new QWebSocket();
-    server->open(serverUrl);
+    server->open(userip);
     connect(server,&QWebSocket::connected,this,[=]{
         QJsonObject cmd,parameter;
         cmd["command"]="login";
@@ -110,10 +113,11 @@ void LoginDialog::onLoginClicked()
             parameter = cmd["parameter"].toObject();
             bool isSuccess = parameter["isSuccess"].toBool();
             QString info = parameter["info"].toString();
-            qDebug() << "12312361827361872" << '\n';
             if(isSuccess){
                 QMessageBox::information(this, "登录成功", "欢迎"+username+"来到爱の魔法喵");
                 BaseWindow::setPlayer(Player(parameter["player"].toObject()));
+                qDebug() << "114514 " << getipstring();
+                BaseWindow::setip(getipstring());
                 accept();
             } else{
                 QMessageBox::information(this, "账号或密码错误喵", info);
@@ -125,10 +129,14 @@ void LoginDialog::onLoginClicked()
 
 void LoginDialog::onRegisterClicked()
 {
+    QString ip = getIp();
+    QString port = getPort();
     QString username = getUsername();
     QString password = getPassword();
+    ipstring = "ws://"+ip+":"+port;
+    QUrl userip(ipstring);
     server=new QWebSocket();
-    server->open(serverUrl);
+    server->open(userip);
     connect(server,&QWebSocket::connected,this,[=]{
         QJsonObject cmd,parameter;
         cmd["command"]="register";
@@ -190,6 +198,10 @@ QString LoginDialog::getSelectip() const {
 
 QString LoginDialog::getSelectport() const {
     return portoption->currentText();
+}
+
+QString LoginDialog::getipstring() const {
+    return ipstring;
 }
 
 void LoginDialog::updateIpLineEdit(int index) {

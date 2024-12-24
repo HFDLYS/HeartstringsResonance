@@ -13,13 +13,14 @@
 
 const QPoint show_opengl_up_left(500, 280);
 const QPoint show_board_size(40, 40);
-const QUrl serverUrl("ws://localhost:1479");
+//const QUrl serverUrl("ws://localhost:1479");
 ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int score3, int score4, int score5, QWidget *parent)
     : BaseWindow(parent)
     , ui(new Ui::ResultWindow)
 {
     server=new QWebSocket();
-    server->open(serverUrl);
+    QUrl playerip = BaseWindow::playerIp;
+    server->open(playerip);
     isSolo=isSolo_;
     ui->setupUi(this);
     score=score_;

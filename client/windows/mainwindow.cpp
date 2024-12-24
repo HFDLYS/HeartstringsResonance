@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
 
     AudioManager::GetInstance()->PlayBgm1();
+    // qDebug()<< "test" << BaseWindow::playerIp;
 }
 
 MainWindow::~MainWindow() { delete ui; }

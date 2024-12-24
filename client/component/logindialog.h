@@ -22,6 +22,7 @@ public:
     QString getPort() const;
     QString getSelectip() const;
     QString getSelectport() const;
+    QString getipstring() const;
     void updateIpLineEdit(int);
     void updatePortLineEdit(int);
 
@@ -42,6 +43,7 @@ private:
     QLineEdit *portLineEdit;
     QComboBox *ipoption;
     QComboBox *portoption;
+    QString ipstring;
 };
 
 #endif // LOGINDIALOG_H

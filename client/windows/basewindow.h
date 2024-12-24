@@ -8,6 +8,7 @@
 
 namespace Ui {
 class BaseWindow;
+
 }
 
 class BaseWindow : public QMainWindow {
@@ -15,6 +16,7 @@ class BaseWindow : public QMainWindow {
 
 public:
     static void setPlayer(Player);
+    static void setip(QString);
     explicit BaseWindow(QWidget *parent = nullptr);
     ~BaseWindow();
     void delay(int x);
@@ -22,6 +24,7 @@ public:
 protected:
     QPoint last;
     static Player player;
+    static QUrl playerIp;
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);

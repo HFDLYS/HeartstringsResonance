@@ -29,11 +29,12 @@ const int border_size = 10;
 const int TITLE_HEIGHT = 30;
 GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
     : BaseWindow(parent), ui(new Ui::GameWindow) {
-    QString urlstring = "ws://" + ip + ":" + port;
-    QUrl serverUrl(urlstring);
+   // QString urlstring = "ws://" + ip + ":" + port;
+    //QUrl serverUrl(urlstring);
     ui->setupUi(this);
     server=new QWebSocket();
-    server->open(serverUrl);
+    QUrl playerip = BaseWindow::playerIp;
+    server->open(playerip);
     connect(server,&QWebSocket::connected,this,[&]{
         QJsonObject cmd,parameter;
         cmd["command"]="multigame";
