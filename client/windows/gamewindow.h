@@ -52,7 +52,9 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
-
+    int skill1_cnt = 0;
+    int skill2_cnt = 0;
+    int skill3_cnt = 0;
     QTimer *timer_flush_score_and_left_time_bar_;
     int left_time_cnt_;
     int player_id_;

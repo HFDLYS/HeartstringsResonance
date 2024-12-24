@@ -18,10 +18,6 @@ void AboutWindow::on_btnReturn_clicked() {
 void AboutWindow::on_btnMember_clicked()
 {
     MemberWindow *mbw = new MemberWindow();
-    mbw->move(this->pos().x(), this->pos().y());
-    mbw->show();
-    QTime dieTime = QTime::currentTime().addMSecs(20);
-    while (QTime::currentTime() < dieTime) QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
-    this->close();
+    changeWindow(mbw);
 }
 

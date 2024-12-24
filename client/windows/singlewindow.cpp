@@ -139,7 +139,6 @@ void SingleWindow::on_skill1_button_clicked() {
     ui->cnt1->setText(QString::number(player.skill_1-skill1_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->hint();
-    if(skill1_cnt>=player.skill_1)ui->skill1_button->setEnabled(0);
 }
 
 void SingleWindow::on_skill2_button_clicked() {
@@ -148,7 +147,6 @@ void SingleWindow::on_skill2_button_clicked() {
     ui->cnt2->setText(QString::number(player.skill_2-skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->skyshiv(1);
-    if(skill2_cnt>=player.skill_2)ui->skill2_button->setDisabled(0);
 }
 
 void SingleWindow::on_skill3_button_clicked() {
@@ -157,7 +155,6 @@ void SingleWindow::on_skill3_button_clicked() {
     ui->cnt3->setText(QString::number(player.skill_3-skill3_cnt));
     AudioManager::GetInstance()->PlaySkill();
     board->generate(0);
-    if(skill3_cnt>=player.skill_3)ui->skill3_button->setDisabled(0);
 }
 
 

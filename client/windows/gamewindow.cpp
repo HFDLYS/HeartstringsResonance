@@ -29,9 +29,12 @@ const int border_size = 10;
 const int TITLE_HEIGHT = 30;
 GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
     : BaseWindow(parent), ui(new Ui::GameWindow) {
-   // QString urlstring = "ws://" + ip + ":" + port;
+    // QString urlstring = "ws://" + ip + ":" + port;
     //QUrl serverUrl(urlstring);
     ui->setupUi(this);
+    ui->cnt1->setText(QString::number(player.skill_1));
+    ui->cnt2->setText(QString::number(player.skill_2));
+    ui->cnt3->setText(QString::number(player.skill_3));
     QUrl playerip = BaseWindow::playerIp;
     server = BaseWindow::server;
     connect(server,&QWebSocket::connected,this,[&]{
@@ -63,10 +66,14 @@ GameWindow::GameWindow(QString ip, QString port, QWidget *parent)
             cmd = cmd["parameter"].toObject();
             int playerId = cmd["playerId"].toInt();
             QJsonArray seeds = cmd["seeds"].toArray();
-            QJsonArray players = cmd["players"].toArray();
-            for(auto player:players){
-                this->players.push_back(Player(player.toObject()));
+            QJsonArray playerstmp = cmd["players"].toArray();
+            for(auto player:playerstmp){
+                players.push_back(Player(player.toObject()));
             }
+            ui->username_1->setText(players[0].username);
+            ui->username_2->setText(players[1].username);
+            ui->username_3->setText(players[2].username);
+            ui->username_4->setText(players[3].username);
             std::vector<int> seedVector;
             for (const QJsonValue &value : seeds) {
                 seedVector.push_back(value.toInt());
@@ -191,7 +198,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
     if (!has_started_) return;
     // board->Clicked(x, y);
     if (x > opengl_up_left.x() && y > opengl_up_left.y() && x < opengl_down_right.x() && y < opengl_down_right.y()) {
-        
+
         x -= opengl_up_left.x();
         y -= opengl_up_left.y();
         std::cout << "mouse cliked on:" << x << " " << y << std::endl;
@@ -213,10 +220,12 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
 }
 void GameWindow::startGame() {
 
-    // main_renderer_->Demo();
+        // main_renderer_->Demo();
 }
 
 void GameWindow::on_skill1_button_clicked() {
+    if(skill1_cnt++>=player.skill_1)return;
+    ui->cnt1->setText(QString::number(player.skill_1-skill1_cnt));
     AudioManager::GetInstance()->PlaySkill();
     QJsonObject cmd,parameter;
     cmd["command"]="skill";
@@ -228,6 +237,8 @@ void GameWindow::on_skill1_button_clicked() {
 }
 
 void GameWindow::on_skill2_button_clicked() {
+    if(skill2_cnt++>=player.skill_2)return;
+    ui->cnt2->setText(QString::number(player.skill_2-skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
     QJsonObject cmd,parameter;
     cmd["command"]="skill";
@@ -239,6 +250,8 @@ void GameWindow::on_skill2_button_clicked() {
 }
 
 void GameWindow::on_skill3_button_clicked() {
+    if(skill3_cnt++>=player.skill_3)return;
+    ui->cnt3->setText(QString::number(player.skill_3-skill3_cnt));
     AudioManager::GetInstance()->PlaySkill();
     QJsonObject cmd,parameter;
     cmd["command"]="skill";
