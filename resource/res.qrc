@@ -94,5 +94,8 @@
         <file>images/memberwindow/member_background.png</file>
         <file>images/memberwindow/member.png</file>
         <file>images/rankwindow/rank.png</file>
+        <file>images/barprogress/background.png</file>
+        <file>images/barprogress/chunk.png</file>
+
     </qresource>
 </RCC>

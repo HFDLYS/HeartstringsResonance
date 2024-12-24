@@ -17,7 +17,7 @@ const QPoint board_size(640, 640);
 const QPoint opengl_up_left(250, 40);
 const QPoint opengl_down_right = opengl_up_left + QPoint(board_size.x(), board_size.y());
 const int TITLE_HEIGHT = 30;
-const int MAX_TIME=10;
+const int MAX_TIME=120;
 SingleWindow::SingleWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow) {
     ui->setupUi(this);
@@ -31,6 +31,7 @@ SingleWindow::SingleWindow(int seed_,QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
     ui->setupUi(this);
     ui->score->setText(QString::number(0));
+
     renderer_ = new Graphics::RenderManager(ui->controlWidget);
     renderer_->setFixedSize(board_size.x(), board_size.y());
     renderer_->setGeometry(opengl_up_left.x(), opengl_up_left.y(), renderer_->width(), renderer_->height());
