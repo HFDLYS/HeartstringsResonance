@@ -37,7 +37,7 @@ void MainWindow::newClientConnect() {
         if (cmd["command"].toString() == "updatePoint") {
             QJsonObject parameter = cmd["parameter"].toObject();
             int skill1 = parameter["pointSolo"].toInt()/50+1;
-            int skill2 = parameter["pointSolo"].toInt()/1000+1;
+            int skill2 = parameter["pointSolo"].toInt()/200+1;
             int skill3 = parameter["pointSolo"].toInt()/100+1;
             auto player=db.update(parameter["userName"].toString(), parameter["pointSolo"].toInt(), parameter["pointMulti"].toInt(), skill1, skill2, skill3);
             QJsonObject cmdOut,parameterOut;
