@@ -56,7 +56,7 @@ private:
     QTimer *timer_flush_score_and_left_time_bar_;
     int left_time_cnt_;
     int player_id_;
-    QVector<QString> usernames;
+    QVector<Player> players;
     // Board *board;
     Graphics::RenderManager *main_renderer_;
     Board *main_board_;

@@ -3,16 +3,16 @@
  * 未完成:
  * 1.倒计时结束游戏.
 */
-Room::Room(int id_, QPair<QWebSocket*, QString>w, QPair<QWebSocket*, QString>a, QPair<QWebSocket*, QString>s, QPair<QWebSocket*, QString>d, QObject* parent) :QThread(parent) {
+Room::Room(int id_, QPair<QWebSocket*, Player>w, QPair<QWebSocket*, Player>a, QPair<QWebSocket*, Player>s, QPair<QWebSocket*, Player>d, QObject* parent) :QThread(parent) {
     id = id_;
     player[1] = w.first;
     player[2] = a.first;
     player[3] = s.first;
     player[4] = d.first;
-    username[1] = w.second;
-    username[2] = a.second;
-    username[3] = s.second;
-    username[4] = d.second;
+    players[1] = w.second;
+    players[2] = a.second;
+    players[3] = s.second;
+    players[4] = d.second;
     gem_manager = new ServerGemManager();
     seed[1] = QRandomGenerator::global()->generate();
     seed[2] = QRandomGenerator::global()->generate();
@@ -76,11 +76,11 @@ void Room::run() {
     parameter["seeds"] = seedsArray;
 
     QJsonArray namesArray;
-    namesArray.append(username[1]);
-    namesArray.append(username[2]);
-    namesArray.append(username[3]);
-    namesArray.append(username[4]);
-    parameter["usernames"] = namesArray;
+    namesArray.append(players[1].toJson());
+    namesArray.append(players[2].toJson());
+    namesArray.append(players[3].toJson());
+    namesArray.append(players[4].toJson());
+    parameter["players"] = namesArray;
 
     for (int i = 1; i <= 4; i++) {
         parameter["playerId"] = i;

@@ -36,7 +36,10 @@ void MainWindow::newClientConnect() {
         QJsonObject cmd = jsonIn.object();
         if (cmd["command"].toString() == "updatePoint") {
             QJsonObject parameter = cmd["parameter"].toObject();
-            db.update(parameter["userName"].toString(), parameter["pointSolo"].toInt(), parameter["pointMulti"].toInt(), 0, 0, 0);
+            int skill1 = parameter["pointSolo"].toInt()/100;
+            int skill2 = parameter["pointSolo"].toInt()/500;
+            int skill3 = parameter["pointSolo"].toInt()/500;
+            db.update(parameter["userName"].toString(), parameter["pointSolo"].toInt(), parameter["pointMulti"].toInt(), skill1, skill2, skill3);
         } else if (cmd["command"].toString() == "rank") {
             /**/
             QJsonObject parameter = cmd["parameter"].toObject();
@@ -67,8 +70,9 @@ void MainWindow::newClientConnect() {
             client->sendBinaryMessage(jsonOut.toJson());
         } else if (cmd["command"].toString() == "multigame") {
             QJsonObject parameter = cmd["parameter"].toObject();
-            QString username = parameter["username"].toString();
-            waitingQueue.push_back(qMakePair(client, username));
+            //QString username = parameter["username"].toString();
+            Player player(parameter["player"].toObject());
+            waitingQueue.push_back(qMakePair(client, player));
             qDebug() << "当前等待人数:" << waitingQueue.size();
             if (waitingQueue.size() >= 4) {
                 auto client1 = waitingQueue.front();

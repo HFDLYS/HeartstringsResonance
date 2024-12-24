@@ -2,6 +2,7 @@
 #define ROOM_H
 #include "../../core/board.h"
 #include "servergemmanager.h"
+#include "../../core/player.h"
 #include <QQueue>
 #include <QVector>
 #include <QMainWindow>
@@ -18,7 +19,7 @@ signals:
     void updatePoint(QString userName, int point);
     void sendMessage(const QByteArray& info, QWebSocket*);
 public:
-    Room(int, QPair<QWebSocket*, QString>, QPair<QWebSocket*, QString>, QPair<QWebSocket*, QString>, QPair<QWebSocket*, QString>, QObject* parent = nullptr);
+    Room(int, QPair<QWebSocket*, Player>, QPair<QWebSocket*, Player>, QPair<QWebSocket*, Player>, QPair<QWebSocket*, Player>, QObject* parent = nullptr);
     int getId();
 protected:
     void run() override;
@@ -26,7 +27,7 @@ private:
     int id;
     int seed[5];
     QWebSocket* player[5];
-    QString username[5];
+    Player players[5];
     Board* board[5];
     ServerGemManager* gem_manager;
     int stance[5][5];
