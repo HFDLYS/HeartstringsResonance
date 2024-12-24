@@ -10,11 +10,11 @@ struct Player {//树的节点
     QString password;
     int pointSolo = 0;
     int pointMulti = 0;
-    int skill_1 = 0;
-    int skill_2 = 0;
-    int skill_3 = 0;
+    int skill_1 = 1;
+    int skill_2 = 1;
+    int skill_3 = 1;
     Player() {};
-    Player(QString userName_, QString password_, int pointSolo_ = 0, int pointMulti_ = 0, int skill_1_ = 0, int skill_2_ = 0, int skill_3_ = 0) :
+    Player(QString userName_, QString password_, int pointSolo_ = 0, int pointMulti_ = 0, int skill_1_ = 1, int skill_2_ = 1, int skill_3_ = 1) :
         username(userName_), password(password_), pointSolo(pointSolo_), pointMulti(pointMulti_), skill_1(skill_1_), skill_2(skill_2_), skill_3(skill_3_) {
     }
     Player(QJsonObject in) {
@@ -22,8 +22,8 @@ struct Player {//树的节点
         if (in.contains("password"))password = in["password"].toString();
         if (in.contains("pointSolo"))pointSolo = in["pointSolo"].toInt();
         if (in.contains("pointMulti"))pointMulti = in["pointMulti"].toInt();
-        if (in.contains("skill_1"))skill_3 = in["skill_1"].toInt();
-        if (in.contains("skill_2"))skill_3 = in["skill_2"].toInt();
+        if (in.contains("skill_1"))skill_1 = in["skill_1"].toInt();
+        if (in.contains("skill_2"))skill_2 = in["skill_2"].toInt();
         if (in.contains("skill_3"))skill_3 = in["skill_3"].toInt();
     }
     void setSolo(int a) {
