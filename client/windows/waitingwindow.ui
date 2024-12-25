@@ -205,6 +205,9 @@ QPushButton::pressed#btnExit
      </property>
     </widget>
    </widget>
+   <zorder>board</zorder>
+   <zorder>btnExit</zorder>
+   <zorder>text</zorder>
   </widget>
  </widget>
  <resources>
