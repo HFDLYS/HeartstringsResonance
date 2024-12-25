@@ -254,7 +254,7 @@ void Board::refresh() {
             add_tools = 0;
         }
         combo_times++;
-        if (combo_times == 1) {
+        if (combo_times <= 1) {
             emit playMatchSound(1);
         } else if (combo_times <= 3) {
             emit playMatchSound(2);
