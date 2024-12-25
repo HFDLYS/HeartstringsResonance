@@ -14,7 +14,9 @@ private:
     QMediaPlayer *label;
     QMediaPlayer *open;
     QMediaPlayer *skill;
-    QMediaPlayer *match;
+    QMediaPlayer *match1;
+    QMediaPlayer *match2;
+    QMediaPlayer *match3;
 
 public:
     AudioManager();
@@ -53,8 +55,14 @@ public:
     void PlaySkill();
     void ModifySkill(int);
 
-    void PlayMatch();
-    void ModifyMatch(int);
+    void PlayMatch1();
+    void ModifyMatch1(int);
+
+    void PlayMatch2();
+    void ModifyMatch2(int);
+
+    void PlayMatch3();
+    void ModifyMatch3(int);
 
 private:
     QMediaPlayer *GetMediaPlayer(const QUrl &content, int volume);
