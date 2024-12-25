@@ -192,12 +192,13 @@ void LoginWindow::onRegisterClicked()
     if(server)delete server;
     server=new QWebSocket();
     server->open(userip);
-    connect(server, &QWebSocket::errorOccurred, this,[=]{
+    auto a=connect(server, &QWebSocket::errorOccurred, this,[=]{
         QMessageBox::warning(this, "Error", "链接失败");
         loginButton->setEnabled(true);
         registerButton->setEnabled(true);
     });
-    connect(server,&QWebSocket::connected,this,[=]{
+    connections.push_back(a);
+    a=connect(server,&QWebSocket::connected,this,[=]{
         QJsonObject cmd,parameter;
         cmd["command"]="register";
         parameter["username"]=username;
@@ -206,7 +207,8 @@ void LoginWindow::onRegisterClicked()
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
     });
-    connect(server, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray &message){
+    connections.push_back(a);
+    a=connect(server, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray &message){
         qDebug() << message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);
         QJsonObject cmd = jsonIn.object();
@@ -228,6 +230,7 @@ void LoginWindow::onRegisterClicked()
             }
         }
     });
+    connections.push_back(a);
 }
 
 LoginWindow::~LoginWindow() { delete ui; }

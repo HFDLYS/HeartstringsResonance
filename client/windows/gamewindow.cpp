@@ -50,7 +50,6 @@ GameWindow::GameWindow(QWidget *parent)
     WaitingWindow *ww = new WaitingWindow(this);
     auto a=connect(ww,&WaitingWindow::closeGame,this,[&]{
         AudioManager::GetInstance()->StopBgm3();
-        server->close();
         changeWindow(new MainWindow());
     });
     connections.push_back(a);
@@ -184,11 +183,13 @@ GameWindow::GameWindow(QWidget *parent)
             ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
-            auto a=connect(rw, &ResultWindow::exitwindow, this, [=]{
+            auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
+                for(auto con:cons){
+                    connections.push_back(con);
+                }
                 rw->close();
                 changeWindow(new MainWindow());
             });
-            connections.push_back(a);
         }
     });
     connections.push_back(a);

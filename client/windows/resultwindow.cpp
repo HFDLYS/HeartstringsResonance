@@ -34,9 +34,10 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
         gem_render_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
         gem_render_[i]->setGeometry(show_opengl_up_left[i].x() , show_opengl_up_left[i].y(), gem_render_[i]->width(), gem_render_[i]->height());
     }
-    connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+    auto a=connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
     });
+    connections.push_back(a);
 }
 
 void ResultWindow::showGem() {
@@ -46,7 +47,7 @@ void ResultWindow::showGem() {
 }
 
 void ResultWindow::on_btnReturn_clicked(){
-    emit exitwindow();
+    emit exitwindow(connections);
 }
 
 ResultWindow::~ResultWindow()
@@ -73,22 +74,16 @@ void ResultWindow::on_btnUpdate_clicked()
     cmd["parameter"]=parameter;
     QJsonDocument json(cmd);
     qDebug()<<server->sendBinaryMessage(json.toJson());
-    connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
-        if(this->isVisible()){
-            QJsonDocument jsonIn = QJsonDocument::fromJson(message);
-            QJsonObject cmd = jsonIn.object();
-            // qDebug() << cmd;
-            QJsonObject parameter;
-            parameter = cmd["parameter"].toObject();
-            setPlayer(Player(parameter["player"].toObject()));
-            QMessageBox::information(this, "上传成功", player.username+"的成绩已上传");
-            emit exitwindow();
-        }
+    auto a=connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+        QJsonDocument jsonIn = QJsonDocument::fromJson(message);
+        QJsonObject cmd = jsonIn.object();
+        // qDebug() << cmd;
+        QJsonObject parameter;
+        parameter = cmd["parameter"].toObject();
+        setPlayer(Player(parameter["player"].toObject()));
+        QMessageBox::information(this, "上传成功", player.username+"的成绩已上传");
+        emit exitwindow(connections);
     });
-
-    //} else {
-    // QMessageBox::information(this, "取消", "我的名字呢？");
-    // emit exitwindow();
-    //}
+    connections.push_back(a);
 }
 

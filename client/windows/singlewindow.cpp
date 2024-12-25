@@ -57,7 +57,7 @@ void SingleWindow::refreshTimeLabel() {
 
 void SingleWindow::initBoard() {
     board = new Board(seed, max_gem_type);
-    connect(board, &Board::playMatchSound, [this](int type) {
+    auto a=connect(board, &Board::playMatchSound, [this](int type) {
         if (type == 1) {
             AudioManager::GetInstance()->PlayMatch1();
         } else if (type == 2) {
@@ -66,6 +66,7 @@ void SingleWindow::initBoard() {
             AudioManager::GetInstance()->PlayMatch3();
         }
     });
+    connections.push_back(a);
     board->SetGemManager(renderer_->GetGemManager());
     board->initBoard();
 }
@@ -112,7 +113,7 @@ void SingleWindow::startGame() {
     ui->progressBar->setValue(MAX_TIME);
     timer=new QTimer(this);
     timer->start(1000);
-    QObject::connect(timer, &QTimer::timeout,[&]{
+    auto a=QObject::connect(timer, &QTimer::timeout,[&]{
         ui->progressBar->setValue(ui->progressBar->value()-1);
         ui->score->setText(QString::number(board->getScore(1) + board->getScore(2) + board->getScore(3) + board->getScore(4)));
         //时间到了
@@ -131,12 +132,17 @@ void SingleWindow::startGame() {
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
             rw->showGem();
-            connect(rw, &ResultWindow::exitwindow, this, [=]{
+            auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
+                for(auto con:cons){
+                    connections.push_back(con);
+                }
                 rw->close();
                 changeWindow(new MainWindow());
             });
+            connections.push_back(a);
         }
     });
+    connections.push_back(a);
 }
 
 void SingleWindow::on_skill1_button_clicked() {
@@ -171,7 +177,7 @@ void SingleWindow::on_pause_button_clicked() {
     AudioManager::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();
-    connect(pw, &PauseWindow::exitwindow, this, [this]{
+    auto a=connect(pw, &PauseWindow::exitwindow, this, [this]{
         delete timer;
         AudioManager::GetInstance()->StopBgm2();
         ResultWindow *rw = new ResultWindow(true,
@@ -185,12 +191,18 @@ void SingleWindow::on_pause_button_clicked() {
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
             rw->showGem();
-            connect(rw, &ResultWindow::exitwindow, this, [=]{
+            auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
+                for(auto con:cons){
+                    connections.push_back(con);
+                }
                 rw->close();
                 changeWindow(new MainWindow());
             });
+            connections.push_back(a);
     });
-    connect(pw, &PauseWindow::gameContinue, this, [this]{
+    connections.push_back(a);
+    a=connect(pw, &PauseWindow::gameContinue, this, [this]{
         timer->start();
     });
+    connections.push_back(a);
 }
