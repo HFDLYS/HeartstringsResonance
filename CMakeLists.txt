@@ -99,6 +99,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/memberwindow.h client/windows/memberwindow.cpp client/windows/memberwindow.ui
         client/component/logindialog.h client/component/logindialog.cpp
         client/windows/loginwindow.h client/windows/loginwindow.cpp client/windows/loginwindow.ui
+        resource/sounds/fairytale.wav
+        client/config/globalconfig.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

@@ -1,5 +1,5 @@
 #include "audiomanager.h"
-
+#include "../config/globalconfig.h"
 QMediaPlayer *AudioManager::GetMediaPlayer(const QUrl &content, int volume) {
     QMediaPlayer *player = new QMediaPlayer();
     player->setSource(content);
@@ -8,12 +8,19 @@ QMediaPlayer *AudioManager::GetMediaPlayer(const QUrl &content, int volume) {
     audioOutopt -> setVolume((double)volume / 100);
     player->play();
     player->stop();
-
     return player;
 }
 
 AudioManager::AudioManager() {
-    bgm1 = GetMediaPlayer(QUrl("qrc:/sounds/bgm1.wav"), allMusicPercent);
+    bgmlist[0] =  GetMediaPlayer(QUrl("qrc:/sounds/bgm1.wav"), allMusicPercent);
+    bgmlist[1] =  GetMediaPlayer(QUrl("qrc:/sounds/hajimi.wav"), allMusicPercent);
+    bgmlist[2] =  GetMediaPlayer(QUrl("qrc:/sounds/fairytale.wav"), allMusicPercent);
+    int bgmid = GlobalConfig::getInstance().getMusicStyle();
+    if (bgmid >= 0 && bgmid <=2 ) {
+        bgm1 = bgmlist[bgmid];
+    } else {
+        bgm1 = bgmlist[0]; // 默认音乐
+    }
     bgm2 = GetMediaPlayer(QUrl("qrc:/sounds/bgm2.wav"), allMusicPercent);
     bgm3 = GetMediaPlayer(QUrl("qrc:/sounds/bgm_battle.wav"), allMusicPercent);
     label = GetMediaPlayer(QUrl("qrc:/sounds/label.wav"), allSoundPercent);
@@ -22,7 +29,20 @@ AudioManager::AudioManager() {
     match1 = GetMediaPlayer(QUrl("qrc:/sounds/match1.wav"), allSoundPercent);
     match2 = GetMediaPlayer(QUrl("qrc:/sounds/match2.wav"), allSoundPercent);
     match3 = GetMediaPlayer(QUrl("qrc:/sounds/match3.wav"), allSoundPercent);
+
+   // connect(&GlobalConfig::getInstance(), &GlobalConfig::musicStyleChanged, this, &AudioManager::onMusicStyleChanged);
  }
+
+void AudioManager::onMusicStyleChanged(int newStyle) {
+    if (bgm1 != bgmlist[newStyle]) {
+        bgm1->stop(); // 停止当前背景音乐
+        bgm1 = bgmlist[newStyle]; // 更新 bgm1 指向新的背景音乐
+        if (!stopAllMusic) {
+            bgm1->play(); // 播放新的背景音乐
+        }
+    }
+}
+
 
 AudioManager *AudioManager::instance_ = nullptr;
 
@@ -30,6 +50,11 @@ AudioManager *AudioManager::GetInstance() {
     if (instance_ == nullptr) {
         instance_ = new AudioManager();
     }
+    return instance_;
+}
+
+AudioManager *AudioManager::GetNewInstance() {
+    instance_ = new AudioManager();
     return instance_;
 }
 

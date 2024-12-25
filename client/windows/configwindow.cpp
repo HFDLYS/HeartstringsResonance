@@ -82,6 +82,7 @@ void ConfigWindow::updateState(){
 
 void ConfigWindow::on_btnReturn_clicked() {
     AudioManager::GetInstance()->PlayLabel();
+
     changeWindow(new MainWindow());
 }
 
@@ -156,7 +157,7 @@ void ConfigWindow::showDim(){
 void ConfigWindow::showMsc(){
     style_flag = 1;
     ui->listWidget->clear();
-    QVector<QString> msc = {"音乐1", "音乐2", "音乐3"};
+    QVector<QString> msc = {"DokiDoki", "音乐2", "音乐3"};
     for (auto &i : msc) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -183,7 +184,7 @@ void ConfigWindow::showBod(){
 void ConfigWindow::showBgd(){
     style_flag = 3;
     ui->listWidget->clear();
-    QVector<QString> bgd = {"背景1", "背景2", "背景3", "背景4", "背景5"};
+    QVector<QString> bgd = {"心海相连", "背景2", "背景3", "背景4", "背景5"};
     for (auto &i : bgd) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -203,7 +204,6 @@ void ConfigWindow::on_btnBgd_clicked()
 {
     showBgd();
 }
-
 
 void ConfigWindow::on_BtnBod_clicked()
 {
@@ -236,7 +236,12 @@ void ConfigWindow::on_btnBack_clicked()
         }
         // renderer_->Demo();
     } else if (style_flag == 1) {
-
+        for (int i = 0; i < ui->listWidget->count(); i++) {
+            if (ui->listWidget->item(i)->checkState() == Qt::Checked) {
+                GlobalConfig::getInstance().setMusicStyle(i);
+                break;
+            }
+        }
     } else if (style_flag == 2) {
         for (int i = 0; i < ui->listWidget->count(); i++) {
             if (ui->listWidget->item(i)->checkState() == Qt::Checked) {
@@ -246,7 +251,12 @@ void ConfigWindow::on_btnBack_clicked()
         }
         // renderer_->Demo();
     } else if (style_flag == 3) {
-
+        for (int i = 0; i < ui->listWidget->count(); i++) {
+            if (ui->listWidget->item(i)->checkState() == Qt::Checked) {
+                GlobalConfig::getInstance().setPicStyle(i);
+                break;
+            }
+        }
     }
     ConfigWindow *cw = new ConfigWindow();
     changeWindow(cw);
