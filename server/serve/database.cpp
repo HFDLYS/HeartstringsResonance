@@ -163,9 +163,9 @@ QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti
         query.prepare("UPDATE rank_list "
             "SET point_solo = :pointSolo, point_multi = :pointMulti "
             "WHERE user_id = (SELECT user_id FROM user WHERE user_name = :username)");
-        query.bindValue(":pointSolo", pointSolo);
-        query.bindValue(":pointMulti", pointMulti);
-        query.bindValue(":username", username);
+        query.bindValue(":pointSolo", player.pointSolo);
+        query.bindValue(":pointMulti", player.pointMulti);
+        query.bindValue(":username", player.username);
 
         if (!query.exec()) {
             qDebug() << "Failed to update rank table:" << query.lastError().text();
@@ -175,10 +175,10 @@ QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti
         query.prepare("UPDATE item "
             "SET skill_1 = :skill_1, skill_2 = :skill_2, skill_3 = :skill_3 "
             "WHERE user_id = (SELECT user_id FROM user WHERE user_name = :username)");
-        query.bindValue(":skill_1", skill_1);
-        query.bindValue(":skill_2", skill_2);
-        query.bindValue(":skill_3", skill_3);
-        query.bindValue(":username", username);
+        query.bindValue(":skill_1", player.skill_1);
+        query.bindValue(":skill_2", player.skill_2);
+        query.bindValue(":skill_3", player.skill_3);
+        query.bindValue(":username", player.username);
 
         if (!query.exec()) {
             qDebug() << "Failed to update item table:" << query.lastError().text();
