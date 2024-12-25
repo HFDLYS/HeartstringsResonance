@@ -4,9 +4,9 @@ namespace Graphics {
 const int MAX_GEM_STYLE = 2;
 
 const QVector<std::string> STYLE[MAX_GEM_STYLE] =  {
-    {
-        "diamond.obj",
+    {   
         "yf.obj",
+        "diamond.obj",
         "love.obj",
         "flower.obj",
     },
