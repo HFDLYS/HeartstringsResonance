@@ -155,8 +155,8 @@ QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti
         player.setSolo(pointSolo);
         player.setMulti(pointMulti);
         player.setSkill1((player.pointSolo+player.pointMulti)/50+1);
-        player.setSkill2((player.pointSolo+player.pointMulti)/50+1);
-        player.setSkill3((player.pointSolo+player.pointMulti)/50+1);
+        player.setSkill2((player.pointSolo+player.pointMulti)/200+1);
+        player.setSkill3((player.pointSolo+player.pointMulti)/100+1);
 
         // 更新数据库中用户的信息
         QSqlQuery query;
