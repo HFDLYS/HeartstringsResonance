@@ -24,7 +24,7 @@ ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Con
     ui->listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     renderer_ = new Graphics::RenderManager(this);
     renderer_->setFixedSize(240, 240);
-    renderer_->setGeometry(740, 270, renderer_->width(), renderer_->height());
+    renderer_->setGeometry(840, 270, renderer_->width(), renderer_->height());
     connect(ui->listWidget, &QListWidget::itemChanged, [=](QListWidgetItem *currentItem) {
         if (currentItem->checkState() == Qt::Checked) {
         const int count = ui->listWidget->count();
