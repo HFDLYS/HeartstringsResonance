@@ -26,8 +26,8 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
     passwordEdit = new QLineEdit(this);
     passwordEdit->setEchoMode(QLineEdit::Password);
 
-    loginButton = new QPushButton("登录", this);
-    registerButton = new QPushButton("注册", this);
+    loginButton = new QPushButton("", this);
+    registerButton = new QPushButton("", this);
 
     // 监听下拉框选择变化，更新文本框内容
     connect(ipoption, &QComboBox::currentIndexChanged, this, &LoginWindow::updateIpLineEdit);
@@ -59,13 +59,19 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
     mainLayout->addLayout(selectLayout);
     mainLayout->addLayout(usernameLayout);
     mainLayout->addLayout(passwordLayout);
-    loginButton->setFixedHeight(40);
+    loginButton->setFixedHeight(45);
+    loginButton->setStyleSheet(
+        "QPushButton{border-image: url(:/images/loginwindow/login.png);}"
+        "QPushButton:pressed{border-image: url(:/images/loginwindow/login-.png);}"
+    );
+    registerButton->setFixedHeight(45);
+    registerButton->setStyleSheet(
+        "QPushButton{border-image: url(:/images/loginwindow/register.png);}"
+        "QPushButton:pressed{border-image: url(:/images/loginwindow/register-.png);}"
+    );
     mainLayout->addWidget(loginButton);
-    registerButton->setFixedHeight(40);
     mainLayout->addWidget(registerButton);
-
     ui->loginLayout->addLayout(mainLayout);
-
     connect(loginButton, &QPushButton::clicked, this, &LoginWindow::onLoginClicked);
     connect(registerButton, &QPushButton::clicked, this, &LoginWindow::onRegisterClicked);
 }
