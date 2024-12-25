@@ -24,7 +24,7 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
     QJsonDocument json(cmd);
     qDebug() << server->sendBinaryMessage(json.toJson());
 
-    connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+    auto a=connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<"\n\n\nrank\n\n\n"<<message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);
         QJsonObject cmd = jsonIn.object();
@@ -65,7 +65,7 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
         ui->id_9->raise(); ui->score_9->raise();
         ui->id_10->raise(); ui->score_10->raise();
     });
-
+    connections.push_back(a);
 }
 
 RankWindow::~RankWindow() { delete ui; }

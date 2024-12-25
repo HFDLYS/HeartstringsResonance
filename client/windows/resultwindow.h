@@ -25,7 +25,7 @@ private slots:
     void on_btnUpdate_clicked();
 
 signals:
-    void exitwindow();
+    void exitwindow(QVector<QMetaObject::Connection>);
 private:
     bool isSolo;
     int score;

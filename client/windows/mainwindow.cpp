@@ -99,11 +99,13 @@ void MainWindow::on_btnQuit_clicked() {
     layout2->addWidget(label);
     layout2->addWidget(tmp);
     dialog->setLayout(layout2);
-    connect(confirmButton, &QPushButton::clicked, dialog, &QDialog::accept);
-    connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
+    auto a=connect(confirmButton, &QPushButton::clicked, dialog, &QDialog::accept);
+    connections.push_back(a);
+    a=connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
     if (dialog->exec() == QDialog::Accepted) {
         this->close();
     }
+    connections.push_back(a);
 }
 QString MainWindow::getip(){
     return ip;
