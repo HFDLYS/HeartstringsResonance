@@ -12,6 +12,8 @@
 #include <QVector4D>
 #include <QWheelEvent>
 
+#include "../config/globalconfig.h"
+
 #include "camera.h"
 #include "graphicsthread.h"
 #include "gemmanager.h"

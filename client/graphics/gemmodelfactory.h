@@ -2,6 +2,7 @@
 #define MODELMANAGER_H
 
 #include <QOpenGLFunctions_3_3_Core>
+#include "../config/globalconfig.h"
 
 #include "model.h"
 

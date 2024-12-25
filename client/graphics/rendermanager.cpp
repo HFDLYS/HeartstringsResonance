@@ -6,6 +6,15 @@
 
 namespace Graphics {
 
+const int MAX_BOARD_STYLE = 4;
+
+const std::string STYLE[MAX_BOARD_STYLE] = {
+    "shader_toy_tllfRX.frag",
+    "shader_toy_XXdSzN.frag",
+    "shader_toy_Mll3zj.frag",
+    "shader_toy_XsXXDn.frag"
+};
+
 RenderManager::RenderManager(QWidget *parent) : QOpenGLWidget(parent) {
     // thread
     hypercube_thread_ = new GraphicsThread(this);
@@ -122,9 +131,10 @@ void RenderManager::initializeGL() {
 
     // Shader Toy Program 
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shader_toy.vert");
-    // shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_tllfRX.frag");
 
-    shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader_toy_tllfRX.frag");
+    int style = GlobalConfig::getInstance().getBoardStyle() % MAX_BOARD_STYLE;
+
+    shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, QString::fromStdString(":/shaders/" + STYLE[style]));
     success = shader_toy_program_.link();
     if (!success) qDebug() << "InitializeGL Error: " << shader_toy_program_.log();
 

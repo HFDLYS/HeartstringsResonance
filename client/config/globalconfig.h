@@ -15,12 +15,19 @@ class GlobalConfig {
         GlobalConfig& operator=(const GlobalConfig&) = delete;
 
         int gemStyle = 0;
+        int boardStyle = 1;
     public:
         int getGemStyle() {
             return gemStyle;
         }
         void setGemStyle(int style) {
             gemStyle = style;
+        }
+        int getBoardStyle() {
+            return boardStyle;
+        }
+        void setBoardStyle(int style) {
+            boardStyle = style;
         }
 };
 

@@ -1,9 +1,9 @@
 #include "gemmodelfactory.h"
 
 namespace Graphics {
-const int MAX_STYLE = 2;
+const int MAX_GEM_STYLE = 2;
 
-const QVector<std::string> STYLE[MAX_STYLE] =  {
+const QVector<std::string> STYLE[MAX_GEM_STYLE] =  {
     {
         "diamond.obj",
         "yf.obj",
@@ -19,7 +19,7 @@ const QVector<std::string> STYLE[MAX_STYLE] =  {
 };
 
 GemModelFactory::GemModelFactory(QOpenGLFunctions_3_3_Core* func) {
-    int style = rand() % MAX_STYLE;
+    int style = GlobalConfig::getInstance().getGemStyle()%MAX_GEM_STYLE;
     models_.push_back(new Model(func, "./resource/models/gem/gemstone_1.obj"));
     models_.push_back(new Model(func, "./resource/models/gem/" + STYLE[style][0]));
     models_.push_back(new Model(func, "./resource/models/gem/" + STYLE[style][1]));
