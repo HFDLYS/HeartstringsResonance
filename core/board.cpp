@@ -158,6 +158,7 @@ void Board::clicked(int x, int y) {
     // if (gem_manager_->isPlayingAnimation()) return;
 
     std::cout << "Board:Clicked" << x << " " << y << "\n";
+    /*
     for (int j = 0; j < 8; ++j) {
         for (int i = 0; i < 8; ++i) {
             std::cerr << gems_[i][j].GetType() << " ";
@@ -165,7 +166,7 @@ void Board::clicked(int x, int y) {
         std::cerr << "\n";
     }
     std::cerr << "\n";
-
+    */
     int chosen_x = x, chosen_y = y;
 
     // std::cerr << x << " " << y << " " << chosen_x << " " << chosen_y << std::endl;

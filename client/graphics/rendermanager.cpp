@@ -150,7 +150,7 @@ void RenderManager::initializeGL() {
     // GL Functions
     initializeOpenGLFunctions();
     
-    std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
+    // std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
 
     init();
 }
