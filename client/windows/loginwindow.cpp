@@ -15,8 +15,6 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
     portoption = new QComboBox(this);
     ipoption->addItem("47.116.175.206");
     ipoption->addItem("localhost");
-    ipoption->addItem("nas.yuki-hana.cn");
-    ipoption->addItem("bjtu.yuki-hana.cn");
     portoption->addItem("1479");
 
     QLabel *usernameLabel = new QLabel(tr("用户名:"), this);
