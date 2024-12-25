@@ -5,7 +5,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonValue>
-struct Player {//树的节点
+struct Player {
     QString username;
     QString password;
     int pointSolo = 0;
