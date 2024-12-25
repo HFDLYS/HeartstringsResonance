@@ -105,6 +105,6 @@
         <file>images/rankwindow/rank.png</file>
         <file>images/barprogress/background.png</file>
         <file>images/barprogress/chunk.png</file>
-
+        <file>images/configwindow/board.png</file>
     </qresource>
 </RCC>

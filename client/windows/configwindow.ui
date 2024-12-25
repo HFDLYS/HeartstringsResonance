@@ -172,7 +172,7 @@ border-radius: 10px;
      <enum>Qt::Orientation::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnBgd">
     <property name="geometry">
      <rect>
       <x>420</x>
@@ -185,7 +185,7 @@ border-radius: 10px;
      <string>背景</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="BtnDia">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -198,10 +198,10 @@ border-radius: 10px;
      <string>宝石</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="BtnBod">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>770</x>
       <y>520</y>
       <width>93</width>
       <height>28</height>
@@ -211,10 +211,10 @@ border-radius: 10px;
      <string>棋盘</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="BtnMsc">
     <property name="geometry">
      <rect>
-      <x>940</x>
+      <x>970</x>
       <y>520</y>
       <width>93</width>
       <height>28</height>
@@ -227,7 +227,7 @@ border-radius: 10px;
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>540</x>
       <y>600</y>
       <width>200</width>
       <height>80</height>
@@ -237,71 +237,332 @@ border-radius: 10px;
      <string>钞能力</string>
     </property>
    </widget>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>220</x>
       <y>280</y>
-      <width>351</width>
-      <height>211</height>
+      <width>461</width>
+      <height>231</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <property name="text">
+     <string/>
     </property>
-    <widget class="QRadioButton" name="radioButton">
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/configwindow/board.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widgetDim" native="true">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>300</y>
+      <width>200</width>
+      <height>170</height>
+     </rect>
+    </property>
+    <widget class="QRadioButton" name="BtnDim1">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>30</y>
-       <width>118</width>
-       <height>23</height>
+       <x>20</x>
+       <y>10</y>
+       <width>101</width>
+       <height>18</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
      <property name="text">
-      <string>RadioButton</string>
+      <string> 爱的魔法</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QRadioButton" name="BtnDim2">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>70</y>
-       <width>118</width>
-       <height>23</height>
+       <x>20</x>
+       <y>50</y>
+       <width>101</width>
+       <height>18</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
      <property name="text">
-      <string>RadioButton</string>
+      <string> 动物乐园</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_3">
+    <widget class="QRadioButton" name="BtnDim3">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>110</y>
-       <width>118</width>
-       <height>23</height>
+       <x>20</x>
+       <y>90</y>
+       <width>111</width>
+       <height>18</height>
       </rect>
      </property>
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_4">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>150</y>
-       <width>118</width>
-       <height>23</height>
-      </rect>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
      </property>
      <property name="text">
-      <string>RadioButton</string>
+      <string> 敬请期待</string>
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="widgetBgd" native="true">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>300</y>
+      <width>200</width>
+      <height>170</height>
+     </rect>
+    </property>
+    <widget class="QRadioButton" name="BtnBgd1">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>73</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 默认</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BtnBgd2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>73</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 星空</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BtnBgd3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>73</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 魔法</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="widgetBod" native="true">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>300</y>
+      <width>200</width>
+      <height>170</height>
+     </rect>
+    </property>
+    <widget class="QRadioButton" name="BtnBod1">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>91</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 棋盘1</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BtnBod2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>91</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 棋盘2</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BtnBod3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>81</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 棋盘3</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="widgetMsc" native="true">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>300</y>
+      <width>200</width>
+      <height>170</height>
+     </rect>
+    </property>
+    <widget class="QRadioButton" name="BtnMsc1">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>73</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 音乐1</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BtnMsc2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>73</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 音乐2</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BtnMsc3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>73</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton{
+	font-size:17px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+     </property>
+     <property name="text">
+      <string> 音乐3</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>btnReturn</zorder>
+   <zorder>btnMusic</zorder>
+   <zorder>btnSound</zorder>
+   <zorder>musicSlider</zorder>
+   <zorder>soundSlider</zorder>
+   <zorder>btnBgd</zorder>
+   <zorder>BtnDia</zorder>
+   <zorder>BtnBod</zorder>
+   <zorder>BtnMsc</zorder>
+   <zorder>pushButton_5</zorder>
+   <zorder>label</zorder>
+   <zorder>widgetBgd</zorder>
+   <zorder>widgetBod</zorder>
+   <zorder>widgetDim</zorder>
+   <zorder>widgetMsc</zorder>
   </widget>
  </widget>
  <resources>
