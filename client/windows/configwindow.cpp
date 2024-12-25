@@ -24,7 +24,7 @@ ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Con
     ui->listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     renderer_ = new Graphics::RenderManager(this);
     renderer_->setFixedSize(240, 240);
-    renderer_->setGeometry(740, 270, renderer_->width(), renderer_->height());
+    renderer_->setGeometry(840, 270, renderer_->width(), renderer_->height());
     connect(ui->listWidget, &QListWidget::itemChanged, [=](QListWidgetItem *currentItem) {
         if (currentItem->checkState() == Qt::Checked) {
         const int count = ui->listWidget->count();
@@ -166,7 +166,7 @@ void ConfigWindow::showMsc(){
 void ConfigWindow::showBod(){
     style_flag = 2;
     ui->listWidget->clear();
-    QVector<QString> bod = {"棋盘1", "棋盘2", "棋盘3", "棋盘4"};
+    QVector<QString> bod = {"浩瀚心海", "魔法之时", "时间之尘", "心环相耀"};
     for (auto &i : bod) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
