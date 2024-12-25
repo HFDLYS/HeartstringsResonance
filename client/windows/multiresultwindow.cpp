@@ -63,6 +63,7 @@ MultiResultWindow::MultiResultWindow(QJsonObject parameter,int playerId, QWidget
             }
         }
     }
+    score=my_data[1] + my_data[2] + my_data[3] + my_data[4];
     ui->score->setText(QString::number(my_data[1] + my_data[2] + my_data[3] + my_data[4]));
     ui->cnt1->setText(QString::number(player[1]));
     ui->cnt2->setText(QString::number(player[2]));
@@ -95,7 +96,7 @@ MultiResultWindow::~MultiResultWindow()
 void MultiResultWindow::on_btnUpdate_clicked()
 {   
     // todo: implement this function
-    return;
+    //return;
     bool ok;
     /*QString text = QInputDialog::getText(this,
                                          "上传成绩",
@@ -108,8 +109,8 @@ void MultiResultWindow::on_btnUpdate_clicked()
     QJsonObject cmd,parameter;
     cmd["command"]="updatePoint";
     parameter["userName"]=player.username;
-    parameter["pointSolo"]=isSolo?score:0;
-    parameter["pointMulti"]=isSolo?0:score;
+    parameter["pointSolo"]=0;
+    parameter["pointMulti"]=score;
     cmd["parameter"]=parameter;
     QJsonDocument json(cmd);
     qDebug()<<server->sendBinaryMessage(json.toJson());
