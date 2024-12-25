@@ -94,12 +94,6 @@ void LoginWindow::onLoginClicked()
         registerButton->setEnabled(true);
         return;
     }
-    if (username.length() > 20 || password.length() > 20) {
-        QMessageBox::warning(this, "错误", "用户名或密码过长");
-        loginButton->setEnabled(true);
-        registerButton->setEnabled(true);
-        return;
-    }
     if (ip.isEmpty() || port.isEmpty()) {
         QMessageBox::warning(this, "错误", "IP地址或端口号不能为空");
         loginButton->setEnabled(true);
@@ -165,12 +159,6 @@ void LoginWindow::onRegisterClicked()
     QString password = getPassword();
     if (username.isEmpty() || password.isEmpty()) {
         QMessageBox::warning(this, "注册失败", "用户名或密码不能为空");
-        loginButton->setEnabled(true);
-        registerButton->setEnabled(true);
-        return;
-    }
-    if (username.length() > 20 || password.length() > 20) {
-        QMessageBox::warning(this, "注册失败", "用户名或密码过长");
         loginButton->setEnabled(true);
         registerButton->setEnabled(true);
         return;
