@@ -19,6 +19,7 @@ AudioManager::AudioManager() {
     label = GetMediaPlayer(QUrl("qrc:/sounds/label.wav"), allSoundPercent);
     open = GetMediaPlayer(QUrl("qrc:/sounds/open.wav"), allSoundPercent);
     skill = GetMediaPlayer(QUrl("qrc:/sounds/skill.wav"), allSoundPercent);
+    match = GetMediaPlayer(QUrl("qrc:/sounds/match.wav"), allSoundPercent);
  }
 
 AudioManager *AudioManager::instance_ = nullptr;
@@ -108,4 +109,13 @@ void AudioManager::ModifySkill(int val) {
     skill->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
+void AudioManager::PlayMatch(){
+    if(!AudioManager::GetInstance()->stopAllSound) match->play();
+}
+void AudioManager::ModifyMatch(int val) {
+    QAudioOutput *audioOutopt = new QAudioOutput();
+    match->setAudioOutput(audioOutopt);
+    audioOutopt -> setVolume((double)val / 100);
+}
+
 
