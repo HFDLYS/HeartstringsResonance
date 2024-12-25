@@ -15,7 +15,7 @@ class GlobalConfig {
         GlobalConfig& operator=(const GlobalConfig&) = delete;
 
         int gemStyle = 0;
-        int boardStyle = 1;
+        int boardStyle = 0;
     public:
         int getGemStyle() {
             return gemStyle;

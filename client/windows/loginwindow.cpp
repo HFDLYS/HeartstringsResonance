@@ -5,7 +5,7 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
     ui->setupUi(this);
     QLabel *ipLabel = new QLabel(tr("IP 地址:"), this);
     ipLineEdit = new QLineEdit(this);
-    ipLineEdit->setText("localhost"); // 默认值
+    ipLineEdit->setText("47.116.175.206"); // 默认值
 
     QLabel *portLabel = new QLabel(tr("端口号:"), this);
     portLineEdit = new QLineEdit(this);
@@ -13,10 +13,10 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
 
     ipoption = new QComboBox(this);
     portoption = new QComboBox(this);
+    ipoption->addItem("47.116.175.206");
     ipoption->addItem("localhost");
     ipoption->addItem("nas.yuki-hana.cn");
     ipoption->addItem("bjtu.yuki-hana.cn");
-    ipoption->addItem("47.116.175.206");
     portoption->addItem("1479");
 
     QLabel *usernameLabel = new QLabel(tr("用户名:"), this);
@@ -88,6 +88,18 @@ void LoginWindow::onLoginClicked()
     QString port = getPort();
     QString username = getUsername();
     QString password = getPassword();
+    if (username.isEmpty() || password.isEmpty()) {
+        QMessageBox::warning(this, "错误", "用户名或密码不能为空");
+        loginButton->setEnabled(true);
+        registerButton->setEnabled(true);
+        return;
+    }
+    if (ip.isEmpty() || port.isEmpty()) {
+        QMessageBox::warning(this, "错误", "IP地址或端口号不能为空");
+        loginButton->setEnabled(true);
+        registerButton->setEnabled(true);
+        return;
+    }
     ipstring = "ws://"+ip+":"+port;
     QUrl userip(ipstring);
     if(server)delete server;
@@ -145,6 +157,18 @@ void LoginWindow::onRegisterClicked()
     QString port = getPort();
     QString username = getUsername();
     QString password = getPassword();
+    if (username.isEmpty() || password.isEmpty()) {
+        QMessageBox::warning(this, "注册失败", "用户名或密码不能为空");
+        loginButton->setEnabled(true);
+        registerButton->setEnabled(true);
+        return;
+    }
+    if (ip.isEmpty() || port.isEmpty()) {
+        QMessageBox::warning(this, "注册失败", "IP地址或端口号不能为空");
+        loginButton->setEnabled(true);
+        registerButton->setEnabled(true);
+        return;
+    }
     ipstring = "ws://"+ip+":"+port;
     QUrl userip(ipstring);
     if(server)delete server;
