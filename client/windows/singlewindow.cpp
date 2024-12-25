@@ -57,6 +57,15 @@ void SingleWindow::refreshTimeLabel() {
 
 void SingleWindow::initBoard() {
     board = new Board(seed, max_gem_type);
+    connect(board, &Board::playMatchSound, [this](int type) {
+        if (type == 1) {
+            AudioManager::GetInstance()->PlayMatch1();
+        } else if (type == 2) {
+            AudioManager::GetInstance()->PlayMatch2();
+        } else if (type == 3) {
+            AudioManager::GetInstance()->PlayMatch3();
+        }
+    });
     board->SetGemManager(renderer_->GetGemManager());
     board->initBoard();
 }
