@@ -1,8 +1,8 @@
 #include "room.h"
 /*
- * 未完成:
+ * 
 */
-const int MAX_TIME = 60;
+const int MAX_TIME = 180;
 Room::Room(int id_, QPair<QWebSocket*, Player>w, QPair<QWebSocket*, Player>a, QPair<QWebSocket*, Player>s, QPair<QWebSocket*, Player>d, QObject* parent) :QThread(parent) {
     id = id_;
     player[1] = w.first;
