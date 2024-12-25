@@ -104,6 +104,10 @@ GameWindow::GameWindow(QWidget *parent)
                 show_board_[i]->initBoard();
                 show_chart_[i]->setValues(i, 100);
                 show_sub_renderer_[i]->ShowGem(i);
+                for (int j = 1; j <= 4; j++) {
+                    show_sub_chart_[i]->setValues(j, 0);
+                }
+                show_sub_chart_[i]->setValues(i, 100);
             }
             sub_renderer_->ShowGem(player_id_);
             has_started_ = true;
@@ -199,14 +203,15 @@ GameWindow::GameWindow(QWidget *parent)
         int iy = (i-1) / 2;
         show_chart_[i] = new SquarePieChart(ui->controlWidget);
         show_chart_[i]->setGeometry(show_opengl_up_left.x()-3 + ix * (show_board_size.x() + border_size), show_opengl_up_left.y()-3 + iy * (show_board_size.y() + border_size), show_board_size.x()+6, show_board_size.y()+6);
+        show_sub_chart_[i] = new SquarePieChart(ui->controlWidget);
+        show_sub_chart_[i]->setGeometry(show_sub_opengl_up_left[i-1].x()-1, show_sub_opengl_up_left[i-1].y()-1, sub_board_size_+2, sub_board_size_+2);
         show_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
         show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
         show_renderer_[i]->setGeometry(show_opengl_up_left.x() + ix * (show_board_size.x() + border_size), show_opengl_up_left.y() + iy * (show_board_size.y() + border_size), show_renderer_[i]->width(), show_renderer_[i]->height());
         show_sub_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
         show_sub_renderer_[i]->setFixedSize(sub_board_size_, sub_board_size_);
         show_sub_renderer_[i]->setGeometry(show_sub_opengl_up_left[i-1].x(), show_sub_opengl_up_left[i-1].y(), show_sub_renderer_[i]->width(), show_sub_renderer_[i]->height());
-        show_sub_chart_[i] = new SquarePieChart(ui->controlWidget);
-        show_sub_chart_[i]->setGeometry(show_sub_opengl_up_left[i-1].x()-1, show_sub_opengl_up_left[i-1].y()-1, sub_board_size_+2, sub_board_size_+2);
+
     }
     
 }
