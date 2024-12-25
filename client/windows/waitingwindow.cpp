@@ -5,11 +5,20 @@
 #include <QTimer>
 #include "mainwindow.h"
 #include "../audio/audiomanager.h"
+#include "../config/globalconfig.h"
+
+
 WaitingWindow::WaitingWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::WaitingWindow)
 {
     ui->setupUi(this);
+    QString part1 = ":/images/singlewindow/background";
+    QString picid = QString::number(GlobalConfig::getInstance().getPicStyle() + 1);
+    QString root = part1.append(picid)+ ".png";
+    ui->widget->setStyleSheet(
+        QString("#widget{border-image:url(%1)}").arg(root)
+        );
     ui->label1->setVisible(false);
     ui->label2->setVisible(false);
     ui->label3->setVisible(false);

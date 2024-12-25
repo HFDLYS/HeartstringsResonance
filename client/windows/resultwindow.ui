@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="resultpic">
    <property name="styleSheet">
-    <string notr="true">#resultpic{background-image: url(:/images/resultwindow/result_background.png);}</string>
+    <string notr="true"/>
    </property>
    <widget class="QPushButton" name="btnReturn">
     <property name="geometry">

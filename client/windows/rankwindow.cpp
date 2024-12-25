@@ -9,9 +9,17 @@
 #include "mainwindow.h"
 #include "ui_rankwindow.h"
 #include "../audio/audiomanager.h"
+#include "../config/globalconfig.h"
 RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWindow) {
     ui->setupUi(this);
     // 固定窗口大小
+
+    QString part1 = ":/images/singlewindow/background";
+    QString picid = QString::number(GlobalConfig::getInstance().getPicStyle() + 1);
+    QString root = part1.append(picid)+ ".png";
+    ui->rankpic->setStyleSheet(
+        QString("#rankpic{border-image:url(%1)}").arg(root)
+        );
     this->setFixedSize(1280, 720);
     // 去除自带的边框
     this->setWindowFlag(Qt::FramelessWindowHint);

@@ -55,7 +55,6 @@
         <file>images/rankwindow/rank-back-.png</file>
         <file>images/rankwindow/rank-bottom.png</file>
         <file>images/pausewindow/pause_background.png</file>
-        <file>images/singlewindow/background.png</file>
         <file>images/singlewindow/bkgrd.png</file>
         <file>images/singlewindow/exit.png</file>
         <file>images/singlewindow/exit-.png</file>
@@ -127,5 +126,10 @@
         <file>images/configwindow/msc-.png</file>
         <file>sounds/hajimi.wav</file>
         <file>sounds/fairytale.wav</file>
+        <file>images/singlewindow/background2.png</file>
+        <file>images/singlewindow/background3.png</file>
+        <file>images/singlewindow/background4.png</file>
+        <file>images/singlewindow/background1.png</file>
+        <file>images/singlewindow/background5.png</file>
     </qresource>
 </RCC>

@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#widget{background-image: url(:/images/gamewindow/background.png);}</string>
+    <string notr="true"/>
    </property>
    <widget class="QPushButton" name="btnExit">
     <property name="geometry">

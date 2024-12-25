@@ -10,7 +10,7 @@
 #include "ui_resultwindow.h"
 #include "mainwindow.h"
 #include "../audio/audiomanager.h"
-
+#include "../config/globalconfig.h"
 const QPoint show_board_size(60, 60);
 const QVector<QPoint> show_opengl_up_left = {QPoint(450, 280), QPoint(450, 420), QPoint(770, 280), QPoint(770, 420)};
 //const QUrl serverUrl("ws://localhost:1479");
@@ -22,6 +22,12 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
     server = BaseWindow::server;
     isSolo=isSolo_;
     ui->setupUi(this);
+    QString part1 = ":/images/singlewindow/background";
+    QString picid = QString::number(GlobalConfig::getInstance().getPicStyle() + 1);
+    QString root = part1.append(picid)+ ".png";
+    ui->resultpic->setStyleSheet(
+        QString("#resultpic{border-image:url(%1)}").arg(root)
+        );
     score=score_;
     ui->score->setText(QString::number(score_));
     ui->cnt1->setText(QString::number(score1));

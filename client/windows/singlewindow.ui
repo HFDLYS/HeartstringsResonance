@@ -515,7 +515,7 @@ color:Red;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#picwidget{border-image:url(:/images/singlewindow/background.png)}</string>
+     <string notr="true"/>
     </property>
    </widget>
    <zorder>picwidget</zorder>

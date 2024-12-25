@@ -3,6 +3,7 @@
 #include "ui_singlewindow.h"
 #include "pausewindow.h"
 #include "../audio/audiomanager.h"
+#include "../config/globalconfig.h"
 #include "resultwindow.h"
 #include <QAction>
 #include <QBitmap>
@@ -23,6 +24,12 @@ const int MAX_TIME=120;
 SingleWindow::SingleWindow(int seed_,QWidget *parent)
     : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
     ui->setupUi(this);
+    QString part1 = ":/images/singlewindow/background";
+    QString picid = QString::number(GlobalConfig::getInstance().getPicStyle() + 1);
+    QString root = part1.append(picid)+ ".png";
+    ui->picwidget->setStyleSheet(
+        QString("#picwidget{border-image:url(%1)}").arg(root)
+        );
     ui->score->setText(QString::number(0));
     ui->skill1_button->setEnabled(1);
     ui->skill2_button->setEnabled(1);
