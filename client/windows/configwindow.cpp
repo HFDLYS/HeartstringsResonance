@@ -128,6 +128,9 @@ void ConfigWindow::on_soundSlider_valueChanged(int value)
     AudioManager::GetInstance()->ModifyLabel(value);
     AudioManager::GetInstance()->ModifyOpen(value);
     AudioManager::GetInstance()->ModifySkill(value);
+    AudioManager::GetInstance()->ModifyMatch1(value);
+    AudioManager::GetInstance()->ModifyMatch2(value);
+    AudioManager::GetInstance()->ModifyMatch3(value);
     AudioManager::GetInstance()->allSoundPercent = value;
 }
 

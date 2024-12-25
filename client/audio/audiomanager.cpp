@@ -123,18 +123,19 @@ void AudioManager::ModifyMatch1(int val) {
 void AudioManager::PlayMatch2(){
     if(!AudioManager::GetInstance()->stopAllSound) match2->play();
 }
+
+void AudioManager::PlayMatch3(){
+    if(!AudioManager::GetInstance()->stopAllSound) match3->play();
+}
+
 void AudioManager::ModifyMatch2(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     match2->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
 
-void AudioManager::PlayMatch3(){
-    if(!AudioManager::GetInstance()->stopAllSound) match3->play();
-}
 void AudioManager::ModifyMatch3(int val) {
     QAudioOutput *audioOutopt = new QAudioOutput();
     match3->setAudioOutput(audioOutopt);
     audioOutopt -> setVolume((double)val / 100);
 }
-
