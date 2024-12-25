@@ -2,6 +2,9 @@
 #define CONFIGWINDOW_H
 
 #include "basewindow.h"
+#include "../config/globalconfig.h"
+#include "../graphics/rendermanager.h"
+#include <QLayout>
 
 // 设置窗口类
 
@@ -42,16 +45,14 @@ private slots:
 
 private:
     Ui::ConfigWindow *ui;
+    static int style_flag;
     static bool music_on;
     static bool sound_on;
     static int music_state;
     static int sound_state;
     void updateState();
+    Graphics::RenderManager *renderer_;
 
-    void hideDim();
-    void hideBod();
-    void hideMsc();
-    void hideBgd();
     void showDim();
     void showBod();
     void showMsc();

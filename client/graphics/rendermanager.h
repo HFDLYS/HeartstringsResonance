@@ -28,6 +28,8 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
 
     GraphicGemManager* GetGemManager();
 
+    void reload();
+
     void Demo();
     void ShowGem(int type);
 
@@ -39,6 +41,7 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
 
    protected:
     virtual void initializeGL() override;
+    void init();
     virtual void paintGL() override;
     virtual void resizeGL(int w, int h) override;
     virtual void wheelEvent(QWheelEvent* event) override;

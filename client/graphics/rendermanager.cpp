@@ -32,11 +32,17 @@ RenderManager::~RenderManager() {
     delete gem_manager_;
 }
 
+
+
 GraphicGemManager *RenderManager::GetGemManager() {
     if (gem_manager_ == nullptr) {
         std::cerr << "WARNING!!! StoneManager is nullptr" << std::endl;
     }
     return gem_manager_;
+}
+
+void RenderManager::reload() {
+    init();
 }
 
 void RenderManager::SetXYBoard(int x, int y) {
@@ -80,6 +86,7 @@ void RenderManager::Demo() {
         }
     }
 
+    return;
     // 3. swap
     Checker(GetGemManager()->SwapStone(1, 2));
     Checker(GetGemManager()->SwapStone(3, 4));
@@ -114,21 +121,14 @@ void RenderManager::SetLightSource(int source) { shader_light_source_ = source; 
 
 void RenderManager::SetHDRExposure(float exposure) { shader_hdr_exposure_ = exposure; }
 
-void RenderManager::initializeGL() {
-    // GL Functions
-    initializeOpenGLFunctions();
-    
-    std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
-
+void RenderManager::init() {
     // Gem Manager
     gem_manager_ = new GraphicGemManager(QOpenGLVersionFunctionsFactory::get<QOpenGLFunctions_3_3_Core>(QOpenGLContext::currentContext()));
-
     // Shader Program
     shader_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/common.vert");
     shader_program_.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/common.frag");
     bool success = shader_program_.link();
     if (!success) qDebug() << "InitializeGL Error: " << shader_program_.log();
-
     // Shader Toy Program 
     shader_toy_program_.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shader_toy.vert");
 
@@ -144,6 +144,15 @@ void RenderManager::initializeGL() {
 
     // start time
     start_time = QTime::currentTime();
+}
+
+void RenderManager::initializeGL() {
+    // GL Functions
+    initializeOpenGLFunctions();
+    
+    std::cerr << "OpenGL Version: " << glGetString(GL_VERSION);
+
+    init();
 }
 
 void RenderManager::paintGL() {

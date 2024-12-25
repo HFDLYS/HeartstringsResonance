@@ -8,20 +8,40 @@ int ConfigWindow::music_state = 100;
 int ConfigWindow::sound_state = 100;
 bool ConfigWindow::music_on = 1;
 bool ConfigWindow::sound_on = 1;
+int ConfigWindow::style_flag = 0;
 ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::ConfigWindow) {
-
     ui->setupUi(this);
     ui->widgetQR->hide();
-    ui->BtnBgd1->setChecked(true);
-    ui->BtnBod1->setChecked(true);
-    ui->BtnMsc1->setChecked(true);
-    ui->BtnDim1->setChecked(true);
-    hideMsc();
-    hideBod();
-    hideBgd();
-    showDim();
-
+    if (style_flag == 0) {
+        showDim();
+    } else if (style_flag == 1) {
+        showMsc();
+    } else if (style_flag == 2) {
+        showBod();
+    } else if (style_flag == 3) {
+        showBgd();
+    }
+    ui->listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    renderer_ = new Graphics::RenderManager(this);
+    renderer_->setFixedSize(240, 240);
+    renderer_->setGeometry(740, 270, renderer_->width(), renderer_->height());
+    connect(ui->listWidget, &QListWidget::itemChanged, [=](QListWidgetItem *currentItem) {
+        if (currentItem->checkState() == Qt::Checked) {
+        const int count = ui->listWidget->count();
+        for (int i = 0; i < count; ++i) {
+            QListWidgetItem *item = ui->listWidget->item(i);
+            if (item != currentItem && item->checkState() == Qt::Checked) {
+                item->setCheckState(Qt::Unchecked);
+            }
+        }
+    }
+    });
     updateState();
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, [=] {
+        renderer_->Demo();
+    });
+    timer->start(1000);
 }
 ConfigWindow::~ConfigWindow() { delete ui; }
 
@@ -115,93 +135,82 @@ void ConfigWindow::on_soundSlider_valueChanged(int value)
 
 
 
-void ConfigWindow::hideDim(){
-    ui->widgetDim->hide();
-    ui->BtnDim1->setEnabled(false);
-    ui->BtnDim2->setEnabled(false);
-    ui->BtnDim3->setEnabled(false);
-}
-
-void ConfigWindow::hideMsc(){
-    ui->widgetMsc->hide();
-    ui->BtnMsc1->setEnabled(false);
-    ui->BtnMsc2->setEnabled(false);
-    ui->BtnMsc3->setEnabled(false);
-}
-
-void ConfigWindow::hideBod(){
-    ui->widgetBod->hide();
-    ui->BtnBod1->setEnabled(false);
-    ui->BtnBod2->setEnabled(false);
-    ui->BtnBod3->setEnabled(false);
-}
-
-void ConfigWindow::hideBgd(){
-    ui->widgetBgd->hide();
-    ui->BtnBgd1->setEnabled(false);
-    ui->BtnBgd2->setEnabled(false);
-    ui->BtnBgd3->setEnabled(false);
-}
 
 void ConfigWindow::showDim(){
-    ui->widgetDim->show();
-    ui->BtnDim1->setEnabled(true);
-    ui->BtnDim2->setEnabled(true);
-    ui->BtnDim3->setEnabled(true);
+    style_flag = 0;
+    ui->listWidget->clear();
+    QVector<QString> dim = {"和弦魔法", "动物乐园"};
+    for (auto &i : dim) {
+        QListWidgetItem *item = new QListWidgetItem(i);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setFlags(item->flags() & ~Qt::ItemIsSelectable);
+        item->setCheckState(Qt::Unchecked);
+        item->setSizeHint(QSize(0, 50));
+        ui->listWidget->addItem(item);
+    }
 }
 
 void ConfigWindow::showMsc(){
-    ui->widgetMsc->show();
-    ui->BtnMsc1->setEnabled(true);
-    ui->BtnMsc2->setEnabled(true);
-    ui->BtnMsc3->setEnabled(true);
+    style_flag = 1;
+    ui->listWidget->clear();
+    QVector<QString> msc = {"音乐1", "音乐2", "音乐3"};
+    for (auto &i : msc) {
+        QListWidgetItem *item = new QListWidgetItem(i);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setFlags(item->flags() & ~Qt::ItemIsSelectable);
+        item->setCheckState(Qt::Unchecked);
+        item->setSizeHint(QSize(0, 50));
+        ui->listWidget->addItem(item);
+    }
 }
 
 void ConfigWindow::showBod(){
-    ui->widgetBod->show();
-    ui->BtnBod1->setEnabled(true);
-    ui->BtnBod2->setEnabled(true);
-    ui->BtnBod3->setEnabled(true);
+    style_flag = 2;
+    ui->listWidget->clear();
+    QVector<QString> bod = {"棋盘1", "棋盘2", "棋盘3", "棋盘4"};
+    for (auto &i : bod) {
+        QListWidgetItem *item = new QListWidgetItem(i);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setFlags(item->flags() & ~Qt::ItemIsSelectable);
+        item->setCheckState(Qt::Unchecked);
+        item->setSizeHint(QSize(0, 50));
+        ui->listWidget->addItem(item);
+    }
 }
 void ConfigWindow::showBgd(){
-    ui->widgetBgd->show();
-    ui->BtnBgd1->setEnabled(true);
-    ui->BtnBgd2->setEnabled(true);
-    ui->BtnBgd3->setEnabled(true);
+    style_flag = 3;
+    ui->listWidget->clear();
+    QVector<QString> bgd = {"背景1", "背景2", "背景3", "背景4", "背景5"};
+    for (auto &i : bgd) {
+        QListWidgetItem *item = new QListWidgetItem(i);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setFlags(item->flags() & ~Qt::ItemIsSelectable);
+        item->setCheckState(Qt::Unchecked);
+        item->setSizeHint(QSize(0, 50));
+        ui->listWidget->addItem(item);
+    }
 }
 
 void ConfigWindow::on_BtnDia_clicked()
 {
     showDim();
-    hideMsc();
-    hideBod();
-    hideBgd();
 }
 
 void ConfigWindow::on_btnBgd_clicked()
 {
     showBgd();
-    hideMsc();
-    hideBod();
-    hideDim();
 }
 
 
 void ConfigWindow::on_BtnBod_clicked()
 {
     showBod();
-    hideMsc();
-    hideBgd();
-    hideDim();
 }
 
 
 void ConfigWindow::on_BtnMsc_clicked()
 {
     showMsc();
-    hideBgd();
-    hideBod();
-    hideDim();
 }
 
 
@@ -215,5 +224,27 @@ void ConfigWindow::on_BtnRecharge_clicked()
 void ConfigWindow::on_btnBack_clicked()
 {
     ui->widgetQR->hide();
+    if (style_flag == 0) {
+        for (int i = 0; i < ui->listWidget->count(); i++) {
+            if (ui->listWidget->item(i)->checkState() == Qt::Checked) {
+                GlobalConfig::getInstance().setGemStyle(i);
+                break;
+            }
+        }
+        // renderer_->Demo();
+    } else if (style_flag == 1) {
+
+    } else if (style_flag == 2) {
+        for (int i = 0; i < ui->listWidget->count(); i++) {
+            if (ui->listWidget->item(i)->checkState() == Qt::Checked) {
+                GlobalConfig::getInstance().setBoardStyle(i);
+                break;
+            }
+        }
+        // renderer_->Demo();
+    } else if (style_flag == 3) {
+
+    }
+    changeWindow(new ConfigWindow());
 }
 
