@@ -168,7 +168,7 @@ void ConfigWindow::showDim(){
 void ConfigWindow::showMsc(){
     style_flag = 1;
     ui->listWidget->clear();
-    QVector<QString> msc = {"DokiDoki", "哈雪大冒险", "FairyTale"};
+    QVector<QString> msc = {"DokiDoki", "哈雪大冒险", "FairyTale", "冬のダイヤモンド", "60\%的遐想·热情"};
     for (auto &i : msc) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -197,7 +197,7 @@ void ConfigWindow::showBod(){
 void ConfigWindow::showBgd(){
     style_flag = 3;
     ui->listWidget->clear();
-    QVector<QString> bgd = {"心海相连", "不好说", "樱花鱼放", "HFDLYS力推", "洛水天依"};
+    QVector<QString> bgd = {"心海相连", "不好说", "樱花鱼放", "HFDLYS力推", "Lika力推", "Kyy008力推"};
 
     for (auto &i : bgd) {
         QListWidgetItem *item = new QListWidgetItem(i);

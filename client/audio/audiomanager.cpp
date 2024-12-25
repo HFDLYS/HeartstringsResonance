@@ -15,8 +15,10 @@ AudioManager::AudioManager() {
     bgmlist[0] =  GetMediaPlayer(QUrl("qrc:/sounds/bgm1.wav"), allMusicPercent);
     bgmlist[1] =  GetMediaPlayer(QUrl("qrc:/sounds/hajimi.wav"), allMusicPercent);
     bgmlist[2] =  GetMediaPlayer(QUrl("qrc:/sounds/fairytale.wav"), allMusicPercent);
+    bgmlist[3] =  GetMediaPlayer(QUrl("qrc:/sounds/Fuyu no Daiyamondo.wav"), allMusicPercent);
+    bgmlist[4] =  GetMediaPlayer(QUrl("qrc:/sounds/xiaxiang_reqing.wav"), allMusicPercent);
     int bgmid = GlobalConfig::getInstance().getMusicStyle();
-    if (bgmid >= 0 && bgmid <= 2 ) {
+    if (bgmid >= 0 && bgmid <= 4 ) {
         bgm1 = bgmlist[bgmid];
     } else {
         bgm1 = bgmlist[0];
