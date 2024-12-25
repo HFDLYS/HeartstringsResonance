@@ -16,10 +16,10 @@ AudioManager::AudioManager() {
     bgmlist[1] =  GetMediaPlayer(QUrl("qrc:/sounds/hajimi.wav"), allMusicPercent);
     bgmlist[2] =  GetMediaPlayer(QUrl("qrc:/sounds/fairytale.wav"), allMusicPercent);
     int bgmid = GlobalConfig::getInstance().getMusicStyle();
-    if (bgmid >= 0 && bgmid <=2 ) {
+    if (bgmid >= 0 && bgmid <= 2 ) {
         bgm1 = bgmlist[bgmid];
     } else {
-        bgm1 = bgmlist[0]; // 默认音乐
+        bgm1 = bgmlist[0];
     }
     bgm2 = GetMediaPlayer(QUrl("qrc:/sounds/bgm2.wav"), allMusicPercent);
     bgm3 = GetMediaPlayer(QUrl("qrc:/sounds/bgm_battle.wav"), allMusicPercent);

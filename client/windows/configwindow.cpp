@@ -157,7 +157,7 @@ void ConfigWindow::showDim(){
 void ConfigWindow::showMsc(){
     style_flag = 1;
     ui->listWidget->clear();
-    QVector<QString> msc = {"DokiDoki", "音乐2", "音乐3"};
+    QVector<QString> msc = {"DokiDoki", "哈雪大冒险", "FairyTale"};
     for (auto &i : msc) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);

@@ -35,7 +35,6 @@ int GlobalConfig::getGemStyle() const {
 void GlobalConfig::setGemStyle(int style) {
     if (gemStyle != style) {
         gemStyle = style;
-        // emit gemStyleChanged(style); // 如果需要
     }
 }
 
