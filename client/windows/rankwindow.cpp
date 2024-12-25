@@ -24,7 +24,6 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
     QJsonDocument json(cmd);
     qDebug() << server->sendBinaryMessage(json.toJson());
 
-
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<"\n\n\nrank\n\n\n"<<message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);
