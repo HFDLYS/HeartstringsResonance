@@ -57,6 +57,15 @@ void SingleWindow::refreshTimeLabel() {
 
 void SingleWindow::initBoard() {
     board = new Board(seed, max_gem_type);
+    connect(board, &Board::playMatchSound, [this](int type) {
+        if (type == 1) {
+            AudioManager::GetInstance()->PlayMatch1();
+        } else if (type == 2) {
+            AudioManager::GetInstance()->PlayMatch2();
+        } else if (type == 3) {
+            AudioManager::GetInstance()->PlayMatch3();
+        }
+    });
     board->SetGemManager(renderer_->GetGemManager());
     board->initBoard();
 }
@@ -143,9 +152,7 @@ void SingleWindow::on_skill2_button_clicked() {
     skill2_cnt++;
     ui->cnt2->setText(QString::number(player.skill_2-skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
-    for (int i = 5; i <= Gem::GetMaxType(); i++) {
-        board->skyshiv(i);
-    }
+    board->skyshiv(0);
 }
 
 void SingleWindow::on_skill3_button_clicked() {

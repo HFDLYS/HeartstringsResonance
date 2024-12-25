@@ -8,12 +8,13 @@
 #include <random>
 #include <utility>
 #include <vector>
-
+#include <QObject>
 
 #include "gemmanager.h"
 #include "gem.h"
 
-class Board {
+class Board : public QObject {
+    Q_OBJECT
    private:
     int stop_;
     bool add_tools;
@@ -53,6 +54,7 @@ class Board {
     int getScore3();
     int getScore4();
     int getScore5();
+    int getComboTimes();                    // 获取combo次数
 
     bool showHint(bool show);   // 提示
     void refresh();
@@ -65,8 +67,8 @@ class Board {
 
     void pause();             // 暂停
 
-    
-
+signals:
+    void playMatchSound(int type);
 
 };
 

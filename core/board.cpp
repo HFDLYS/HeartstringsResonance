@@ -225,6 +225,7 @@ int Board::getScore2() { return point_[2]; }
 int Board::getScore3() { return point_[3]; }
 int Board::getScore4() { return point_[4]; }
 int Board::getScore5() { return point_[5]; }
+int Board::getComboTimes() { return combo_times; }
 
 int Board::setScore(int ind, int score) { return point_[ind] = score; }
 
@@ -253,8 +254,13 @@ void Board::refresh() {
             add_tools = 0;
         }
         combo_times++;
-
-        // BGM::GetInstance()->PlayFall();
+        if (combo_times <= 1) {
+            emit playMatchSound(1);
+        } else if (combo_times <= 3) {
+            emit playMatchSound(2);
+        } else {
+            emit playMatchSound(3);
+        }
         remove();
         fall();
         combo_base += accelerate_base;
@@ -347,6 +353,15 @@ bool Board::showHint(bool show) {
 
 void Board::skyshiv(int type) {
     cancelHint();
+    if (type == 0) {
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (gems_[i][j].GetType() != 1 && gems_[i][j].GetType() != 2 && gems_[i][j].GetType() != 3 && gems_[i][j].GetType() != 4) matches_.push_back({i, j});
+            }
+        }
+        refresh();
+        return;
+    }
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
             if (gems_[i][j].GetType() == type) matches_.push_back({i, j});
