@@ -107,6 +107,11 @@ void MainWindow::on_btnQuit_clicked() {
     }
     connections.push_back(a);
 }
+void MainWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnQuit_clicked();
+    }
+}
 QString MainWindow::getip(){
     return ip;
 }

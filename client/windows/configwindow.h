@@ -20,7 +20,8 @@ public:
     explicit ConfigWindow(QWidget *parent = nullptr);
     ~ConfigWindow();
     void showBoard();
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 private slots:
     void on_btnReturn_clicked();
 

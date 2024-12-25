@@ -30,7 +30,8 @@ private slots:
 
     void onLoginClicked();
     void onRegisterClicked();
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 
 private:
     QString getUsername() const;
@@ -42,8 +43,8 @@ private:
     QString getipstring() const;
     void updateIpLineEdit(int);
     void updatePortLineEdit(int);
-
-
+private slots:
+    void on_btnQuit_clicked();
 private:
     Ui::LoginWindow *ui;
     QLineEdit *usernameEdit;

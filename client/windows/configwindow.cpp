@@ -91,7 +91,11 @@ void ConfigWindow::on_btnReturn_clicked() {
 
     changeWindow(new MainWindow());
 }
-
+void ConfigWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnReturn_clicked();
+    }
+}
 void ConfigWindow::on_btnMusic_clicked() {
     if(music_on == 1){
 

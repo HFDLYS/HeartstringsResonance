@@ -37,7 +37,11 @@ WaitingWindow::~WaitingWindow()
 {
     delete ui;
 }
-
+void WaitingWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnExit_clicked();
+    }
+}
 void WaitingWindow::on_btnExit_clicked()
 {
     emit closeGame();

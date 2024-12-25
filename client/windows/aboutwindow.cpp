@@ -15,6 +15,11 @@ AboutWindow::AboutWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::About
         );
 }
 
+void AboutWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnReturn_clicked();
+    }
+}
 AboutWindow::~AboutWindow() { delete ui; }
 
 void AboutWindow::on_btnReturn_clicked() {

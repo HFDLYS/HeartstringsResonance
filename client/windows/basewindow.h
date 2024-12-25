@@ -30,6 +30,7 @@ protected:
     static QWebSocket *server;
     QVector<QMetaObject::Connection> connections;
     virtual void mousePressEvent(QMouseEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);
 private:

@@ -92,4 +92,8 @@ void ResultWindow::on_btnUpdate_clicked()
     });
     connections.push_back(a);
 }
-
+void ResultWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnReturn_clicked();
+    }
+}

@@ -317,8 +317,9 @@ void GameWindow::on_skill3_button_clicked() {
 }
 
 void GameWindow::on_pause_button_clicked() {
+    is_pause=1;
     AudioManager::GetInstance()->PauseBgm3();
-    PauseWindow *pw = new PauseWindow(2, this);
+    pw = new PauseWindow(2, this);
     pw->setGeometry(0,0,1280,720);
     pw->show();
     AudioManager::GetInstance()->PauseBgm2();
@@ -327,4 +328,31 @@ void GameWindow::on_pause_button_clicked() {
         changeWindow(new MainWindow());
     });
     connections.push_back(a);
+    a=connect(pw, &PauseWindow::gameContinue, this, [this]{
+        is_pause=0;
+    });
+    connections.push_back(a);
+}
+void GameWindow::keyPressEvent(QKeyEvent *e) {
+    if(!is_pause){
+        switch(e->key()){
+        case Qt::Key_Escape:
+            on_pause_button_clicked();
+            break;
+        case Qt::Key_W:
+            on_skill1_button_clicked();
+            break;
+        case Qt::Key_A:
+            on_skill2_button_clicked();
+            break;
+        case Qt::Key_S:
+            on_pause_button_clicked();
+            break;
+        case Qt::Key_D:
+            on_skill3_button_clicked();
+            break;
+        }
+    }else{
+        pw->keyPressEvent(e);
+    }
 }

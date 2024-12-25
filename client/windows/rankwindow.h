@@ -14,7 +14,8 @@ class RankWindow : public BaseWindow {
     Q_OBJECT
 private:
     std::vector<std::pair<std::string, int>> pairs;
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 public:
     explicit RankWindow(QWidget *parent = nullptr);
     ~RankWindow();

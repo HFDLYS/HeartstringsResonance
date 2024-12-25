@@ -15,7 +15,8 @@ signals:
 public:
     explicit WaitingWindow(QWidget *parent = nullptr);
     ~WaitingWindow();
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 private slots:
     void on_btnExit_clicked();
     void updateLabels();

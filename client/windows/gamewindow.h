@@ -5,7 +5,7 @@
 #include <QMainWindow>
 #include <QTime>
 #include <QWebSocket>
-
+#include "pausewindow.h"
 // #include "../core/board.h"
 #include "../graphics/rendermanager.h"
 // #include "recordrankwindow.h"
@@ -37,6 +37,7 @@ public slots:
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *e) override;
 
 private:
     int difficulty_ = 1;
@@ -73,7 +74,8 @@ private:
     QWebSocket *server;
 
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口
-
+    bool is_pause;
+    PauseWindow *pw;
     int seed=0;
     bool has_started_ = false;
 
