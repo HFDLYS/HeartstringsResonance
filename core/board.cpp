@@ -303,6 +303,13 @@ void Board::hint() { showHint(1); }
 
 // 提示
 bool Board::showHint(bool show) {
+    if (hint_[0].first != -1) {
+        std::pair<int, int> tmp = hint_[0];
+        clicked(hint_[1].first, hint_[1].second);
+        clicked(tmp.first, tmp.second);
+        hint_[0] = hint_[1] = {-1, -1};
+        return 1;
+    }
     bool get_hint = 0;
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
