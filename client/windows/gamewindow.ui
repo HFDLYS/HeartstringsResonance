@@ -257,81 +257,18 @@ QPushButton::pressed#pause_button{border-image:url(:/images/gamewindow/pause-.pn
     <widget class="QLabel" name="username_1">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>770</x>
        <y>0</y>
-       <width>280</width>
-       <height>70</height>
+       <width>220</width>
+       <height>60</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font-size:50px;
+      <string notr="true">font-size:30px;
 color:rgb(170, 170, 255);</string>
      </property>
      <property name="text">
       <string>TextLabel</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="username_2">
-     <property name="geometry">
-      <rect>
-       <x>990</x>
-       <y>0</y>
-       <width>280</width>
-       <height>70</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font-size:50px;
-color:rgb(170, 170, 255);</string>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="username_3">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>640</y>
-       <width>280</width>
-       <height>70</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font-size:50px;
-color:rgb(170, 170, 255);</string>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="username_4">
-     <property name="geometry">
-      <rect>
-       <x>990</x>
-       <y>640</y>
-       <width>280</width>
-       <height>70</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font-size:50px;
-color:rgb(170, 170, 255);</string>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="cnt2">
@@ -463,6 +400,209 @@ color:rgb(170, 170, 255);</string>
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="name_board_1">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>5</y>
+       <width>220</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="name_board_2">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>5</y>
+       <width>220</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="username_2">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>0</y>
+       <width>220</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:30px;
+color:rgb(170, 170, 255);</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="name_board_3">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>645</y>
+       <width>220</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="username_3">
+     <property name="geometry">
+      <rect>
+       <x>770</x>
+       <y>640</y>
+       <width>220</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:30px;
+color:rgb(170, 170, 255);</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="name_board_4">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>645</y>
+       <width>220</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="username_4">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>640</y>
+       <width>220</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:30px;
+color:rgb(170, 170, 255);</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_6">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>5</y>
+       <width>60</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_7">
+     <property name="geometry">
+      <rect>
+       <x>990</x>
+       <y>5</y>
+       <width>60</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_8">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>645</y>
+       <width>60</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shadow_9">
+     <property name="geometry">
+      <rect>
+       <x>990</x>
+       <y>645</y>
+       <width>60</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/gamewindow/shadow.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
     <zorder>skill2_button</zorder>
     <zorder>skill3_button</zorder>
     <zorder>skill_board_3</zorder>
@@ -474,15 +614,23 @@ color:rgb(170, 170, 255);</string>
     <zorder>shadow_4</zorder>
     <zorder>shadow_1</zorder>
     <zorder>shadow_5</zorder>
-    <zorder>username_1</zorder>
-    <zorder>username_2</zorder>
-    <zorder>username_3</zorder>
-    <zorder>username_4</zorder>
     <zorder>cnt3</zorder>
     <zorder>cnt1</zorder>
     <zorder>skill_board_2</zorder>
     <zorder>cnt2</zorder>
     <zorder>pause_button</zorder>
+    <zorder>name_board_1</zorder>
+    <zorder>username_1</zorder>
+    <zorder>name_board_2</zorder>
+    <zorder>username_2</zorder>
+    <zorder>name_board_3</zorder>
+    <zorder>username_3</zorder>
+    <zorder>name_board_4</zorder>
+    <zorder>username_4</zorder>
+    <zorder>shadow_6</zorder>
+    <zorder>shadow_7</zorder>
+    <zorder>shadow_8</zorder>
+    <zorder>shadow_9</zorder>
    </widget>
    <widget class="QWidget" name="picwidget" native="true">
     <property name="geometry">

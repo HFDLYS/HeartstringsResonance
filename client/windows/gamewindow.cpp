@@ -25,6 +25,8 @@ const QPoint sub_board_size(90, 90);
 const QPoint sub_opengl_up_left(570, 40);
 const QPoint show_opengl_up_left(700, 70);
 const QPoint show_board_size(280, 280);
+const QVector<QPoint> show_sub_opengl_up_left = {QPoint(700, 5), QPoint(990, 5), QPoint(700, 645), QPoint(990, 645)};
+const int sub_board_size_ = 60;
 const int border_size = 10;
 const int TITLE_HEIGHT = 30;
 GameWindow::GameWindow(QWidget *parent)
@@ -62,7 +64,7 @@ GameWindow::GameWindow(QWidget *parent)
     });
 
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
-        if(!this->isVisible()){
+        // if(!this->isVisible()){
             qDebug()<<message;
             QJsonDocument jsonIn = QJsonDocument::fromJson(message);
             QJsonObject cmd = jsonIn.object();
@@ -102,6 +104,7 @@ GameWindow::GameWindow(QWidget *parent)
                     show_board_[i]->SetGemManager(show_renderer_[i]->GetGemManager());
                     show_board_[i]->initBoard();
                     show_chart_[i]->setValues(i, 100);
+                    show_sub_renderer_[i]->ShowGem(i);
                 }
                 sub_renderer_->ShowGem(player_id_);
                 has_started_ = true;
@@ -149,16 +152,21 @@ GameWindow::GameWindow(QWidget *parent)
                             sub_chart_->setValues(j+1, stance[j].toInt());
                         }
                     }
-                    if (i+1 == player_id_) {
-                        int ret = 0;
-                        int ans = 0;
-                        for (int j = 1; j <= 4; j++) {
-                            if (stance[j-1].toInt() > ret) {
-                                ret = stance[j-1].toInt();
-                                ans = j;
-                            }
+                    int ret = 0;
+                    int ans = 0;
+                    for (int j = 1; j <= 4; j++) {
+                        if (stance[j-1].toInt() > ret) {
+                            ret = stance[j-1].toInt();
+                            ans = j;
                         }
+                    }
+                    show_sub_renderer_[i+1]->ShowGem(ans);
+                    if (i+1 == player_id_) {
                         sub_renderer_->ShowGem(ans);
+                        for (int j = 1; j <= 4; j++) {
+                            sub_chart_->setValues(j, 0);
+                        }
+                        sub_chart_->setValues(ans, 100);
                     }
                 }
             } else if(cmd["command"].toString()=="end"){
@@ -172,7 +180,7 @@ GameWindow::GameWindow(QWidget *parent)
                     changeWindow(new MainWindow());
                 });
             }
-        }
+        // }
     });
     main_chart_ = new SquarePieChart(ui->controlWidget);
     main_chart_->setGeometry(opengl_up_left.x()-3, opengl_up_left.y()-3, board_size.x()+6, board_size.y()+6);
@@ -192,8 +200,11 @@ GameWindow::GameWindow(QWidget *parent)
         show_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
         show_renderer_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
         show_renderer_[i]->setGeometry(show_opengl_up_left.x() + ix * (show_board_size.x() + border_size), show_opengl_up_left.y() + iy * (show_board_size.y() + border_size), show_renderer_[i]->width(), show_renderer_[i]->height());
+        show_sub_renderer_[i] = new Graphics::RenderManager(ui->controlWidget);
+        show_sub_renderer_[i]->setFixedSize(sub_board_size_, sub_board_size_);
+        show_sub_renderer_[i]->setGeometry(show_sub_opengl_up_left[i-1].x(), show_sub_opengl_up_left[i-1].y(), show_sub_renderer_[i]->width(), show_sub_renderer_[i]->height());
     }
-    //qDebug()<<"\n\n\n\n\ntest\n\n\n\n\n";
+    
 }
 
 GameWindow::~GameWindow() {
