@@ -83,6 +83,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/basewindow.cpp client/windows/basewindow.h client/windows/basewindow.ui
         client/windows/mainwindow.cpp client/windows/mainwindow.h client/windows/mainwindow.ui
         client/main.cpp
+        client/config/globalconfig.h
         resource/res.qrc
         resource/shaders.qrc
         client/windows/configwindow.cpp client/windows/configwindow.h client/windows/configwindow.ui
