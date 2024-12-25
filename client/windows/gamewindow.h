@@ -67,6 +67,7 @@ private:
     SquarePieChart *sub_chart_;
     Graphics::RenderManager *show_renderer_[5];
     Graphics::RenderManager *show_sub_renderer_[5];
+    SquarePieChart *show_sub_chart_[5];
     Board *show_board_[5];
     SquarePieChart *show_chart_[5];
     QWebSocket *server;
