@@ -1,8 +1,8 @@
 #include "room.h"
 /*
- * 未完成:
- * 1.倒计时结束游戏.
+ * 
 */
+const int MAX_TIME = 180;
 Room::Room(int id_, QPair<QWebSocket*, Player>w, QPair<QWebSocket*, Player>a, QPair<QWebSocket*, Player>s, QPair<QWebSocket*, Player>d, QObject* parent) :QThread(parent) {
     id = id_;
     player[1] = w.first;
@@ -36,6 +36,41 @@ Room::Room(int id_, QPair<QWebSocket*, Player>w, QPair<QWebSocket*, Player>a, QP
     stance[2][2] = 100;
     stance[3][3] = 100;
     stance[4][4] = 100;
+    timer=new QTimer(this);
+    timer->start(1000);
+    time = MAX_TIME;
+    connect(timer, &QTimer::timeout, this, [=] {
+        time--;
+        if (time == 0) {
+            timer->stop();
+            delete timer;
+            QJsonObject cmd;
+            cmd["command"] = "end";
+            QJsonObject parameter;
+            QJsonArray stances;
+            for (int i = 1; i <= 4; i++) {
+                QJsonArray stance;
+                for (int j = 1; j <= 4; j++) {
+                    stance.append(this->stance[i][j]);
+                }
+                stances.append(stance);
+            }
+            parameter["stances"] = stances;
+            QJsonArray namesArray;
+            namesArray.append(players[1].toJson());
+            namesArray.append(players[2].toJson());
+            namesArray.append(players[3].toJson());
+            namesArray.append(players[4].toJson());
+            parameter["players"] = namesArray;
+            cmd["parameter"] = parameter;
+            QJsonDocument json(cmd);
+            broadcast(json.toJson());
+            // 这里是不是应该断链的？
+            this->quit();
+        } else {
+            broadcastStatus();
+        }
+    });
 }
 int Room::getId() {
     return id;
@@ -50,6 +85,25 @@ void Room::broadcast(const QByteArray& info) {
 void Room::broadcast(const QByteArray& info, QWebSocket* player) {
     qDebug() << info;
     emit sendMessage(info, player);
+}
+
+void Room::broadcastStatus() {
+    QJsonObject cmd = QJsonObject();
+    cmd["command"] = "status";
+    QJsonObject parameter;
+    QJsonArray stances;
+    for (int i = 1; i <= 4; i++) {
+        QJsonArray stance;
+        for (int j = 1; j <= 4; j++) {
+            stance.append(this->stance[i][j]);
+        }
+        stances.append(stance);
+    }
+    parameter["stances"] = stances;
+    parameter["time"] = time;
+    cmd["parameter"] = parameter;
+    QJsonDocument jsonOut(cmd);
+    broadcast(jsonOut.toJson());
 }
 
 int Room::getStance(int ind) {
@@ -145,21 +199,6 @@ void Room::run() {
                     stance[i][j] += det_stance[i][j];
                 }
             }
-            cmd = QJsonObject();
-            cmd["command"] = "status";
-            QJsonObject parameter;
-            QJsonArray stances;
-            for (int i = 1; i <= 4; i++) {
-                QJsonArray stance;
-                for (int j = 1; j <= 4; j++) {
-                    stance.append(this->stance[i][j]);
-                }
-                stances.append(stance);
-            }
-            parameter["stances"] = stances;
-            cmd["parameter"] = parameter;
-            QJsonDocument jsonOut(cmd);
-            broadcast(jsonOut.toJson());
-            });
+        });
     }
 }

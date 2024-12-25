@@ -2,6 +2,7 @@
 #define MEMBERWINDOW_H
 
 #include <QWidget>
+#include "../audio/audiomanager.h"
 #include "basewindow.h"
 
 namespace Ui {

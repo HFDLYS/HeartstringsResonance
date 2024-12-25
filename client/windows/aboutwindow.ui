@@ -57,14 +57,18 @@ QPushButton::pressed#btnReturn
    <widget class="QPushButton" name="btnMember">
     <property name="geometry">
      <rect>
-      <x>960</x>
-      <y>500</y>
-      <width>160</width>
-      <height>65</height>
+      <x>930</x>
+      <y>630</y>
+      <width>301</width>
+      <height>51</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnMember{border-image:url(:/images/aboutwindow/us.png)
+}QPushButton::pressed#btnMember{border-image:url(:/images/aboutwindow/us-.png)}</string>
+    </property>
     <property name="text">
-     <string>制作人列表</string>
+     <string/>
     </property>
    </widget>
   </widget>

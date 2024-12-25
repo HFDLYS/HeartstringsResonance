@@ -95,6 +95,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         client/windows/singlewindow.h client/windows/singlewindow.cpp client/windows/singlewindow.ui
         client/audio/audiomanager.h client/audio/audiomanager.cpp
         client/windows/resultwindow.h client/windows/resultwindow.cpp client/windows/resultwindow.ui
+        client/windows/multiresultwindow.h client/windows/multiresultwindow.cpp client/windows/multiresultwindow.ui
         client/windows/waitingwindow.h client/windows/waitingwindow.cpp client/windows/waitingwindow.ui
         client/windows/memberwindow.h client/windows/memberwindow.cpp client/windows/memberwindow.ui
         client/component/logindialog.h client/component/logindialog.cpp

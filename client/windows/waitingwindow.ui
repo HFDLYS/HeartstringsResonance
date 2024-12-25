@@ -217,9 +217,10 @@ QPushButton::pressed#btnExit
     <property name="styleSheet">
      <string notr="true">QLabel{
 	font-size:50px;
-	color:Red;
-	font-family:幼圆;
+	color:rgb(170, 85, 255);
+	font-family:&quot;华文彩云&quot;;
 	text-align: center;
+	font-weight: bold;
 }</string>
     </property>
     <property name="text">

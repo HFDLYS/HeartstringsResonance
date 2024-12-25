@@ -249,7 +249,7 @@ QPushButton::pressed#BtnBod{border-image:url(:/images/configwindow/bod-.png)}</s
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton#BtnMsc{border-image:url(:/images/configwindow/msc.png)}
-QPushButton::pressed#BtnMcs{border-image:url(:/images/configwindow/msc-.png)}</string>
+QPushButton::pressed#BtnMsc{border-image:url(:/images/configwindow/msc-.png)}</string>
     </property>
     <property name="text">
      <string/>

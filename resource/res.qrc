@@ -29,6 +29,8 @@
         <file>images/mainwindow/top.png</file>
         <file>images/mainwindow/vain.png</file>
         <file>images/aboutwindow/about_background.png</file>
+        <file>images/aboutwindow/us.png</file>
+        <file>images/aboutwindow/us-.png</file>
         <file>images/configwindow/setting_background.png</file>
         <file>images/configwindow/setting_music_off.png</file>
         <file>images/configwindow/setting_music_off-.png</file>
@@ -109,6 +111,8 @@
         <file>images/rankwindow/rank.png</file>
         <file>images/barprogress/background.png</file>
         <file>images/barprogress/chunk.png</file>
+        <file>images/barprogress/background2.png</file>
+        <file>images/barprogress/chunk2.png</file>
         <file>images/configwindow/board.png</file>
         <file>images/configwindow/QRcode.png</file>
         <file>images/configwindow/charge.png</file>
