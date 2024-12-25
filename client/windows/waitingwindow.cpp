@@ -14,6 +14,9 @@ WaitingWindow::WaitingWindow(QWidget *parent)
     ui->label2->setVisible(false);
     ui->label3->setVisible(false);
     timer = new QTimer(this);
+    connect((GameWindow*)parent,&GameWindow::wait,this,[=](int a){
+        ui->playernum->setText("排队人数:"+QString::number(a));
+    });
     connect(timer, &QTimer::timeout, this, &WaitingWindow::updateLabels);
     timer->start(1000);
     connect((GameWindow*)parent,&GameWindow::gameStart,this,[&]{

@@ -23,7 +23,7 @@ class GameWindow : public BaseWindow {
 
 signals:
     void gameStart();
-
+    void wait(int);
 public:
     explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
