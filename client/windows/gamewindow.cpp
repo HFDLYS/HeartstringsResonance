@@ -2,7 +2,6 @@
 #include "mainwindow.h"
 #include "ui_gamewindow.h"
 #include "pausewindow.h"
-#include "waitingwindow.h"
 #include "../audio/audiomanager.h"
 #include "multiresultwindow.h"
 #include <QAction>
@@ -47,7 +46,7 @@ GameWindow::GameWindow(QWidget *parent)
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
     }
-    WaitingWindow *ww = new WaitingWindow(this);
+    ww = new WaitingWindow(this);
     auto a=connect(ww,&WaitingWindow::closeGame,this,[&]{
         QJsonObject cmd,parameter;
         cmd["command"]="cancelmulti";
@@ -74,6 +73,7 @@ GameWindow::GameWindow(QWidget *parent)
             cmd = cmd["parameter"].toObject();
             emit wait(cmd["num"].toInt());
         }else if(cmd["command"].toString()=="start"){
+            is_waiting=0;
             cmd = cmd["parameter"].toObject();
             int playerId = cmd["playerId"].toInt();
             QJsonArray seeds = cmd["seeds"].toArray();
@@ -330,7 +330,10 @@ void GameWindow::on_pause_button_clicked() {
     connections.push_back(a);
 }
 void GameWindow::keyPressEvent(QKeyEvent *e) {
-    if(!is_pause){
+    if(is_waiting){
+        ww->keyPressEvent(e);
+    }
+    else if(!is_pause){
         switch(e->key()){
         case Qt::Key_Escape:
             on_pause_button_clicked();

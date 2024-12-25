@@ -29,6 +29,7 @@ WaitingWindow::~WaitingWindow()
     delete ui;
 }
 void WaitingWindow::keyPressEvent(QKeyEvent *e) {
+    qDebug()<<"waiting";
     if(e->key()==Qt::Key_Escape){
         on_btnExit_clicked();
     }
