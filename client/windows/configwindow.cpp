@@ -160,6 +160,7 @@ void ConfigWindow::showDim(){
     }
 }
 
+
 void ConfigWindow::showMsc(){
     style_flag = 1;
     ui->listWidget->clear();
@@ -174,6 +175,7 @@ void ConfigWindow::showMsc(){
     }
 }
 
+
 void ConfigWindow::showBod(){
     style_flag = 2;
     ui->listWidget->clear();
@@ -187,10 +189,12 @@ void ConfigWindow::showBod(){
         ui->listWidget->addItem(item);
     }
 }
+
 void ConfigWindow::showBgd(){
     style_flag = 3;
     ui->listWidget->clear();
-    QVector<QString> bgd = {"心海相连", "不好说", "樱花鱼放", "背景4", "背景5"};
+    QVector<QString> bgd = {"心海相连", "不好说", "樱花鱼放", "HFDLYS力推", "洛水天依"};
+
     for (auto &i : bgd) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);

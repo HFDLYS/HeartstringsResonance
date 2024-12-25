@@ -38,7 +38,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#pausepic{border-image:url(:/images/pausewindow/pause_background.png)}</string>
+    <string notr="true"/>
    </property>
    <widget class="QPushButton" name="btnConti">
     <property name="geometry">

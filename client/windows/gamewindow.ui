@@ -714,7 +714,6 @@ QProgressBar::chunk:Horizontal{
  </widget>
  <resources>
   <include location="../../resource/res.qrc"/>
-  <include location="../../../../resource/res.qrc"/>
  </resources>
  <connections/>
 </ui>

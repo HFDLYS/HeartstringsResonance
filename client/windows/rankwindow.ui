@@ -27,7 +27,7 @@
   </property>
   <widget class="QWidget" name="rankpic">
    <property name="styleSheet">
-    <string notr="true">#rankpic{border-image:url(:/images/rankwindow/rank-bottom.png)}</string>
+    <string notr="true"/>
    </property>
    <widget class="QPushButton" name="btnReturn">
     <property name="geometry">

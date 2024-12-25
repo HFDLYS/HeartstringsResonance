@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#memberpic{border-image:url(:/images/memberwindow/member_background.png)}</string>
+    <string notr="true"/>
    </property>
    <widget class="QPushButton" name="btnReturn">
     <property name="geometry">

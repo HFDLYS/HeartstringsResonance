@@ -31,9 +31,13 @@ const int border_size = 10;
 const int TITLE_HEIGHT = 30;
 GameWindow::GameWindow(QWidget *parent)
     : BaseWindow(parent), ui(new Ui::GameWindow) {
-    // QString urlstring = "ws://" + ip + ":" + port;
-    //QUrl serverUrl(urlstring);
     ui->setupUi(this);
+    QString part1 = ":/images/singlewindow/background";
+    QString picid = QString::number(GlobalConfig::getInstance().getPicStyle() + 1);
+    QString root = part1.append(picid)+ ".png";
+    ui->picwidget->setStyleSheet(
+        QString("#picwidget{border-image:url(%1)}").arg(root)
+        );
     ui->cnt1->setText(QString::number(player.skill_1));
     ui->cnt2->setText(QString::number(player.skill_2));
     ui->cnt3->setText(QString::number(player.skill_3));

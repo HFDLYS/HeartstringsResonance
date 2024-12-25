@@ -130,5 +130,6 @@
         <file>images/singlewindow/background3.png</file>
         <file>images/singlewindow/background4.png</file>
         <file>images/singlewindow/background1.png</file>
+        <file>images/singlewindow/background5.png</file>
     </qresource>
 </RCC>
