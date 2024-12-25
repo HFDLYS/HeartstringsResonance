@@ -11,6 +11,7 @@ bool ConfigWindow::sound_on = 1;
 ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::ConfigWindow) {
 
     ui->setupUi(this);
+    ui->widgetQR->hide();
     ui->BtnBgd1->setChecked(true);
     ui->BtnBod1->setChecked(true);
     ui->BtnMsc1->setChecked(true);
@@ -201,5 +202,18 @@ void ConfigWindow::on_BtnMsc_clicked()
     hideBgd();
     hideBod();
     hideDim();
+}
+
+
+
+void ConfigWindow::on_BtnRecharge_clicked()
+{
+    ui->widgetQR->show();
+}
+
+
+void ConfigWindow::on_btnBack_clicked()
+{
+    ui->widgetQR->hide();
 }
 

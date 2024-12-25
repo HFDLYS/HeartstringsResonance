@@ -106,5 +106,6 @@
         <file>images/barprogress/background.png</file>
         <file>images/barprogress/chunk.png</file>
         <file>images/configwindow/board.png</file>
+        <file>images/configwindow/QRcode.png</file>
     </qresource>
 </RCC>

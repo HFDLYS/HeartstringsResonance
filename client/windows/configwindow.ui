@@ -224,7 +224,7 @@ border-radius: 10px;
      <string>音效</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="BtnRecharge">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -548,6 +548,62 @@ border-radius: 10px;
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="widgetQR" native="true">
+    <property name="geometry">
+     <rect>
+      <x>465</x>
+      <y>170</y>
+      <width>350</width>
+      <height>400</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+  background-color: #f0f0f0;
+}</string>
+    </property>
+    <widget class="QLabel" name="QRpic">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>350</width>
+       <height>350</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/configwindow/QRcode.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnBack">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>360</y>
+       <width>150</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget {
+  background-color: #000000;
+	color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string>返回</string>
+     </property>
+    </widget>
+   </widget>
    <zorder>btnReturn</zorder>
    <zorder>btnMusic</zorder>
    <zorder>btnSound</zorder>
@@ -557,12 +613,13 @@ border-radius: 10px;
    <zorder>BtnDia</zorder>
    <zorder>BtnBod</zorder>
    <zorder>BtnMsc</zorder>
-   <zorder>pushButton_5</zorder>
+   <zorder>BtnRecharge</zorder>
    <zorder>label</zorder>
    <zorder>widgetBgd</zorder>
    <zorder>widgetBod</zorder>
    <zorder>widgetDim</zorder>
    <zorder>widgetMsc</zorder>
+   <zorder>widgetQR</zorder>
   </widget>
  </widget>
  <resources>

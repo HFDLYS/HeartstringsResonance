@@ -36,6 +36,10 @@ private slots:
 
     void on_BtnMsc_clicked();
 
+    void on_BtnRecharge_clicked();
+
+    void on_btnBack_clicked();
+
 private:
     Ui::ConfigWindow *ui;
     static bool music_on;
