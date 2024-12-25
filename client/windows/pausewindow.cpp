@@ -25,7 +25,7 @@ void PauseWindow::on_btnReturn_clicked(){
 }
 void PauseWindow::keyPressEvent(QKeyEvent *e) {
     qDebug()<<"Pause";
-    if(e->key()==Qt::Key_Escape){
+    if(e->key()==Qt::Key_Escape || e->key()==Qt::Key_S){
         on_btnConti_clicked();
     }
 }
