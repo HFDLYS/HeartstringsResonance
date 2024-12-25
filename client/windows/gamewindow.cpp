@@ -87,6 +87,15 @@ GameWindow::GameWindow(QWidget *parent)
                 main_board_->SetGemManager(main_renderer_->GetGemManager());
                 main_board_->initBoard();
                 main_chart_->setValues(playerId, 100);
+                connect(main_board_, &Board::playMatchSound, [this](int type) {
+                    if (type == 1) {
+                        AudioManager::GetInstance()->PlayMatch1();
+                    } else if (type == 2) {
+                        AudioManager::GetInstance()->PlayMatch2();
+                    } else if (type == 3) {
+                        AudioManager::GetInstance()->PlayMatch3();
+                    }
+                });
                 sub_chart_->setValues(playerId, 100);
                 for (int i = 1; i <= 4; i++) {
                     show_board_[i] = new Board(seedVector[i-1]);
