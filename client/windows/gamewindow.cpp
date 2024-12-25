@@ -48,22 +48,23 @@ GameWindow::GameWindow(QWidget *parent)
         qDebug()<<server->sendBinaryMessage(json.toJson());
     }
     WaitingWindow *ww = new WaitingWindow(this);
-    connect(ww,&WaitingWindow::closeGame,this,[&]{
+    auto a=connect(ww,&WaitingWindow::closeGame,this,[&]{
         AudioManager::GetInstance()->StopBgm3();
         server->close();
         changeWindow(new MainWindow());
     });
+    connections.push_back(a);
     ww->setGeometry(0,0,1280,720);
     ww->show();
-    connect(server,&QWebSocket::errorOccurred,this,[&](QAbstractSocket::SocketError error){
+    a=connect(server,&QWebSocket::errorOccurred,this,[&](QAbstractSocket::SocketError error){
         if(!this->isVisible()){
             QMessageBox::warning(this,"连接错误","连接服务器失败");
             AudioManager::GetInstance()->StopBgm3();
             changeWindow(new MainWindow());
         }
     });
-
-    connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+    connections.push_back(a);
+    a=connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);
         QJsonObject cmd = jsonIn.object();
@@ -88,7 +89,7 @@ GameWindow::GameWindow(QWidget *parent)
             main_board_->SetGemManager(main_renderer_->GetGemManager());
             main_board_->initBoard();
             main_chart_->setValues(playerId, 100);
-            connect(main_board_, &Board::playMatchSound, [this](int type) {
+            auto a=connect(main_board_, &Board::playMatchSound, [this](int type) {
                 if (type == 1) {
                     AudioManager::GetInstance()->PlayMatch1();
                 } else if (type == 2) {
@@ -97,6 +98,7 @@ GameWindow::GameWindow(QWidget *parent)
                     AudioManager::GetInstance()->PlayMatch3();
                 }
             });
+            connections.push_back(a);
             sub_chart_->setValues(playerId, 100);
             for (int i = 1; i <= 4; i++) {
                 show_board_[i] = new Board(seedVector[i-1]);
@@ -182,12 +184,14 @@ GameWindow::GameWindow(QWidget *parent)
             ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
-            connect(rw, &ResultWindow::exitwindow, this, [=]{
+            auto a=connect(rw, &ResultWindow::exitwindow, this, [=]{
                 rw->close();
                 changeWindow(new MainWindow());
             });
+            connections.push_back(a);
         }
     });
+    connections.push_back(a);
     main_chart_ = new SquarePieChart(ui->controlWidget);
     main_chart_->setGeometry(opengl_up_left.x()-3, opengl_up_left.y()-3, board_size.x()+6, board_size.y()+6);
     sub_chart_ = new SquarePieChart(ui->controlWidget);
@@ -303,8 +307,9 @@ void GameWindow::on_pause_button_clicked() {
     pw->setGeometry(0,0,1280,720);
     pw->show();
     AudioManager::GetInstance()->PauseBgm2();
-    connect(pw, &PauseWindow::exitwindow, this, [this]{
+    auto a=connect(pw, &PauseWindow::exitwindow, this, [this]{
         AudioManager::GetInstance()->StopBgm3();
         changeWindow(new MainWindow());
     });
+    connections.push_back(a);
 }
