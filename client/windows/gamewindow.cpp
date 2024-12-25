@@ -49,6 +49,11 @@ GameWindow::GameWindow(QWidget *parent)
     }
     WaitingWindow *ww = new WaitingWindow(this);
     auto a=connect(ww,&WaitingWindow::closeGame,this,[&]{
+        QJsonObject cmd,parameter;
+        cmd["command"]="cancelmulti";
+        cmd["parameter"]=parameter;
+        QJsonDocument json(cmd);
+        qDebug()<<server->sendBinaryMessage(json.toJson());
         AudioManager::GetInstance()->StopBgm3();
         changeWindow(new MainWindow());
     });
@@ -56,18 +61,19 @@ GameWindow::GameWindow(QWidget *parent)
     ww->setGeometry(0,0,1280,720);
     ww->show();
     a=connect(server,&QWebSocket::errorOccurred,this,[&](QAbstractSocket::SocketError error){
-        if(!this->isVisible()){
             QMessageBox::warning(this,"连接错误","连接服务器失败");
             AudioManager::GetInstance()->StopBgm3();
             changeWindow(new MainWindow());
-        }
     });
     connections.push_back(a);
     a=connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);
         QJsonObject cmd = jsonIn.object();
-        if(cmd["command"].toString()=="start"){
+        if(cmd["command"].toString()=="waiting"){
+            cmd = cmd["parameter"].toObject();
+            emit wait(cmd["num"].toInt());
+        }else if(cmd["command"].toString()=="start"){
             cmd = cmd["parameter"].toObject();
             int playerId = cmd["playerId"].toInt();
             QJsonArray seeds = cmd["seeds"].toArray();

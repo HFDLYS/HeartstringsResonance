@@ -27,6 +27,14 @@ void MainWindow::newClientConnect() {
         }
         ui->textEdit->append(QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort()));
         qDebug() << QString("与%1:%2的连接断开").arg(client->peerAddress().toString()).arg(client->peerPort());
+        for(auto a:waitingQueue){
+            QJsonObject cmdOut,parameterOut;
+            cmdOut["command"]="waiting";
+            parameterOut["num"]=waitingQueue.size();
+            cmdOut["parameter"]=parameterOut;
+            QJsonDocument jsonOut(cmdOut);
+            a.first->sendBinaryMessage(jsonOut.toJson());
+        }
         qDebug() << "当前等待人数:" << waitingQueue.size();
         });
     connect(client, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray& message) {
@@ -46,6 +54,21 @@ void MainWindow::newClientConnect() {
             cmdOut["parameter"]=parameterOut;
             QJsonDocument jsonOut(cmdOut);
             client->sendBinaryMessage(jsonOut.toJson());
+        }else if (cmd["command"].toString() == "cancelmulti") {
+            for (int i=0;i<waitingQueue.size();i++) {
+                if (waitingQueue[i].first == client) {
+                    waitingQueue.removeAt(i);
+                    break;
+                }
+            }
+            for(auto a:waitingQueue){
+                QJsonObject cmdOut,parameterOut;
+                cmdOut["command"]="waiting";
+                parameterOut["num"]=waitingQueue.size();
+                cmdOut["parameter"]=parameterOut;
+                QJsonDocument jsonOut(cmdOut);
+                a.first->sendBinaryMessage(jsonOut.toJson());
+            }
         } else if (cmd["command"].toString() == "rank") {
             /**/
             QJsonObject parameter = cmd["parameter"].toObject();
@@ -100,6 +123,15 @@ void MainWindow::newClientConnect() {
                     });
                 rooms.push_back(room);
                 room->start();
+            }else{
+                for(auto a:waitingQueue){
+                    QJsonObject cmdOut,parameterOut;
+                    cmdOut["command"]="waiting";
+                    parameterOut["num"]=waitingQueue.size();
+                    cmdOut["parameter"]=parameterOut;
+                    QJsonDocument jsonOut(cmdOut);
+                    a.first->sendBinaryMessage(jsonOut.toJson());
+                }
             }
         } else if (cmd["command"].toString() == "register") {
             QJsonObject parameter = cmd["parameter"].toObject();

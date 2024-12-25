@@ -97,7 +97,7 @@ QPushButton::pressed#btnExit
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>280</y>
+      <y>230</y>
       <width>300</width>
       <height>151</height>
      </rect>
@@ -205,9 +205,34 @@ QPushButton::pressed#btnExit
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="playernum">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>350</y>
+      <width>300</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-size:50px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+    </property>
+    <property name="text">
+     <string>排队人数:0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>board</zorder>
    <zorder>btnExit</zorder>
    <zorder>text</zorder>
+   <zorder>playernum</zorder>
   </widget>
  </widget>
  <resources>
