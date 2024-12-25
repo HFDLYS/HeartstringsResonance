@@ -262,6 +262,43 @@ void LoginWindow::onRegisterClicked()
     connections.push_back(a);
 }
 
+void LoginWindow::on_btnQuit_clicked() {
+    //BGM::GetInstance()->PlayClose();
+    QDialog *dialog = new QDialog(this);
+    dialog->setFixedSize(400, 170);
+    dialog->setWindowTitle("是否退出游戏？");
+    //dialog->setWindowFlags(Qt::FramelessWindowHint);
+    QHBoxLayout *layout = new QHBoxLayout(dialog);
+    QPushButton *confirmButton = new QPushButton("确认", dialog);
+    QPushButton *cancelButton = new QPushButton("取消", dialog);
+    layout->addWidget(confirmButton);
+    layout->addWidget(cancelButton);
+    QVBoxLayout *layout2 = new QVBoxLayout(dialog);
+    QWidget *tmp = new QWidget(this);
+    tmp->setLayout(layout);
+    QLabel *label = new QLabel("是否退出游戏?");
+    QFont font;
+    font.setBold(true);
+    font.setPointSize(24);
+    font.setFamily("幼圆");
+    QFont fontBtn;
+    fontBtn.setPointSize(18);
+    label->setFont(font);        // 应用新字体
+    confirmButton->setFont(fontBtn);
+    cancelButton->setFont(fontBtn);
+    label->setAlignment(Qt::AlignCenter);
+    layout2->addWidget(label);
+    layout2->addWidget(tmp);
+    dialog->setLayout(layout2);
+    auto a=connect(confirmButton, &QPushButton::clicked, dialog, &QDialog::accept);
+    connections.push_back(a);
+    a=connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
+    if (dialog->exec() == QDialog::Accepted) {
+        this->close();
+    }
+    connections.push_back(a);
+}
+
 LoginWindow::~LoginWindow() { delete ui; }
 
 QString LoginWindow::getIp() const {

@@ -184,6 +184,23 @@ font-weight: bold;</string>
     <zorder>verticalLayoutWidget</zorder>
     <zorder>title</zorder>
    </widget>
+   <widget class="QPushButton" name="btnQuit">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>630</y>
+      <width>301</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnQuit{border-image:url(:/images/mainwindow/quit.png)}
+QPushButton::pressed#btnQuit{border-image:url(:/images/mainwindow/quit-.png)}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
