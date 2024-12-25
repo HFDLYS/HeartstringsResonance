@@ -185,7 +185,7 @@ QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti
             return rec;
         }
         qDebug() << "Update successfully";
-        rec=select(username);
+        rec=select(player.username);
         return rec;
     }
 }

@@ -64,16 +64,17 @@ void ResultWindow::on_btnUpdate_clicked()
                                          "",
                                          &ok);*/
     //if (ok && !text.isEmpty()) {
-        //在这里补充数据库逻辑
-        QJsonObject cmd,parameter;
-        cmd["command"]="updatePoint";
-        parameter["userName"]=player.username;
-        parameter["pointSolo"]=isSolo?score:0;
-        parameter["pointMulti"]=isSolo?0:score;
-        cmd["parameter"]=parameter;
-        QJsonDocument json(cmd);
-        qDebug()<<server->sendBinaryMessage(json.toJson());
-        connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+    //在这里补充数据库逻辑
+    QJsonObject cmd,parameter;
+    cmd["command"]="updatePoint";
+    parameter["userName"]=player.username;
+    parameter["pointSolo"]=isSolo?score:0;
+    parameter["pointMulti"]=isSolo?0:score;
+    cmd["parameter"]=parameter;
+    QJsonDocument json(cmd);
+    qDebug()<<server->sendBinaryMessage(json.toJson());
+    connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+        if(this->isVisible()){
             QJsonDocument jsonIn = QJsonDocument::fromJson(message);
             QJsonObject cmd = jsonIn.object();
             // qDebug() << cmd;
@@ -82,11 +83,12 @@ void ResultWindow::on_btnUpdate_clicked()
             setPlayer(Player(parameter["player"].toObject()));
             QMessageBox::information(this, "上传成功", player.username+"的成绩已上传");
             emit exitwindow();
-        });
+        }
+    });
 
     //} else {
-        // QMessageBox::information(this, "取消", "我的名字呢？");
-        // emit exitwindow();
+    // QMessageBox::information(this, "取消", "我的名字呢？");
+    // emit exitwindow();
     //}
 }
 
