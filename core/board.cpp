@@ -356,7 +356,7 @@ void Board::skyshiv(int type) {
     if (type == 0) {
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
-                if (gems_[i][j].GetType() != 1 || gems_[i][j].GetType() != 2 || gems_[i][j].GetType() != 3 || gems_[i][j].GetType() != 4) matches_.push_back({i, j});
+                if (gems_[i][j].GetType() != 1 && gems_[i][j].GetType() != 2 && gems_[i][j].GetType() != 3 && gems_[i][j].GetType() != 4) matches_.push_back({i, j});
             }
         }
         refresh();
