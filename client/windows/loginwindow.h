@@ -30,7 +30,8 @@ private slots:
 
     void onLoginClicked();
     void onRegisterClicked();
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 
 private:
     QString getUsername() const;

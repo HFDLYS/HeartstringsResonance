@@ -12,6 +12,8 @@ class MemberWindow;
 class MemberWindow : public BaseWindow
 {
     Q_OBJECT
+protected:
+    void keyPressEvent(QKeyEvent *e);
 
 public:
     explicit MemberWindow(QWidget *parent = nullptr);

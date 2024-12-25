@@ -14,7 +14,8 @@ class AboutWindow : public BaseWindow {
 public:
     explicit AboutWindow(QWidget *parent = nullptr);
     ~AboutWindow();
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 private slots:
     void on_btnReturn_clicked();
 

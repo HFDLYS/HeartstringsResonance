@@ -13,7 +13,8 @@ class MultiResultWindow;
 class MultiResultWindow : public BaseWindow
 {
     Q_OBJECT
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 public:
     explicit MultiResultWindow(QJsonObject parameter,int playerId, QWidget *parent = nullptr);
     ~MultiResultWindow();

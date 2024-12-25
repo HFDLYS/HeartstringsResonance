@@ -23,7 +23,8 @@ private slots:
     void on_btnReturn_clicked();
 
     void on_btnUpdate_clicked();
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 signals:
     void exitwindow(QVector<QMetaObject::Connection>);
 private:

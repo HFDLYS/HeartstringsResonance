@@ -32,7 +32,7 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     //void mouseMoveEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
-    void keyPressEvent(QKeyEvent *e) override;
+    void keyPressEvent(QKeyEvent *e);
 
 private:
     QTimer*timer;

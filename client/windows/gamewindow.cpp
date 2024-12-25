@@ -324,3 +324,22 @@ void GameWindow::on_pause_button_clicked() {
     });
     connections.push_back(a);
 }
+void GameWindow::keyPressEvent(QKeyEvent *e) {
+    switch(e->key()){
+    case Qt::Key_Escape:
+        on_pause_button_clicked();
+        break;
+    case Qt::Key_W:
+        on_skill1_button_clicked();
+        break;
+    case Qt::Key_A:
+        on_skill2_button_clicked();
+        break;
+    case Qt::Key_S:
+        on_pause_button_clicked();
+        break;
+    case Qt::Key_D:
+        on_skill3_button_clicked();
+        break;
+    }
+}

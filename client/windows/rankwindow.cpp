@@ -67,7 +67,11 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
     });
     connections.push_back(a);
 }
-
+void RankWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnReturn_clicked();
+    }
+}
 RankWindow::~RankWindow() { delete ui; }
 
 void RankWindow::on_btnReturn_clicked() {

@@ -92,7 +92,11 @@ MultiResultWindow::~MultiResultWindow()
 {
     delete ui;
 }
-
+void MultiResultWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnReturn_clicked();
+    }
+}
 void MultiResultWindow::on_btnUpdate_clicked()
 {   
     // todo: implement this function

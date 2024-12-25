@@ -15,6 +15,11 @@ MemberWindow::~MemberWindow()
     delete ui;
 }
 
+void MemberWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        on_btnReturn_clicked();
+    }
+}
 void MemberWindow::on_btnReturn_clicked()
 {
     AudioManager::GetInstance()->PlayLabel();

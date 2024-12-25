@@ -7,7 +7,8 @@ class PauseWindow;
 
 class PauseWindow : public QWidget {
     Q_OBJECT
-
+protected:
+    void keyPressEvent(QKeyEvent *e);
 public:
     explicit PauseWindow(int kind, QWidget *parent = nullptr);
     int gamekind;

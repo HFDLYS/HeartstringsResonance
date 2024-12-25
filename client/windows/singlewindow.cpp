@@ -104,10 +104,6 @@ void SingleWindow::mouseReleaseEvent(QMouseEvent *event) {
 
 }
 
-void SingleWindow::keyPressEvent(QKeyEvent *e) {
-
-}
-
 void SingleWindow::startGame() {
     initBoard();
     ui->progressBar->setValue(MAX_TIME);
@@ -181,28 +177,47 @@ void SingleWindow::on_pause_button_clicked() {
         delete timer;
         AudioManager::GetInstance()->StopBgm2();
         ResultWindow *rw = new ResultWindow(true,
-                                                board->getScore(1) + board->getScore(2) + board->getScore(3) + board->getScore(4),
-                                                board->getScore1(),
-                                                board->getScore2(),
-                                                board->getScore3(),
-                                                board->getScore4(),
-                                                board->getScore5(),
-                                                this);
-            rw->move(this->pos().x(), this->pos().y());
-            rw->show();
-            rw->showGem();
-            auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
-                for(auto con:cons){
-                    connections.push_back(con);
-                }
-                rw->close();
-                changeWindow(new MainWindow());
-            });
-            connections.push_back(a);
+                                            board->getScore(1) + board->getScore(2) + board->getScore(3) + board->getScore(4),
+                                            board->getScore1(),
+                                            board->getScore2(),
+                                            board->getScore3(),
+                                            board->getScore4(),
+                                            board->getScore5(),
+                                            this);
+        rw->move(this->pos().x(), this->pos().y());
+        rw->show();
+        rw->showGem();
+        auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
+            for(auto con:cons){
+                connections.push_back(con);
+            }
+            rw->close();
+            changeWindow(new MainWindow());
+        });
+        connections.push_back(a);
     });
     connections.push_back(a);
     a=connect(pw, &PauseWindow::gameContinue, this, [this]{
         timer->start();
     });
     connections.push_back(a);
+}
+void SingleWindow::keyPressEvent(QKeyEvent *e) {
+    switch(e->key()){
+    case Qt::Key_Escape:
+        on_pause_button_clicked();
+        break;
+    case Qt::Key_W:
+        on_skill1_button_clicked();
+        break;
+    case Qt::Key_A:
+        on_skill2_button_clicked();
+        break;
+    case Qt::Key_S:
+        on_pause_button_clicked();
+        break;
+    case Qt::Key_D:
+        on_skill3_button_clicked();
+        break;
+    }
 }

@@ -37,6 +37,7 @@ public slots:
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *e) override;
 
 private:
     int difficulty_ = 1;

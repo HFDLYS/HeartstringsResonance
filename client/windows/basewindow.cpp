@@ -57,6 +57,11 @@ void BaseWindow::mousePressEvent(QMouseEvent *e) {
         qDebug()<<this->x()<<this->y();
     }
 }
+void BaseWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->key()==Qt::Key_Escape){
+        qDebug()<<"Esc";
+    }
+}
 
 /*
  * 鼠标移动函数
