@@ -17,6 +17,7 @@ MemberWindow::~MemberWindow()
 
 void MemberWindow::on_btnReturn_clicked()
 {
+    AudioManager::GetInstance()->PlayLabel();
     AboutWindow *flw = new AboutWindow();
     changeWindow(flw);
 }
