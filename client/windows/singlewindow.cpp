@@ -113,6 +113,7 @@ void SingleWindow::mouseReleaseEvent(QMouseEvent *event) {
 
 void SingleWindow::startGame() {
     initBoard();
+    has_started_=true;
     ui->progressBar->setValue(MAX_TIME);
     timer=new QTimer(this);
     timer->start(1000);
@@ -149,6 +150,9 @@ void SingleWindow::startGame() {
 }
 
 void SingleWindow::on_skill1_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     if(skill1_cnt>=player.skill_1)return;
     skill1_cnt++;
     ui->cnt1->setText(QString::number(player.skill_1-skill1_cnt));
@@ -157,6 +161,9 @@ void SingleWindow::on_skill1_button_clicked() {
 }
 
 void SingleWindow::on_skill2_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     if(skill2_cnt>=player.skill_2)return;
     skill2_cnt++;
     ui->cnt2->setText(QString::number(player.skill_2-skill2_cnt));
@@ -165,6 +172,9 @@ void SingleWindow::on_skill2_button_clicked() {
 }
 
 void SingleWindow::on_skill3_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     if(skill3_cnt>=player.skill_3)return;
     skill3_cnt++;
     ui->cnt3->setText(QString::number(player.skill_3-skill3_cnt));
@@ -175,6 +185,9 @@ void SingleWindow::on_skill3_button_clicked() {
 
 
 void SingleWindow::on_pause_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     is_pause=1;
     timer->stop();
     pw = new PauseWindow(1, this);

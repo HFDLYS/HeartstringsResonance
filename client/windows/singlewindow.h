@@ -56,6 +56,7 @@ private slots:
 
 private:
     Ui::SingleWindow *ui;
+    bool has_started_=false;
     bool is_pause;
     QTimer *timer_flush_score_and_left_time_bar_;
     int left_time_cnt_;

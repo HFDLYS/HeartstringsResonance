@@ -278,6 +278,9 @@ void GameWindow::startGame() {
 }
 
 void GameWindow::on_skill1_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     if(skill1_cnt++>=player.skill_1)return;
     ui->cnt1->setText(QString::number(player.skill_1-skill1_cnt));
     AudioManager::GetInstance()->PlaySkill();
@@ -291,6 +294,9 @@ void GameWindow::on_skill1_button_clicked() {
 }
 
 void GameWindow::on_skill2_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     if(skill2_cnt++>=player.skill_2)return;
     ui->cnt2->setText(QString::number(player.skill_2-skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
@@ -304,6 +310,9 @@ void GameWindow::on_skill2_button_clicked() {
 }
 
 void GameWindow::on_skill3_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     if(skill3_cnt++>=player.skill_3)return;
     ui->cnt3->setText(QString::number(player.skill_3-skill3_cnt));
     AudioManager::GetInstance()->PlaySkill();
@@ -317,6 +326,9 @@ void GameWindow::on_skill3_button_clicked() {
 }
 
 void GameWindow::on_pause_button_clicked() {
+    if (!has_started_) {
+       return;
+    }
     is_pause=1;
     AudioManager::GetInstance()->PauseBgm3();
     pw = new PauseWindow(2, this);
