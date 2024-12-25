@@ -1,5 +1,6 @@
 FROM ubuntu:22.04
 
+EXPOSE 1479
 
 RUN apt-get update && apt-get install -y tzdata \
     && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
@@ -17,7 +18,6 @@ RUN apt-get update && apt-get install -y \
     qt6*\
     libassimp-dev\
     libqt6websockets6-dev\
-    mysql-client libmysqlclient-dev\
     libqt6sql6-mysql\
     && apt-get clean
 
