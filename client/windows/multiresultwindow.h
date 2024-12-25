@@ -27,7 +27,7 @@ private slots:
 signals:
     void exitwindow(QVector<QMetaObject::Connection>);
 private:
-    bool isSolo;
+    bool isSolo=1;
     int score;
     QWebSocket*server;
     Ui::MultiResultWindow *ui;
