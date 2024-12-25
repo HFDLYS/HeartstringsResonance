@@ -143,9 +143,7 @@ void SingleWindow::on_skill2_button_clicked() {
     skill2_cnt++;
     ui->cnt2->setText(QString::number(player.skill_2-skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
-    for (int i = 5; i <= Gem::GetMaxType(); i++) {
-        board->skyshiv(i);
-    }
+    board->skyshiv(0);
 }
 
 void SingleWindow::on_skill3_button_clicked() {
