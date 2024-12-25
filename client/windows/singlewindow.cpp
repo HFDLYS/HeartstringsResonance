@@ -168,8 +168,9 @@ void SingleWindow::on_skill3_button_clicked() {
 
 
 void SingleWindow::on_pause_button_clicked() {
+    is_pause=1;
     timer->stop();
-    PauseWindow *pw = new PauseWindow(1, this);
+    pw = new PauseWindow(1, this);
     AudioManager::GetInstance()->PauseBgm2();
     pw->setGeometry(0,0,1280,720);
     pw->show();
@@ -198,26 +199,31 @@ void SingleWindow::on_pause_button_clicked() {
     });
     connections.push_back(a);
     a=connect(pw, &PauseWindow::gameContinue, this, [this]{
+        is_pause=0;
         timer->start();
     });
     connections.push_back(a);
 }
 void SingleWindow::keyPressEvent(QKeyEvent *e) {
-    switch(e->key()){
-    case Qt::Key_Escape:
-        on_pause_button_clicked();
-        break;
-    case Qt::Key_W:
-        on_skill1_button_clicked();
-        break;
-    case Qt::Key_A:
-        on_skill2_button_clicked();
-        break;
-    case Qt::Key_S:
-        on_pause_button_clicked();
-        break;
-    case Qt::Key_D:
-        on_skill3_button_clicked();
-        break;
+    if(!is_pause){
+        switch(e->key()){
+        case Qt::Key_Escape:
+            on_pause_button_clicked();
+            break;
+        case Qt::Key_W:
+            on_skill1_button_clicked();
+            break;
+        case Qt::Key_A:
+            on_skill2_button_clicked();
+            break;
+        case Qt::Key_S:
+            on_pause_button_clicked();
+            break;
+        case Qt::Key_D:
+            on_skill3_button_clicked();
+            break;
+        }
+    }else{
+        pw->keyPressEvent(e);
     }
 }

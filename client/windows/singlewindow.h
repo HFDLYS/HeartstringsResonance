@@ -4,7 +4,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QTime>
-
+#include "pausewindow.h"
 #include "../../core/board.h"
 #include "../graphics/rendermanager.h"
 // #include "recordrankwindow.h"
@@ -56,10 +56,10 @@ private slots:
 
 private:
     Ui::SingleWindow *ui;
-
+    bool is_pause;
     QTimer *timer_flush_score_and_left_time_bar_;
     int left_time_cnt_;
-
+    PauseWindow *pw;
     Board *board;
     Graphics::RenderManager *renderer_;
 
@@ -67,6 +67,7 @@ private:
 
     bool
         is_pausing_;  // 这个变量记录当前是否为暂停状态。游戏是否暂停，在项目中有三个不同变量记录它，注意数据同步问题！！！
+    //上面这啥????
 
 public:
     void initBoard();
