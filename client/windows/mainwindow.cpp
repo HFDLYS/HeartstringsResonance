@@ -59,7 +59,9 @@ void MainWindow::on_btnRank_clicked() {
 // 设置
 void MainWindow::on_btnConfig_clicked() {
     AudioManager::GetInstance()->PlayOpen();
-    changeWindow(new ConfigWindow());
+    ConfigWindow *cw = new ConfigWindow();
+    changeWindow(cw);
+    cw->showBoard();
 }
 
 // 关于

@@ -19,6 +19,7 @@ class ConfigWindow : public BaseWindow {
 public:
     explicit ConfigWindow(QWidget *parent = nullptr);
     ~ConfigWindow();
+    void showBoard();
 
 private slots:
     void on_btnReturn_clicked();
@@ -42,6 +43,8 @@ private slots:
     void on_BtnRecharge_clicked();
 
     void on_btnBack_clicked();
+
+
 
 private:
     Ui::ConfigWindow *ui;

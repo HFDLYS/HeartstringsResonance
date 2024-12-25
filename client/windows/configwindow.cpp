@@ -37,13 +37,12 @@ ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Con
     }
     });
     updateState();
-    QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, [=] {
-        renderer_->Demo();
-    });
-    timer->start(1000);
 }
 ConfigWindow::~ConfigWindow() { delete ui; }
+
+void ConfigWindow::showBoard() {
+    renderer_->Demo();
+}
 
 void ConfigWindow::updateState(){
     if (sound_on) {
@@ -245,6 +244,8 @@ void ConfigWindow::on_btnBack_clicked()
     } else if (style_flag == 3) {
 
     }
-    changeWindow(new ConfigWindow());
+    ConfigWindow *cw = new ConfigWindow();
+    changeWindow(cw);
+    cw->showBoard();
 }
 
