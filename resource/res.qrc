@@ -109,6 +109,8 @@
         <file>images/rankwindow/rank.png</file>
         <file>images/barprogress/background.png</file>
         <file>images/barprogress/chunk.png</file>
+        <file>images/barprogress/background2.png</file>
+        <file>images/barprogress/chunk2.png</file>
         <file>images/configwindow/board.png</file>
         <file>images/configwindow/QRcode.png</file>
         <file>images/configwindow/charge.png</file>

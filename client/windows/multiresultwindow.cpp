@@ -15,17 +15,19 @@ const QPoint show_board_size(60, 60);
 const QPoint show_opengl_up_left(290, 150);
 const int BORDER_SIZE = 100;
 const QPoint my_show_opengl_up_left[4] = {QPoint(900, 240), QPoint(1030, 240), QPoint(900, 380), QPoint(1030, 380)};
+const int INIT_STANCE = 100;
 //const QUrl serverUrl("ws://localhost:1479");
-MultiResultWindow::MultiResultWindow(QWidget *parent)
+MultiResultWindow::MultiResultWindow(QJsonObject parameter,int playerId, QWidget *parent)
     : BaseWindow(parent)
     , ui(new Ui::MultiResultWindow)
 {
+    ui->setupUi(this);
     QUrl playerip = BaseWindow::playerIp;
     server = BaseWindow::server;
     for (int i = 0; i < 4; i++) {
         gem_render_[i] = new Graphics::RenderManager(ui->resultpic);
         gem_render_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
-        gem_render_[i]->setGeometry(show_opengl_up_left.x() + i * (BORDER_SIZE), show_opengl_up_left.y(), gem_render_[i]->width(), gem_render_[i]->height());
+        gem_render_[i]->setGeometry(show_opengl_up_left.x(), show_opengl_up_left.y() + i * (BORDER_SIZE), gem_render_[i]->width(), gem_render_[i]->height());
     }
     for (int i = 0; i < 4; i++) {
         my_gem_render_[i] = new Graphics::RenderManager(ui->resultpic);
@@ -36,6 +38,40 @@ MultiResultWindow::MultiResultWindow(QWidget *parent)
         qDebug()<<message;
     });
     connections.push_back(a);
+    qDebug()<<parameter;
+    QJsonArray playerstmp = parameter["players"].toArray();
+    QVector<Player> players;
+    for(auto player:playerstmp){
+        players.push_back(Player(player.toObject()));
+    }
+    ui->username_1->setText(players[0].username);
+    ui->username_2->setText(players[1].username);
+    ui->username_3->setText(players[2].username);
+    ui->username_4->setText(players[3].username);
+    QJsonArray stances = parameter["stances"].toArray();
+    int player[5] = {0, -INIT_STANCE, -INIT_STANCE, -INIT_STANCE, -INIT_STANCE};
+    int my_data[5] = {0, 0, 0, 0, 0};
+    for (int i = 0; i < 4; i++) {
+        QJsonArray stance = stances[i].toArray();
+        for (int j = 0; j < 4; j++) {
+            player[j + 1] += stance[j].toInt();
+            if (j + 1 == playerId) {
+                my_data[i + 1] = stance[j].toInt();
+                if (i + 1 == playerId) {
+                    my_data[i + 1] -= INIT_STANCE;
+                }
+            }
+        }
+    }
+    ui->score->setText(QString::number(my_data[1] + my_data[2] + my_data[3] + my_data[4]));
+    ui->cnt1->setText(QString::number(player[1]));
+    ui->cnt2->setText(QString::number(player[2]));
+    ui->cnt3->setText(QString::number(player[3]));
+    ui->cnt4->setText(QString::number(player[4]));
+    ui->my_cnt_1->setText(QString::number(my_data[1]));
+    ui->my_cnt_2->setText(QString::number(my_data[2]));
+    ui->my_cnt_3->setText(QString::number(my_data[3]));
+    ui->my_cnt_4->setText(QString::number(my_data[4]));
 }
 
 void MultiResultWindow::showGem() {
@@ -57,7 +93,8 @@ MultiResultWindow::~MultiResultWindow()
 }
 
 void MultiResultWindow::on_btnUpdate_clicked()
-{
+{   
+    // todo: implement this function
     return;
     bool ok;
     /*QString text = QInputDialog::getText(this,

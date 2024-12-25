@@ -4,7 +4,7 @@
 #include "pausewindow.h"
 #include "waitingwindow.h"
 #include "../audio/audiomanager.h"
-#include "resultwindow.h"
+#include "multiresultwindow.h"
 #include <QAction>
 #include <QBitmap>
 #include <QDebug>
@@ -183,13 +183,17 @@ GameWindow::GameWindow(QWidget *parent)
                     sub_chart_->setValues(ans, 100);
                 }
             }
+            int time = cmd["time"].toInt();
+            ui->progressBar->setValue(time);
         } else if(cmd["command"].toString()=="end"){
             //结束游戏(这里是直接复制单人模式的)
             AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
+            QJsonObject parameter = cmd["parameter"].toObject();
+            MultiResultWindow *rw = new MultiResultWindow(parameter, player_id_, this);
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
-            auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
+            rw->showGem();
+            auto a=connect(rw, &MultiResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
                 for(auto con:cons){
                     connections.push_back(con);
                 }

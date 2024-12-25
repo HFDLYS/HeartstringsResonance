@@ -15,7 +15,7 @@ class MultiResultWindow : public BaseWindow
     Q_OBJECT
 
 public:
-    explicit MultiResultWindow(QWidget *parent = nullptr);
+    explicit MultiResultWindow(QJsonObject parameter,int playerId, QWidget *parent = nullptr);
     ~MultiResultWindow();
 
     void showGem();

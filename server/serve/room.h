@@ -13,6 +13,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonValue>
+#include <QTimer>
 class Room : public QThread {
     Q_OBJECT
 signals:
@@ -29,10 +30,13 @@ private:
     QWebSocket* player[5];
     Player players[5];
     Board* board[5];
+    QTimer* timer;
+    int time;
     ServerGemManager* gem_manager;
     int stance[5][5];
     void broadcast(const QByteArray& info);
     void broadcast(const QByteArray& info, QWebSocket*);
+    void broadcastStatus();
     int getStance(int ind);
 };
 
