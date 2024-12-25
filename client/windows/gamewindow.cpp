@@ -54,110 +54,115 @@ GameWindow::GameWindow(QWidget *parent)
     ww->setGeometry(0,0,1280,720);
     ww->show();
     connect(server,&QWebSocket::errorOccurred,this,[&](QAbstractSocket::SocketError error){
-        QMessageBox::warning(this,"连接错误","连接服务器失败");
-        AudioManager::GetInstance()->StopBgm3();
-        changeWindow(new MainWindow());
+        if(!this->isVisible()){
+            QMessageBox::warning(this,"连接错误","连接服务器失败");
+            AudioManager::GetInstance()->StopBgm3();
+            changeWindow(new MainWindow());
+        }
     });
+
     connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
-        qDebug()<<message;
-        QJsonDocument jsonIn = QJsonDocument::fromJson(message);
-        QJsonObject cmd = jsonIn.object();
-        if(cmd["command"].toString()=="start"){
-            cmd = cmd["parameter"].toObject();
-            int playerId = cmd["playerId"].toInt();
-            QJsonArray seeds = cmd["seeds"].toArray();
-            QJsonArray playerstmp = cmd["players"].toArray();
-            for(auto player:playerstmp){
-                players.push_back(Player(player.toObject()));
-            }
-            ui->username_1->setText(players[0].username);
-            ui->username_2->setText(players[1].username);
-            ui->username_3->setText(players[2].username);
-            ui->username_4->setText(players[3].username);
-            std::vector<int> seedVector;
-            for (const QJsonValue &value : seeds) {
-                seedVector.push_back(value.toInt());
-            }
-            player_id_ = playerId;
-            main_board_ = new Board(seedVector[playerId-1]);
-            main_board_->SetGemManager(main_renderer_->GetGemManager());
-            main_board_->initBoard();
-            main_chart_->setValues(playerId, 100);
-            sub_chart_->setValues(playerId, 100);
-            for (int i = 1; i <= 4; i++) {
-                show_board_[i] = new Board(seedVector[i-1]);
-                show_board_[i]->SetGemManager(show_renderer_[i]->GetGemManager());
-                show_board_[i]->initBoard();
-                show_chart_[i]->setValues(i, 100);
-            }
-            sub_renderer_->ShowGem(player_id_);
-            has_started_ = true;
-            emit gameStart();
-        }else if(cmd["command"].toString()=="click"){
-            //移动对应小棋盘的棋子
-            cmd = cmd["parameter"].toObject();
-            int x = cmd["x"].toInt();
-            int y = cmd["y"].toInt();
-            int playerId = cmd["playerId"].toInt();
-            show_board_[playerId]->clicked(x, y);
-            if (playerId == player_id_) {
-                main_board_->clicked(x, y);
-            }
-        } else if (cmd["command"].toString()=="skill") {
-            //使用技能
-            cmd = cmd["parameter"].toObject();
-            int skillId = cmd["skillId"].toInt();
-            int playerId = cmd["playerId"].toInt();
-            if (skillId == 1) {
-                show_board_[playerId]->hint();
-                if (playerId == player_id_) {
-                    main_board_->hint();
+        if(!this->isVisible()){
+            qDebug()<<message;
+            QJsonDocument jsonIn = QJsonDocument::fromJson(message);
+            QJsonObject cmd = jsonIn.object();
+            if(cmd["command"].toString()=="start"){
+                cmd = cmd["parameter"].toObject();
+                int playerId = cmd["playerId"].toInt();
+                QJsonArray seeds = cmd["seeds"].toArray();
+                QJsonArray playerstmp = cmd["players"].toArray();
+                for(auto player:playerstmp){
+                    players.push_back(Player(player.toObject()));
                 }
-            } else if (skillId == 2) {
+                ui->username_1->setText(players[0].username);
+                ui->username_2->setText(players[1].username);
+                ui->username_3->setText(players[2].username);
+                ui->username_4->setText(players[3].username);
+                std::vector<int> seedVector;
+                for (const QJsonValue &value : seeds) {
+                    seedVector.push_back(value.toInt());
+                }
+                player_id_ = playerId;
+                main_board_ = new Board(seedVector[playerId-1]);
+                main_board_->SetGemManager(main_renderer_->GetGemManager());
+                main_board_->initBoard();
+                main_chart_->setValues(playerId, 100);
+                sub_chart_->setValues(playerId, 100);
                 for (int i = 1; i <= 4; i++) {
-                    show_board_[i]->skyshiv(playerId);
+                    show_board_[i] = new Board(seedVector[i-1]);
+                    show_board_[i]->SetGemManager(show_renderer_[i]->GetGemManager());
+                    show_board_[i]->initBoard();
+                    show_chart_[i]->setValues(i, 100);
                 }
-                main_board_->skyshiv(playerId);
-            } else if (skillId == 3) {
-                show_board_[playerId]->generate(0);
+                sub_renderer_->ShowGem(player_id_);
+                has_started_ = true;
+                emit gameStart();
+            }else if(cmd["command"].toString()=="click"){
+                //移动对应小棋盘的棋子
+                cmd = cmd["parameter"].toObject();
+                int x = cmd["x"].toInt();
+                int y = cmd["y"].toInt();
+                int playerId = cmd["playerId"].toInt();
+                show_board_[playerId]->clicked(x, y);
                 if (playerId == player_id_) {
-                    main_board_->generate(0);
+                    main_board_->clicked(x, y);
                 }
-            }
-        } else if (cmd["command"].toString()=="status") {
-            cmd = cmd["parameter"].toObject();
-            QJsonArray stances = cmd["stances"].toArray();
-            for (int i = 0; i <= 3; i++) {
-                QJsonArray stance = stances[i].toArray();
-                for (int j = 0; j <= 3; j++) {
-                    show_chart_[i+1]->setValues(j+1, stance[j].toInt());
-                    if (i+1 == player_id_) {
-                        main_chart_->setValues(j+1, stance[j].toInt());
-                        sub_chart_->setValues(j+1, stance[j].toInt());
+            } else if (cmd["command"].toString()=="skill") {
+                //使用技能
+                cmd = cmd["parameter"].toObject();
+                int skillId = cmd["skillId"].toInt();
+                int playerId = cmd["playerId"].toInt();
+                if (skillId == 1) {
+                    show_board_[playerId]->hint();
+                    if (playerId == player_id_) {
+                        main_board_->hint();
+                    }
+                } else if (skillId == 2) {
+                    for (int i = 1; i <= 4; i++) {
+                        show_board_[i]->skyshiv(playerId);
+                    }
+                    main_board_->skyshiv(playerId);
+                } else if (skillId == 3) {
+                    show_board_[playerId]->generate(0);
+                    if (playerId == player_id_) {
+                        main_board_->generate(0);
                     }
                 }
-                if (i+1 == player_id_) {
-                    int ret = 0;
-                    int ans = 0;
-                    for (int j = 1; j <= 4; j++) {
-                        if (stance[j-1].toInt() > ret) {
-                            ret = stance[j-1].toInt();
-                            ans = j;
+            } else if (cmd["command"].toString()=="status") {
+                cmd = cmd["parameter"].toObject();
+                QJsonArray stances = cmd["stances"].toArray();
+                for (int i = 0; i <= 3; i++) {
+                    QJsonArray stance = stances[i].toArray();
+                    for (int j = 0; j <= 3; j++) {
+                        show_chart_[i+1]->setValues(j+1, stance[j].toInt());
+                        if (i+1 == player_id_) {
+                            main_chart_->setValues(j+1, stance[j].toInt());
+                            sub_chart_->setValues(j+1, stance[j].toInt());
                         }
                     }
-                    sub_renderer_->ShowGem(ans);
+                    if (i+1 == player_id_) {
+                        int ret = 0;
+                        int ans = 0;
+                        for (int j = 1; j <= 4; j++) {
+                            if (stance[j-1].toInt() > ret) {
+                                ret = stance[j-1].toInt();
+                                ans = j;
+                            }
+                        }
+                        sub_renderer_->ShowGem(ans);
+                    }
                 }
+            } else if(cmd["command"].toString()=="end"){
+                //结束游戏(这里是直接复制单人模式的)
+                AudioManager::GetInstance()->StopBgm2();
+                ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
+                rw->move(this->pos().x(), this->pos().y());
+                rw->show();
+                connect(rw, &ResultWindow::exitwindow, this, [=]{
+                    rw->close();
+                    changeWindow(new MainWindow());
+                });
             }
-        } else if(cmd["command"].toString()=="end"){
-            //结束游戏(这里是直接复制单人模式的)
-            AudioManager::GetInstance()->StopBgm2();
-            ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
-            rw->move(this->pos().x(), this->pos().y());
-            rw->show();
-            connect(rw, &ResultWindow::exitwindow, this, [=]{
-                rw->close();
-                changeWindow(new MainWindow());
-            });
         }
     });
     main_chart_ = new SquarePieChart(ui->controlWidget);
