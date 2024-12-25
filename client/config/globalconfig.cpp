@@ -1,5 +1,6 @@
 #include "globalconfig.h"
 
+
 GlobalConfig& GlobalConfig::getInstance() {
     static GlobalConfig instance;
     return instance;
@@ -18,6 +19,7 @@ int GlobalConfig::getMusicStyle() const {
     return musicStyle;
 }
 
+
 void GlobalConfig::setMusicStyle(int style) {
     if (musicStyle != style) {
         musicStyle = style;
@@ -33,13 +35,15 @@ int GlobalConfig::getGemStyle() const {
 void GlobalConfig::setGemStyle(int style) {
     if (gemStyle != style) {
         gemStyle = style;
-
+        // emit gemStyleChanged(style); // 如果需要
     }
 }
+
 
 int GlobalConfig::getBoardStyle() const {
     return boardStyle;
 }
+
 
 void GlobalConfig::setBoardStyle(int style) {
     if (boardStyle != style) {
@@ -48,15 +52,13 @@ void GlobalConfig::setBoardStyle(int style) {
     }
 }
 
-
 int GlobalConfig::getPicStyle() const {
     return picStyle;
 }
 
-
 void GlobalConfig::setPicStyle(int style) {
     if (picStyle != style) {
         picStyle = style;
-        // emit picStyleChanged(style);
+
     }
 }

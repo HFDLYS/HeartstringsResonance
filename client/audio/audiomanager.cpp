@@ -29,16 +29,16 @@ AudioManager::AudioManager() {
     match1 = GetMediaPlayer(QUrl("qrc:/sounds/match1.wav"), allSoundPercent);
     match2 = GetMediaPlayer(QUrl("qrc:/sounds/match2.wav"), allSoundPercent);
     match3 = GetMediaPlayer(QUrl("qrc:/sounds/match3.wav"), allSoundPercent);
-
-   // connect(&GlobalConfig::getInstance(), &GlobalConfig::musicStyleChanged, this, &AudioManager::onMusicStyleChanged);
+    connect(&GlobalConfig::getInstance(), &GlobalConfig::musicStyleChanged,
+            this, &AudioManager::onMusicStyleChanged);
  }
 
 void AudioManager::onMusicStyleChanged(int newStyle) {
     if (bgm1 != bgmlist[newStyle]) {
-        bgm1->stop(); // 停止当前背景音乐
-        bgm1 = bgmlist[newStyle]; // 更新 bgm1 指向新的背景音乐
+        bgm1->stop();
+        bgm1 = bgmlist[newStyle];
         if (!stopAllMusic) {
-            bgm1->play(); // 播放新的背景音乐
+            bgm1->play();
         }
     }
 }

@@ -126,5 +126,6 @@
         <file>images/configwindow/msc.png</file>
         <file>images/configwindow/msc-.png</file>
         <file>sounds/hajimi.wav</file>
+        <file>sounds/fairytale.wav</file>
     </qresource>
 </RCC>

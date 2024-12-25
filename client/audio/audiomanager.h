@@ -3,7 +3,12 @@
 #include <QMediaPlayer>
 #include <QSoundEffect>
 #include <QAudioOutput>
-class AudioManager {
+#include <QObject>
+
+class GlobalConfig;
+
+class AudioManager  : public QObject{
+     Q_OBJECT
 private:
     static AudioManager *instance_;
     QMediaPlayer *bgmlist[10];
