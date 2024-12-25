@@ -38,6 +38,10 @@ void BaseWindow::delay(int x) {
 
 void BaseWindow::changeWindow(BaseWindow*flw){
     //flw->username=this->username;
+    for(auto a:connections){
+        disconnect(a);
+    }
+    connections.clear();
     flw->move(this->pos().x(), this->pos().y());
     flw->show();
     delay(20);

@@ -30,8 +30,10 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
     registerButton = new QPushButton("注册", this);
 
     // 监听下拉框选择变化，更新文本框内容
-    connect(ipoption, &QComboBox::currentIndexChanged, this, &LoginWindow::updateIpLineEdit);
-    connect(portoption, &QComboBox::currentIndexChanged, this, &LoginWindow::updatePortLineEdit);
+    auto a=connect(ipoption, &QComboBox::currentIndexChanged, this, &LoginWindow::updateIpLineEdit);
+    connections.push_back(a);
+    a=connect(portoption, &QComboBox::currentIndexChanged, this, &LoginWindow::updatePortLineEdit);
+    connections.push_back(a);
 
     QHBoxLayout *ipLayout = new QHBoxLayout();
     ipLayout->addWidget(ipLabel);
@@ -66,8 +68,10 @@ LoginWindow::LoginWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::Login
 
     ui->loginLayout->addLayout(mainLayout);
 
-    connect(loginButton, &QPushButton::clicked, this, &LoginWindow::onLoginClicked);
-    connect(registerButton, &QPushButton::clicked, this, &LoginWindow::onRegisterClicked);
+    a=connect(loginButton, &QPushButton::clicked, this, &LoginWindow::onLoginClicked);
+    connections.push_back(a);
+    a=connect(registerButton, &QPushButton::clicked, this, &LoginWindow::onRegisterClicked);
+    connections.push_back(a);
 }
 
 QString LoginWindow::getUsername() const
@@ -108,12 +112,13 @@ void LoginWindow::onLoginClicked()
     if(server)delete server;
     server=new QWebSocket();
     server->open(userip);
-    connect(server, &QWebSocket::errorOccurred, this,[=]{
+    auto a=connect(server, &QWebSocket::errorOccurred, this,[=]{
         QMessageBox::warning(this, "Error", "链接失败");
         loginButton->setEnabled(true);
         registerButton->setEnabled(true);
     });
-    connect(server,&QWebSocket::connected,this,[=]{
+    connections.push_back(a);
+    a=connect(server,&QWebSocket::connected,this,[=]{
         QJsonObject cmd,parameter;
         cmd["command"]="login";
         parameter["username"]=username;
@@ -122,7 +127,8 @@ void LoginWindow::onLoginClicked()
         QJsonDocument json(cmd);
         qDebug()<<server->sendBinaryMessage(json.toJson());
     });
-    connect(server, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray &message){
+    connections.push_back(a);
+    a=connect(server, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray &message){
         qDebug() << message;
         QJsonDocument jsonIn = QJsonDocument::fromJson(message);
         QJsonObject cmd = jsonIn.object();
@@ -149,6 +155,7 @@ void LoginWindow::onLoginClicked()
             }
         }
     });
+    connections.push_back(a);
 }
 void LoginWindow::onRegisterClicked()
 {

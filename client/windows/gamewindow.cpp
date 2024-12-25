@@ -46,22 +46,21 @@ GameWindow::GameWindow(QWidget *parent)
         qDebug()<<server->sendBinaryMessage(json.toJson());
     }
     WaitingWindow *ww = new WaitingWindow(this);
-    connect(ww,&WaitingWindow::closeGame,this,[&]{
+    auto a=connect(ww,&WaitingWindow::closeGame,this,[&]{
         AudioManager::GetInstance()->StopBgm3();
         server->close();
         changeWindow(new MainWindow());
     });
+    connections.push_back(a);
     ww->setGeometry(0,0,1280,720);
     ww->show();
-    connect(server,&QWebSocket::errorOccurred,this,[&](QAbstractSocket::SocketError error){
-        if(!this->isVisible()){
-            QMessageBox::warning(this,"连接错误","连接服务器失败");
-            AudioManager::GetInstance()->StopBgm3();
-            changeWindow(new MainWindow());
-        }
+    a=connect(server,&QWebSocket::errorOccurred,this,[&](QAbstractSocket::SocketError error){
+        QMessageBox::warning(this,"连接错误","连接服务器失败");
+        AudioManager::GetInstance()->StopBgm3();
+        changeWindow(new MainWindow());
     });
-
-    connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
+    connections.push_back(a);
+    a=connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         if(!this->isVisible()){
             qDebug()<<message;
             QJsonDocument jsonIn = QJsonDocument::fromJson(message);
@@ -158,13 +157,15 @@ GameWindow::GameWindow(QWidget *parent)
                 ResultWindow *rw = new ResultWindow(false,1,1,4,5,1,4,this);
                 rw->move(this->pos().x(), this->pos().y());
                 rw->show();
-                connect(rw, &ResultWindow::exitwindow, this, [=]{
+                auto a=connect(rw, &ResultWindow::exitwindow, this, [=]{
                     rw->close();
                     changeWindow(new MainWindow());
                 });
+                connections.push_back(a);
             }
         }
     });
+    connections.push_back(a);
     main_chart_ = new SquarePieChart(ui->controlWidget);
     main_chart_->setGeometry(opengl_up_left.x()-3, opengl_up_left.y()-3, board_size.x()+6, board_size.y()+6);
     sub_chart_ = new SquarePieChart(ui->controlWidget);
@@ -274,8 +275,9 @@ void GameWindow::on_pause_button_clicked() {
     pw->setGeometry(0,0,1280,720);
     pw->show();
     AudioManager::GetInstance()->PauseBgm2();
-    connect(pw, &PauseWindow::exitwindow, this, [this]{
+    auto a=connect(pw, &PauseWindow::exitwindow, this, [this]{
         AudioManager::GetInstance()->StopBgm3();
         changeWindow(new MainWindow());
     });
+    connections.push_back(a);
 }
