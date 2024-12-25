@@ -347,6 +347,15 @@ bool Board::showHint(bool show) {
 
 void Board::skyshiv(int type) {
     cancelHint();
+    if (type == 0) {
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (gems_[i][j].GetType() != 1 || gems_[i][j].GetType() != 2 || gems_[i][j].GetType() != 3 || gems_[i][j].GetType() != 4) matches_.push_back({i, j});
+            }
+        }
+        refresh();
+        return;
+    }
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
             if (gems_[i][j].GetType() == type) matches_.push_back({i, j});
