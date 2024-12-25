@@ -3,9 +3,15 @@
 #include <QMediaPlayer>
 #include <QSoundEffect>
 #include <QAudioOutput>
-class AudioManager {
+#include <QObject>
+
+class GlobalConfig;
+
+class AudioManager  : public QObject{
+     Q_OBJECT
 private:
     static AudioManager *instance_;
+    QMediaPlayer *bgmlist[10];
     QMediaPlayer *player;
     QMediaPlayer *close;
     QMediaPlayer *bgm1;
@@ -25,7 +31,7 @@ public:
     int allMusicPercent = 100;
     int allSoundPercent = 100;
     static AudioManager *GetInstance();
-
+    static AudioManager *GetNewInstance();
     void PlayClose();
     void StopClose();
 
@@ -66,6 +72,9 @@ public:
 
 private:
     QMediaPlayer *GetMediaPlayer(const QUrl &content, int volume);
+
+private slots:
+    void onMusicStyleChanged(int newStyle);
 };
 
 #endif // AUDIOMANAGER_H
