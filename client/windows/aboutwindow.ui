@@ -27,7 +27,7 @@
   </property>
   <widget class="QWidget" name="aboutpic">
    <property name="styleSheet">
-    <string notr="true">#aboutpic{border-image:url(:/images/aboutwindow/about_background.png)}</string>
+    <string notr="true"/>
    </property>
    <widget class="QPushButton" name="btnReturn">
     <property name="geometry">

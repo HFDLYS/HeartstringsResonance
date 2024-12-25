@@ -12,6 +12,12 @@ int ConfigWindow::style_flag = 0;
 ConfigWindow::ConfigWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::ConfigWindow) {
     ui->setupUi(this);
     ui->widgetQR->hide();
+    QString part1 = ":/images/singlewindow/background";
+    QString picid = QString::number(GlobalConfig::getInstance().getPicStyle() + 1);
+    QString root = part1.append(picid)+ ".png";
+    ui->configpic->setStyleSheet(
+        QString("#configpic{border-image:url(%1)}").arg(root)
+    );
     if (style_flag == 0) {
         showDim();
     } else if (style_flag == 1) {
@@ -184,7 +190,7 @@ void ConfigWindow::showBod(){
 void ConfigWindow::showBgd(){
     style_flag = 3;
     ui->listWidget->clear();
-    QVector<QString> bgd = {"心海相连", "背景2", "背景3", "背景4", "背景5"};
+    QVector<QString> bgd = {"心海相连", "不好说", "樱花鱼放", "背景4", "背景5"};
     for (auto &i : bgd) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
