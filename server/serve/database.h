@@ -15,7 +15,7 @@ public:
     DataBase();
     QPair<bool, QString> playerRegister(QString, QString);
     QPair<bool, QString> playerLogIn(QString username, QString password, Player& player);
-    QVector<Player> update(QString username, int pointSolo, int pointMulti, int skill_1, int skill_2, int skill_3);
+    QVector<Player> update(QString username, int pointSolo, int pointMulti, int skill_1=1, int skill_2=1, int skill_3=1);
     QVector<QPair<QString, int> > rankSolo(int);
     QVector<QPair<QString, int> > rankMulti(int);
 };

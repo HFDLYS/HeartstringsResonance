@@ -154,9 +154,9 @@ QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti
         Player player = a[0]; // 假设 a[0] 是已找到的用户
         player.setSolo(pointSolo);
         player.setMulti(pointMulti);
-        player.setSkill1(skill_1);
-        player.setSkill2(skill_2);
-        player.setSkill3(skill_3);
+        player.setSkill1((player.pointSolo+player.pointMulti)/50+1);
+        player.setSkill2((player.pointSolo+player.pointMulti)/50+1);
+        player.setSkill3((player.pointSolo+player.pointMulti)/50+1);
 
         // 更新数据库中用户的信息
         QSqlQuery query;
