@@ -27,7 +27,7 @@ SingleWindow::SingleWindow(int seed_,QWidget *parent)
     ui->skill1_button->setEnabled(1);
     ui->skill2_button->setEnabled(1);
     ui->skill3_button->setEnabled(1);
-    ui->max_score->setText("史高: "+QString::number(player.pointSolo));
+    ui->max_score->setText("最高峰: "+QString::number(player.pointSolo));
     if (player.pointSolo < 500) {
         ui->difficulty->setText("简单");
         max_gem_type = 5;
@@ -143,7 +143,9 @@ void SingleWindow::on_skill2_button_clicked() {
     skill2_cnt++;
     ui->cnt2->setText(QString::number(player.skill_2-skill2_cnt));
     AudioManager::GetInstance()->PlaySkill();
-    board->skyshiv(1);
+    for (int i = 5; i <= Gem::GetMaxType(); i++) {
+        board->skyshiv(i);
+    }
 }
 
 void SingleWindow::on_skill3_button_clicked() {

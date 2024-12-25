@@ -27,7 +27,7 @@ private:
     Ui::RankWindow *ui;
     QWebSocket *server;
     QString id_solo[20];
-    int score_solo[20];
+    int score_solo[20] = {0};
 };
 
 #endif  // RANKWINDOW_H

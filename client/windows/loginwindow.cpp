@@ -82,6 +82,9 @@ QString LoginWindow::getPassword() const
 
 void LoginWindow::onLoginClicked()
 {
+    if(getUsername().isEmpty()){
+        QMessageBox::warning(this, "Error", "用户名不可以为空");
+    }
     loginButton->setEnabled(false);
     registerButton->setEnabled(false);
     QString ip = getIp();
@@ -146,11 +149,12 @@ void LoginWindow::onLoginClicked()
             }
         }
     });
-
 }
-
 void LoginWindow::onRegisterClicked()
 {
+    if(getUsername().isEmpty()){
+        QMessageBox::warning(this, "Error", "用户名不可以为空");
+    }
     loginButton->setEnabled(false);
     registerButton->setEnabled(false);
     QString ip = getIp();
