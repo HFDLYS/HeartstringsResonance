@@ -190,66 +190,86 @@ border-radius: 10px;
    <widget class="QPushButton" name="btnBgd">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <x>700</x>
+      <y>550</y>
+      <width>160</width>
+      <height>40</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnBgd{border-image:url(:/images/configwindow/bgd.png)}
+QPushButton::pressed#btnBgd{border-image:url(:/images/configwindow/bgd-.png)}</string>
+    </property>
     <property name="text">
-     <string>背景</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="BtnDia">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <x>200</x>
+      <y>550</y>
+      <width>160</width>
+      <height>40</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#BtnDia{border-image:url(:/images/configwindow/dia.png)}
+QPushButton::pressed#BtnDia{border-image:url(:/images/configwindow/dia-.png)}</string>
+    </property>
     <property name="text">
-     <string>宝石</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="BtnBod">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <x>450</x>
+      <y>550</y>
+      <width>160</width>
+      <height>40</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#BtnBod{border-image:url(:/images/configwindow/bod.png)}
+QPushButton::pressed#BtnBod{border-image:url(:/images/configwindow/bod-.png)}</string>
+    </property>
     <property name="text">
-     <string>棋盘</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="BtnMsc">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <x>950</x>
+      <y>550</y>
+      <width>160</width>
+      <height>40</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#BtnMsc{border-image:url(:/images/configwindow/msc.png)}
+QPushButton::pressed#BtnMcs{border-image:url(:/images/configwindow/msc-.png)}</string>
+    </property>
     <property name="text">
-     <string>音效</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="BtnRecharge">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>600</y>
-      <width>200</width>
-      <height>80</height>
+      <x>440</x>
+      <y>620</y>
+      <width>400</width>
+      <height>60</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#BtnRecharge{border-image:url(:/images/configwindow/charge.png)}
+QPushButton::pressed#BtnRecharge{border-image:url(:/images/configwindow/charge-.png)}</string>
+    </property>
     <property name="text">
-     <string>钞能力</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label">

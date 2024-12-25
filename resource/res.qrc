@@ -111,5 +111,15 @@
         <file>images/barprogress/chunk.png</file>
         <file>images/configwindow/board.png</file>
         <file>images/configwindow/QRcode.png</file>
+        <file>images/configwindow/charge.png</file>
+        <file>images/configwindow/charge-.png</file>
+        <file>images/configwindow/dia.png</file>
+        <file>images/configwindow/dia-.png</file>
+        <file>images/configwindow/bgd.png</file>
+        <file>images/configwindow/bgd-.png</file>
+        <file>images/configwindow/bod.png</file>
+        <file>images/configwindow/bod-.png</file>
+        <file>images/configwindow/msc.png</file>
+        <file>images/configwindow/msc-.png</file>
     </qresource>
 </RCC>
