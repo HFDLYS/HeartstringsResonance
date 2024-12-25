@@ -83,6 +83,8 @@ void SingleWindow::Release2() { ui->skill2_button->setIcon(QIcon(":/images/Singl
 void SingleWindow::Release3() { ui->skill3_button->setIcon(QIcon(":/images/SingleWindow/3.png")); }
 
 void SingleWindow::mousePressEvent(QMouseEvent *event) {
+    if (!has_started_) return;
+    if (is_pause) return;
     int x = event->position().x();
     int y = event->position().y();
     // std::cout << "mouse cliked on:" << x << " " << y << std::endl;
