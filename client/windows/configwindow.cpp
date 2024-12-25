@@ -166,7 +166,7 @@ void ConfigWindow::showMsc(){
 void ConfigWindow::showBod(){
     style_flag = 2;
     ui->listWidget->clear();
-    QVector<QString> bod = {"棋盘1", "棋盘2", "棋盘3", "棋盘4"};
+    QVector<QString> bod = {"浩瀚心海", "魔法之时", "时间之尘", "心环相耀"};
     for (auto &i : bod) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
