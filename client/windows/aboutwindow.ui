@@ -71,6 +71,39 @@ QPushButton::pressed#btnReturn
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnNext">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>630</y>
+      <width>301</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnNext{border-image:url(:/images/aboutwindow/next.png)
+}QPushButton::pressed#btnNext{border-image:url(:/images/aboutwindow/next-.png)}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="about" native="true">
+    <property name="geometry">
+     <rect>
+      <x>215</x>
+      <y>110</y>
+      <width>850</width>
+      <height>500</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::WheelFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#about{border-image:url(:/images/aboutwindow/about1.png)}</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

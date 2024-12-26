@@ -21,8 +21,11 @@ private slots:
 
     void on_btnMember_clicked();
 
+    void on_btnNext_clicked();
+
 private:
     Ui::AboutWindow *ui;
+    static int now_page;
 };
 
 #endif  // ABOUTWINDOW_H
