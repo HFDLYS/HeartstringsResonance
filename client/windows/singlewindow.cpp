@@ -38,12 +38,15 @@ SingleWindow::SingleWindow(int seed_,QWidget *parent)
     if (player.pointSolo < 500) {
         ui->difficulty->setText("简单");
         max_gem_type = 5;
+        difficulty = 1;
     } else if (player.pointSolo < 1000) {
         ui->difficulty->setText("中等");
         max_gem_type = 6;
+        difficulty = 2;
     } else {
         ui->difficulty->setText("困难");
         max_gem_type = 8;
+        difficulty = 3;
     }
     ui->cnt1->setText(QString::number(player.skill_1));
     ui->cnt2->setText(QString::number(player.skill_2));
@@ -133,7 +136,7 @@ void SingleWindow::startGame() {
                                                 board->getScore2(),
                                                 board->getScore3(),
                                                 board->getScore4(),
-                                                board->getScore5(),
+                                                difficulty,
                                                 this);
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
@@ -206,7 +209,7 @@ void SingleWindow::on_pause_button_clicked() {
                                             board->getScore2(),
                                             board->getScore3(),
                                             board->getScore4(),
-                                            board->getScore5(),
+                                            difficulty,
                                             this);
         rw->move(this->pos().x(), this->pos().y());
         rw->show();

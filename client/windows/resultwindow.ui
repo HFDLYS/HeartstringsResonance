@@ -126,8 +126,8 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
    <widget class="QLabel" name="score">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>180</y>
+      <x>540</x>
+      <y>170</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -210,8 +210,8 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
    <widget class="QLabel" name="board">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>80</y>
+      <x>450</x>
+      <y>70</y>
       <width>300</width>
       <height>211</height>
      </rect>
@@ -352,6 +352,49 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="skill_board_4">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>150</y>
+      <width>120</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../resource/res.qrc">:/images/singlewindow/skill-.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="difficulty">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>165</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+	text-align: center;
+}</string>
+    </property>
+    <property name="text">
+     <string>难度</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>board_5</zorder>
    <zorder>cnt5</zorder>
    <zorder>title</zorder>
@@ -368,6 +411,8 @@ QPushButton::pressed#btnUpdate{border-image:url(:/images/resultwindow/update-.pn
    <zorder>cnt3</zorder>
    <zorder>board_4</zorder>
    <zorder>cnt4</zorder>
+   <zorder>skill_board_4</zorder>
+   <zorder>difficulty</zorder>
   </widget>
  </widget>
  <resources>
