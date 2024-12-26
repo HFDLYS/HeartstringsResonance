@@ -38,6 +38,7 @@ private:
     QTimer*timer;
     int max_gem_type = 5;
     int seed=0;
+    int difficulty = 1;
     int skill1_cnt = 0;
     int skill2_cnt = 0;
     int skill3_cnt = 0;
