@@ -75,7 +75,7 @@ private:
     QWebSocket *server;
     WaitingWindow *ww;
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口
-    bool is_pause;
+    bool is_pause=false;
     bool is_waiting=1;
     PauseWindow *pw;
     int seed=0;
