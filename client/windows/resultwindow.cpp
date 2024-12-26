@@ -89,9 +89,9 @@ void ResultWindow::on_btnUpdate_clicked()
     cmd["command"]="updatePoint";
     parameter["userName"]=player.username;
     if (difficulty == 2) {
-        score = score * 10;
+        score = score * 2;
     } else if (difficulty == 3) {
-        score = score * 100;
+        score = score * 3;
     }
     parameter["pointSolo"]=isSolo?score:0;
     parameter["pointMulti"]=isSolo?0:score;
