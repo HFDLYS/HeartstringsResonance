@@ -237,6 +237,8 @@ void SingleWindow::on_pause_button_clicked() {
     connections.push_back(a);
 }
 void SingleWindow::keyPressEvent(QKeyEvent *e) {
+    // renderer_->keyPressEvent(e);
+    // return;
     if(!is_pause){
         switch(e->key()){
         case Qt::Key_Escape:

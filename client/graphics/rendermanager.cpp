@@ -217,6 +217,44 @@ void RenderManager::resizeGL(int w, int h) {
     Q_UNUSED(h);
 }
 
+void RenderManager::keyPressEvent(QKeyEvent *e) {
+    switch (e->key()) {
+        case Qt::Key_W:
+            camera_.ProcessKeyboard(UP, 5);
+            break;
+        case Qt::Key_S:
+            camera_.ProcessKeyboard(DOWN, 5);
+            break;
+        case Qt::Key_A:
+            camera_.ProcessKeyboard(LEFT, 5);
+            break;
+        case Qt::Key_D:
+            camera_.ProcessKeyboard(RIGHT, 5);
+            break;
+        case Qt::Key_Q:
+            camera_.ProcessKeyboard(BACKWARD, 5);
+            break;
+        case Qt::Key_E:
+            camera_.ProcessKeyboard(FORWARD, 5);
+            break;
+        case Qt::Key_I:
+            camera_.ProcessMouseMovement(0, 4);
+            break;
+        case Qt::Key_K:
+            camera_.ProcessMouseMovement(0, -4);
+            break;
+        case Qt::Key_J:
+            camera_.ProcessMouseMovement(-4, 0);
+            break;
+        case Qt::Key_L:
+            camera_.ProcessMouseMovement(4, 0);
+            break;
+        default:
+            break;
+    }
+    update();
+}
+
 void RenderManager::wheelEvent(QWheelEvent *event) { camera_.ProcessMouseScroll(event->angleDelta().y() / 90); }
 
 

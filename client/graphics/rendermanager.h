@@ -38,7 +38,7 @@ class RenderManager : public QOpenGLWidget, public QOpenGLFunctions_3_3_Core {
     void SetRenderMode(int mode);         // 设置渲染模式
     void SetLightSource(int source);      // 设置光源
     void SetHDRExposure(float exposure);  // 设置HDR曝光度
-
+    virtual void keyPressEvent(QKeyEvent* e) override;
    protected:
     virtual void initializeGL() override;
     void init();
