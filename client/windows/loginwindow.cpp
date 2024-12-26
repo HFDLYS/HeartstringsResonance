@@ -199,6 +199,8 @@ void LoginWindow::keyPressEvent(QKeyEvent *e) {
             this->close();
         }
         connections.push_back(a);
+    }else if(e->key()==Qt::Key_Enter){
+        onLoginClicked();
     }
 }
 void LoginWindow::onRegisterClicked()
