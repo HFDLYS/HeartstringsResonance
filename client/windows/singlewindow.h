@@ -19,7 +19,7 @@ class SingleWindow : public BaseWindow {
     Q_OBJECT
 
 public:
-    explicit SingleWindow(int,QWidget *parent = nullptr);
+    explicit SingleWindow(int,int,QWidget *parent = nullptr);
     ~SingleWindow();
 
 public slots:

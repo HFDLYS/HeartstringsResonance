@@ -21,8 +21,8 @@ const int TITLE_HEIGHT = 30;
 const int MAX_TIME=120;
 
 
-SingleWindow::SingleWindow(int seed_,QWidget *parent)
-    : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_){
+SingleWindow::SingleWindow(int seed_,int difficulty_,QWidget *parent)
+    : BaseWindow(parent), ui(new Ui::SingleWindow), seed(seed_), difficulty(difficulty_) {
     ui->setupUi(this);
     QString part1 = ":/images/singlewindow/background";
     QString picid = QString::number(GlobalConfig::getInstance().getPicStyle() + 1);
@@ -35,20 +35,17 @@ SingleWindow::SingleWindow(int seed_,QWidget *parent)
     ui->skill2_button->setEnabled(1);
     ui->skill3_button->setEnabled(1);
     ui->max_score->setText("最高峰: "+QString::number(player.pointSolo));
-    if (player.pointSolo < 500) {
-        ui->difficulty->setText("简单");
+    if (difficulty == 1) {
+        ui->difficulty->setText("普通");
         max_gem_type = 5;
-        difficulty = 1;
         ui->difficulty->setStyleSheet("font-size:20px;color: Green;font-family:幼圆;text-align: center;");
-    } else if (player.pointSolo < 1000) {
-        ui->difficulty->setText("中等");
+    } else if (difficulty == 2) {
+        ui->difficulty->setText("困难");
         max_gem_type = 6;
-        difficulty = 2;
         ui->difficulty->setStyleSheet("font-size:20px;color: Yellow;font-family:幼圆;text-align: center;");
     } else {
-        ui->difficulty->setText("困难");
+        ui->difficulty->setText("极限");
         max_gem_type = 8;
-        difficulty = 3;
         ui->difficulty->setStyleSheet("font-size:20px;color: Red;font-family:幼圆;text-align: center;");
     }
     ui->cnt1->setText(QString::number(player.skill_1));
