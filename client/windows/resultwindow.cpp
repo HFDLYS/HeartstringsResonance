@@ -30,6 +30,8 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
         QString("#resultpic{border-image:url(%1)}").arg(root)
         );
     score=score_;
+    ui->boom2->setVisible(false);
+    ui->boom5->setVisible(false);
     ui->score->setText(QString::number(score_));
     ui->cnt1->setText(QString::number(score1));
     ui->cnt2->setText(QString::number(score2));
@@ -49,9 +51,11 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
     } else if (difficult == 2) {
         ui->difficulty->setText("困难");
         ui->difficulty->setStyleSheet("font-size:20px;color: Yellow;font-family:幼圆;text-align: center;");
+        ui->boom2->setVisible(true);
     } else if (difficult == 3) {
         ui->difficulty->setText("极限");
         ui->difficulty->setStyleSheet("font-size:20px;color: Red;font-family:幼圆;text-align: center;");
+        ui->boom5->setVisible(true);
     } else {
         ui->difficulty->setText("未知");
         ui->difficulty->setStyleSheet("font-size:20px;color: Black;font-family:幼圆;text-align: center;");

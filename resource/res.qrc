@@ -38,6 +38,8 @@
         <file>images/configwindow/setting_music_on-.png</file>
         <file>images/configwindow/setting_sound_off.png</file>
         <file>images/mouse.png</file>
+        <file>images/boom2.png</file>
+        <file>images/boom5.png</file>
         <file>images/windowicon.png</file>
         <file>images/gamewindow/bkgrd.png</file>
         <file>images/gamewindow/background.png</file>
@@ -108,6 +110,10 @@
         <file>images/memberwindow/member_background.png</file>
         <file>images/memberwindow/member.png</file>
         <file>images/rankwindow/rank.png</file>
+        <file>images/rankwindow/solorank.png</file>
+        <file>images/rankwindow/solorank-.png</file>
+        <file>images/rankwindow/multirank.png</file>
+        <file>images/rankwindow/multirank-.png</file>
         <file>images/barprogress/background.png</file>
         <file>images/barprogress/chunk.png</file>
         <file>images/barprogress/background2.png</file>

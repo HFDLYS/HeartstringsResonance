@@ -528,14 +528,18 @@ QPushButton::pressed#btnReturn
     <widget class="QPushButton" name="btnSingle">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>150</x>
        <y>30</y>
-       <width>100</width>
+       <width>200</width>
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#btnSingle{border-image:url(:/images/rankwindow/solorank.png)}
+QPushButton::pressed#btnSingle{border-image:url(:/images/rankwindow/solorank-.png)}</string>
+     </property>
      <property name="text">
-      <string>单人排行</string>
+      <string/>
      </property>
     </widget>
    </widget>
@@ -1041,20 +1045,21 @@ QPushButton::pressed#btnReturn
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="multiBtn">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>150</x>
        <y>30</y>
-       <width>111</width>
+       <width>200</width>
        <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#rank{border-image:url(:/images/rankwindow/rank.png)}</string>
+      <string notr="true">QPushButton#multiBtn{border-image:url(:/images/rankwindow/multirank.png)}
+QPushButton::pressed#multiBtn{border-image:url(:/images/rankwindow/multirank-.png)}</string>
      </property>
      <property name="text">
-      <string>多人排行</string>
+      <string/>
      </property>
     </widget>
    </widget>

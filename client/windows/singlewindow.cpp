@@ -34,6 +34,8 @@ SingleWindow::SingleWindow(int seed_,int difficulty_,QWidget *parent)
     ui->skill1_button->setEnabled(1);
     ui->skill2_button->setEnabled(1);
     ui->skill3_button->setEnabled(1);
+    ui->boom2->setVisible(false);
+    ui->boom5->setVisible(false);
     ui->max_score->setText("最高峰: "+QString::number(player.pointSolo));
     if (difficulty == 1) {
         ui->difficulty->setText("普通");
@@ -43,10 +45,12 @@ SingleWindow::SingleWindow(int seed_,int difficulty_,QWidget *parent)
         ui->difficulty->setText("困难");
         max_gem_type = 6;
         ui->difficulty->setStyleSheet("font-size:20px;color: Yellow;font-family:幼圆;text-align: center;");
+        ui->boom2->setVisible(true);
     } else {
         ui->difficulty->setText("极限");
         max_gem_type = 8;
         ui->difficulty->setStyleSheet("font-size:20px;color: Red;font-family:幼圆;text-align: center;");
+        ui->boom5->setVisible(true);
     }
     ui->cnt1->setText(QString::number(player.skill_1));
     ui->cnt2->setText(QString::number(player.skill_2));

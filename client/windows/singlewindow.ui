@@ -485,6 +485,82 @@ color:Red;</string>
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QLabel" name="boom2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>1170</x>
+       <y>160</y>
+       <width>90</width>
+       <height>90</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>幼圆</family>
+       <pointsize>72</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/boom2.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="boom5">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>1170</x>
+       <y>160</y>
+       <width>90</width>
+       <height>90</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>幼圆</family>
+       <pointsize>72</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resource/res.qrc">:/images/boom5.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
     <zorder>scoreLabel</zorder>
     <zorder>score_board</zorder>
     <zorder>skill1_button</zorder>
@@ -504,6 +580,8 @@ color:Red;</string>
     <zorder>max_score</zorder>
     <zorder>skill_board_4</zorder>
     <zorder>difficulty</zorder>
+    <zorder>boom2</zorder>
+    <zorder>boom5</zorder>
    </widget>
    <widget class="QWidget" name="picwidget" native="true">
     <property name="geometry">
