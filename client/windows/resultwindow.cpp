@@ -44,12 +44,16 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
     });
     if (difficult == 1) {
         ui->difficulty->setText("简单");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Green;font-family:幼圆;text-align: center;");
     } else if (difficult == 2) {
         ui->difficulty->setText("中等");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Yellow;font-family:幼圆;text-align: center;");
     } else if (difficult == 3) {
         ui->difficulty->setText("困难");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Red;font-family:幼圆;text-align: center;");
     } else {
         ui->difficulty->setText("未知");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Black;font-family:幼圆;text-align: center;");
     }
     connections.push_back(a);
 }

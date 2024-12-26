@@ -39,14 +39,17 @@ SingleWindow::SingleWindow(int seed_,QWidget *parent)
         ui->difficulty->setText("简单");
         max_gem_type = 5;
         difficulty = 1;
+        ui->difficulty->setStyleSheet("font-size:20px;color: Green;font-family:幼圆;text-align: center;");
     } else if (player.pointSolo < 1000) {
         ui->difficulty->setText("中等");
         max_gem_type = 6;
         difficulty = 2;
+        ui->difficulty->setStyleSheet("font-size:20px;color: Yellow;font-family:幼圆;text-align: center;");
     } else {
         ui->difficulty->setText("困难");
         max_gem_type = 8;
         difficulty = 3;
+        ui->difficulty->setStyleSheet("font-size:20px;color: Red;font-family:幼圆;text-align: center;");
     }
     ui->cnt1->setText(QString::number(player.skill_1));
     ui->cnt2->setText(QString::number(player.skill_2));
