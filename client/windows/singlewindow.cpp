@@ -122,7 +122,6 @@ void SingleWindow::mouseReleaseEvent(QMouseEvent *event) {
 
 void SingleWindow::startGame() {
     initBoard();
-    has_started_=true;
     ui->progressBar->setValue(MAX_TIME);
     timer=new QTimer(this);
     timer->start(1000);
@@ -156,6 +155,7 @@ void SingleWindow::startGame() {
             connections.push_back(a);
         }
     });
+    has_started_=true;
     connections.push_back(a);
 }
 
