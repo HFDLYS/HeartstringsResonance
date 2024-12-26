@@ -56,9 +56,9 @@ QPushButton::pressed#btnReturn
    <widget class="QWidget" name="rank" native="true">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>110</x>
       <y>40</y>
-      <width>451</width>
+      <width>500</width>
       <height>591</height>
      </rect>
     </property>
@@ -68,195 +68,222 @@ QPushButton::pressed#btnReturn
     <widget class="QLabel" name="id_1">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>190</y>
-       <width>80</width>
-       <height>20</height>
+       <x>170</x>
+       <y>185</y>
+       <width>130</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_2">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>222</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_3">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>256</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_4">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>290</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_5">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>325</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_6">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>357</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_7">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>390</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_8">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>424</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_9">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>457</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_10">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>170</x>
        <y>490</y>
-       <width>80</width>
+       <width>130</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
@@ -264,13 +291,16 @@ QPushButton::pressed#btnReturn
      <property name="text">
       <string>id_?</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="score_10">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>490</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -283,14 +313,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_9">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>455</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -303,14 +336,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_8">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>422</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -323,14 +359,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_7">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>390</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -343,14 +382,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_6">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>356</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -363,14 +405,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_5">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>322</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -383,14 +428,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_4">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>288</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -403,14 +451,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_3">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>253</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -423,14 +474,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_2">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>220</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -443,14 +497,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_1">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>190</y>
-       <width>80</width>
+       <width>95</width>
        <height>20</height>
       </rect>
      </property>
@@ -464,13 +521,16 @@ QPushButton::pressed#btnReturn
      <property name="text">
       <string>score_?</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QPushButton" name="btnSingle">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>190</x>
        <y>30</y>
-       <width>101</width>
+       <width>100</width>
        <height>41</height>
       </rect>
      </property>
@@ -482,9 +542,9 @@ QPushButton::pressed#btnReturn
    <widget class="QWidget" name="rankmuti" native="true">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>670</x>
       <y>40</y>
-      <width>451</width>
+      <width>500</width>
       <height>591</height>
      </rect>
     </property>
@@ -494,195 +554,252 @@ QPushButton::pressed#btnReturn
     <widget class="QLabel" name="id_11">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>190</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_12">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>222</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_13">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>256</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_14">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>290</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_15">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>325</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_16">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>357</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_17">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>390</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_18">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>424</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_19">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>457</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
      </property>
      <property name="text">
       <string>id_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="id_20">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>175</x>
        <y>490</y>
-       <width>80</width>
+       <width>125</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	font-size:20px;
+	font-size:18px;
 	color:Red;
 	font-family:幼圆;
 }</string>
@@ -690,13 +807,16 @@ QPushButton::pressed#btnReturn
      <property name="text">
       <string>id_?</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="score_20">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>490</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -709,14 +829,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_19">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>455</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -729,14 +852,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_18">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>422</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -749,14 +875,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_17">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>390</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -769,14 +898,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_16">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>356</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -789,14 +921,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_15">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>322</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -809,14 +944,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_14">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>288</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -829,14 +967,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_13">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>253</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -849,14 +990,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_12">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>220</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -869,14 +1013,17 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="score_11">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>190</y>
-       <width>80</width>
+       <width>90</width>
        <height>20</height>
       </rect>
      </property>
@@ -890,11 +1037,14 @@ QPushButton::pressed#btnReturn
      <property name="text">
       <string>score_?</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>200</x>
        <y>30</y>
        <width>111</width>
        <height>41</height>
