@@ -40,7 +40,7 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
             QJsonObject parameter;
             parameter = cmd["parameter"].toObject();
             QJsonArray soloArray = parameter["soloRank"].toArray();
-            qDebug()<<soloArray;
+            QJsonArray multiArray = parameter["multiRank"].toArray();
             int i = 0;
             for(auto soloPlayer : soloArray){
                 QString id = soloPlayer.toObject()["userName"].toString();
@@ -49,9 +49,16 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
                 score_solo[i] = score;
                 qDebug() << id << ' ' << score << '\n';
             }
+            i = 0;
+            for(auto multiPlayer : multiArray){
+                QString id = multiPlayer.toObject()["userName"].toString();
+                int score = multiPlayer.toObject()["point"].toInt();
+                id_multi[++i] = id;
+                score_multi[i] = score;
+                qDebug() << id << ' ' << score << '\n';
+            }
         }
         ui->id_1->raise();
-
         ui->id_1->setText(id_solo[1]); ui->score_1->setText(QString::number(score_solo[1]));
         ui->id_2->setText(id_solo[2]); ui->score_2->setText(QString::number(score_solo[2]));
         ui->id_3->setText(id_solo[3]); ui->score_3->setText(QString::number(score_solo[3]));
@@ -72,6 +79,19 @@ RankWindow::RankWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::RankWin
         ui->id_8->raise(); ui->score_8->raise();
         ui->id_9->raise(); ui->score_9->raise();
         ui->id_10->raise(); ui->score_10->raise();
+
+
+        ui->id_11->setText(id_multi[1]); ui->score_11->setText(QString::number(score_multi[1]));
+        ui->id_12->setText(id_multi[2]); ui->score_12->setText(QString::number(score_multi[2]));
+        ui->id_13->setText(id_multi[3]); ui->score_13->setText(QString::number(score_multi[3]));
+        ui->id_14->setText(id_multi[4]); ui->score_14->setText(QString::number(score_multi[4]));
+        ui->id_15->setText(id_multi[5]); ui->score_15->setText(QString::number(score_multi[5]));
+        ui->id_16->setText(id_multi[6]); ui->score_16->setText(QString::number(score_multi[6]));
+        ui->id_17->setText(id_multi[7]); ui->score_17->setText(QString::number(score_multi[7]));
+        ui->id_18->setText(id_multi[8]); ui->score_18->setText(QString::number(score_multi[8]));
+        ui->id_19->setText(id_multi[9]); ui->score_19->setText(QString::number(score_multi[9]));
+        ui->id_20->setText(id_multi[10]); ui->score_20->setText(QString::number(score_multi[10]));
+
     });
     connections.push_back(a);
 }
