@@ -272,6 +272,25 @@ void ConfigWindow::on_btnBack_clicked()
             }
         }
     }
+    if(server->isValid()){
+        QJsonObject cmd,parameter;
+        cmd["command"]="updateConfig";
+        parameter["username"]=player.username;
+        parameter["gemStyle"]=GlobalConfig::getInstance().getGemStyle();
+        parameter["boardStyle"]=GlobalConfig::getInstance().getBoardStyle();
+        parameter["musicStyle"]=GlobalConfig::getInstance().getMusicStyle();
+        parameter["picStyle"]=GlobalConfig::getInstance().getPicStyle();
+        cmd["parameter"]=parameter;
+        QJsonDocument json(cmd);
+        server->sendBinaryMessage(json.toJson());
+    }
+
+    // 更新配置
+    BaseWindow::player.setGemStyle(GlobalConfig::getInstance().getGemStyle());
+    BaseWindow::player.setBoardStyle(GlobalConfig::getInstance().getBoardStyle());
+    BaseWindow::player.setMusicStyle(GlobalConfig::getInstance().getMusicStyle());
+    BaseWindow::player.setPicStyle(GlobalConfig::getInstance().getPicStyle());
+
     ConfigWindow *cw = new ConfigWindow();
     changeWindow(cw);
     cw->showBoard();

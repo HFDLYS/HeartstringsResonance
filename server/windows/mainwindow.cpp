@@ -162,8 +162,23 @@ void MainWindow::newClientConnect() {
             cmdOut["parameter"] = parameterOut;
             QJsonDocument jsonOut(cmdOut);
             client->sendBinaryMessage(jsonOut.toJson());
+        } else if (cmd["command"].toString() == "updateConfig") {
+            QJsonObject parameter = cmd["parameter"].toObject();
+            QString username = parameter["username"].toString();
+            int gemStyle = parameter["gemStyle"].toInt();
+            int boardStyle = parameter["boardStyle"].toInt();
+            int musicStyle = parameter["musicStyle"].toInt();
+            int picStyle = parameter["picStyle"].toInt();
+            auto rec = db.updateConfig(username, gemStyle, boardStyle, musicStyle, picStyle);
+            QJsonObject parameterOut;
+            parameterOut["player"] = rec[0].toJson();
+            QJsonObject cmdOut;
+            cmdOut["command"] = "updateConfig";
+            cmdOut["parameter"] = parameterOut;
+            QJsonDocument jsonOut(cmdOut);
+            client->sendBinaryMessage(jsonOut.toJson());
         }
-        });
+    });
 
 }
 MainWindow::~MainWindow() {

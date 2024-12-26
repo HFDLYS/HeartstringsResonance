@@ -144,6 +144,43 @@ QPair<bool, QString> DataBase::playerLogIn(QString username, QString password, P
     return qMakePair(1, "登录成功");
 }
 
+QVector<Player> DataBase::updateConfig(QString username, int gemStyle, int boardStyle, int musicStyle, int picStyle) {
+    QVector<Player> rec;
+    if (!db.isOpen()) {
+        if (!connect()) {
+            return rec;
+        }
+    }
+
+    auto a = select(username);
+    if (a.empty()) {
+        return rec;
+    } else {
+        Player player = a[0];
+        player.setGemStyle(gemStyle);
+        player.setBoardStyle(boardStyle);
+        player.setMusicStyle(musicStyle);
+        player.setPicStyle(picStyle);
+
+        QSqlQuery query;
+        query.prepare("UPDATE user "
+            "SET gem_style = :gemStyle, board_style = :boardStyle, music_style = :musicStyle, pic_style = :picStyle "
+            "WHERE user_name = :username");
+        query.bindValue(":gemStyle", player.gemStyle);
+        query.bindValue(":boardStyle", player.boardStyle);
+        query.bindValue(":musicStyle", player.musicStyle);
+        query.bindValue(":picStyle", player.picStyle);
+        query.bindValue(":username", player.username);
+
+        if (!query.exec()) {
+            qDebug() << "Failed to update user table:" << query.lastError().text();
+            return rec;
+        }
+        rec=select(player.username);
+        return rec;
+    }
+}
+
 QVector<Player> DataBase::update(QString username, int pointSolo, int pointMulti, int skill_1, int skill_2, int skill_3) {
     QVector<Player> rec;
     if (!db.isOpen()) {
