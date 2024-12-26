@@ -282,7 +282,8 @@ font-weight: bold;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#btnMedium{border-image:url(:/images/mainwindow/2.png)}
-QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/2-.png)}</string>
+QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/2-.png)}
+QPushButton::disabled#btnConfig{border-image:url(:/images/mainwindow/2-.png)}</string>
       </property>
       <property name="text">
        <string/>
@@ -299,7 +300,7 @@ QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/2-.png)}</st
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#btnHard{border-image:url(:/images/mainwindow/3.png)}
-QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/3-.png)}</string>
+QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/3-.png)}QPushButton::disabled#btnEasy{border-image:url(:/images/mainwindow/1-.png)}</string>
       </property>
       <property name="text">
        <string/>
@@ -316,7 +317,8 @@ QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/3-.png)}</st
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#btnEasy{border-image:url(:/images/mainwindow/1.png)}
-QPushButton::pressed#btnEasy{border-image:url(:/images/mainwindow/1-.png)}</string>
+QPushButton::pressed#btnEasy{border-image:url(:/images/mainwindow/1-.png)}
+QPushButton::disabled#btnEasy{border-image:url(:/images/mainwindow/1-.png)}</string>
       </property>
       <property name="text">
        <string/>

@@ -42,7 +42,7 @@ void MainWindow::showEasy(){
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm2();
-    SingleWindow *sw = new SingleWindow(0);
+    SingleWindow *sw = new SingleWindow(0,1);
     changeWindow(sw);
     sw->startGame();
     ui->selectwidget->hide();
@@ -51,10 +51,14 @@ void MainWindow::showEasy(){
 
 //中等模式
 void MainWindow::showMedium(){
+    if (player.pointSolo < 500) {
+        QMessageBox::information(this, "提示", "前面的区域等你分数大于500再来探索吧");
+        return;
+    }
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm2();
-    SingleWindow *sw = new SingleWindow(0);
+    SingleWindow *sw = new SingleWindow(0,2);
     changeWindow(sw);
     sw->startGame();
     ui->selectwidget->hide();
@@ -63,10 +67,14 @@ void MainWindow::showMedium(){
 
 //困难模式
 void MainWindow::showHard(){
+    if (player.pointSolo < 1000) {
+        QMessageBox::information(this, "提示", "前面的区域等你分数大于1000再来探索吧");
+        return;
+    }
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm2();
-    SingleWindow *sw = new SingleWindow(0);
+    SingleWindow *sw = new SingleWindow(0,3);
     changeWindow(sw);
     sw->startGame();
     ui->selectwidget->hide();
