@@ -147,6 +147,11 @@ void LoginWindow::onLoginClicked()
                 BaseWindow::setserver(server);
                 loginButton->setEnabled(true);
                 registerButton->setEnabled(true);
+                // 加载配置
+                GlobalConfig::getInstance().setGemStyle(player.gemStyle);
+                GlobalConfig::getInstance().setBoardStyle(player.boardStyle);
+                GlobalConfig::getInstance().setMusicStyle(player.musicStyle);
+                GlobalConfig::getInstance().setPicStyle(player.picStyle);
                 changeWindow(new MainWindow());
 
             } else{

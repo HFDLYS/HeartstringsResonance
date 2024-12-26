@@ -88,6 +88,10 @@ QVector<Player> DataBase::select(QString username) {
         SELECT 
             user.user_name,
             user.password,
+            user.gem_style,
+            user.board_style,
+            user.music_style,
+            user.pic_style,
             rank_list.point_solo, 
             rank_list.point_multi, 
             item.skill_1, 
@@ -107,6 +111,10 @@ QVector<Player> DataBase::select(QString username) {
         qDebug() << "查询成功,有" << query.size() << "条记录";
         while (query.next()) {
             Player player(query.record().value("user_name").toString(), query.record().value("password").toString(), query.record().value("point_solo").toInt(), query.record().value("point_multi").toInt(), query.record().value("skill_1").toInt(), query.record().value("skill_2").toInt(), query.record().value("skill_3").toInt());
+            player.setGemStyle(query.record().value("gem_style").toInt());
+            player.setBoardStyle(query.record().value("board_style").toInt());
+            player.setMusicStyle(query.record().value("music_style").toInt());
+            player.setPicStyle(query.record().value("pic_style").toInt());
             rec.push_back(player);
         }
     } else {
