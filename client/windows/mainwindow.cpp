@@ -24,6 +24,12 @@ MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWin
     ui->selectwidget->hide();
     AudioManager::GetInstance()->PlayBgm1();
     qDebug()<< "test" << player.username;
+    auto a=connect(ui->btnEasy, &QPushButton::clicked, this, &MainWindow::showEasy);
+    connections.push_back(a);
+    a=connect(ui->btnMedium, &QPushButton::clicked, this, &MainWindow::showMedium);
+    connections.push_back(a);
+    a=connect(ui->btnHard, &QPushButton::clicked, this, &MainWindow::showHard);
+    connections.push_back(a);
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -32,9 +38,7 @@ MainWindow::~MainWindow() { delete ui; }
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
     ui->selectwidget->show();
-    connect(ui->btnEasy, &QPushButton::clicked, this, &MainWindow::showEasy);
-    connect(ui->btnMedium, &QPushButton::clicked, this, &MainWindow::showMedium);
-    connect(ui->btnHard, &QPushButton::clicked, this, &MainWindow::showHard);
+
 }
 
 //简单模式
