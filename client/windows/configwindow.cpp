@@ -154,6 +154,7 @@ void ConfigWindow::showDim(){
     style_flag = 0;
     ui->listWidget->clear();
     QVector<QString> dim = {"和弦魔法", "动物乐园"};
+    int gemStyle = GlobalConfig::getInstance().getGemStyle();
     for (auto &i : dim) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -161,6 +162,10 @@ void ConfigWindow::showDim(){
         item->setCheckState(Qt::Unchecked);
         item->setSizeHint(QSize(0, 50));
         ui->listWidget->addItem(item);
+        if (gemStyle == 0) {
+            item->setCheckState(Qt::Checked);
+        }
+        gemStyle--;
     }
 }
 
@@ -169,6 +174,7 @@ void ConfigWindow::showMsc(){
     style_flag = 1;
     ui->listWidget->clear();
     QVector<QString> msc = {"DokiDoki", "哈雪大冒险", "FairyTale", "冬のダイヤモンド", "60\%的遐想·热情"};
+    int musicStyle = GlobalConfig::getInstance().getMusicStyle();
     for (auto &i : msc) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -176,6 +182,10 @@ void ConfigWindow::showMsc(){
         item->setCheckState(Qt::Unchecked);
         item->setSizeHint(QSize(0, 50));
         ui->listWidget->addItem(item);
+        if (musicStyle == 0) {
+            item->setCheckState(Qt::Checked);
+        }
+        musicStyle--;
     }
 }
 
@@ -184,6 +194,7 @@ void ConfigWindow::showBod(){
     style_flag = 2;
     ui->listWidget->clear();
     QVector<QString> bod = {"浩瀚心海", "魔法之时", "时间之尘", "心环相耀"};
+    int boardStyle = GlobalConfig::getInstance().getBoardStyle();
     for (auto &i : bod) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -191,6 +202,10 @@ void ConfigWindow::showBod(){
         item->setCheckState(Qt::Unchecked);
         item->setSizeHint(QSize(0, 50));
         ui->listWidget->addItem(item);
+        if (boardStyle == 0) {
+            item->setCheckState(Qt::Checked);
+        }
+        boardStyle--;
     }
 }
 
@@ -198,7 +213,7 @@ void ConfigWindow::showBgd(){
     style_flag = 3;
     ui->listWidget->clear();
     QVector<QString> bgd = {"心海相连", "不好说", "樱花鱼放", "HFDLYS力推", "Lika力推", "Kyy008力推"};
-
+    int picStyle = GlobalConfig::getInstance().getPicStyle();
     for (auto &i : bgd) {
         QListWidgetItem *item = new QListWidgetItem(i);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -206,6 +221,11 @@ void ConfigWindow::showBgd(){
         item->setCheckState(Qt::Unchecked);
         item->setSizeHint(QSize(0, 50));
         ui->listWidget->addItem(item);
+        if (picStyle == 0) {
+            item->setCheckState(Qt::Checked);
+        }
+        picStyle--;
+        
     }
 }
 
