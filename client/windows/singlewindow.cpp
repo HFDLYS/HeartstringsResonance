@@ -138,6 +138,7 @@ void SingleWindow::startGame() {
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
             rw->showGem();
+            this->hide();
             auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
                 for(auto con:cons){
                     connections.push_back(con);
@@ -210,6 +211,7 @@ void SingleWindow::on_pause_button_clicked() {
         rw->move(this->pos().x(), this->pos().y());
         rw->show();
         rw->showGem();
+        this->hide();
         auto a=connect(rw, &ResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
             for(auto con:cons){
                 connections.push_back(con);
