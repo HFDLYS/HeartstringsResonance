@@ -67,8 +67,8 @@ void MainWindow::showMedium(){
 
 //困难模式
 void MainWindow::showHard(){
-    if (player.pointSolo < 10000) {
-        QMessageBox::information(this, "提示", "前面的区域等你分数大于10000再来探索吧");
+    if (player.pointSolo < 2000) {
+        QMessageBox::information(this, "提示", "前面的区域等你分数大于2000再来探索吧");
         return;
     }
     AudioManager::GetInstance()->PlayOpen();
