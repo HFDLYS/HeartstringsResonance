@@ -30,6 +30,7 @@ SingleWindow::SingleWindow(int seed_,int difficulty_,QWidget *parent)
     ui->picwidget->setStyleSheet(
         QString("#picwidget{border-image:url(%1)}").arg(root)
         );
+    is_pause = false;
     ui->score->setText(QString::number(0));
     ui->skill1_button->setEnabled(1);
     ui->skill2_button->setEnabled(1);
@@ -122,7 +123,6 @@ void SingleWindow::mouseReleaseEvent(QMouseEvent *event) {
 
 void SingleWindow::startGame() {
     initBoard();
-    has_started_=true;
     ui->progressBar->setValue(MAX_TIME);
     timer=new QTimer(this);
     timer->start(1000);
@@ -156,6 +156,7 @@ void SingleWindow::startGame() {
             connections.push_back(a);
         }
     });
+    has_started_=true;
     connections.push_back(a);
 }
 
