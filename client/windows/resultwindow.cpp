@@ -91,7 +91,7 @@ void ResultWindow::on_btnUpdate_clicked()
     if (difficulty == 2) {
         score = score * 2;
     } else if (difficulty == 3) {
-        score = score * 3;
+        score = score * 5;
     }
     parameter["pointSolo"]=isSolo?score:0;
     parameter["pointMulti"]=isSolo?0:score;
