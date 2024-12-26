@@ -21,7 +21,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : BaseWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-
+    ui->selectwidget->hide();
     AudioManager::GetInstance()->PlayBgm1();
     qDebug()<< "test" << player.username;
 }
@@ -31,13 +31,47 @@ MainWindow::~MainWindow() { delete ui; }
 
 // 单人游戏开始
 void MainWindow::on_rbtnSolo_clicked() {
+    ui->selectwidget->show();
+    connect(ui->btnEasy, &QPushButton::clicked, this, &MainWindow::showEasy);
+    connect(ui->btnMedium, &QPushButton::clicked, this, &MainWindow::showMedium);
+    connect(ui->btnHard, &QPushButton::clicked, this, &MainWindow::showHard);
+}
+
+//简单模式
+void MainWindow::showEasy(){
     AudioManager::GetInstance()->PlayOpen();
     AudioManager::GetInstance()->StopBgm1();
     AudioManager::GetInstance()->PlayBgm2();
     SingleWindow *sw = new SingleWindow(0);
     changeWindow(sw);
     sw->startGame();
+    ui->selectwidget->hide();
 }
+
+
+//中等模式
+void MainWindow::showMedium(){
+    AudioManager::GetInstance()->PlayOpen();
+    AudioManager::GetInstance()->StopBgm1();
+    AudioManager::GetInstance()->PlayBgm2();
+    SingleWindow *sw = new SingleWindow(0);
+    changeWindow(sw);
+    sw->startGame();
+    ui->selectwidget->hide();
+}
+
+
+//困难模式
+void MainWindow::showHard(){
+    AudioManager::GetInstance()->PlayOpen();
+    AudioManager::GetInstance()->StopBgm1();
+    AudioManager::GetInstance()->PlayBgm2();
+    SingleWindow *sw = new SingleWindow(0);
+    changeWindow(sw);
+    sw->startGame();
+    ui->selectwidget->hide();
+}
+
 
 
 // 多人游戏开始
@@ -117,5 +151,11 @@ QString MainWindow::getip(){
 }
 QString MainWindow::getport(){
     return port;
+}
+
+
+void MainWindow::on_btnBack_clicked()
+{
+    ui->selectwidget->hide();
 }
 

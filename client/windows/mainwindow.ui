@@ -259,6 +259,89 @@ font-weight: bold;</string>
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QWidget" name="selectwidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>365</x>
+       <y>150</y>
+       <width>550</width>
+       <height>500</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#selectwidget{border-image:url(:/images/mainwindow/board.png)}</string>
+     </property>
+     <widget class="QPushButton" name="btnMedium">
+      <property name="geometry">
+       <rect>
+        <x>125</x>
+        <y>260</y>
+        <width>300</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#btnMedium{border-image:url(:/images/mainwindow/2.png)}
+QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/2-.png)}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnHard">
+      <property name="geometry">
+       <rect>
+        <x>125</x>
+        <y>350</y>
+        <width>300</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#btnHard{border-image:url(:/images/mainwindow/3.png)}
+QPushButton::pressed#btnConfig{border-image:url(:/images/mainwindow/3-.png)}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnEasy">
+      <property name="geometry">
+       <rect>
+        <x>125</x>
+        <y>170</y>
+        <width>300</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#btnEasy{border-image:url(:/images/mainwindow/1.png)}
+QPushButton::pressed#btnEasy{border-image:url(:/images/mainwindow/1-.png)}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnBack">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>320</y>
+        <width>91</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: transparent;
+    border: none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
     <zorder>shadow</zorder>
     <zorder>btnRank</zorder>
     <zorder>btnConfig</zorder>
@@ -267,6 +350,7 @@ font-weight: bold;</string>
     <zorder>rbtnSolo</zorder>
     <zorder>btnQuit</zorder>
     <zorder>btnAbout</zorder>
+    <zorder>selectwidget</zorder>
    </widget>
   </widget>
  </widget>

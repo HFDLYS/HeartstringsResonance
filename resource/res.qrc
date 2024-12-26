@@ -134,5 +134,12 @@
         <file>sounds/Fuyu no Daiyamondo.wav</file>
         <file>sounds/xiaxiang_reqing.wav</file>
         <file>images/singlewindow/background6.png</file>
+        <file>images/mainwindow/1.png</file>
+        <file>images/mainwindow/1-.png</file>
+        <file>images/mainwindow/2.png</file>
+        <file>images/mainwindow/2-.png</file>
+        <file>images/mainwindow/3.png</file>
+        <file>images/mainwindow/3-.png</file>
+        <file>images/mainwindow/board.png</file>
     </qresource>
 </RCC>

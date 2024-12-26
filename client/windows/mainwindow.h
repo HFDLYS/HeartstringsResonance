@@ -35,6 +35,12 @@ private slots:
 
     void on_rbtnMultiplayer_clicked();
 
+    void showEasy();
+    void showMedium();
+    void showHard();
+
+    void on_btnBack_clicked();
+
 signals:
 
 private:
