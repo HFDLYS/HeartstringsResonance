@@ -53,40 +53,11 @@ QPushButton::pressed#btnReturn
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSingle">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>40</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>单人排行</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>40</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#rank{border-image:url(:/images/rankwindow/rank.png)}</string>
-    </property>
-    <property name="text">
-     <string>多人排行</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="rank" native="true">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>110</y>
+      <x>140</x>
+      <y>40</y>
       <width>451</width>
       <height>591</height>
      </rect>
@@ -492,6 +463,448 @@ QPushButton::pressed#btnReturn
      </property>
      <property name="text">
       <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSingle">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>30</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>单人排行</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="rankmuti" native="true">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>40</y>
+      <width>451</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#rankmuti{border-image:url(:/images/rankwindow/rank.png)}</string>
+    </property>
+    <widget class="QLabel" name="id_11">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>190</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_12">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>222</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_13">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>256</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_14">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>290</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_15">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>325</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_16">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>357</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_17">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>390</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_18">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>424</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_19">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>457</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="id_20">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>490</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>id_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_20">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>490</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_19">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>455</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_18">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>422</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_17">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>390</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_16">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>356</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_15">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>322</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_14">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>288</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_13">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>253</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_12">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>220</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="score_11">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>190</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-size:20px;
+	color:Red;
+	font-family:幼圆;
+}</string>
+     </property>
+     <property name="text">
+      <string>score_?</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>30</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#rank{border-image:url(:/images/rankwindow/rank.png)}</string>
+     </property>
+     <property name="text">
+      <string>多人排行</string>
      </property>
     </widget>
    </widget>

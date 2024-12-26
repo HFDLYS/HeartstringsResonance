@@ -29,6 +29,8 @@ private:
     QWebSocket *server;
     QString id_solo[20];
     int score_solo[20] = {0};
+    QString id_multi[20];
+    int score_multi[20] = {0};
 };
 
 #endif  // RANKWINDOW_H
