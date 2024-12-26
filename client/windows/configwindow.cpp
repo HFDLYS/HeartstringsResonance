@@ -282,6 +282,7 @@ void ConfigWindow::on_btnBack_clicked()
         parameter["picStyle"]=GlobalConfig::getInstance().getPicStyle();
         cmd["parameter"]=parameter;
         QJsonDocument json(cmd);
+        qDebug()<<json.toJson();
         server->sendBinaryMessage(json.toJson());
     }
 

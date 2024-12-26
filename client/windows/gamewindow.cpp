@@ -197,6 +197,7 @@ GameWindow::GameWindow(QWidget *parent)
             rw->move(this->pos().x(), this->pos().y());
             rw->show();
             rw->showGem();
+            this->hide();
             auto a=connect(rw, &MultiResultWindow::exitwindow, this, [=](QVector<QMetaObject::Connection> cons){
                 for(auto con:cons){
                     connections.push_back(con);
