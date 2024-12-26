@@ -29,6 +29,7 @@ signals:
     void exitwindow(QVector<QMetaObject::Connection>);
 private:
     bool isSolo;
+    int difficulty;
     int score;
     QWebSocket*server;
     Ui::ResultWindow *ui;

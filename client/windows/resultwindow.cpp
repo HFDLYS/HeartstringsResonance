@@ -16,6 +16,7 @@ const QVector<QPoint> show_opengl_up_left = {QPoint(450, 280), QPoint(450, 420),
 //const QUrl serverUrl("ws://localhost:1479");
 ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int score3, int score4, int difficult, QWidget *parent)
     : BaseWindow(parent)
+    , difficulty(difficult)
     , ui(new Ui::ResultWindow)
 {
     QUrl playerip = BaseWindow::playerIp;
@@ -87,6 +88,11 @@ void ResultWindow::on_btnUpdate_clicked()
     QJsonObject cmd,parameter;
     cmd["command"]="updatePoint";
     parameter["userName"]=player.username;
+    if (difficulty == 2) {
+        score = score * 10;
+    } else if (difficulty == 3) {
+        score = score * 100;
+    }
     parameter["pointSolo"]=isSolo?score:0;
     parameter["pointMulti"]=isSolo?0:score;
     cmd["parameter"]=parameter;
