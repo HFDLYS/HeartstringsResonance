@@ -14,7 +14,7 @@
 const QPoint show_board_size(60, 60);
 const QVector<QPoint> show_opengl_up_left = {QPoint(450, 280), QPoint(450, 420), QPoint(770, 280), QPoint(770, 420)};
 //const QUrl serverUrl("ws://localhost:1479");
-ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int score3, int score4, int score5, QWidget *parent)
+ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int score3, int score4, int difficult, QWidget *parent)
     : BaseWindow(parent)
     , ui(new Ui::ResultWindow)
 {
@@ -34,7 +34,6 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
     ui->cnt2->setText(QString::number(score2));
     ui->cnt3->setText(QString::number(score3));
     ui->cnt4->setText(QString::number(score4));
-    ui->cnt5->setText(QString::number(score5));
     for (int i = 0; i < 4; i++) {
         gem_render_[i] = new Graphics::RenderManager(ui->resultpic);
         gem_render_[i]->setFixedSize(show_board_size.x(), show_board_size.y());
@@ -43,6 +42,19 @@ ResultWindow::ResultWindow(bool isSolo_,int score_, int score1, int score2, int 
     auto a=connect(server,&QWebSocket::binaryMessageReceived,this,[&](const QByteArray &message){
         qDebug()<<message;
     });
+    if (difficult == 1) {
+        ui->difficulty->setText("简单");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Green;font-family:幼圆;text-align: center;");
+    } else if (difficult == 2) {
+        ui->difficulty->setText("中等");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Yellow;font-family:幼圆;text-align: center;");
+    } else if (difficult == 3) {
+        ui->difficulty->setText("困难");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Red;font-family:幼圆;text-align: center;");
+    } else {
+        ui->difficulty->setText("未知");
+        ui->difficulty->setStyleSheet("font-size:20px;color: Black;font-family:幼圆;text-align: center;");
+    }
     connections.push_back(a);
 }
 
