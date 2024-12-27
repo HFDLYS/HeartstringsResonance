@@ -4,3 +4,7 @@ build/
 .gitignore
 heartstrings-resonance.tar
 heartstrings-resonance.tar.gz
+
+test.py
+plantuml/
+out/
