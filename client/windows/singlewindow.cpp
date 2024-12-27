@@ -237,8 +237,10 @@ void SingleWindow::on_pause_button_clicked() {
     connections.push_back(a);
 }
 void SingleWindow::keyPressEvent(QKeyEvent *e) {
-    // renderer_->keyPressEvent(e);
-    // return;
+    if (is_brower_opened) {
+        renderer_->keyPressEvent(e);
+        return;
+    }
     if(!is_pause){
         switch(e->key()){
         case Qt::Key_Escape:
@@ -255,6 +257,9 @@ void SingleWindow::keyPressEvent(QKeyEvent *e) {
             break;
         case Qt::Key_D:
             on_skill3_button_clicked();
+            break;
+        case Qt::Key_B:
+            is_brower_opened = !is_brower_opened;
             break;
         }
     }else{

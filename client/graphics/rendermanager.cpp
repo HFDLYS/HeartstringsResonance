@@ -231,10 +231,10 @@ void RenderManager::keyPressEvent(QKeyEvent *e) {
         case Qt::Key_D:
             camera_.ProcessKeyboard(RIGHT, 5);
             break;
-        case Qt::Key_Q:
+        case Qt::Key_E:
             camera_.ProcessKeyboard(BACKWARD, 5);
             break;
-        case Qt::Key_E:
+        case Qt::Key_Q:
             camera_.ProcessKeyboard(FORWARD, 5);
             break;
         case Qt::Key_I:

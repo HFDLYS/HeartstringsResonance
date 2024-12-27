@@ -64,7 +64,7 @@ private:
     PauseWindow *pw;
     Board *board;
     Graphics::RenderManager *renderer_;
-
+    bool is_brower_opened = false;
     // RecordRankWindow *record_rank_window;  // 用作排行榜输入窗口
 
     bool
